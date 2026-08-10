@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="ESFE. Clothin Store.UI/ESFE. Clothin Store.UI.csproj" />
+  <Project Path="ESFE. Clothing Store.DAL/ESFE. Clothing Store.DAL.csproj" />
+  <Project Path="ESFE. Clothing Store.EN/ESFE. Clothing Store.EN.csproj" />
+  <Project Path="ESFE. Clothing Store.LN/ESFE. Clothing Store.LN.csproj" />
+</Solution>
