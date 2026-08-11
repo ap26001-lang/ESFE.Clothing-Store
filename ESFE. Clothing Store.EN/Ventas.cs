@@ -11,5 +11,5 @@ namespace ESFE._Clothing_Store.EN
         public int Cantidad_de_productos { get; set; }
         public int id_Tipo_Producto { get; set; }
         public int id_cliente { get; set; }
-    }
+    }...
 }
