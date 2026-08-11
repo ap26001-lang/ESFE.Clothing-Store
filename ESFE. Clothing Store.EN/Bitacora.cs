@@ -10,5 +10,6 @@ namespace ESFE._Clothing_Store.EN
         public string Accion { get; set; }
         public int Id_Usuario { get; set; }
         public DateTime Fecha_y_hora { get; set; }
+        
     }
 }
