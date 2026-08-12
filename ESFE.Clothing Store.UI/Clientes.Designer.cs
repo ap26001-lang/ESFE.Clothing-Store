@@ -62,7 +62,10 @@ namespace ESFE.Clothing_Store.UI
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = Color.FromArgb(255, 128, 255);
+            // Cabecera con acento dorado para transmitir lujo pero más viva
+            label1.BackColor = Color.FromArgb(212, 175, 55);
+            label1.ForeColor = Color.FromArgb(34, 34, 34);
+            label1.Padding = new Padding(6, 4, 6, 4);
             label1.Location = new Point(12, 9);
             label1.Name = "label1";
             label1.Size = new Size(65, 20);
@@ -72,7 +75,9 @@ namespace ESFE.Clothing_Store.UI
             // label2
             // 
             label2.AutoSize = true;
-            label2.BackColor = Color.FromArgb(128, 128, 255);
+            // Texto de búsqueda en tono neutro sobre fondo crema
+            label2.BackColor = Color.FromArgb(248, 246, 244);
+            label2.ForeColor = Color.FromArgb(60, 60, 60);
             label2.Location = new Point(12, 40);
             label2.Name = "label2";
             label2.Size = new Size(208, 20);
@@ -88,7 +93,9 @@ namespace ESFE.Clothing_Store.UI
             // 
             // button1
             // 
-            button1.BackColor = Color.FromArgb(255, 128, 255);
+            // Botón Buscar como CTA: dorado con texto oscuro
+            button1.BackColor = Color.FromArgb(212, 175, 55);
+            button1.ForeColor = Color.FromArgb(34, 34, 34);
             button1.Location = new Point(504, 36);
             button1.Name = "button1";
             button1.Size = new Size(86, 28);
@@ -98,8 +105,9 @@ namespace ESFE.Clothing_Store.UI
             // 
             // Administrador
             // 
-            Administrador.BackColor = Color.FromArgb(0, 192, 192);
-            Administrador.ForeColor = Color.Black;
+            // Lista de rol en fondo crema con texto gris oscuro
+            Administrador.BackColor = Color.FromArgb(248, 246, 244);
+            Administrador.ForeColor = Color.FromArgb(80, 80, 80);
             Administrador.FormattingEnabled = true;
             Administrador.Items.AddRange(new object[] { "Administrador.", "Empleado" });
             Administrador.Location = new Point(608, 32);
@@ -110,7 +118,9 @@ namespace ESFE.Clothing_Store.UI
             // label3
             // 
             label3.AutoSize = true;
-            label3.BackColor = Color.FromArgb(192, 0, 192);
+            // Etiqueta Filtrar con acento coral para visibilidad
+            label3.BackColor = Color.FromArgb(255, 99, 71);
+            label3.ForeColor = SystemColors.ButtonHighlight;
             label3.Location = new Point(625, 9);
             label3.Name = "label3";
             label3.Size = new Size(103, 20);
@@ -120,8 +130,9 @@ namespace ESFE.Clothing_Store.UI
             // label4
             // 
             label4.AutoSize = true;
-            label4.BackColor = Color.MediumSlateBlue;
-            label4.ForeColor = SystemColors.ButtonHighlight;
+            // Etiqueta con fondo suave turquesa para sensación fresca
+            label4.BackColor = Color.FromArgb(224, 247, 250);
+            label4.ForeColor = Color.FromArgb(34, 34, 34);
             label4.Location = new Point(22, 156);
             label4.Name = "label4";
             label4.Size = new Size(64, 20);
@@ -131,8 +142,9 @@ namespace ESFE.Clothing_Store.UI
             // label5
             // 
             label5.AutoSize = true;
-            label5.BackColor = Color.SlateBlue;
-            label5.ForeColor = SystemColors.ButtonHighlight;
+            // id_rol con fondo lavanda suave
+            label5.BackColor = Color.FromArgb(241, 238, 255);
+            label5.ForeColor = Color.FromArgb(34, 34, 34);
             label5.Location = new Point(22, 323);
             label5.Name = "label5";
             label5.Size = new Size(46, 20);
@@ -142,8 +154,9 @@ namespace ESFE.Clothing_Store.UI
             // label6
             // 
             label6.AutoSize = true;
-            label6.BackColor = Color.MediumSlateBlue;
-            label6.ForeColor = SystemColors.ButtonHighlight;
+            // Correo con fondo suave mint
+            label6.BackColor = Color.FromArgb(227, 247, 237);
+            label6.ForeColor = Color.FromArgb(34, 34, 34);
             label6.Location = new Point(22, 278);
             label6.Name = "label6";
             label6.Size = new Size(54, 20);
@@ -153,8 +166,9 @@ namespace ESFE.Clothing_Store.UI
             // label7
             // 
             label7.AutoSize = true;
-            label7.BackColor = Color.MediumSlateBlue;
-            label7.ForeColor = SystemColors.ButtonHighlight;
+            // id_cliente con fondo azul claro
+            label7.BackColor = Color.FromArgb(223, 235, 255);
+            label7.ForeColor = Color.FromArgb(34, 34, 34);
             label7.Location = new Point(22, 123);
             label7.Name = "label7";
             label7.Size = new Size(72, 20);
@@ -164,8 +178,9 @@ namespace ESFE.Clothing_Store.UI
             // label8
             // 
             label8.AutoSize = true;
-            label8.BackColor = Color.MediumSlateBlue;
-            label8.ForeColor = SystemColors.ButtonHighlight;
+            // Telefono con fondo turquesa leve
+            label8.BackColor = Color.FromArgb(224, 247, 250);
+            label8.ForeColor = Color.FromArgb(34, 34, 34);
             label8.Location = new Point(22, 240);
             label8.Name = "label8";
             label8.Size = new Size(67, 20);
@@ -175,8 +190,9 @@ namespace ESFE.Clothing_Store.UI
             // label9
             // 
             label9.AutoSize = true;
-            label9.BackColor = Color.MediumSlateBlue;
-            label9.ForeColor = SystemColors.ButtonHighlight;
+            // DUI con fondo dorado pálido
+            label9.BackColor = Color.FromArgb(255, 250, 205);
+            label9.ForeColor = Color.FromArgb(34, 34, 34);
             label9.Location = new Point(22, 198);
             label9.Name = "label9";
             label9.Size = new Size(34, 20);
@@ -186,8 +202,9 @@ namespace ESFE.Clothing_Store.UI
             // label10
             // 
             label10.AutoSize = true;
-            label10.BackColor = Color.MediumSlateBlue;
-            label10.ForeColor = SystemColors.ButtonHighlight;
+            // id_permiso con fondo lila suave
+            label10.BackColor = Color.FromArgb(241, 238, 255);
+            label10.ForeColor = Color.FromArgb(34, 34, 34);
             label10.Location = new Point(22, 365);
             label10.Name = "label10";
             label10.Size = new Size(82, 20);
@@ -197,8 +214,9 @@ namespace ESFE.Clothing_Store.UI
             // label11
             // 
             label11.AutoSize = true;
-            label11.BackColor = Color.SlateBlue;
-            label11.ForeColor = SystemColors.ButtonHighlight;
+            // id_estado con fondo salmón claro
+            label11.BackColor = Color.FromArgb(255, 240, 238);
+            label11.ForeColor = Color.FromArgb(34, 34, 34);
             label11.Location = new Point(22, 409);
             label11.Name = "label11";
             label11.Size = new Size(73, 20);
@@ -243,7 +261,9 @@ namespace ESFE.Clothing_Store.UI
             // 
             // button2
             // 
-            button2.BackColor = Color.Lime;
+            // Botón Agregar: acento dorado para CTA en diseño minimalista
+            button2.BackColor = Color.FromArgb(212, 175, 55);
+            button2.ForeColor = Color.FromArgb(34, 34, 34);
             button2.Location = new Point(464, 119);
             button2.Name = "button2";
             button2.Size = new Size(211, 29);
@@ -275,8 +295,9 @@ namespace ESFE.Clothing_Store.UI
             // label12
             // 
             label12.AutoSize = true;
-            label12.BackColor = Color.Red;
-            label12.ForeColor = SystemColors.ButtonHighlight;
+            // Instrucciones discretas en texto gris sobre fondo crema
+            label12.BackColor = Color.FromArgb(248, 246, 244);
+            label12.ForeColor = Color.FromArgb(100, 100, 100);
             label12.Location = new Point(12, 89);
             label12.Name = "label12";
             label12.Size = new Size(789, 20);
@@ -285,8 +306,9 @@ namespace ESFE.Clothing_Store.UI
             // 
             // button3
             // 
-            button3.BackColor = Color.Goldenrod;
-            button3.ForeColor = SystemColors.ButtonHighlight;
+            // Botón Limpiar en carbón discreto con texto dorado
+            button3.BackColor = Color.FromArgb(34, 34, 34);
+            button3.ForeColor = Color.FromArgb(212, 175, 55);
             button3.Location = new Point(351, 119);
             button3.Name = "button3";
             button3.Size = new Size(94, 29);
@@ -297,8 +319,9 @@ namespace ESFE.Clothing_Store.UI
             // label13
             // 
             label13.AutoSize = true;
-            label13.BackColor = Color.FromArgb(192, 64, 0);
-            label13.ForeColor = SystemColors.ButtonHighlight;
+            // Etiqueta eliminar discreta en fondo crema con texto gris
+            label13.BackColor = Color.FromArgb(248, 246, 244);
+            label13.ForeColor = Color.FromArgb(80, 80, 80);
             label13.Location = new Point(306, 195);
             label13.Name = "label13";
             label13.Size = new Size(219, 20);
@@ -316,7 +339,8 @@ namespace ESFE.Clothing_Store.UI
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(192, 255, 255);
+            // Fondo minimalista en tono crema muy claro
+            BackColor = Color.FromArgb(248, 246, 244);
             ClientSize = new Size(800, 450);
             Controls.Add(textBox10);
             Controls.Add(label13);

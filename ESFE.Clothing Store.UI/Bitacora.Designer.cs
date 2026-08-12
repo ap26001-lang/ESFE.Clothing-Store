@@ -51,8 +51,9 @@ namespace ESFE.Clothing_Store.UI
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = SystemColors.MenuHighlight;
-            label1.ForeColor = SystemColors.ButtonHighlight;
+            // Cabecera minimalista en color carbón con acento dorado (lujo)
+            label1.BackColor = Color.FromArgb(34, 34, 34);
+            label1.ForeColor = Color.FromArgb(212, 175, 55);
             label1.Location = new Point(12, 9);
             label1.Margin = new Padding(3, 0, 3, 2);
             label1.Name = "label1";
@@ -66,8 +67,9 @@ namespace ESFE.Clothing_Store.UI
             // label2
             // 
             label2.AutoSize = true;
-            label2.BackColor = Color.DarkOliveGreen;
-            label2.ForeColor = SystemColors.ButtonHighlight;
+            // Texto de guía en tono neutro sobre fondo del formulario
+            label2.BackColor = Color.FromArgb(248, 246, 244);
+            label2.ForeColor = Color.FromArgb(68, 68, 68);
             label2.Location = new Point(12, 41);
             label2.Name = "label2";
             label2.Size = new Size(152, 20);
@@ -83,18 +85,22 @@ namespace ESFE.Clothing_Store.UI
             // 
             // button1
             // 
-            button1.BackColor = Color.FromArgb(0, 192, 0);
+            // Botón Buscar en un estilo sobrio: fondo carbón y texto dorado
+            button1.BackColor = Color.FromArgb(34, 34, 34);
             button1.Location = new Point(373, 34);
             button1.Name = "button1";
             button1.Size = new Size(75, 35);
             button1.TabIndex = 3;
             button1.Text = "Buscar";
             button1.UseVisualStyleBackColor = false;
+            button1.ForeColor = Color.FromArgb(212, 175, 55);
+            button1.ForeColor = SystemColors.ButtonHighlight;
             // 
             // button2
             // 
-            button2.BackColor = Color.FromArgb(255, 128, 0);
-            button2.ForeColor = SystemColors.ButtonHighlight;
+            // Acción secundaria con fondo claro y texto oscuro
+            button2.BackColor = Color.FromArgb(245, 245, 245);
+            button2.ForeColor = Color.FromArgb(68, 68, 68);
             button2.Location = new Point(463, 35);
             button2.Name = "button2";
             button2.Size = new Size(73, 34);
@@ -105,7 +111,9 @@ namespace ESFE.Clothing_Store.UI
             // label3
             // 
             label3.AutoSize = true;
-            label3.BackColor = Color.FromArgb(255, 255, 128);
+            // Etiquetas en fondo muy claro y texto gris oscuro (minimalista)
+            label3.BackColor = Color.FromArgb(248, 246, 244);
+            label3.ForeColor = Color.FromArgb(80, 80, 80);
             label3.Location = new Point(8, 117);
             label3.Name = "label3";
             label3.Size = new Size(94, 20);
@@ -115,7 +123,8 @@ namespace ESFE.Clothing_Store.UI
             // label4
             // 
             label4.AutoSize = true;
-            label4.BackColor = Color.FromArgb(255, 255, 128);
+            label4.BackColor = Color.FromArgb(248, 246, 244);
+            label4.ForeColor = Color.FromArgb(80, 80, 80);
             label4.Location = new Point(8, 175);
             label4.Name = "label4";
             label4.Size = new Size(122, 20);
@@ -125,7 +134,8 @@ namespace ESFE.Clothing_Store.UI
             // label5
             // 
             label5.AutoSize = true;
-            label5.BackColor = Color.FromArgb(255, 255, 128);
+            label5.BackColor = Color.FromArgb(248, 246, 244);
+            label5.ForeColor = Color.FromArgb(80, 80, 80);
             label5.Location = new Point(12, 241);
             label5.Name = "label5";
             label5.Size = new Size(81, 20);
@@ -135,7 +145,8 @@ namespace ESFE.Clothing_Store.UI
             // label6
             // 
             label6.AutoSize = true;
-            label6.BackColor = Color.FromArgb(255, 255, 128);
+            label6.BackColor = Color.FromArgb(248, 246, 244);
+            label6.ForeColor = Color.FromArgb(80, 80, 80);
             label6.Location = new Point(8, 302);
             label6.Name = "label6";
             label6.Size = new Size(98, 20);
@@ -173,8 +184,9 @@ namespace ESFE.Clothing_Store.UI
             // 
             // button3
             // 
-            button3.BackColor = Color.FromArgb(0, 192, 192);
-            button3.ForeColor = SystemColors.ActiveCaptionText;
+            // Botón Agregar Registro en dorado (acento de lujo)
+            button3.BackColor = Color.FromArgb(212, 175, 55);
+            button3.ForeColor = Color.FromArgb(34, 34, 34);
             button3.Location = new Point(8, 360);
             button3.Name = "button3";
             button3.Size = new Size(156, 33);
@@ -184,7 +196,9 @@ namespace ESFE.Clothing_Store.UI
             // 
             // button4
             // 
-            button4.BackColor = Color.FromArgb(0, 192, 192);
+            // Botón de ver lista en carbón con texto dorado
+            button4.BackColor = Color.FromArgb(34, 34, 34);
+            button4.ForeColor = Color.FromArgb(212, 175, 55);
             button4.Location = new Point(182, 361);
             button4.Name = "button4";
             button4.Size = new Size(185, 33);
@@ -194,7 +208,8 @@ namespace ESFE.Clothing_Store.UI
             // 
             // button5
             // 
-            button5.BackColor = Color.Red;
+            // Botón eliminar con tono rojo apagado para mantener sobriedad
+            button5.BackColor = Color.FromArgb(128, 34, 34);
             button5.ForeColor = SystemColors.ButtonHighlight;
             button5.Location = new Point(397, 360);
             button5.Name = "button5";
@@ -207,7 +222,8 @@ namespace ESFE.Clothing_Store.UI
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.RosyBrown;
+            // Fondo neutro y luminoso para resaltar prendas y controles
+            BackColor = Color.FromArgb(250, 250, 250);
             ClientSize = new Size(812, 450);
             Controls.Add(button5);
             Controls.Add(button4);

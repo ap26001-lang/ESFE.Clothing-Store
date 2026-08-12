@@ -45,7 +45,9 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = System.Drawing.Color.Chocolate;
+            // Cabecera en coral cálido para sensación de moda y energía
+            label1.BackColor = System.Drawing.Color.FromArgb(255, 99, 71);
+            label1.ForeColor = System.Drawing.Color.WhiteSmoke;
             label1.Location = new Point(12, 9);
             label1.Name = "label1";
             label1.Size = new Size(45, 20);
@@ -55,8 +57,9 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.BackColor = System.Drawing.Color.Olive;
-            label2.ForeColor = SystemColors.ControlLightLight;
+            // Texto de búsqueda en teal para transmitir frescura
+            label2.BackColor = System.Drawing.Color.FromArgb(0, 128, 128);
+            label2.ForeColor = System.Drawing.Color.WhiteSmoke;
             label2.Location = new Point(12, 44);
             label2.Name = "label2";
             label2.Size = new Size(205, 20);
@@ -72,7 +75,9 @@
             // 
             // button1
             // 
-            button1.BackColor = System.Drawing.Color.Yellow;
+            // Botón Buscar en coral (CTA coherente con la cabecera)
+            button1.BackColor = System.Drawing.Color.FromArgb(255, 99, 71);
+            button1.ForeColor = System.Drawing.Color.WhiteSmoke;
             button1.Location = new Point(417, 41);
             button1.Name = "button1";
             button1.Size = new Size(130, 27);
@@ -82,7 +87,8 @@
             // 
             // button2
             // 
-            button2.BackColor = System.Drawing.Color.Salmon;
+            // Botón Limpiar en un azul suave para balancear la paleta
+            button2.BackColor = System.Drawing.Color.FromArgb(102, 153, 204);
             button2.ForeColor = System.Drawing.Color.WhiteSmoke;
             button2.Location = new Point(12, 77);
             button2.Name = "button2";
@@ -94,7 +100,9 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.BackColor = System.Drawing.Color.Turquoise;
+            // Etiquetas con fondo turquesa suave para sensación moderna
+            label3.BackColor = System.Drawing.Color.FromArgb(224, 247, 250);
+            label3.ForeColor = System.Drawing.Color.FromArgb(34, 34, 34);
             label3.Location = new Point(12, 140);
             label3.Name = "label3";
             label3.Size = new Size(62, 20);
@@ -104,7 +112,8 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.BackColor = System.Drawing.Color.Turquoise;
+            label4.BackColor = System.Drawing.Color.FromArgb(224, 247, 250);
+            label4.ForeColor = System.Drawing.Color.FromArgb(34, 34, 34);
             label4.Location = new Point(12, 215);
             label4.Name = "label4";
             label4.Size = new Size(45, 20);
@@ -158,7 +167,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = System.Drawing.Color.DarkSeaGreen;
+            // Fondo neutro y luminoso para resaltar los colores de la paleta
+            BackColor = System.Drawing.Color.FromArgb(250, 250, 250);
             ClientSize = new Size(800, 450);
             Controls.Add(button3);
             Controls.Add(textBox4);

@@ -46,8 +46,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = System.Drawing.Color.Cyan;
-            label1.ForeColor = SystemColors.ActiveCaptionText;
+            // Cabecera con acento coral para sensación de moda y calidez
+            label1.BackColor = System.Drawing.Color.FromArgb(255, 99, 71);
+            label1.ForeColor = System.Drawing.Color.WhiteSmoke;
+            label1.Padding = new Padding(6, 4, 6, 4);
             label1.Location = new Point(12, 9);
             label1.Name = "label1";
             label1.Size = new Size(54, 20);
@@ -57,7 +59,9 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.BackColor = System.Drawing.Color.FromArgb(64, 64, 64);
+            // Indicador de búsqueda en teal para frescura
+            label2.BackColor = System.Drawing.Color.FromArgb(0, 128, 128);
+            label2.ForeColor = System.Drawing.Color.WhiteSmoke;
             label2.Location = new Point(12, 64);
             label2.Name = "label2";
             label2.Size = new Size(188, 20);
@@ -74,7 +78,9 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.BackColor = SystemColors.ActiveCaptionText;
+            // Etiqueta en fondo mint suave para sensación acogedora
+            label3.BackColor = System.Drawing.Color.FromArgb(227, 247, 237);
+            label3.ForeColor = System.Drawing.Color.FromArgb(34, 34, 34);
             label3.Location = new Point(12, 120);
             label3.Name = "label3";
             label3.Size = new Size(73, 20);
@@ -84,7 +90,8 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.BackColor = SystemColors.ActiveCaptionText;
+            label4.BackColor = System.Drawing.Color.FromArgb(224, 247, 250);
+            label4.ForeColor = System.Drawing.Color.FromArgb(34, 34, 34);
             label4.Location = new Point(12, 171);
             label4.Name = "label4";
             label4.Size = new Size(54, 20);
@@ -107,7 +114,9 @@
             // 
             // button1
             // 
-            button1.BackColor = System.Drawing.Color.FromArgb(0, 192, 0);
+            // Botón Buscar en coral (CTA coherente con cabecera)
+            button1.BackColor = System.Drawing.Color.FromArgb(255, 99, 71);
+            button1.ForeColor = System.Drawing.Color.WhiteSmoke;
             button1.Location = new Point(471, 57);
             button1.Name = "button1";
             button1.Size = new Size(87, 35);
@@ -117,7 +126,9 @@
             // 
             // button2
             // 
-            button2.BackColor = System.Drawing.Color.FromArgb(255, 128, 0);
+            // Botón Limpiar en azul suave para balancear la paleta
+            button2.BackColor = System.Drawing.Color.FromArgb(102, 153, 204);
+            button2.ForeColor = System.Drawing.Color.WhiteSmoke;
             button2.Location = new Point(577, 60);
             button2.Name = "button2";
             button2.Size = new Size(87, 32);
@@ -128,7 +139,9 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.BackColor = System.Drawing.Color.FromArgb(255, 128, 128);
+            // Instrucciones en rosa pálido para suavidad
+            label5.BackColor = System.Drawing.Color.FromArgb(255, 240, 245);
+            label5.ForeColor = System.Drawing.Color.FromArgb(34, 34, 34);
             label5.Location = new Point(12, 281);
             label5.Name = "label5";
             label5.Size = new Size(301, 20);
@@ -144,7 +157,9 @@
             // 
             // button3
             // 
-            button3.BackColor = System.Drawing.Color.Red;
+            // Botón Eliminar en tono tomate suave
+            button3.BackColor = System.Drawing.Color.FromArgb(220, 90, 90);
+            button3.ForeColor = System.Drawing.Color.WhiteSmoke;
             button3.Location = new Point(105, 320);
             button3.Name = "button3";
             button3.Size = new Size(87, 35);
@@ -154,8 +169,9 @@
             // 
             // button4
             // 
-            button4.BackColor = System.Drawing.Color.Yellow;
-            button4.ForeColor = SystemColors.ActiveCaptionText;
+            // Botón Agregar con acento dorado para CTA
+            button4.BackColor = System.Drawing.Color.FromArgb(212, 175, 55);
+            button4.ForeColor = System.Drawing.Color.FromArgb(34, 34, 34);
             button4.Location = new Point(12, 320);
             button4.Name = "button4";
             button4.Size = new Size(87, 35);
@@ -167,7 +183,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ControlDark;
+            // Fondo claro y neutro para resaltar la paleta del formulario
+            BackColor = System.Drawing.Color.FromArgb(250, 250, 250);
             ClientSize = new Size(800, 450);
             Controls.Add(button4);
             Controls.Add(button3);
