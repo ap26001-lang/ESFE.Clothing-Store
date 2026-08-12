@@ -12,8 +12,8 @@ namespace ESFE._Clothing_Store.EN
         public int idTipoProducto { get; set; } 
         public int idtallas { get; set; }
         public int idtelas { get; set; }
-        public int idcolor { get; set; 
+        public int idcolor { get; set; }
 
     }
+
 }
-    

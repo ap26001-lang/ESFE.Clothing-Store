@@ -1,6 +1,6 @@
 ﻿namespace ESFE.Clothing_Store.UI
 {
-    partial class Color
+    partial class ColorForm
     {
         /// <summary>
         /// Required designer variable.

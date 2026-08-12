@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace ESFE.Clothing_Store.UI
 {
-    public partial class Color : Form
+    public partial class ColorForm : Form
     {
-        public Color()
+        public ColorForm()
         {
             InitializeComponent();
         }

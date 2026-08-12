@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace ESFE.Clothing_Store.UI
 {
-    public partial class Bitacora : Form
+    public partial class    Bitacora : Form
     {
         public Bitacora()
         {

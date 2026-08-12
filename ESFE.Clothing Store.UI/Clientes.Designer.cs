@@ -1,4 +1,6 @@
-﻿namespace ESFE.Clothing_Store.UI
+﻿using Color = System.Drawing.Color;
+
+namespace ESFE.Clothing_Store.UI
 {
     partial class Clientes
     {
