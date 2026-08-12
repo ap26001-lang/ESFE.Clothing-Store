@@ -14,5 +14,15 @@ namespace ESFE.Clothing_Store.UI
         {
             InitializeComponent();
         }
+
+        private void Admin_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
