@@ -1,6 +1,6 @@
 <Solution>
-  <Project Path="ESFE. Clothin Store.UI/ESFE. Clothin Store.UI.csproj" />
   <Project Path="ESFE. Clothing Store.DAL/ESFE. Clothing Store.DAL.csproj" />
   <Project Path="ESFE. Clothing Store.EN/ESFE. Clothing Store.EN.csproj" />
   <Project Path="ESFE. Clothing Store.LN/ESFE. Clothing Store.LN.csproj" />
+  <Project Path="ESFE.Clothing Store.UI/ESFE.Clothing Store.UI.csproj" Id="104453ad-14ae-4ebc-8c73-5c7352b05bf1" />
 </Solution>
