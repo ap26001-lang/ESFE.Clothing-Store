@@ -16,7 +16,9 @@ namespace ESFE._Clothing_Store.DAL
                 cn.Open();
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "INSERT INTO Bitacora (Accion, Id_Usuario, Fecha_y_hora) VALUES (@Accion, @Id_Usuario, @Fecha_y_hora)";
+                    // Usar procedimiento almacenado: sp_Bitacora_Insertar
+                    cmd.CommandText = "sp_Bitacora_Insertar";
+                    cmd.CommandType = CommandType.StoredProcedure;
 
                     var p1 = cmd.CreateParameter();
                     p1.ParameterName = "@Accion";
@@ -47,7 +49,9 @@ namespace ESFE._Clothing_Store.DAL
                 cn.Open();
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT id_actividad, Accion, Id_Usuario, Fecha_y_hora FROM Bitacora";
+                    // Usar procedimiento almacenado: sp_Bitacora_ObtenerTodos
+                    cmd.CommandText = "sp_Bitacora_ObtenerTodos";
+                    cmd.CommandType = CommandType.StoredProcedure;
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         while (dr.Read())
@@ -77,7 +81,9 @@ namespace ESFE._Clothing_Store.DAL
                 cn.Open();
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT id_actividad, Accion, Id_Usuario, Fecha_y_hora FROM Bitacora WHERE Id_Usuario = @Id_Usuario";
+                    // Usar procedimiento almacenado: sp_Bitacora_ObtenerPorUsuario
+                    cmd.CommandText = "sp_Bitacora_ObtenerPorUsuario";
+                    cmd.CommandType = CommandType.StoredProcedure;
                     var p = cmd.CreateParameter();
                     p.ParameterName = "@Id_Usuario";
                     p.Value = idUsuario;
