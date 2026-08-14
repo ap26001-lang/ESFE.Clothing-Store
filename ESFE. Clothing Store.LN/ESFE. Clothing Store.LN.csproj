@@ -8,6 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Azure.Identity" Version="1.10.3" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.56.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ESFE. Clothing Store.DAL\ESFE. Clothing Store.DAL.csproj" />
     <ProjectReference Include="..\ESFE. Clothing Store.EN\ESFE. Clothing Store.EN.csproj" />
   </ItemGroup>
