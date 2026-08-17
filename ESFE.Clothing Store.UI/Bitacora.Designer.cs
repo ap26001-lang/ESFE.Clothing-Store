@@ -51,7 +51,6 @@ namespace ESFE.Clothing_Store.UI
             // label1
             // 
             label1.AutoSize = true;
-            // Cabecera minimalista en color carbón con acento dorado (lujo)
             label1.BackColor = Color.FromArgb(34, 34, 34);
             label1.ForeColor = Color.FromArgb(212, 175, 55);
             label1.Location = new Point(12, 9);
@@ -67,7 +66,6 @@ namespace ESFE.Clothing_Store.UI
             // label2
             // 
             label2.AutoSize = true;
-            // Texto de guía en tono neutro sobre fondo del formulario
             label2.BackColor = Color.FromArgb(248, 246, 244);
             label2.ForeColor = Color.FromArgb(68, 68, 68);
             label2.Location = new Point(12, 41);
@@ -85,20 +83,17 @@ namespace ESFE.Clothing_Store.UI
             // 
             // button1
             // 
-            // Botón Buscar en un estilo sobrio: fondo carbón y texto dorado
             button1.BackColor = Color.FromArgb(34, 34, 34);
+            button1.ForeColor = SystemColors.ButtonHighlight;
             button1.Location = new Point(373, 34);
             button1.Name = "button1";
             button1.Size = new Size(75, 35);
             button1.TabIndex = 3;
             button1.Text = "Buscar";
             button1.UseVisualStyleBackColor = false;
-            button1.ForeColor = Color.FromArgb(212, 175, 55);
-            button1.ForeColor = SystemColors.ButtonHighlight;
             // 
             // button2
             // 
-            // Acción secundaria con fondo claro y texto oscuro
             button2.BackColor = Color.FromArgb(245, 245, 245);
             button2.ForeColor = Color.FromArgb(68, 68, 68);
             button2.Location = new Point(463, 35);
@@ -111,7 +106,6 @@ namespace ESFE.Clothing_Store.UI
             // label3
             // 
             label3.AutoSize = true;
-            // Etiquetas en fondo muy claro y texto gris oscuro (minimalista)
             label3.BackColor = Color.FromArgb(248, 246, 244);
             label3.ForeColor = Color.FromArgb(80, 80, 80);
             label3.Location = new Point(8, 117);
@@ -184,7 +178,6 @@ namespace ESFE.Clothing_Store.UI
             // 
             // button3
             // 
-            // Botón Agregar Registro en dorado (acento de lujo)
             button3.BackColor = Color.FromArgb(212, 175, 55);
             button3.ForeColor = Color.FromArgb(34, 34, 34);
             button3.Location = new Point(8, 360);
@@ -196,7 +189,6 @@ namespace ESFE.Clothing_Store.UI
             // 
             // button4
             // 
-            // Botón de ver lista en carbón con texto dorado
             button4.BackColor = Color.FromArgb(34, 34, 34);
             button4.ForeColor = Color.FromArgb(212, 175, 55);
             button4.Location = new Point(182, 361);
@@ -208,7 +200,6 @@ namespace ESFE.Clothing_Store.UI
             // 
             // button5
             // 
-            // Botón eliminar con tono rojo apagado para mantener sobriedad
             button5.BackColor = Color.FromArgb(128, 34, 34);
             button5.ForeColor = SystemColors.ButtonHighlight;
             button5.Location = new Point(397, 360);
@@ -222,8 +213,7 @@ namespace ESFE.Clothing_Store.UI
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            // Fondo neutro y luminoso para resaltar prendas y controles
-            BackColor = Color.FromArgb(250, 250, 250);
+            BackColor = Color.WhiteSmoke;
             ClientSize = new Size(812, 450);
             Controls.Add(button5);
             Controls.Add(button4);
