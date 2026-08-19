@@ -19,5 +19,15 @@ namespace ESFE.Clothing_Store.UI
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // TODO: implementar cambio de talla
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            // TODO: implementar edición de talla
+        }
     }
 }

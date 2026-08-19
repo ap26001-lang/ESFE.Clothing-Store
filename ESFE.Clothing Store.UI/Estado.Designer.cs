@@ -123,6 +123,7 @@
             button1.TabIndex = 7;
             button1.Text = "Buscar";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // button2
             // 
@@ -135,6 +136,7 @@
             button2.TabIndex = 8;
             button2.Text = "Limpiar";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // label5
             // 
@@ -166,6 +168,7 @@
             button3.TabIndex = 11;
             button3.Text = "Eliminar";
             button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
             // 
             // button4
             // 
@@ -176,6 +179,7 @@
             button4.Name = "button4";
             button4.Size = new Size(87, 35);
             button4.TabIndex = 12;
+            button4.Click += button4_Click;
             button4.Text = "Agregar";
             button4.UseVisualStyleBackColor = false;
             // 

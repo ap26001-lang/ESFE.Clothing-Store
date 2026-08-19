@@ -84,6 +84,7 @@
             button1.TabIndex = 3;
             button1.Text = "Buscar color";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // button2
             // 
@@ -96,6 +97,7 @@
             button2.TabIndex = 4;
             button2.Text = "Limpiar";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // label3
             // 
@@ -162,6 +164,7 @@
             button3.TabIndex = 11;
             button3.Text = "Eliminar color";
             button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
             // 
             // Color
             // 

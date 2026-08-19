@@ -14,5 +14,20 @@ namespace ESFE.Clothing_Store.UI
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // TODO: implementar búsqueda de color
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // TODO: implementar limpieza de campos
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            // TODO: implementar eliminación de color
+        }
     }
 }

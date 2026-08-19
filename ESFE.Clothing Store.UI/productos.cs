@@ -15,6 +15,16 @@ namespace ESFE.Clothing_Store.UI
             InitializeComponent();
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // TODO: implementar limpiar búsqueda/producto
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            // TODO: implementar consulta adicional
+        }
+
         private void productos_Load(object sender, EventArgs e)
         {
 

@@ -76,6 +76,7 @@ namespace ESFE.Clothing_Store.UI
             // 
             // textBox1
             // 
+            textBox1.BackColor = Color.PeachPuff;
             textBox1.Location = new Point(190, 38);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(177, 27);
@@ -91,6 +92,7 @@ namespace ESFE.Clothing_Store.UI
             button1.TabIndex = 3;
             button1.Text = "Buscar";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // button2
             // 
@@ -102,6 +104,7 @@ namespace ESFE.Clothing_Store.UI
             button2.TabIndex = 4;
             button2.Text = "Limpiar";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // label3
             // 
@@ -186,6 +189,7 @@ namespace ESFE.Clothing_Store.UI
             button3.TabIndex = 13;
             button3.Text = "Agregar Registro";
             button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
             // 
             // button4
             // 
@@ -213,7 +217,7 @@ namespace ESFE.Clothing_Store.UI
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.WhiteSmoke;
+            BackColor = Color.Sienna;
             ClientSize = new Size(812, 450);
             Controls.Add(button5);
             Controls.Add(button4);

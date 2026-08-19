@@ -8,7 +8,9 @@ namespace ESFE._Clothing_Store.DAL
 {
     public class DBComun
     {
-            public const string _stringCnn = @"Data Source=localhost;Initial Catalog=BDDesarrollo;Integrated Security=True";
+            // Conexion actualizada para usar la base TIENDA_ROPA
+            // Nota: TrustServerCertificate=True permite confiar en el certificado del servidor (útil en desarrollo).
+            public const string _stringCnn = @"Data Source=localhost;Initial Catalog=TIENDA_ROPA;Integrated Security=True;TrustServerCertificate=True";
 
             /// <summary>
             /// Metodo para obtener base de datos.

@@ -14,5 +14,25 @@ namespace ESFE.Clothing_Store.UI
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // TODO: implementar búsqueda de estado
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // TODO: implementar limpieza de campos
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            // TODO: implementar eliminación de estado
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            // TODO: implementar agregar estado
+        }
     }
 }

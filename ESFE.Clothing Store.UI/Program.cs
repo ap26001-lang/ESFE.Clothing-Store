@@ -1,4 +1,6 @@
-using ESFE.Clothing_Store;
+using System;
+using System.Windows.Forms;
+using ESFE.Clothing_Store.UI;
 
 namespace ESFE.Clothing_Store.UI
 {
@@ -13,7 +15,8 @@ namespace ESFE.Clothing_Store.UI
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new ColorForm());
+            // Iniciar directamente con el formulario Clientes para pruebas
+            Application.Run(new Clientes());
         }
     }
 }
