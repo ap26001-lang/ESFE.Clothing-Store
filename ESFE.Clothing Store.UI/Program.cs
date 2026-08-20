@@ -4,7 +4,7 @@ using ESFE.Clothing_Store.UI;
 
 namespace ESFE.Clothing_Store.UI
 {
-    internal static class Program
+    public static class Program
     {
         /// <summary>
         ///  The main entry point for the application.
@@ -15,8 +15,8 @@ namespace ESFE.Clothing_Store.UI
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            // Iniciar directamente con el formulario Clientes para pruebas
-            Application.Run(new Clientes());
+            // Iniciar directamente con el formulario Bitacorapara pruebas
+            Application.Run(new Bitacora());
         }
     }
 }

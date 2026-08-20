@@ -5,6 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using ESFE._Clothing_Store.DAL;
+using BitacoraEntidad = ESFE._Clothing_Store.EN.Bitacora;
 
 namespace ESFE.Clothing_Store.UI
 {
@@ -35,29 +37,151 @@ namespace ESFE.Clothing_Store.UI
 
         }
 
+        // Buscar por ID de usuario
         private void button1_Click(object sender, EventArgs e)
         {
-            // TODO: implementar búsqueda por ID de usuario
+            if (!int.TryParse(textBox1.Text.Trim(), out int idUsuario))
+            {
+                MessageBox.Show("Ingrese un ID de usuario válido.", "Buscar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            try
+            {
+                var lista = BitacoraDAL.ObtenerPorUsuario(idUsuario);
+                if (lista.Count > 0)
+                {
+                    var registro = lista[0];
+                    FillFormFromEntity(registro);
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron registros para ese usuario.", "Buscar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al buscar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        // Limpiar formulario
         private void button2_Click(object sender, EventArgs e)
         {
-            // TODO: implementar limpieza
+            ClearForm();
         }
 
+        // Agregar nuevo registro a la bitácora
         private void button3_Click(object sender, EventArgs e)
         {
-            // TODO: implementar agregar registro a bitácora
+            try
+            {
+                if (!int.TryParse(textBox4.Text.Trim(), out int idUsuario))
+                {
+                    MessageBox.Show("Ingrese un ID de usuario válido.", "Agregar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                var entidad = new BitacoraEntidad
+                {
+                    Accion = textBox3.Text.Trim(),
+                    Id_Usuario = idUsuario,
+                    Fecha_y_hora = DateTime.Now
+                };
+
+                int newId = BitacoraDAL.Insertar(entidad);
+                if (newId > 0)
+                {
+                    entidad.id_actividad = newId;
+                    FillFormFromEntity(entidad);
+                    MessageBox.Show($"Registro agregado correctamente. Id={newId}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("No fue posible agregar el registro.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        // Ver lista completa de registros (Admin)
         private void button4_Click(object sender, EventArgs e)
         {
-            // TODO: implementar eliminación de registro
+            try
+            {
+                var lista = BitacoraDAL.ObtenerTodos();
+                if (lista.Count == 0)
+                {
+                    MessageBox.Show("No hay registros en la bitácora.", "Ver lista", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                var sb = new StringBuilder();
+                foreach (var item in lista)
+                {
+                    sb.AppendLine($"Id={item.id_actividad} | Usuario={item.Id_Usuario} | Accion={item.Accion} | Fecha={item.Fecha_y_hora}");
+                }
+
+                MessageBox.Show(sb.ToString(), "Bitácora - Todos los registros", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al obtener la lista: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        // Eliminar registro por ID Actividad
         private void button5_Click(object sender, EventArgs e)
         {
-            // TODO: implementar actualización de registro
+            if (!int.TryParse(textBox2.Text.Trim(), out int idActividad))
+            {
+                MessageBox.Show("Ingrese un ID Actividad válido para eliminar.", "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            var confirm = MessageBox.Show($"¿Confirma eliminar el registro Id={idActividad}?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm != DialogResult.Yes) return;
+
+            try
+            {
+                int rows = BitacoraDAL.Eliminar(idActividad);
+                if (rows > 0)
+                {
+                    MessageBox.Show("Registro eliminado correctamente.", "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ClearForm();
+                }
+                else
+                {
+                    MessageBox.Show("No se eliminó ningún registro. Verifique el Id.", "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al eliminar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Helper: llenar los controles con la entidad
+        private void FillFormFromEntity(BitacoraEntidad b)
+        {
+            if (b == null) return;
+            textBox2.Text = b.id_actividad.ToString();
+            textBox3.Text = b.Accion ?? string.Empty;
+            textBox4.Text = b.Id_Usuario.ToString();
+            textBox5.Text = b.Fecha_y_hora.ToString();
+        }
+
+        // Helper: limpiar controles
+        private void ClearForm()
+        {
+            textBox1.Clear();
+            textBox2.Clear();
+            textBox3.Clear();
+            textBox4.Clear();
+            textBox5.Clear();
         }
     }
 }

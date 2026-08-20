@@ -57,6 +57,7 @@ namespace ESFE.Clothing_Store.UI
             button3 = new Button();
             label13 = new Label();
             textBox10 = new TextBox();
+            eliminar = new Button();
             SuspendLayout();
             // 
             // label1
@@ -321,12 +322,23 @@ namespace ESFE.Clothing_Store.UI
             textBox10.Size = new Size(259, 27);
             textBox10.TabIndex = 26;
             // 
+            // eliminar
+            // 
+            eliminar.Location = new Point(586, 240);
+            eliminar.Name = "eliminar";
+            eliminar.Size = new Size(122, 39);
+            eliminar.TabIndex = 27;
+            eliminar.Text = "Eliminar";
+            eliminar.UseVisualStyleBackColor = true;
+            eliminar.Click += button1_Click_1;
+            // 
             // Clientes
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(248, 246, 244);
             ClientSize = new Size(800, 450);
+            Controls.Add(eliminar);
             Controls.Add(textBox10);
             Controls.Add(label13);
             Controls.Add(button3);
@@ -390,5 +402,6 @@ namespace ESFE.Clothing_Store.UI
         private Button button3;
         private Label label13;
         private TextBox textBox10;
+        private Button eliminar;
     }
 }

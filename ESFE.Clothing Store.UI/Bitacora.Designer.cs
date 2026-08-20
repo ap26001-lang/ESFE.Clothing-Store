@@ -201,6 +201,7 @@ namespace ESFE.Clothing_Store.UI
             button4.TabIndex = 14;
             button4.Text = "Ver lista (Admin)";
             button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
             // 
             // button5
             // 
@@ -212,6 +213,7 @@ namespace ESFE.Clothing_Store.UI
             button5.TabIndex = 15;
             button5.Text = "Eliminar Registro";
             button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
             // 
             // Bitacora
             // 

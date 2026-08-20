@@ -156,5 +156,57 @@ namespace ESFE.Clothing_Store.UI
             if (int.TryParse(s, out int v)) return v;
             return 0;
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            // Eliminar por id, DUI o Telefono (valor en textBox10)
+            string q = textBox10.Text?.Trim();
+            if (string.IsNullOrEmpty(q))
+            {
+                MessageBox.Show("Ingrese Id, DUI o Teléfono para eliminar.", "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            try
+            {
+                int idToDelete = 0;
+
+                // Si es número, usar como id
+                if (int.TryParse(q, out int n))
+                {
+                    idToDelete = n;
+                }
+                else
+                {
+                    // Buscar en la lista por DUI o Telefono
+                    var lista = ClientesDAL.ObtenerTodos();
+                    var found = lista.Find(x => string.Equals(x.Dui, q, StringComparison.OrdinalIgnoreCase) || string.Equals(x.Telefono, q, StringComparison.OrdinalIgnoreCase));
+                    if (found == null)
+                    {
+                        MessageBox.Show("No se encontró ningún cliente con ese DUI/Telefono.", "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    idToDelete = found.id_cliente;
+                }
+
+                var confirm = MessageBox.Show($"¿Confirma eliminar el cliente con Id={idToDelete}?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirm != DialogResult.Yes) return;
+
+                int rows = ClientesDAL.Eliminar(idToDelete);
+                if (rows > 0)
+                {
+                    MessageBox.Show("Cliente eliminado correctamente.", "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ClearForm();
+                }
+                else
+                {
+                    MessageBox.Show("No se eliminó ningún registro. Verifique el Id.", "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al eliminar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
