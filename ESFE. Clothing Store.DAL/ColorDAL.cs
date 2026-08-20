@@ -16,12 +16,18 @@ namespace ESFE._Clothing_Store.DAL
                 cn.Open();
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "sp_Color_Insertar";
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    // Como la columna Id_Color no tiene IDENTITY, buscaremos el valor del ID máximo actual y sumaremos 1 de manera simple.
+                    cmd.CommandText = "SELECT ISNULL(MAX(Id_Color), 0) + 1 FROM [dbo].[Color]";
+                    int nuevoId = Convert.ToInt32(cmd.ExecuteScalar());
 
-                    var p = cmd.CreateParameter(); p.ParameterName = "@color"; p.Value = entidad.color ?? (object)DBNull.Value; cmd.Parameters.Add(p);
+                    cmd.CommandText = "INSERT INTO [dbo].[Color] (Id_Color, Color) VALUES (@Id_Color, @Color)";
+                    cmd.CommandType = CommandType.Text;
 
-                    return cmd.ExecuteNonQuery();
+                    var p1 = cmd.CreateParameter(); p1.ParameterName = "@Id_Color"; p1.Value = nuevoId; cmd.Parameters.Add(p1);
+                    var p2 = cmd.CreateParameter(); p2.ParameterName = "@Color"; p2.Value = entidad.color ?? (object)DBNull.Value; cmd.Parameters.Add(p2);
+
+                    int filas = cmd.ExecuteNonQuery();
+                    return filas > 0 ? nuevoId : 0;
                 }
             }
         }
@@ -35,11 +41,11 @@ namespace ESFE._Clothing_Store.DAL
                 cn.Open();
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "sp_Color_Actualizar";
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "UPDATE [dbo].[Color] SET Color = @Color WHERE Id_Color = @Id_Color";
+                    cmd.CommandType = CommandType.Text;
 
-                    var p = cmd.CreateParameter(); p.ParameterName = "@Id_Color"; p.Value = entidad.Id_Color; cmd.Parameters.Add(p);
-                    p = cmd.CreateParameter(); p.ParameterName = "@color"; p.Value = entidad.color ?? (object)DBNull.Value; cmd.Parameters.Add(p);
+                    var p1 = cmd.CreateParameter(); p1.ParameterName = "@Id_Color"; p1.Value = entidad.Id_Color; cmd.Parameters.Add(p1);
+                    var p2 = cmd.CreateParameter(); p2.ParameterName = "@Color"; p2.Value = entidad.color ?? (object)DBNull.Value; cmd.Parameters.Add(p2);
 
                     return cmd.ExecuteNonQuery();
                 }
@@ -53,8 +59,8 @@ namespace ESFE._Clothing_Store.DAL
                 cn.Open();
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "sp_Color_Eliminar";
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "DELETE FROM [dbo].[Color] WHERE Id_Color = @Id_Color";
+                    cmd.CommandType = CommandType.Text;
 
                     var p = cmd.CreateParameter(); p.ParameterName = "@Id_Color"; p.Value = idColor; cmd.Parameters.Add(p);
 
@@ -72,8 +78,8 @@ namespace ESFE._Clothing_Store.DAL
                 cn.Open();
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "sp_Color_ObtenerTodos";
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "SELECT Id_Color, Color FROM [dbo].[Color]";
+                    cmd.CommandType = CommandType.Text;
 
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
@@ -82,7 +88,7 @@ namespace ESFE._Clothing_Store.DAL
                             var item = new Color
                             {
                                 Id_Color = dr["Id_Color"] != DBNull.Value ? Convert.ToInt32(dr["Id_Color"]) : 0,
-                                color = dr["color"] != DBNull.Value ? dr["color"].ToString() : string.Empty
+                                color = dr["Color"] != DBNull.Value ? dr["Color"].ToString() : string.Empty
                             };
                             lista.Add(item);
                         }
@@ -102,8 +108,8 @@ namespace ESFE._Clothing_Store.DAL
                 cn.Open();
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "sp_Color_ObtenerPorId";
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "SELECT Id_Color, Color FROM [dbo].[Color] WHERE Id_Color = @Id_Color";
+                    cmd.CommandType = CommandType.Text;
 
                     var p = cmd.CreateParameter(); p.ParameterName = "@Id_Color"; p.Value = idColor; cmd.Parameters.Add(p);
 
@@ -114,7 +120,7 @@ namespace ESFE._Clothing_Store.DAL
                             entidad = new Color
                             {
                                 Id_Color = dr["Id_Color"] != DBNull.Value ? Convert.ToInt32(dr["Id_Color"]) : 0,
-                                color = dr["color"] != DBNull.Value ? dr["color"].ToString() : string.Empty
+                                color = dr["Color"] != DBNull.Value ? dr["Color"].ToString() : string.Empty
                             };
                         }
                     }

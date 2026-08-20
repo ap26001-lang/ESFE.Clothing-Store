@@ -15,8 +15,8 @@ namespace ESFE.Clothing_Store.UI
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            // Iniciar directamente con el formulario Bitacorapara pruebas
-            Application.Run(new Bitacora());
+            // Iniciar directamente con el formulario Estado 
+            Application.Run(new Estado());
         }
     }
 }

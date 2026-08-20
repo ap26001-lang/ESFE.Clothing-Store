@@ -30,307 +30,307 @@ namespace ESFE.Clothing_Store.UI
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
-            textBox1 = new TextBox();
-            btn = new Button();
-            Administrador = new CheckedListBox();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
-            label6 = new Label();
-            txtNombre = new Label();
-            label8 = new Label();
-            label9 = new Label();
-            label10 = new Label();
-            label11 = new Label();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
-            textBox6 = new TextBox();
-            button2 = new Button();
-            textBox7 = new TextBox();
-            textBox8 = new TextBox();
-            textBox9 = new TextBox();
-            label12 = new Label();
-            button3 = new Button();
-            label13 = new Label();
-            textBox10 = new TextBox();
-            eliminar = new Button();
+            tituloLblFrmClientes = new Label();
+            buscarLblFrmClientes = new Label();
+            buscarTxtFrmClientes = new TextBox();
+            buscarBtnFrmClientes = new Button();
+            rolClbFrmClientes = new CheckedListBox();
+            filtrarRolLblFrmClientes = new Label();
+            nombreLblFrmClientes = new Label();
+            idRolLblFrmClientes = new Label();
+            correoLblFrmClientes = new Label();
+            idClienteLblFrmClientes = new Label();
+            telefonoLblFrmClientes = new Label();
+            duiLblFrmClientes = new Label();
+            idPermisoLblFrmClientes = new Label();
+            idEstadoLblFrmClientes = new Label();
+            idClienteTxtFrmClientes = new TextBox();
+            nombreTxtFrmClientes = new TextBox();
+            duiTxtFrmClientes = new TextBox();
+            telefonoTxtFrmClientes = new TextBox();
+            correoTxtFrmClientes = new TextBox();
+            agregarBtnFrmClientes = new Button();
+            idRolTxtFrmClientes = new TextBox();
+            idEstadoTxtFrmClientes = new TextBox();
+            idPermisoTxtFrmClientes = new TextBox();
+            instruccionesLblFrmClientes = new Label();
+            limpiarBtnFrmClientes = new Button();
+            eliminarLblFrmClientes = new Label();
+            eliminarTxtFrmClientes = new TextBox();
+            eliminarBtnFrmClientes = new Button();
             SuspendLayout();
             // 
-            // label1
+            // tituloLblFrmClientes
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.FromArgb(212, 175, 55);
-            label1.ForeColor = Color.FromArgb(34, 34, 34);
-            label1.Location = new Point(12, 9);
-            label1.Name = "label1";
-            label1.Padding = new Padding(6, 4, 6, 4);
-            label1.Size = new Size(77, 28);
-            label1.TabIndex = 0;
-            label1.Text = "Clientes ";
+            tituloLblFrmClientes.AutoSize = true;
+            tituloLblFrmClientes.BackColor = Color.FromArgb(212, 175, 55);
+            tituloLblFrmClientes.ForeColor = Color.FromArgb(34, 34, 34);
+            tituloLblFrmClientes.Location = new Point(12, 9);
+            tituloLblFrmClientes.Name = "tituloLblFrmClientes";
+            tituloLblFrmClientes.Padding = new Padding(6, 4, 6, 4);
+            tituloLblFrmClientes.Size = new Size(77, 28);
+            tituloLblFrmClientes.TabIndex = 0;
+            tituloLblFrmClientes.Text = "Clientes ";
             // 
-            // label2
+            // buscarLblFrmClientes
             // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.FromArgb(248, 246, 244);
-            label2.ForeColor = Color.FromArgb(60, 60, 60);
-            label2.Location = new Point(12, 40);
-            label2.Name = "label2";
-            label2.Size = new Size(208, 20);
-            label2.TabIndex = 1;
-            label2.Text = "Buscar por ID, DUI o Telefono:";
+            buscarLblFrmClientes.AutoSize = true;
+            buscarLblFrmClientes.BackColor = Color.FromArgb(248, 246, 244);
+            buscarLblFrmClientes.ForeColor = Color.FromArgb(60, 60, 60);
+            buscarLblFrmClientes.Location = new Point(12, 40);
+            buscarLblFrmClientes.Name = "buscarLblFrmClientes";
+            buscarLblFrmClientes.Size = new Size(208, 20);
+            buscarLblFrmClientes.TabIndex = 1;
+            buscarLblFrmClientes.Text = "Buscar por ID, DUI o Telefono:";
             // 
-            // textBox1
+            // buscarTxtFrmClientes
             // 
-            textBox1.Location = new Point(226, 36);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(259, 27);
-            textBox1.TabIndex = 2;
+            buscarTxtFrmClientes.Location = new Point(226, 36);
+            buscarTxtFrmClientes.Name = "buscarTxtFrmClientes";
+            buscarTxtFrmClientes.Size = new Size(259, 27);
+            buscarTxtFrmClientes.TabIndex = 2;
             // 
-            // btn
+            // buscarBtnFrmClientes
             // 
-            btn.BackColor = Color.FromArgb(212, 175, 55);
-            btn.ForeColor = Color.FromArgb(34, 34, 34);
-            btn.Location = new Point(504, 36);
-            btn.Name = "btn";
-            btn.Size = new Size(86, 28);
-            btn.TabIndex = 3;
-            btn.Text = "Buscar";
-            btn.UseVisualStyleBackColor = false;
-            btn.Click += button1_Click;
+            buscarBtnFrmClientes.BackColor = Color.FromArgb(212, 175, 55);
+            buscarBtnFrmClientes.ForeColor = Color.FromArgb(34, 34, 34);
+            buscarBtnFrmClientes.Location = new Point(504, 36);
+            buscarBtnFrmClientes.Name = "buscarBtnFrmClientes";
+            buscarBtnFrmClientes.Size = new Size(86, 28);
+            buscarBtnFrmClientes.TabIndex = 3;
+            buscarBtnFrmClientes.Text = "Buscar";
+            buscarBtnFrmClientes.UseVisualStyleBackColor = false;
+            buscarBtnFrmClientes.Click += button1_Click;
             // 
-            // Administrador
+            // rolClbFrmClientes
             // 
-            Administrador.BackColor = Color.FromArgb(248, 246, 244);
-            Administrador.ForeColor = Color.FromArgb(80, 80, 80);
-            Administrador.FormattingEnabled = true;
-            Administrador.Items.AddRange(new object[] { "Administrador.", "Empleado" });
-            Administrador.Location = new Point(608, 32);
-            Administrador.Name = "Administrador";
-            Administrador.Size = new Size(130, 48);
-            Administrador.TabIndex = 4;
+            rolClbFrmClientes.BackColor = Color.FromArgb(248, 246, 244);
+            rolClbFrmClientes.ForeColor = Color.FromArgb(80, 80, 80);
+            rolClbFrmClientes.FormattingEnabled = true;
+            rolClbFrmClientes.Items.AddRange(new object[] { "Administrador.", "Empleado" });
+            rolClbFrmClientes.Location = new Point(608, 32);
+            rolClbFrmClientes.Name = "rolClbFrmClientes";
+            rolClbFrmClientes.Size = new Size(130, 48);
+            rolClbFrmClientes.TabIndex = 4;
             // 
-            // label3
+            // filtrarRolLblFrmClientes
             // 
-            label3.AutoSize = true;
-            label3.BackColor = Color.FromArgb(255, 99, 71);
-            label3.ForeColor = SystemColors.ButtonHighlight;
-            label3.Location = new Point(625, 9);
-            label3.Name = "label3";
-            label3.Size = new Size(103, 20);
-            label3.TabIndex = 5;
-            label3.Text = " Filtrar por rol:";
+            filtrarRolLblFrmClientes.AutoSize = true;
+            filtrarRolLblFrmClientes.BackColor = Color.FromArgb(255, 99, 71);
+            filtrarRolLblFrmClientes.ForeColor = SystemColors.ButtonHighlight;
+            filtrarRolLblFrmClientes.Location = new Point(625, 9);
+            filtrarRolLblFrmClientes.Name = "filtrarRolLblFrmClientes";
+            filtrarRolLblFrmClientes.Size = new Size(103, 20);
+            filtrarRolLblFrmClientes.TabIndex = 5;
+            filtrarRolLblFrmClientes.Text = " Filtrar por rol:";
             // 
-            // label4
+            // nombreLblFrmClientes
             // 
-            label4.AutoSize = true;
-            label4.BackColor = Color.FromArgb(224, 247, 250);
-            label4.ForeColor = Color.FromArgb(34, 34, 34);
-            label4.Location = new Point(22, 156);
-            label4.Name = "label4";
-            label4.Size = new Size(64, 20);
-            label4.TabIndex = 6;
-            label4.Text = "Nombre";
+            nombreLblFrmClientes.AutoSize = true;
+            nombreLblFrmClientes.BackColor = Color.FromArgb(224, 247, 250);
+            nombreLblFrmClientes.ForeColor = Color.FromArgb(34, 34, 34);
+            nombreLblFrmClientes.Location = new Point(22, 156);
+            nombreLblFrmClientes.Name = "nombreLblFrmClientes";
+            nombreLblFrmClientes.Size = new Size(64, 20);
+            nombreLblFrmClientes.TabIndex = 6;
+            nombreLblFrmClientes.Text = "Nombre";
             // 
-            // label5
+            // idRolLblFrmClientes
             // 
-            label5.AutoSize = true;
-            label5.BackColor = Color.FromArgb(241, 238, 255);
-            label5.ForeColor = Color.FromArgb(34, 34, 34);
-            label5.Location = new Point(22, 323);
-            label5.Name = "label5";
-            label5.Size = new Size(46, 20);
-            label5.TabIndex = 7;
-            label5.Text = "id_rol";
+            idRolLblFrmClientes.AutoSize = true;
+            idRolLblFrmClientes.BackColor = Color.FromArgb(241, 238, 255);
+            idRolLblFrmClientes.ForeColor = Color.FromArgb(34, 34, 34);
+            idRolLblFrmClientes.Location = new Point(22, 323);
+            idRolLblFrmClientes.Name = "idRolLblFrmClientes";
+            idRolLblFrmClientes.Size = new Size(46, 20);
+            idRolLblFrmClientes.TabIndex = 7;
+            idRolLblFrmClientes.Text = "id_rol";
             // 
-            // label6
+            // correoLblFrmClientes
             // 
-            label6.AutoSize = true;
-            label6.BackColor = Color.FromArgb(227, 247, 237);
-            label6.ForeColor = Color.FromArgb(34, 34, 34);
-            label6.Location = new Point(22, 278);
-            label6.Name = "label6";
-            label6.Size = new Size(54, 20);
-            label6.TabIndex = 8;
-            label6.Text = "Correo";
+            correoLblFrmClientes.AutoSize = true;
+            correoLblFrmClientes.BackColor = Color.FromArgb(227, 247, 237);
+            correoLblFrmClientes.ForeColor = Color.FromArgb(34, 34, 34);
+            correoLblFrmClientes.Location = new Point(22, 278);
+            correoLblFrmClientes.Name = "correoLblFrmClientes";
+            correoLblFrmClientes.Size = new Size(54, 20);
+            correoLblFrmClientes.TabIndex = 8;
+            correoLblFrmClientes.Text = "Correo";
             // 
-            // txtNombre
+            // idClienteLblFrmClientes
             // 
-            txtNombre.AutoSize = true;
-            txtNombre.BackColor = Color.FromArgb(223, 235, 255);
-            txtNombre.ForeColor = Color.FromArgb(34, 34, 34);
-            txtNombre.Location = new Point(22, 123);
-            txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(72, 20);
-            txtNombre.TabIndex = 9;
-            txtNombre.Text = "id_cliente";
+            idClienteLblFrmClientes.AutoSize = true;
+            idClienteLblFrmClientes.BackColor = Color.FromArgb(223, 235, 255);
+            idClienteLblFrmClientes.ForeColor = Color.FromArgb(34, 34, 34);
+            idClienteLblFrmClientes.Location = new Point(22, 123);
+            idClienteLblFrmClientes.Name = "idClienteLblFrmClientes";
+            idClienteLblFrmClientes.Size = new Size(72, 20);
+            idClienteLblFrmClientes.TabIndex = 9;
+            idClienteLblFrmClientes.Text = "id_cliente";
             // 
-            // label8
+            // telefonoLblFrmClientes
             // 
-            label8.AutoSize = true;
-            label8.BackColor = Color.FromArgb(224, 247, 250);
-            label8.ForeColor = Color.FromArgb(34, 34, 34);
-            label8.Location = new Point(22, 240);
-            label8.Name = "label8";
-            label8.Size = new Size(67, 20);
-            label8.TabIndex = 10;
-            label8.Text = "Telefono";
+            telefonoLblFrmClientes.AutoSize = true;
+            telefonoLblFrmClientes.BackColor = Color.FromArgb(224, 247, 250);
+            telefonoLblFrmClientes.ForeColor = Color.FromArgb(34, 34, 34);
+            telefonoLblFrmClientes.Location = new Point(22, 240);
+            telefonoLblFrmClientes.Name = "telefonoLblFrmClientes";
+            telefonoLblFrmClientes.Size = new Size(67, 20);
+            telefonoLblFrmClientes.TabIndex = 10;
+            telefonoLblFrmClientes.Text = "Telefono";
             // 
-            // label9
+            // duiLblFrmClientes
             // 
-            label9.AutoSize = true;
-            label9.BackColor = Color.FromArgb(255, 250, 205);
-            label9.ForeColor = Color.FromArgb(34, 34, 34);
-            label9.Location = new Point(22, 198);
-            label9.Name = "label9";
-            label9.Size = new Size(34, 20);
-            label9.TabIndex = 11;
-            label9.Text = "DUI";
+            duiLblFrmClientes.AutoSize = true;
+            duiLblFrmClientes.BackColor = Color.FromArgb(255, 250, 205);
+            duiLblFrmClientes.ForeColor = Color.FromArgb(34, 34, 34);
+            duiLblFrmClientes.Location = new Point(22, 198);
+            duiLblFrmClientes.Name = "duiLblFrmClientes";
+            duiLblFrmClientes.Size = new Size(34, 20);
+            duiLblFrmClientes.TabIndex = 11;
+            duiLblFrmClientes.Text = "DUI";
             // 
-            // label10
+            // idPermisoLblFrmClientes
             // 
-            label10.AutoSize = true;
-            label10.BackColor = Color.FromArgb(241, 238, 255);
-            label10.ForeColor = Color.FromArgb(34, 34, 34);
-            label10.Location = new Point(22, 365);
-            label10.Name = "label10";
-            label10.Size = new Size(82, 20);
-            label10.TabIndex = 12;
-            label10.Text = "id_permiso";
+            idPermisoLblFrmClientes.AutoSize = true;
+            idPermisoLblFrmClientes.BackColor = Color.FromArgb(241, 238, 255);
+            idPermisoLblFrmClientes.ForeColor = Color.FromArgb(34, 34, 34);
+            idPermisoLblFrmClientes.Location = new Point(22, 365);
+            idPermisoLblFrmClientes.Name = "idPermisoLblFrmClientes";
+            idPermisoLblFrmClientes.Size = new Size(82, 20);
+            idPermisoLblFrmClientes.TabIndex = 12;
+            idPermisoLblFrmClientes.Text = "id_permiso";
             // 
-            // label11
+            // idEstadoLblFrmClientes
             // 
-            label11.AutoSize = true;
-            label11.BackColor = Color.FromArgb(255, 240, 238);
-            label11.ForeColor = Color.FromArgb(34, 34, 34);
-            label11.Location = new Point(22, 409);
-            label11.Name = "label11";
-            label11.Size = new Size(73, 20);
-            label11.TabIndex = 13;
-            label11.Text = "id_estado";
-            label11.Click += label11_Click;
+            idEstadoLblFrmClientes.AutoSize = true;
+            idEstadoLblFrmClientes.BackColor = Color.FromArgb(255, 240, 238);
+            idEstadoLblFrmClientes.ForeColor = Color.FromArgb(34, 34, 34);
+            idEstadoLblFrmClientes.Location = new Point(22, 409);
+            idEstadoLblFrmClientes.Name = "idEstadoLblFrmClientes";
+            idEstadoLblFrmClientes.Size = new Size(73, 20);
+            idEstadoLblFrmClientes.TabIndex = 13;
+            idEstadoLblFrmClientes.Text = "id_estado";
+            idEstadoLblFrmClientes.Click += label11_Click;
             // 
-            // textBox2
+            // idClienteTxtFrmClientes
             // 
-            textBox2.Location = new Point(110, 116);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(120, 27);
-            textBox2.TabIndex = 14;
+            idClienteTxtFrmClientes.Location = new Point(110, 116);
+            idClienteTxtFrmClientes.Name = "idClienteTxtFrmClientes";
+            idClienteTxtFrmClientes.Size = new Size(120, 27);
+            idClienteTxtFrmClientes.TabIndex = 14;
             // 
-            // textBox3
+            // nombreTxtFrmClientes
             // 
-            textBox3.Location = new Point(92, 153);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(128, 27);
-            textBox3.TabIndex = 15;
+            nombreTxtFrmClientes.Location = new Point(92, 153);
+            nombreTxtFrmClientes.Name = "nombreTxtFrmClientes";
+            nombreTxtFrmClientes.Size = new Size(128, 27);
+            nombreTxtFrmClientes.TabIndex = 15;
             // 
-            // textBox4
+            // duiTxtFrmClientes
             // 
-            textBox4.Location = new Point(62, 195);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(150, 27);
-            textBox4.TabIndex = 16;
+            duiTxtFrmClientes.Location = new Point(62, 195);
+            duiTxtFrmClientes.Name = "duiTxtFrmClientes";
+            duiTxtFrmClientes.Size = new Size(150, 27);
+            duiTxtFrmClientes.TabIndex = 16;
             // 
-            // textBox5
+            // telefonoTxtFrmClientes
             // 
-            textBox5.Location = new Point(95, 237);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(147, 27);
-            textBox5.TabIndex = 17;
+            telefonoTxtFrmClientes.Location = new Point(95, 237);
+            telefonoTxtFrmClientes.Name = "telefonoTxtFrmClientes";
+            telefonoTxtFrmClientes.Size = new Size(147, 27);
+            telefonoTxtFrmClientes.TabIndex = 17;
             // 
-            // textBox6
+            // correoTxtFrmClientes
             // 
-            textBox6.Location = new Point(79, 275);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(141, 27);
-            textBox6.TabIndex = 18;
+            correoTxtFrmClientes.Location = new Point(79, 275);
+            correoTxtFrmClientes.Name = "correoTxtFrmClientes";
+            correoTxtFrmClientes.Size = new Size(141, 27);
+            correoTxtFrmClientes.TabIndex = 18;
             // 
-            // button2
+            // agregarBtnFrmClientes
             // 
-            button2.BackColor = Color.FromArgb(212, 175, 55);
-            button2.ForeColor = Color.FromArgb(34, 34, 34);
-            button2.Location = new Point(464, 119);
-            button2.Name = "button2";
-            button2.Size = new Size(211, 29);
-            button2.TabIndex = 19;
-            button2.Text = "Agregar nuevo cliente";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            agregarBtnFrmClientes.BackColor = Color.FromArgb(212, 175, 55);
+            agregarBtnFrmClientes.ForeColor = Color.FromArgb(34, 34, 34);
+            agregarBtnFrmClientes.Location = new Point(464, 119);
+            agregarBtnFrmClientes.Name = "agregarBtnFrmClientes";
+            agregarBtnFrmClientes.Size = new Size(211, 29);
+            agregarBtnFrmClientes.TabIndex = 19;
+            agregarBtnFrmClientes.Text = "Agregar nuevo cliente";
+            agregarBtnFrmClientes.UseVisualStyleBackColor = false;
+            agregarBtnFrmClientes.Click += button2_Click;
             // 
-            // textBox7
+            // idRolTxtFrmClientes
             // 
-            textBox7.Location = new Point(74, 320);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(138, 27);
-            textBox7.TabIndex = 20;
+            idRolTxtFrmClientes.Location = new Point(74, 320);
+            idRolTxtFrmClientes.Name = "idRolTxtFrmClientes";
+            idRolTxtFrmClientes.Size = new Size(138, 27);
+            idRolTxtFrmClientes.TabIndex = 20;
             // 
-            // textBox8
+            // idEstadoTxtFrmClientes
             // 
-            textBox8.Location = new Point(101, 406);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(138, 27);
-            textBox8.TabIndex = 21;
+            idEstadoTxtFrmClientes.Location = new Point(101, 406);
+            idEstadoTxtFrmClientes.Name = "idEstadoTxtFrmClientes";
+            idEstadoTxtFrmClientes.Size = new Size(138, 27);
+            idEstadoTxtFrmClientes.TabIndex = 21;
             // 
-            // textBox9
+            // idPermisoTxtFrmClientes
             // 
-            textBox9.Location = new Point(110, 362);
-            textBox9.Name = "textBox9";
-            textBox9.Size = new Size(138, 27);
-            textBox9.TabIndex = 22;
+            idPermisoTxtFrmClientes.Location = new Point(110, 362);
+            idPermisoTxtFrmClientes.Name = "idPermisoTxtFrmClientes";
+            idPermisoTxtFrmClientes.Size = new Size(138, 27);
+            idPermisoTxtFrmClientes.TabIndex = 22;
             // 
-            // label12
+            // instruccionesLblFrmClientes
             // 
-            label12.AutoSize = true;
-            label12.BackColor = Color.FromArgb(248, 246, 244);
-            label12.ForeColor = Color.FromArgb(100, 100, 100);
-            label12.Location = new Point(12, 89);
-            label12.Name = "label12";
-            label12.Size = new Size(789, 20);
-            label12.TabIndex = 23;
-            label12.Text = "Para agregar un nuevo cliente porfavor haga click en \"limpiar\", llene los campos siguiente y presione \"agregar cliente\"";
+            instruccionesLblFrmClientes.AutoSize = true;
+            instruccionesLblFrmClientes.BackColor = Color.FromArgb(248, 246, 244);
+            instruccionesLblFrmClientes.ForeColor = Color.FromArgb(100, 100, 100);
+            instruccionesLblFrmClientes.Location = new Point(12, 89);
+            instruccionesLblFrmClientes.Name = "instruccionesLblFrmClientes";
+            instruccionesLblFrmClientes.Size = new Size(789, 20);
+            instruccionesLblFrmClientes.TabIndex = 23;
+            instruccionesLblFrmClientes.Text = "Para agregar un nuevo cliente porfavor haga click en \"limpiar\", llene los campos siguiente y presione \"agregar cliente\"";
             // 
-            // button3
+            // limpiarBtnFrmClientes
             // 
-            button3.BackColor = Color.FromArgb(34, 34, 34);
-            button3.ForeColor = Color.FromArgb(212, 175, 55);
-            button3.Location = new Point(351, 119);
-            button3.Name = "button3";
-            button3.Size = new Size(94, 29);
-            button3.TabIndex = 24;
-            button3.Text = "Limpiar";
-            button3.UseVisualStyleBackColor = false;
-            button3.Click += button3_Click;
+            limpiarBtnFrmClientes.BackColor = Color.FromArgb(34, 34, 34);
+            limpiarBtnFrmClientes.ForeColor = Color.FromArgb(212, 175, 55);
+            limpiarBtnFrmClientes.Location = new Point(351, 119);
+            limpiarBtnFrmClientes.Name = "limpiarBtnFrmClientes";
+            limpiarBtnFrmClientes.Size = new Size(94, 29);
+            limpiarBtnFrmClientes.TabIndex = 24;
+            limpiarBtnFrmClientes.Text = "Limpiar";
+            limpiarBtnFrmClientes.UseVisualStyleBackColor = false;
+            limpiarBtnFrmClientes.Click += button3_Click;
             // 
-            // label13
+            // eliminarLblFrmClientes
             // 
-            label13.AutoSize = true;
-            label13.BackColor = Color.FromArgb(248, 246, 244);
-            label13.ForeColor = Color.FromArgb(80, 80, 80);
-            label13.Location = new Point(306, 195);
-            label13.Name = "label13";
-            label13.Size = new Size(219, 20);
-            label13.TabIndex = 25;
-            label13.Text = "Eliminar por ID, DUI o Telefono:";
+            eliminarLblFrmClientes.AutoSize = true;
+            eliminarLblFrmClientes.BackColor = Color.FromArgb(248, 246, 244);
+            eliminarLblFrmClientes.ForeColor = Color.FromArgb(80, 80, 80);
+            eliminarLblFrmClientes.Location = new Point(306, 195);
+            eliminarLblFrmClientes.Name = "eliminarLblFrmClientes";
+            eliminarLblFrmClientes.Size = new Size(219, 20);
+            eliminarLblFrmClientes.TabIndex = 25;
+            eliminarLblFrmClientes.Text = "Eliminar por ID, DUI o Telefono:";
             // 
-            // textBox10
+            // eliminarTxtFrmClientes
             // 
-            textBox10.Location = new Point(531, 191);
-            textBox10.Name = "textBox10";
-            textBox10.Size = new Size(259, 27);
-            textBox10.TabIndex = 26;
+            eliminarTxtFrmClientes.Location = new Point(531, 191);
+            eliminarTxtFrmClientes.Name = "eliminarTxtFrmClientes";
+            eliminarTxtFrmClientes.Size = new Size(259, 27);
+            eliminarTxtFrmClientes.TabIndex = 26;
             // 
-            // eliminar
+            // eliminarBtnFrmClientes
             // 
-            eliminar.Location = new Point(586, 240);
-            eliminar.Name = "eliminar";
-            eliminar.Size = new Size(122, 39);
-            eliminar.TabIndex = 27;
-            eliminar.Text = "Eliminar";
-            eliminar.UseVisualStyleBackColor = true;
-            eliminar.Click += button1_Click_1;
+            eliminarBtnFrmClientes.Location = new Point(586, 240);
+            eliminarBtnFrmClientes.Name = "eliminarBtnFrmClientes";
+            eliminarBtnFrmClientes.Size = new Size(122, 39);
+            eliminarBtnFrmClientes.TabIndex = 27;
+            eliminarBtnFrmClientes.Text = "Eliminar";
+            eliminarBtnFrmClientes.UseVisualStyleBackColor = true;
+            eliminarBtnFrmClientes.Click += button1_Click_1;
             // 
             // Clientes
             // 
@@ -338,34 +338,34 @@ namespace ESFE.Clothing_Store.UI
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(248, 246, 244);
             ClientSize = new Size(800, 450);
-            Controls.Add(eliminar);
-            Controls.Add(textBox10);
-            Controls.Add(label13);
-            Controls.Add(button3);
-            Controls.Add(label12);
-            Controls.Add(textBox9);
-            Controls.Add(textBox8);
-            Controls.Add(textBox7);
-            Controls.Add(button2);
-            Controls.Add(textBox6);
-            Controls.Add(textBox5);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(label11);
-            Controls.Add(label10);
-            Controls.Add(label9);
-            Controls.Add(label8);
-            Controls.Add(txtNombre);
-            Controls.Add(label6);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(Administrador);
-            Controls.Add(btn);
-            Controls.Add(textBox1);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(eliminarBtnFrmClientes);
+            Controls.Add(eliminarTxtFrmClientes);
+            Controls.Add(eliminarLblFrmClientes);
+            Controls.Add(limpiarBtnFrmClientes);
+            Controls.Add(instruccionesLblFrmClientes);
+            Controls.Add(idPermisoTxtFrmClientes);
+            Controls.Add(idEstadoTxtFrmClientes);
+            Controls.Add(idRolTxtFrmClientes);
+            Controls.Add(agregarBtnFrmClientes);
+            Controls.Add(correoTxtFrmClientes);
+            Controls.Add(telefonoTxtFrmClientes);
+            Controls.Add(duiTxtFrmClientes);
+            Controls.Add(nombreTxtFrmClientes);
+            Controls.Add(idClienteTxtFrmClientes);
+            Controls.Add(idEstadoLblFrmClientes);
+            Controls.Add(idPermisoLblFrmClientes);
+            Controls.Add(duiLblFrmClientes);
+            Controls.Add(telefonoLblFrmClientes);
+            Controls.Add(idClienteLblFrmClientes);
+            Controls.Add(correoLblFrmClientes);
+            Controls.Add(idRolLblFrmClientes);
+            Controls.Add(nombreLblFrmClientes);
+            Controls.Add(filtrarRolLblFrmClientes);
+            Controls.Add(rolClbFrmClientes);
+            Controls.Add(buscarBtnFrmClientes);
+            Controls.Add(buscarTxtFrmClientes);
+            Controls.Add(buscarLblFrmClientes);
+            Controls.Add(tituloLblFrmClientes);
             Name = "Clientes";
             Text = "Clientes";
             Load += Clientes_Load;
@@ -375,33 +375,33 @@ namespace ESFE.Clothing_Store.UI
 
         #endregion
 
-        private Label label1;
-        private Label label2;
-        private TextBox textBox1;
-        private Button btn;
-        private CheckedListBox Administrador;
-        private Label label3;
-        private Label label4;
-        private Label label5;
-        private Label label6;
-        private Label txtNombre;
-        private Label label8;
-        private Label label9;
-        private Label label10;
-        private Label label11;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private TextBox textBox5;
-        private TextBox textBox6;
-        private Button button2;
-        private TextBox textBox7;
-        private TextBox textBox8;
-        private TextBox textBox9;
-        private Label label12;
-        private Button button3;
-        private Label label13;
-        private TextBox textBox10;
-        private Button eliminar;
+        private Label tituloLblFrmClientes;
+        private Label buscarLblFrmClientes;
+        private TextBox buscarTxtFrmClientes;
+        private Button buscarBtnFrmClientes;
+        private CheckedListBox rolClbFrmClientes;
+        private Label filtrarRolLblFrmClientes;
+        private Label nombreLblFrmClientes;
+        private Label idRolLblFrmClientes;
+        private Label correoLblFrmClientes;
+        private Label idClienteLblFrmClientes;
+        private Label telefonoLblFrmClientes;
+        private Label duiLblFrmClientes;
+        private Label idPermisoLblFrmClientes;
+        private Label idEstadoLblFrmClientes;
+        private TextBox idClienteTxtFrmClientes;
+        private TextBox nombreTxtFrmClientes;
+        private TextBox duiTxtFrmClientes;
+        private TextBox telefonoTxtFrmClientes;
+        private TextBox correoTxtFrmClientes;
+        private Button agregarBtnFrmClientes;
+        private TextBox idRolTxtFrmClientes;
+        private TextBox idEstadoTxtFrmClientes;
+        private TextBox idPermisoTxtFrmClientes;
+        private Label instruccionesLblFrmClientes;
+        private Button limpiarBtnFrmClientes;
+        private Label eliminarLblFrmClientes;
+        private TextBox eliminarTxtFrmClientes;
+        private Button eliminarBtnFrmClientes;
     }
 }

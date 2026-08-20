@@ -30,7 +30,7 @@ namespace ESFE.Clothing_Store.UI
         // Buscar por Id, DUI o Telefono
         private void button1_Click(object sender, EventArgs e)
         {
-            string q = textBox1.Text?.Trim();
+            string q = buscarTxtFrmClientes.Text?.Trim();
             if (string.IsNullOrEmpty(q))
             {
                 MessageBox.Show("Ingrese Id, DUI o teléfono para buscar.", "Buscar", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -87,20 +87,20 @@ namespace ESFE.Clothing_Store.UI
             {
                 var entidad = new EN.Clientes
                 {
-                    Nombre = textBox3.Text.Trim(),
-                    Dui = textBox4.Text?.Trim(),
-                    Telefono = textBox5.Text?.Trim(),
-                    Correo = textBox6.Text.Trim(),
-                    id_rol = ParseIntOrZero(textBox7.Text),
-                    id_permiso = ParseIntOrZero(textBox9.Text),
-                    id_estado = ParseIntOrZero(textBox8.Text)
+                    Nombre = nombreTxtFrmClientes.Text.Trim(),
+                    Dui = duiTxtFrmClientes.Text?.Trim(),
+                    Telefono = telefonoTxtFrmClientes.Text?.Trim(),
+                    Correo = correoTxtFrmClientes.Text.Trim(),
+                    id_rol = ParseIntOrZero(idRolTxtFrmClientes.Text),
+                    id_permiso = ParseIntOrZero(idPermisoTxtFrmClientes.Text),
+                    id_estado = ParseIntOrZero(idEstadoTxtFrmClientes.Text)
                 };
 
                 int newId = ClientesDAL.Insertar(entidad);
                 if (newId > 0)
                 {
                     FillFormFromEntity(entidad);
-                    textBox2.Text = newId.ToString();
+                    idClienteTxtFrmClientes.Text = newId.ToString();
                     MessageBox.Show($"Cliente agregado correctamente. Id={newId}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
@@ -124,31 +124,31 @@ namespace ESFE.Clothing_Store.UI
         private void FillFormFromEntity(EN.Clientes c)
         {
             if (c == null) return;
-            textBox2.Text = c.id_cliente.ToString();
-            textBox3.Text = c.Nombre ?? string.Empty;
-            textBox4.Text = c.Dui ?? string.Empty;
-            textBox5.Text = c.Telefono ?? string.Empty;
-            textBox6.Text = c.Correo ?? string.Empty;
-            textBox7.Text = c.id_rol.ToString();
-            textBox9.Text = c.id_permiso.ToString();
-            textBox8.Text = c.id_estado.ToString();
+            idClienteTxtFrmClientes.Text = c.id_cliente.ToString();
+            nombreTxtFrmClientes.Text = c.Nombre ?? string.Empty;
+            duiTxtFrmClientes.Text = c.Dui ?? string.Empty;
+            telefonoTxtFrmClientes.Text = c.Telefono ?? string.Empty;
+            correoTxtFrmClientes.Text = c.Correo ?? string.Empty;
+            idRolTxtFrmClientes.Text = c.id_rol.ToString();
+            idPermisoTxtFrmClientes.Text = c.id_permiso.ToString();
+            idEstadoTxtFrmClientes.Text = c.id_estado.ToString();
         }
 
         // Helper: limpiar controles
         private void ClearForm()
         {
-            textBox1.Clear();
-            textBox2.Clear();
-            textBox3.Clear();
-            textBox4.Clear();
-            textBox5.Clear();
-            textBox6.Clear();
-            textBox7.Clear();
-            textBox8.Clear();
-            textBox9.Clear();
-            textBox10.Clear();
+            buscarTxtFrmClientes.Clear();
+            idClienteTxtFrmClientes.Clear();
+            nombreTxtFrmClientes.Clear();
+            duiTxtFrmClientes.Clear();
+            telefonoTxtFrmClientes.Clear();
+            correoTxtFrmClientes.Clear();
+            idRolTxtFrmClientes.Clear();
+            idEstadoTxtFrmClientes.Clear();
+            idPermisoTxtFrmClientes.Clear();
+            eliminarTxtFrmClientes.Clear();
             // Poner el foco en el campo Nombre para agregar un nuevo cliente
-            textBox3.Focus();
+            nombreTxtFrmClientes.Focus();
         }
 
         private int ParseIntOrZero(string s)
@@ -160,7 +160,7 @@ namespace ESFE.Clothing_Store.UI
         private void button1_Click_1(object sender, EventArgs e)
         {
             // Eliminar por id, DUI o Telefono (valor en textBox10)
-            string q = textBox10.Text?.Trim();
+            string q = eliminarTxtFrmClientes.Text?.Trim();
             if (string.IsNullOrEmpty(q))
             {
                 MessageBox.Show("Ingrese Id, DUI o Teléfono para eliminar.", "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace ESFE.Clothing_Store.UI
 {
-    public partial class Tipo_productro : Form
+    public partial class Tipo_producto : Form
     {
-        public Tipo_productro()
+        public Tipo_producto()
         {
             InitializeComponent();
         }

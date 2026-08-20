@@ -16,12 +16,19 @@ namespace ESFE._Clothing_Store.DAL
                 cn.Open();
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "sp_Estado_Insertar";
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    // Al igual que Color, id_estado no es IDENTITY por el modelo relacional.
+                    // Buscamos el ID máximo y le sumamos 1 de manera simple.
+                    cmd.CommandText = "SELECT ISNULL(MAX(id_estado), 0) + 1 FROM [dbo].[Estado]";
+                    int nuevoId = Convert.ToInt32(cmd.ExecuteScalar());
 
-                    var p = cmd.CreateParameter(); p.ParameterName = "@estado"; p.Value = entidad.estado ?? (object)DBNull.Value; cmd.Parameters.Add(p);
+                    cmd.CommandText = "INSERT INTO [dbo].[Estado] (id_estado, Estado) VALUES (@id_estado, @Estado)";
+                    cmd.CommandType = CommandType.Text;
 
-                    return cmd.ExecuteNonQuery();
+                    var p1 = cmd.CreateParameter(); p1.ParameterName = "@id_estado"; p1.Value = nuevoId; cmd.Parameters.Add(p1);
+                    var p2 = cmd.CreateParameter(); p2.ParameterName = "@Estado"; p2.Value = entidad.estado ?? (object)DBNull.Value; cmd.Parameters.Add(p2);
+
+                    int filas = cmd.ExecuteNonQuery();
+                    return filas > 0 ? nuevoId : 0;
                 }
             }
         }
@@ -35,11 +42,11 @@ namespace ESFE._Clothing_Store.DAL
                 cn.Open();
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "sp_Estado_Actualizar";
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "UPDATE [dbo].[Estado] SET Estado = @Estado WHERE id_estado = @id_estado";
+                    cmd.CommandType = CommandType.Text;
 
-                    var p = cmd.CreateParameter(); p.ParameterName = "@id_estado"; p.Value = entidad.id_estado; cmd.Parameters.Add(p);
-                    p = cmd.CreateParameter(); p.ParameterName = "@estado"; p.Value = entidad.estado ?? (object)DBNull.Value; cmd.Parameters.Add(p);
+                    var p1 = cmd.CreateParameter(); p1.ParameterName = "@id_estado"; p1.Value = entidad.id_estado; cmd.Parameters.Add(p1);
+                    var p2 = cmd.CreateParameter(); p2.ParameterName = "@Estado"; p2.Value = entidad.estado ?? (object)DBNull.Value; cmd.Parameters.Add(p2);
 
                     return cmd.ExecuteNonQuery();
                 }
@@ -53,8 +60,8 @@ namespace ESFE._Clothing_Store.DAL
                 cn.Open();
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "sp_Estado_Eliminar";
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "DELETE FROM [dbo].[Estado] WHERE id_estado = @id_estado";
+                    cmd.CommandType = CommandType.Text;
 
                     var p = cmd.CreateParameter(); p.ParameterName = "@id_estado"; p.Value = idEstado; cmd.Parameters.Add(p);
 
@@ -72,8 +79,8 @@ namespace ESFE._Clothing_Store.DAL
                 cn.Open();
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "sp_Estado_ObtenerTodos";
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "SELECT id_estado, Estado FROM [dbo].[Estado]";
+                    cmd.CommandType = CommandType.Text;
 
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
@@ -82,7 +89,7 @@ namespace ESFE._Clothing_Store.DAL
                             var item = new Estado
                             {
                                 id_estado = dr["id_estado"] != DBNull.Value ? Convert.ToInt32(dr["id_estado"]) : 0,
-                                estado = dr["estado"] != DBNull.Value ? dr["estado"].ToString() : string.Empty
+                                estado = dr["Estado"] != DBNull.Value ? dr["Estado"].ToString() : string.Empty
                             };
                             lista.Add(item);
                         }
@@ -102,8 +109,8 @@ namespace ESFE._Clothing_Store.DAL
                 cn.Open();
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "sp_Estado_ObtenerPorId";
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "SELECT id_estado, Estado FROM [dbo].[Estado] WHERE id_estado = @id_estado";
+                    cmd.CommandType = CommandType.Text;
 
                     var p = cmd.CreateParameter(); p.ParameterName = "@id_estado"; p.Value = idEstado; cmd.Parameters.Add(p);
 
@@ -114,7 +121,7 @@ namespace ESFE._Clothing_Store.DAL
                             entidad = new Estado
                             {
                                 id_estado = dr["id_estado"] != DBNull.Value ? Convert.ToInt32(dr["id_estado"]) : 0,
-                                estado = dr["estado"] != DBNull.Value ? dr["estado"].ToString() : string.Empty
+                                estado = dr["Estado"] != DBNull.Value ? dr["Estado"].ToString() : string.Empty
                             };
                         }
                     }

@@ -40,7 +40,7 @@ namespace ESFE.Clothing_Store.UI
         // Buscar por ID de usuario
         private void button1_Click(object sender, EventArgs e)
         {
-            if (!int.TryParse(textBox1.Text.Trim(), out int idUsuario))
+            if (!int.TryParse(buscarUsuarioTxtFrmBitacora.Text.Trim(), out int idUsuario))
             {
                 MessageBox.Show("Ingrese un ID de usuario válido.", "Buscar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -76,7 +76,7 @@ namespace ESFE.Clothing_Store.UI
         {
             try
             {
-                if (!int.TryParse(textBox4.Text.Trim(), out int idUsuario))
+                if (!int.TryParse(idUsuarioTxtFrmBitacora.Text.Trim(), out int idUsuario))
                 {
                     MessageBox.Show("Ingrese un ID de usuario válido.", "Agregar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
@@ -84,7 +84,7 @@ namespace ESFE.Clothing_Store.UI
 
                 var entidad = new BitacoraEntidad
                 {
-                    Accion = textBox3.Text.Trim(),
+                    Accion = accionTxtFrmBitacora.Text.Trim(),
                     Id_Usuario = idUsuario,
                     Fecha_y_hora = DateTime.Now
                 };
@@ -136,7 +136,7 @@ namespace ESFE.Clothing_Store.UI
         // Eliminar registro por ID Actividad
         private void button5_Click(object sender, EventArgs e)
         {
-            if (!int.TryParse(textBox2.Text.Trim(), out int idActividad))
+            if (!int.TryParse(idActividadTxtFrmBitacora.Text.Trim(), out int idActividad))
             {
                 MessageBox.Show("Ingrese un ID Actividad válido para eliminar.", "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -168,20 +168,20 @@ namespace ESFE.Clothing_Store.UI
         private void FillFormFromEntity(BitacoraEntidad b)
         {
             if (b == null) return;
-            textBox2.Text = b.id_actividad.ToString();
-            textBox3.Text = b.Accion ?? string.Empty;
-            textBox4.Text = b.Id_Usuario.ToString();
-            textBox5.Text = b.Fecha_y_hora.ToString();
+            idActividadTxtFrmBitacora.Text = b.id_actividad.ToString();
+            accionTxtFrmBitacora.Text = b.Accion ?? string.Empty;
+            idUsuarioTxtFrmBitacora.Text = b.Id_Usuario.ToString();
+            fechaHoraTxtFrmBitacora.Text = b.Fecha_y_hora.ToString();
         }
 
         // Helper: limpiar controles
         private void ClearForm()
         {
-            textBox1.Clear();
-            textBox2.Clear();
-            textBox3.Clear();
-            textBox4.Clear();
-            textBox5.Clear();
+            buscarUsuarioTxtFrmBitacora.Clear();
+            idActividadTxtFrmBitacora.Clear();
+            accionTxtFrmBitacora.Clear();
+            idUsuarioTxtFrmBitacora.Clear();
+            fechaHoraTxtFrmBitacora.Clear();
         }
     }
 }

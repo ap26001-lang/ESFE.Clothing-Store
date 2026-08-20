@@ -1,6 +1,6 @@
 ﻿namespace ESFE.Clothing_Store.UI
 {
-    partial class Tipo_productro
+    partial class Tipo_producto
     {
         /// <summary>
         /// Required designer variable.

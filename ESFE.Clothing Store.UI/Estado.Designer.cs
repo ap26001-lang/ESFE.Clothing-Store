@@ -28,160 +28,155 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
-            textBox1 = new TextBox();
-            label3 = new Label();
-            label4 = new Label();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            button1 = new Button();
-            button2 = new Button();
-            label5 = new Label();
-            textBox4 = new TextBox();
-            button3 = new Button();
-            button4 = new Button();
+            tituloLblFrmEstado = new Label();
+            buscarLblFrmEstado = new Label();
+            buscarTxtFrmEstado = new TextBox();
+            idEstadoLblFrmEstado = new Label();
+            estadoLblFrmEstado = new Label();
+            estadoTxtFrmEstado = new TextBox();
+            idEstadoTxtFrmEstado = new TextBox();
+            buscarBtnFrmEstado = new Button();
+            limpiarBtnFrmEstado = new Button();
+            eliminarLblFrmEstado = new Label();
+            eliminarTxtFrmEstado = new TextBox();
+            eliminarBtnFrmEstado = new Button();
+            guardarBtnFrmEstado = new Button();
             SuspendLayout();
             // 
-            // label1
+            // tituloLblFrmEstado
             // 
-            label1.AutoSize = true;
-            // Cabecera con acento coral para sensación de moda y calidez
-            label1.BackColor = System.Drawing.Color.FromArgb(255, 99, 71);
-            label1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            label1.Padding = new Padding(6, 4, 6, 4);
-            label1.Location = new Point(12, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(54, 20);
-            label1.TabIndex = 0;
-            label1.Text = "Estado";
+            tituloLblFrmEstado.AutoSize = true;
+            tituloLblFrmEstado.BackColor = System.Drawing.Color.FromArgb(255, 99, 71);
+            tituloLblFrmEstado.ForeColor = System.Drawing.Color.WhiteSmoke;
+            tituloLblFrmEstado.Padding = new Padding(6, 4, 6, 4);
+            tituloLblFrmEstado.Location = new Point(12, 9);
+            tituloLblFrmEstado.Name = "tituloLblFrmEstado";
+            tituloLblFrmEstado.Size = new Size(66, 28);
+            tituloLblFrmEstado.TabIndex = 0;
+            tituloLblFrmEstado.Text = "Estado";
             // 
-            // label2
+            // buscarLblFrmEstado
             // 
-            label2.AutoSize = true;
-            // Indicador de búsqueda en teal para frescura
-            label2.BackColor = System.Drawing.Color.FromArgb(0, 128, 128);
-            label2.ForeColor = System.Drawing.Color.WhiteSmoke;
-            label2.Location = new Point(12, 64);
-            label2.Name = "label2";
-            label2.Size = new Size(188, 20);
-            label2.TabIndex = 1;
-            label2.Text = "Buscar estado por nombre ";
+            buscarLblFrmEstado.AutoSize = true;
+            buscarLblFrmEstado.BackColor = System.Drawing.Color.FromArgb(0, 128, 128);
+            buscarLblFrmEstado.ForeColor = System.Drawing.Color.WhiteSmoke;
+            buscarLblFrmEstado.Location = new Point(12, 64);
+            buscarLblFrmEstado.Name = "buscarLblFrmEstado";
+            buscarLblFrmEstado.Size = new Size(188, 20);
+            buscarLblFrmEstado.TabIndex = 1;
+            buscarLblFrmEstado.Text = "Buscar estado por nombre ";
             // 
-            // textBox1
+            // buscarTxtFrmEstado
             // 
-            textBox1.Location = new Point(224, 61);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(219, 27);
-            textBox1.TabIndex = 2;
+            buscarTxtFrmEstado.Location = new Point(224, 61);
+            buscarTxtFrmEstado.Name = "buscarTxtFrmEstado";
+            buscarTxtFrmEstado.Size = new Size(219, 27);
+            buscarTxtFrmEstado.TabIndex = 2;
             // 
-            // label3
+            // idEstadoLblFrmEstado
             // 
-            label3.AutoSize = true;
-            // Etiqueta en fondo mint suave para sensación acogedora
-            label3.BackColor = System.Drawing.Color.FromArgb(227, 247, 237);
-            label3.ForeColor = System.Drawing.Color.FromArgb(34, 34, 34);
-            label3.Location = new Point(12, 120);
-            label3.Name = "label3";
-            label3.Size = new Size(73, 20);
-            label3.TabIndex = 3;
-            label3.Text = "Id_estado";
+            idEstadoLblFrmEstado.AutoSize = true;
+            idEstadoLblFrmEstado.BackColor = System.Drawing.Color.FromArgb(227, 247, 237);
+            idEstadoLblFrmEstado.ForeColor = System.Drawing.Color.FromArgb(34, 34, 34);
+            idEstadoLblFrmEstado.Location = new Point(12, 120);
+            idEstadoLblFrmEstado.Name = "idEstadoLblFrmEstado";
+            idEstadoLblFrmEstado.Size = new Size(77, 20);
+            idEstadoLblFrmEstado.TabIndex = 3;
+            idEstadoLblFrmEstado.Text = "Id_estado";
             // 
-            // label4
+            // estadoLblFrmEstado
             // 
-            label4.AutoSize = true;
-            label4.BackColor = System.Drawing.Color.FromArgb(224, 247, 250);
-            label4.ForeColor = System.Drawing.Color.FromArgb(34, 34, 34);
-            label4.Location = new Point(12, 171);
-            label4.Name = "label4";
-            label4.Size = new Size(54, 20);
-            label4.TabIndex = 4;
-            label4.Text = "Estado";
+            estadoLblFrmEstado.AutoSize = true;
+            estadoLblFrmEstado.BackColor = System.Drawing.Color.FromArgb(224, 247, 250);
+            estadoLblFrmEstado.ForeColor = System.Drawing.Color.FromArgb(34, 34, 34);
+            estadoLblFrmEstado.Location = new Point(12, 171);
+            estadoLblFrmEstado.Name = "estadoLblFrmEstado";
+            estadoLblFrmEstado.Size = new Size(54, 20);
+            estadoLblFrmEstado.TabIndex = 4;
+            estadoLblFrmEstado.Text = "Estado";
             // 
-            // textBox2
+            // estadoTxtFrmEstado
             // 
-            textBox2.Location = new Point(82, 171);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(219, 27);
-            textBox2.TabIndex = 5;
+            estadoTxtFrmEstado.Location = new Point(82, 168);
+            estadoTxtFrmEstado.Name = "estadoTxtFrmEstado";
+            estadoTxtFrmEstado.Size = new Size(219, 27);
+            estadoTxtFrmEstado.TabIndex = 5;
             // 
-            // textBox3
+            // idEstadoTxtFrmEstado
             // 
-            textBox3.Location = new Point(101, 113);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(219, 27);
-            textBox3.TabIndex = 6;
+            idEstadoTxtFrmEstado.Location = new Point(101, 117);
+            idEstadoTxtFrmEstado.Name = "idEstadoTxtFrmEstado";
+            idEstadoTxtFrmEstado.Size = new Size(219, 27);
+            idEstadoTxtFrmEstado.TabIndex = 6;
             // 
-            // button1
+            // buscarBtnFrmEstado
             // 
-            // Botón Buscar en coral (CTA coherente con cabecera)
-            button1.BackColor = System.Drawing.Color.FromArgb(255, 99, 71);
-            button1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            button1.Location = new Point(471, 57);
-            button1.Name = "button1";
-            button1.Size = new Size(87, 35);
-            button1.TabIndex = 7;
-            button1.Text = "Buscar";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            buscarBtnFrmEstado.BackColor = System.Drawing.Color.FromArgb(255, 99, 71);
+            buscarBtnFrmEstado.ForeColor = System.Drawing.Color.WhiteSmoke;
+            buscarBtnFrmEstado.Location = new Point(471, 57);
+            buscarBtnFrmEstado.Name = "buscarBtnFrmEstado";
+            buscarBtnFrmEstado.Size = new Size(87, 35);
+            buscarBtnFrmEstado.TabIndex = 7;
+            buscarBtnFrmEstado.Text = "Buscar";
+            buscarBtnFrmEstado.UseVisualStyleBackColor = false;
+            buscarBtnFrmEstado.Click += button1_Click;
             // 
-            // button2
+            // limpiarBtnFrmEstado
             // 
-            // Botón Limpiar en azul suave para balancear la paleta
-            button2.BackColor = System.Drawing.Color.FromArgb(102, 153, 204);
-            button2.ForeColor = System.Drawing.Color.WhiteSmoke;
-            button2.Location = new Point(577, 60);
-            button2.Name = "button2";
-            button2.Size = new Size(87, 32);
-            button2.TabIndex = 8;
-            button2.Text = "Limpiar";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            limpiarBtnFrmEstado.BackColor = System.Drawing.Color.FromArgb(102, 153, 204);
+            limpiarBtnFrmEstado.ForeColor = System.Drawing.Color.WhiteSmoke;
+            limpiarBtnFrmEstado.Location = new Point(577, 60);
+            limpiarBtnFrmEstado.Name = "limpiarBtnFrmEstado";
+            limpiarBtnFrmEstado.Size = new Size(87, 32);
+            limpiarBtnFrmEstado.TabIndex = 8;
+            limpiarBtnFrmEstado.Text = "Limpiar";
+            limpiarBtnFrmEstado.UseVisualStyleBackColor = false;
+            limpiarBtnFrmEstado.Click += button2_Click;
             // 
-            // label5
+            // eliminarLblFrmEstado
             // 
-            label5.AutoSize = true;
+            eliminarLblFrmEstado.AutoSize = true;
             // Instrucciones en rosa pálido para suavidad
-            label5.BackColor = System.Drawing.Color.FromArgb(255, 240, 245);
-            label5.ForeColor = System.Drawing.Color.FromArgb(34, 34, 34);
-            label5.Location = new Point(12, 281);
-            label5.Name = "label5";
-            label5.Size = new Size(301, 20);
-            label5.TabIndex = 9;
-            label5.Text = "Eliminar o Agregar estado por nombrre o Id";
+            eliminarLblFrmEstado.BackColor = System.Drawing.Color.FromArgb(255, 240, 245);
+            eliminarLblFrmEstado.ForeColor = System.Drawing.Color.FromArgb(34, 34, 34);
+            eliminarLblFrmEstado.Location = new Point(12, 281);
+            eliminarLblFrmEstado.Name = "eliminarLblFrmEstado";
+            eliminarLblFrmEstado.Size = new Size(301, 20);
+            eliminarLblFrmEstado.TabIndex = 9;
+            eliminarLblFrmEstado.Text = "Eliminar o Agregar estado por nombrre o Id";
             // 
-            // textBox4
+            // eliminarTxtFrmEstado
             // 
-            textBox4.Location = new Point(319, 278);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(219, 27);
-            textBox4.TabIndex = 10;
+            eliminarTxtFrmEstado.Location = new Point(319, 278);
+            eliminarTxtFrmEstado.Name = "eliminarTxtFrmEstado";
+            eliminarTxtFrmEstado.Size = new Size(219, 27);
+            eliminarTxtFrmEstado.TabIndex = 10;
             // 
-            // button3
+            // eliminarBtnFrmEstado
             // 
             // Botón Eliminar en tono tomate suave
-            button3.BackColor = System.Drawing.Color.FromArgb(220, 90, 90);
-            button3.ForeColor = System.Drawing.Color.WhiteSmoke;
-            button3.Location = new Point(105, 320);
-            button3.Name = "button3";
-            button3.Size = new Size(87, 35);
-            button3.TabIndex = 11;
-            button3.Text = "Eliminar";
-            button3.UseVisualStyleBackColor = false;
-            button3.Click += button3_Click;
+            eliminarBtnFrmEstado.BackColor = System.Drawing.Color.FromArgb(220, 90, 90);
+            eliminarBtnFrmEstado.ForeColor = System.Drawing.Color.WhiteSmoke;
+            eliminarBtnFrmEstado.Location = new Point(105, 320);
+            eliminarBtnFrmEstado.Name = "eliminarBtnFrmEstado";
+            eliminarBtnFrmEstado.Size = new Size(87, 35);
+            eliminarBtnFrmEstado.TabIndex = 11;
+            eliminarBtnFrmEstado.Text = "Eliminar";
+            eliminarBtnFrmEstado.UseVisualStyleBackColor = false;
+            eliminarBtnFrmEstado.Click += button3_Click;
             // 
-            // button4
+            // guardarBtnFrmEstado
             // 
             // Botón Agregar con acento dorado para CTA
-            button4.BackColor = System.Drawing.Color.FromArgb(212, 175, 55);
-            button4.ForeColor = System.Drawing.Color.FromArgb(34, 34, 34);
-            button4.Location = new Point(12, 320);
-            button4.Name = "button4";
-            button4.Size = new Size(87, 35);
-            button4.TabIndex = 12;
-            button4.Click += button4_Click;
-            button4.Text = "Agregar";
-            button4.UseVisualStyleBackColor = false;
+            guardarBtnFrmEstado.BackColor = System.Drawing.Color.FromArgb(212, 175, 55);
+            guardarBtnFrmEstado.ForeColor = System.Drawing.Color.FromArgb(34, 34, 34);
+            guardarBtnFrmEstado.Location = new Point(12, 320);
+            guardarBtnFrmEstado.Name = "guardarBtnFrmEstado";
+            guardarBtnFrmEstado.Size = new Size(87, 35);
+            guardarBtnFrmEstado.TabIndex = 12;
+            guardarBtnFrmEstado.Click += button4_Click;
+            guardarBtnFrmEstado.Text = "Guardar";
+            guardarBtnFrmEstado.UseVisualStyleBackColor = false;
             // 
             // Estado
             // 
@@ -190,19 +185,19 @@
             // Fondo claro y neutro para resaltar la paleta del formulario
             BackColor = System.Drawing.Color.FromArgb(250, 250, 250);
             ClientSize = new Size(800, 450);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(textBox4);
-            Controls.Add(label5);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(textBox1);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(guardarBtnFrmEstado);
+            Controls.Add(eliminarBtnFrmEstado);
+            Controls.Add(eliminarTxtFrmEstado);
+            Controls.Add(eliminarLblFrmEstado);
+            Controls.Add(limpiarBtnFrmEstado);
+            Controls.Add(buscarBtnFrmEstado);
+            Controls.Add(idEstadoTxtFrmEstado);
+            Controls.Add(estadoTxtFrmEstado);
+            Controls.Add(estadoLblFrmEstado);
+            Controls.Add(idEstadoLblFrmEstado);
+            Controls.Add(buscarTxtFrmEstado);
+            Controls.Add(buscarLblFrmEstado);
+            Controls.Add(tituloLblFrmEstado);
             ForeColor = SystemColors.ButtonHighlight;
             Name = "Estado";
             Text = "Estado";
@@ -212,18 +207,18 @@
 
         #endregion
 
-        private Label label1;
-        private Label label2;
-        private TextBox textBox1;
-        private Label label3;
-        private Label label4;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private Button button1;
-        private Button button2;
-        private Label label5;
-        private TextBox textBox4;
-        private Button button3;
-        private Button button4;
+        private Label tituloLblFrmEstado;
+        private Label buscarLblFrmEstado;
+        private TextBox buscarTxtFrmEstado;
+        private Label idEstadoLblFrmEstado;
+        private Label estadoLblFrmEstado;
+        private TextBox estadoTxtFrmEstado;
+        private TextBox idEstadoTxtFrmEstado;
+        private Button buscarBtnFrmEstado;
+        private Button limpiarBtnFrmEstado;
+        private Label eliminarLblFrmEstado;
+        private TextBox eliminarTxtFrmEstado;
+        private Button eliminarBtnFrmEstado;
+        private Button guardarBtnFrmEstado;
     }
 }
