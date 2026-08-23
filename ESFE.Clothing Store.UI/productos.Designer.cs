@@ -28,211 +28,244 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
-            label6 = new Label();
-            label7 = new Label();
-            button2 = new Button();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
-            textBox6 = new TextBox();
-            textBox7 = new TextBox();
-            button3 = new Button();
-            textBox8 = new TextBox();
+            buscarBtnFrmProductos = new Button();
+            codigoProductoLblFrmProductos = new Label();
+            precioLblFrmProductos = new Label();
+            nombreProductoLblFrmProductos = new Label();
+            idTallasLblFrmProductos = new Label();
+            idTipoProductoLblFrmProductos = new Label();
+            idTelaLblFrmProductos = new Label();
+            idColorLblFrmProductos = new Label();
+            limpiarBtnFrmProductos = new Button();
+            codigoProductoTxtFrmProductos = new TextBox();
+            precioTxtFrmProductos = new TextBox();
+            idTallasTxtFrmProductos = new TextBox();
+            nombreProductoTxtFrmProductos = new TextBox();
+            idTipoProductoTxtFrmProductos = new TextBox();
+            idTelaTxtFrmProductos = new TextBox();
+            idColorTxtFrmProductos = new TextBox();
+            agregarBtnFrmProductos = new Button();
+            buscarTxtFrmProductos = new TextBox();
+            eliminarBtnFrmProductos = new Button();
             SuspendLayout();
             // 
-            // button1
+            // buscarBtnFrmProductos
             // 
-            button1.BackColor = Color.Lime;
-            button1.Location = new Point(452, 12);
-            button1.Name = "button1";
-            button1.Size = new Size(112, 34);
-            button1.TabIndex = 0;
-            button1.Text = "buscar";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            buscarBtnFrmProductos.BackColor = Color.Lime;
+            buscarBtnFrmProductos.Location = new Point(362, 10);
+            buscarBtnFrmProductos.Margin = new Padding(2, 2, 2, 2);
+            buscarBtnFrmProductos.Name = "buscarBtnFrmProductos";
+            buscarBtnFrmProductos.Size = new Size(90, 27);
+            buscarBtnFrmProductos.TabIndex = 0;
+            buscarBtnFrmProductos.Text = "buscar";
+            buscarBtnFrmProductos.UseVisualStyleBackColor = false;
+            buscarBtnFrmProductos.Click += buscarBtnFrmProductos_Click;
             // 
-            // label1
+            // codigoProductoLblFrmProductos
             // 
-            label1.AutoSize = true;
-            label1.BackColor = SystemColors.GrayText;
-            label1.Location = new Point(48, 103);
-            label1.Name = "label1";
-            label1.Size = new Size(153, 25);
-            label1.TabIndex = 1;
-            label1.Text = "Codigo peoducto";
+            codigoProductoLblFrmProductos.AutoSize = true;
+            codigoProductoLblFrmProductos.BackColor = SystemColors.GrayText;
+            codigoProductoLblFrmProductos.Location = new Point(38, 82);
+            codigoProductoLblFrmProductos.Margin = new Padding(2, 0, 2, 0);
+            codigoProductoLblFrmProductos.Name = "codigoProductoLblFrmProductos";
+            codigoProductoLblFrmProductos.Size = new Size(123, 20);
+            codigoProductoLblFrmProductos.TabIndex = 1;
+            codigoProductoLblFrmProductos.Text = "Codigo producto";
             // 
-            // label2
+            // precioLblFrmProductos
             // 
-            label2.AutoSize = true;
-            label2.BackColor = SystemColors.GrayText;
-            label2.Location = new Point(60, 164);
-            label2.Name = "label2";
-            label2.Size = new Size(60, 25);
-            label2.TabIndex = 2;
-            label2.Text = "Precio";
-            label2.Click += label2_Click;
+            precioLblFrmProductos.AutoSize = true;
+            precioLblFrmProductos.BackColor = SystemColors.GrayText;
+            precioLblFrmProductos.Location = new Point(48, 131);
+            precioLblFrmProductos.Margin = new Padding(2, 0, 2, 0);
+            precioLblFrmProductos.Name = "precioLblFrmProductos";
+            precioLblFrmProductos.Size = new Size(50, 20);
+            precioLblFrmProductos.TabIndex = 2;
+            precioLblFrmProductos.Text = "Precio";
             // 
-            // label3
+            // nombreProductoLblFrmProductos
             // 
-            label3.AutoSize = true;
-            label3.BackColor = SystemColors.GrayText;
-            label3.Location = new Point(426, 81);
-            label3.Name = "label3";
-            label3.Size = new Size(157, 25);
-            label3.TabIndex = 3;
-            label3.Text = "Nombre producto";
+            nombreProductoLblFrmProductos.AutoSize = true;
+            nombreProductoLblFrmProductos.BackColor = SystemColors.GrayText;
+            nombreProductoLblFrmProductos.Location = new Point(341, 65);
+            nombreProductoLblFrmProductos.Margin = new Padding(2, 0, 2, 0);
+            nombreProductoLblFrmProductos.Name = "nombreProductoLblFrmProductos";
+            nombreProductoLblFrmProductos.Size = new Size(129, 20);
+            nombreProductoLblFrmProductos.TabIndex = 3;
+            nombreProductoLblFrmProductos.Text = "Nombre producto";
             // 
-            // label4
+            // idTallasLblFrmProductos
             // 
-            label4.AutoSize = true;
-            label4.BackColor = SystemColors.GrayText;
-            label4.Location = new Point(48, 230);
-            label4.Name = "label4";
-            label4.Size = new Size(72, 25);
-            label4.TabIndex = 4;
-            label4.Text = "id tallas";
+            idTallasLblFrmProductos.AutoSize = true;
+            idTallasLblFrmProductos.BackColor = SystemColors.GrayText;
+            idTallasLblFrmProductos.Location = new Point(38, 184);
+            idTallasLblFrmProductos.Margin = new Padding(2, 0, 2, 0);
+            idTallasLblFrmProductos.Name = "idTallasLblFrmProductos";
+            idTallasLblFrmProductos.Size = new Size(61, 20);
+            idTallasLblFrmProductos.TabIndex = 4;
+            idTallasLblFrmProductos.Text = "id tallas";
             // 
-            // label5
+            // idTipoProductoLblFrmProductos
             // 
-            label5.AutoSize = true;
-            label5.BackColor = SystemColors.GrayText;
-            label5.Location = new Point(440, 128);
-            label5.Name = "label5";
-            label5.Size = new Size(143, 25);
-            label5.TabIndex = 5;
-            label5.Text = "id tipo producto";
+            idTipoProductoLblFrmProductos.AutoSize = true;
+            idTipoProductoLblFrmProductos.BackColor = SystemColors.GrayText;
+            idTipoProductoLblFrmProductos.Location = new Point(352, 102);
+            idTipoProductoLblFrmProductos.Margin = new Padding(2, 0, 2, 0);
+            idTipoProductoLblFrmProductos.Name = "idTipoProductoLblFrmProductos";
+            idTipoProductoLblFrmProductos.Size = new Size(118, 20);
+            idTipoProductoLblFrmProductos.TabIndex = 5;
+            idTipoProductoLblFrmProductos.Text = "id tipo producto";
             // 
-            // label6
+            // idTelaLblFrmProductos
             // 
-            label6.AutoSize = true;
-            label6.BackColor = SystemColors.GrayText;
-            label6.Location = new Point(464, 182);
-            label6.Name = "label6";
-            label6.Size = new Size(60, 25);
-            label6.TabIndex = 6;
-            label6.Text = "id tela";
+            idTelaLblFrmProductos.AutoSize = true;
+            idTelaLblFrmProductos.BackColor = SystemColors.GrayText;
+            idTelaLblFrmProductos.Location = new Point(371, 146);
+            idTelaLblFrmProductos.Margin = new Padding(2, 0, 2, 0);
+            idTelaLblFrmProductos.Name = "idTelaLblFrmProductos";
+            idTelaLblFrmProductos.Size = new Size(51, 20);
+            idTelaLblFrmProductos.TabIndex = 6;
+            idTelaLblFrmProductos.Text = "id tela";
             // 
-            // label7
+            // idColorLblFrmProductos
             // 
-            label7.AutoSize = true;
-            label7.BackColor = SystemColors.GrayText;
-            label7.Location = new Point(452, 236);
-            label7.Name = "label7";
-            label7.Size = new Size(72, 25);
-            label7.TabIndex = 7;
-            label7.Text = "id color";
+            idColorLblFrmProductos.AutoSize = true;
+            idColorLblFrmProductos.BackColor = SystemColors.GrayText;
+            idColorLblFrmProductos.Location = new Point(362, 189);
+            idColorLblFrmProductos.Margin = new Padding(2, 0, 2, 0);
+            idColorLblFrmProductos.Name = "idColorLblFrmProductos";
+            idColorLblFrmProductos.Size = new Size(60, 20);
+            idColorLblFrmProductos.TabIndex = 7;
+            idColorLblFrmProductos.Text = "id color";
             // 
-            // button2
+            // limpiarBtnFrmProductos
             // 
-            button2.BackColor = Color.Lime;
-            button2.Location = new Point(587, 12);
-            button2.Name = "button2";
-            button2.Size = new Size(112, 34);
-            button2.TabIndex = 8;
-            button2.Text = "limpiar";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            limpiarBtnFrmProductos.BackColor = Color.Lime;
+            limpiarBtnFrmProductos.Location = new Point(470, 10);
+            limpiarBtnFrmProductos.Margin = new Padding(2, 2, 2, 2);
+            limpiarBtnFrmProductos.Name = "limpiarBtnFrmProductos";
+            limpiarBtnFrmProductos.Size = new Size(90, 27);
+            limpiarBtnFrmProductos.TabIndex = 8;
+            limpiarBtnFrmProductos.Text = "limpiar";
+            limpiarBtnFrmProductos.UseVisualStyleBackColor = false;
+            limpiarBtnFrmProductos.Click += limpiarBtnFrmProductos_Click;
             // 
-            // textBox1
+            // codigoProductoTxtFrmProductos
             // 
-            textBox1.Location = new Point(219, 97);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(159, 31);
-            textBox1.TabIndex = 9;
+            codigoProductoTxtFrmProductos.Location = new Point(165, 75);
+            codigoProductoTxtFrmProductos.Margin = new Padding(2, 2, 2, 2);
+            codigoProductoTxtFrmProductos.Name = "codigoProductoTxtFrmProductos";
+            codigoProductoTxtFrmProductos.Size = new Size(128, 27);
+            codigoProductoTxtFrmProductos.TabIndex = 9;
             // 
-            // textBox2
+            // precioTxtFrmProductos
             // 
-            textBox2.Location = new Point(150, 158);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(159, 31);
-            textBox2.TabIndex = 10;
+            precioTxtFrmProductos.Location = new Point(120, 126);
+            precioTxtFrmProductos.Margin = new Padding(2, 2, 2, 2);
+            precioTxtFrmProductos.Name = "precioTxtFrmProductos";
+            precioTxtFrmProductos.Size = new Size(128, 27);
+            precioTxtFrmProductos.TabIndex = 10;
             // 
-            // textBox3
+            // idTallasTxtFrmProductos
             // 
-            textBox3.Location = new Point(150, 224);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(159, 31);
-            textBox3.TabIndex = 11;
+            idTallasTxtFrmProductos.Location = new Point(120, 179);
+            idTallasTxtFrmProductos.Margin = new Padding(2, 2, 2, 2);
+            idTallasTxtFrmProductos.Name = "idTallasTxtFrmProductos";
+            idTallasTxtFrmProductos.Size = new Size(128, 27);
+            idTallasTxtFrmProductos.TabIndex = 11;
             // 
-            // textBox4
+            // nombreProductoTxtFrmProductos
             // 
-            textBox4.Location = new Point(605, 77);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(159, 31);
-            textBox4.TabIndex = 12;
+            nombreProductoTxtFrmProductos.Location = new Point(484, 62);
+            nombreProductoTxtFrmProductos.Margin = new Padding(2, 2, 2, 2);
+            nombreProductoTxtFrmProductos.Name = "nombreProductoTxtFrmProductos";
+            nombreProductoTxtFrmProductos.Size = new Size(128, 27);
+            nombreProductoTxtFrmProductos.TabIndex = 12;
             // 
-            // textBox5
+            // idTipoProductoTxtFrmProductos
             // 
-            textBox5.Location = new Point(605, 128);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(159, 31);
-            textBox5.TabIndex = 13;
+            idTipoProductoTxtFrmProductos.Location = new Point(484, 102);
+            idTipoProductoTxtFrmProductos.Margin = new Padding(2, 2, 2, 2);
+            idTipoProductoTxtFrmProductos.Name = "idTipoProductoTxtFrmProductos";
+            idTipoProductoTxtFrmProductos.Size = new Size(128, 27);
+            idTipoProductoTxtFrmProductos.TabIndex = 13;
             // 
-            // textBox6
+            // idTelaTxtFrmProductos
             // 
-            textBox6.Location = new Point(558, 182);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(159, 31);
-            textBox6.TabIndex = 14;
+            idTelaTxtFrmProductos.Location = new Point(446, 146);
+            idTelaTxtFrmProductos.Margin = new Padding(2, 2, 2, 2);
+            idTelaTxtFrmProductos.Name = "idTelaTxtFrmProductos";
+            idTelaTxtFrmProductos.Size = new Size(128, 27);
+            idTelaTxtFrmProductos.TabIndex = 14;
             // 
-            // textBox7
+            // idColorTxtFrmProductos
             // 
-            textBox7.Location = new Point(558, 236);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(159, 31);
-            textBox7.TabIndex = 15;
+            idColorTxtFrmProductos.Location = new Point(446, 189);
+            idColorTxtFrmProductos.Margin = new Padding(2, 2, 2, 2);
+            idColorTxtFrmProductos.Name = "idColorTxtFrmProductos";
+            idColorTxtFrmProductos.Size = new Size(128, 27);
+            idColorTxtFrmProductos.TabIndex = 15;
             // 
-            // button3
+            // agregarBtnFrmProductos
             // 
-            button3.BackColor = Color.Red;
-            button3.Location = new Point(8, 12);
-            button3.Name = "button3";
-            button3.Size = new Size(162, 34);
-            button3.TabIndex = 16;
-            button3.Text = "consulta";
-            button3.UseVisualStyleBackColor = false;
-            button3.Click += button3_Click;
+            agregarBtnFrmProductos.BackColor = Color.Red;
+            agregarBtnFrmProductos.Location = new Point(6, 10);
+            agregarBtnFrmProductos.Margin = new Padding(2, 2, 2, 2);
+            agregarBtnFrmProductos.Name = "agregarBtnFrmProductos";
+            agregarBtnFrmProductos.Size = new Size(90, 27);
+            agregarBtnFrmProductos.TabIndex = 16;
+            agregarBtnFrmProductos.Text = "agregar";
+            agregarBtnFrmProductos.UseVisualStyleBackColor = false;
+            agregarBtnFrmProductos.Click += agregarBtnFrmProductos_Click;
             // 
-            // textBox8
+            // buscarTxtFrmProductos
             // 
-            textBox8.Location = new Point(176, 12);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(239, 31);
-            textBox8.TabIndex = 17;
+            buscarTxtFrmProductos.Location = new Point(120, 11);
+            buscarTxtFrmProductos.Margin = new Padding(2, 2, 2, 2);
+            buscarTxtFrmProductos.Name = "buscarTxtFrmProductos";
+            buscarTxtFrmProductos.Size = new Size(192, 27);
+            buscarTxtFrmProductos.TabIndex = 17;
+            buscarTxtFrmProductos.TextChanged += buscarTxtFrmProductos_TextChanged;
+            // 
+            // eliminarBtnFrmProductos
+            // 
+            eliminarBtnFrmProductos.BackColor = Color.White;
+            eliminarBtnFrmProductos.Location = new Point(38, 284);
+            eliminarBtnFrmProductos.Margin = new Padding(2, 2, 2, 2);
+            eliminarBtnFrmProductos.Name = "eliminarBtnFrmProductos";
+            eliminarBtnFrmProductos.Size = new Size(90, 27);
+            eliminarBtnFrmProductos.TabIndex = 18;
+            eliminarBtnFrmProductos.Text = "eliminar";
+            eliminarBtnFrmProductos.UseVisualStyleBackColor = false;
+            eliminarBtnFrmProductos.Click += eliminarBtnFrmProductos_Click;
             // 
             // productos
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.MenuHighlight;
-            ClientSize = new Size(800, 450);
-            Controls.Add(textBox8);
-            Controls.Add(button3);
-            Controls.Add(textBox7);
-            Controls.Add(textBox6);
-            Controls.Add(textBox5);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(button2);
-            Controls.Add(label7);
-            Controls.Add(label6);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(button1);
+            ClientSize = new Size(640, 360);
+            Controls.Add(eliminarBtnFrmProductos);
+            Controls.Add(buscarTxtFrmProductos);
+            Controls.Add(agregarBtnFrmProductos);
+            Controls.Add(idColorTxtFrmProductos);
+            Controls.Add(idTelaTxtFrmProductos);
+            Controls.Add(idTipoProductoTxtFrmProductos);
+            Controls.Add(nombreProductoTxtFrmProductos);
+            Controls.Add(idTallasTxtFrmProductos);
+            Controls.Add(precioTxtFrmProductos);
+            Controls.Add(codigoProductoTxtFrmProductos);
+            Controls.Add(limpiarBtnFrmProductos);
+            Controls.Add(idColorLblFrmProductos);
+            Controls.Add(idTelaLblFrmProductos);
+            Controls.Add(idTipoProductoLblFrmProductos);
+            Controls.Add(idTallasLblFrmProductos);
+            Controls.Add(nombreProductoLblFrmProductos);
+            Controls.Add(precioLblFrmProductos);
+            Controls.Add(codigoProductoLblFrmProductos);
+            Controls.Add(buscarBtnFrmProductos);
             ForeColor = SystemColors.ActiveCaptionText;
+            Margin = new Padding(2, 2, 2, 2);
             Name = "productos";
             Text = "productos";
             Load += productos_Load;
@@ -242,23 +275,24 @@
 
         #endregion
 
-        private Button button1;
-        private Label label1;
-        private Label label2;
-        private Label label3;
-        private Label label4;
-        private Label label5;
-        private Label label6;
-        private Label label7;
-        private Button button2;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private TextBox textBox5;
-        private TextBox textBox6;
-        private TextBox textBox7;
-        private Button button3;
-        private TextBox textBox8;
+        private Button buscarBtnFrmProductos;
+        private Label codigoProductoLblFrmProductos;
+        private Label precioLblFrmProductos;
+        private Label nombreProductoLblFrmProductos;
+        private Label idTallasLblFrmProductos;
+        private Label idTipoProductoLblFrmProductos;
+        private Label idTelaLblFrmProductos;
+        private Label idColorLblFrmProductos;
+        private Button limpiarBtnFrmProductos;
+        private TextBox codigoProductoTxtFrmProductos;
+        private TextBox precioTxtFrmProductos;
+        private TextBox idTallasTxtFrmProductos;
+        private TextBox nombreProductoTxtFrmProductos;
+        private TextBox idTipoProductoTxtFrmProductos;
+        private TextBox idTelaTxtFrmProductos;
+        private TextBox idColorTxtFrmProductos;
+        private Button agregarBtnFrmProductos;
+        private TextBox buscarTxtFrmProductos;
+        private Button eliminarBtnFrmProductos;
     }
 }

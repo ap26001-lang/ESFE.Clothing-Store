@@ -19,15 +19,17 @@ namespace ESFE._Clothing_Store.DAL
                 cn.Open();
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "sp_Productos_Insertar";
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "INSERT INTO [dbo].[Productos] (CodigoProducto, NombreProducto, Precio, id_Tipo_Producto, Id_tallas, Id_Tela, Id_Color) " +
+                                      "VALUES (@codigo, @nombre, @precio, @tipoProducto, @tallas, @tela, @color)";
+                    cmd.CommandType = CommandType.Text;
 
-                    var p = cmd.CreateParameter(); p.ParameterName = "@NombreProducto"; p.Value = entidad.NombreProducto ?? (object)DBNull.Value; cmd.Parameters.Add(p);
+                    var p = cmd.CreateParameter(); p.ParameterName = "@codigo"; p.Value = entidad.CodigoProducto ?? (object)DBNull.Value; cmd.Parameters.Add(p);
+                    p = cmd.CreateParameter(); p.ParameterName = "@nombre"; p.Value = entidad.NombreProducto ?? (object)DBNull.Value; cmd.Parameters.Add(p);
                     p = cmd.CreateParameter(); p.ParameterName = "@precio"; p.Value = entidad.precio ?? (object)DBNull.Value; cmd.Parameters.Add(p);
-                    p = cmd.CreateParameter(); p.ParameterName = "@idTipoProducto"; p.Value = entidad.idTipoProducto; cmd.Parameters.Add(p);
-                    p = cmd.CreateParameter(); p.ParameterName = "@idtallas"; p.Value = entidad.idtallas; cmd.Parameters.Add(p);
-                    p = cmd.CreateParameter(); p.ParameterName = "@idtelas"; p.Value = entidad.idtelas; cmd.Parameters.Add(p);
-                    p = cmd.CreateParameter(); p.ParameterName = "@idcolor"; p.Value = entidad.idcolor; cmd.Parameters.Add(p);
+                    p = cmd.CreateParameter(); p.ParameterName = "@tipoProducto"; p.Value = entidad.idTipoProducto; cmd.Parameters.Add(p);
+                    p = cmd.CreateParameter(); p.ParameterName = "@tallas"; p.Value = entidad.idtallas; cmd.Parameters.Add(p);
+                    p = cmd.CreateParameter(); p.ParameterName = "@tela"; p.Value = entidad.idtelas; cmd.Parameters.Add(p);
+                    p = cmd.CreateParameter(); p.ParameterName = "@color"; p.Value = entidad.idcolor; cmd.Parameters.Add(p);
 
                     return cmd.ExecuteNonQuery();
                 }
@@ -46,16 +48,17 @@ namespace ESFE._Clothing_Store.DAL
                 cn.Open();
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "sp_Productos_Actualizar";
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "UPDATE [dbo].[Productos] SET NombreProducto=@nombre, Precio=@precio, id_Tipo_Producto=@tipoProducto, " +
+                                      "Id_tallas=@tallas, Id_Tela=@tela, Id_Color=@color WHERE CodigoProducto=@codigo";
+                    cmd.CommandType = CommandType.Text;
 
-                    var p = cmd.CreateParameter(); p.ParameterName = "@CodigoProducto"; p.Value = entidad.CodigoProducto; cmd.Parameters.Add(p);
-                    p = cmd.CreateParameter(); p.ParameterName = "@NombreProducto"; p.Value = entidad.NombreProducto ?? (object)DBNull.Value; cmd.Parameters.Add(p);
+                    var p = cmd.CreateParameter(); p.ParameterName = "@codigo"; p.Value = entidad.CodigoProducto ?? (object)DBNull.Value; cmd.Parameters.Add(p);
+                    p = cmd.CreateParameter(); p.ParameterName = "@nombre"; p.Value = entidad.NombreProducto ?? (object)DBNull.Value; cmd.Parameters.Add(p);
                     p = cmd.CreateParameter(); p.ParameterName = "@precio"; p.Value = entidad.precio ?? (object)DBNull.Value; cmd.Parameters.Add(p);
-                    p = cmd.CreateParameter(); p.ParameterName = "@idTipoProducto"; p.Value = entidad.idTipoProducto; cmd.Parameters.Add(p);
-                    p = cmd.CreateParameter(); p.ParameterName = "@idtallas"; p.Value = entidad.idtallas; cmd.Parameters.Add(p);
-                    p = cmd.CreateParameter(); p.ParameterName = "@idtelas"; p.Value = entidad.idtelas; cmd.Parameters.Add(p);
-                    p = cmd.CreateParameter(); p.ParameterName = "@idcolor"; p.Value = entidad.idcolor; cmd.Parameters.Add(p);
+                    p = cmd.CreateParameter(); p.ParameterName = "@tipoProducto"; p.Value = entidad.idTipoProducto; cmd.Parameters.Add(p);
+                    p = cmd.CreateParameter(); p.ParameterName = "@tallas"; p.Value = entidad.idtallas; cmd.Parameters.Add(p);
+                    p = cmd.CreateParameter(); p.ParameterName = "@tela"; p.Value = entidad.idtelas; cmd.Parameters.Add(p);
+                    p = cmd.CreateParameter(); p.ParameterName = "@color"; p.Value = entidad.idcolor; cmd.Parameters.Add(p);
 
                     return cmd.ExecuteNonQuery();
                 }
@@ -65,17 +68,17 @@ namespace ESFE._Clothing_Store.DAL
         /// <summary>
         /// Elimina un producto de la base de datos.
         /// </summary>
-        public static int Eliminar(int codigoProducto)
+        public static int Eliminar(string codigoProducto)
         {
             using (IDbConnection cn = DBComun.ObtenerConexion())
             {
                 cn.Open();
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "sp_Productos_Eliminar";
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "DELETE FROM [dbo].[Productos] WHERE CodigoProducto=@codigo";
+                    cmd.CommandType = CommandType.Text;
 
-                    var p = cmd.CreateParameter(); p.ParameterName = "@CodigoProducto"; p.Value = codigoProducto; cmd.Parameters.Add(p);
+                    var p = cmd.CreateParameter(); p.ParameterName = "@codigo"; p.Value = codigoProducto ?? (object)DBNull.Value; cmd.Parameters.Add(p);
 
                     return cmd.ExecuteNonQuery();
                 }
@@ -94,8 +97,8 @@ namespace ESFE._Clothing_Store.DAL
                 cn.Open();
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "sp_Productos_ObtenerTodos";
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "SELECT CodigoProducto, NombreProducto, Precio, id_Tipo_Producto, Id_tallas, Id_Tela, Id_Color FROM [dbo].[Productos]";
+                    cmd.CommandType = CommandType.Text;
 
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
@@ -103,13 +106,13 @@ namespace ESFE._Clothing_Store.DAL
                         {
                             var item = new Productos
                             {
-                                CodigoProducto = dr["CodigoProducto"] != DBNull.Value ? Convert.ToInt32(dr["CodigoProducto"]) : 0,
+                                CodigoProducto = dr["CodigoProducto"] != DBNull.Value ? dr["CodigoProducto"].ToString() : string.Empty,
                                 NombreProducto = dr["NombreProducto"] != DBNull.Value ? dr["NombreProducto"].ToString() : string.Empty,
-                                precio = dr["precio"] != DBNull.Value ? dr["precio"].ToString() : string.Empty,
-                                idTipoProducto = dr["idTipoProducto"] != DBNull.Value ? Convert.ToInt32(dr["idTipoProducto"]) : 0,
-                                idtallas = dr["idtallas"] != DBNull.Value ? Convert.ToInt32(dr["idtallas"]) : 0,
-                                idtelas = dr["idtelas"] != DBNull.Value ? Convert.ToInt32(dr["idtelas"]) : 0,
-                                idcolor = dr["idcolor"] != DBNull.Value ? Convert.ToInt32(dr["idcolor"]) : 0
+                                precio = dr["Precio"] != DBNull.Value ? dr["Precio"].ToString() : string.Empty,
+                                idTipoProducto = dr["id_Tipo_Producto"] != DBNull.Value ? Convert.ToInt32(dr["id_Tipo_Producto"]) : 0,
+                                idtallas = dr["Id_tallas"] != DBNull.Value ? Convert.ToInt32(dr["Id_tallas"]) : 0,
+                                idtelas = dr["Id_Tela"] != DBNull.Value ? Convert.ToInt32(dr["Id_Tela"]) : 0,
+                                idcolor = dr["Id_Color"] != DBNull.Value ? Convert.ToInt32(dr["Id_Color"]) : 0
                             };
                             lista.Add(item);
                         }
@@ -123,7 +126,7 @@ namespace ESFE._Clothing_Store.DAL
         /// <summary>
         /// Obtiene un producto específico por su código.
         /// </summary>
-        public static Productos ObtenerPorId(int codigoProducto)
+        public static Productos ObtenerPorId(string codigoProducto)
         {
             Productos item = null;
 
@@ -132,10 +135,10 @@ namespace ESFE._Clothing_Store.DAL
                 cn.Open();
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "sp_Productos_ObtenerPorId";
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "SELECT CodigoProducto, NombreProducto, Precio, id_Tipo_Producto, Id_tallas, Id_Tela, Id_Color FROM [dbo].[Productos] WHERE CodigoProducto=@codigo";
+                    cmd.CommandType = CommandType.Text;
 
-                    var p = cmd.CreateParameter(); p.ParameterName = "@CodigoProducto"; p.Value = codigoProducto; cmd.Parameters.Add(p);
+                    var p = cmd.CreateParameter(); p.ParameterName = "@codigo"; p.Value = codigoProducto ?? (object)DBNull.Value; cmd.Parameters.Add(p);
 
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
@@ -143,13 +146,13 @@ namespace ESFE._Clothing_Store.DAL
                         {
                             item = new Productos
                             {
-                                CodigoProducto = dr["CodigoProducto"] != DBNull.Value ? Convert.ToInt32(dr["CodigoProducto"]) : 0,
+                                CodigoProducto = dr["CodigoProducto"] != DBNull.Value ? dr["CodigoProducto"].ToString() : string.Empty,
                                 NombreProducto = dr["NombreProducto"] != DBNull.Value ? dr["NombreProducto"].ToString() : string.Empty,
-                                precio = dr["precio"] != DBNull.Value ? dr["precio"].ToString() : string.Empty,
-                                idTipoProducto = dr["idTipoProducto"] != DBNull.Value ? Convert.ToInt32(dr["idTipoProducto"]) : 0,
-                                idtallas = dr["idtallas"] != DBNull.Value ? Convert.ToInt32(dr["idtallas"]) : 0,
-                                idtelas = dr["idtelas"] != DBNull.Value ? Convert.ToInt32(dr["idtelas"]) : 0,
-                                idcolor = dr["idcolor"] != DBNull.Value ? Convert.ToInt32(dr["idcolor"]) : 0
+                                precio = dr["Precio"] != DBNull.Value ? dr["Precio"].ToString() : string.Empty,
+                                idTipoProducto = dr["id_Tipo_Producto"] != DBNull.Value ? Convert.ToInt32(dr["id_Tipo_Producto"]) : 0,
+                                idtallas = dr["Id_tallas"] != DBNull.Value ? Convert.ToInt32(dr["Id_tallas"]) : 0,
+                                idtelas = dr["Id_Tela"] != DBNull.Value ? Convert.ToInt32(dr["Id_Tela"]) : 0,
+                                idcolor = dr["Id_Color"] != DBNull.Value ? Convert.ToInt32(dr["Id_Color"]) : 0
                             };
                         }
                     }
@@ -157,47 +160,6 @@ namespace ESFE._Clothing_Store.DAL
             }
 
             return item;
-        }
-
-        /// <summary>
-        /// Obtiene productos filtrados por tipo de producto.
-        /// </summary>
-        public static List<Productos> ObtenerPorTipo(int idTipoProducto)
-        {
-            var lista = new List<Productos>();
-
-            using (IDbConnection cn = DBComun.ObtenerConexion())
-            {
-                cn.Open();
-                using (IDbCommand cmd = cn.CreateCommand())
-                {
-                    cmd.CommandText = "sp_Productos_ObtenerPorTipo";
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    var p = cmd.CreateParameter(); p.ParameterName = "@idTipoProducto"; p.Value = idTipoProducto; cmd.Parameters.Add(p);
-                    cmd.Parameters.Add(p);
-
-                    using (IDataReader dr = cmd.ExecuteReader())
-                    {
-                        while (dr.Read())
-                        {
-                            var item = new Productos
-                            {
-                                CodigoProducto = dr["CodigoProducto"] != DBNull.Value ? Convert.ToInt32(dr["CodigoProducto"]) : 0,
-                                NombreProducto = dr["NombreProducto"] != DBNull.Value ? dr["NombreProducto"].ToString() : string.Empty,
-                                precio = dr["precio"] != DBNull.Value ? dr["precio"].ToString() : string.Empty,
-                                idTipoProducto = dr["idTipoProducto"] != DBNull.Value ? Convert.ToInt32(dr["idTipoProducto"]) : 0,
-                                idtallas = dr["idtallas"] != DBNull.Value ? Convert.ToInt32(dr["idtallas"]) : 0,
-                                idtelas = dr["idtelas"] != DBNull.Value ? Convert.ToInt32(dr["idtelas"]) : 0,
-                                idcolor = dr["idcolor"] != DBNull.Value ? Convert.ToInt32(dr["idcolor"]) : 0
-                            };
-                            lista.Add(item);
-                        }
-                    }
-                }
-            }
-
-            return lista;
         }
     }
 }

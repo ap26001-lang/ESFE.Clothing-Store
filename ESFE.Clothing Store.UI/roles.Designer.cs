@@ -28,92 +28,149 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
-            textBox1 = new TextBox();
-            button1 = new Button();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
+            descripcionRolLblFrmRoles = new Label();
+            idRolLblFrmRoles = new Label();
+            buscarTxtFrmRoles = new TextBox();
+            buscarBtnFrmRoles = new Button();
+            idRolTxtFrmRoles = new TextBox();
+            descripcionRolTxtFrmRoles = new TextBox();
+            limpiarBtnFrmRoles = new Button();
+            agregarBtnFrmRoles = new Button();
+            eliminarBtnFrmRoles = new Button();
+            guardarBtnFrmRoles = new Button();
             SuspendLayout();
             // 
-            // label1
+            // descripcionRolLblFrmRoles
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Red;
-            label1.ForeColor = Color.Black;
-            label1.Location = new Point(424, 157);
-            label1.Name = "label1";
-            label1.Size = new Size(130, 25);
-            label1.TabIndex = 0;
-            label1.Text = "Descripcion rol";
+            descripcionRolLblFrmRoles.AutoSize = true;
+            descripcionRolLblFrmRoles.BackColor = Color.Red;
+            descripcionRolLblFrmRoles.ForeColor = Color.Black;
+            descripcionRolLblFrmRoles.Location = new Point(424, 157);
+            descripcionRolLblFrmRoles.Name = "descripcionRolLblFrmRoles";
+            descripcionRolLblFrmRoles.Size = new Size(130, 25);
+            descripcionRolLblFrmRoles.TabIndex = 0;
+            descripcionRolLblFrmRoles.Text = "Descripcion rol";
             // 
-            // label2
+            // idRolLblFrmRoles
             // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.Red;
-            label2.Location = new Point(12, 157);
-            label2.Name = "label2";
-            label2.Size = new Size(53, 25);
-            label2.TabIndex = 1;
-            label2.Text = "id rol";
+            idRolLblFrmRoles.AutoSize = true;
+            idRolLblFrmRoles.BackColor = Color.Red;
+            idRolLblFrmRoles.Location = new Point(12, 157);
+            idRolLblFrmRoles.Name = "idRolLblFrmRoles";
+            idRolLblFrmRoles.Size = new Size(53, 25);
+            idRolLblFrmRoles.TabIndex = 1;
+            idRolLblFrmRoles.Text = "id rol";
             // 
-            // textBox1
+            // buscarTxtFrmRoles
             // 
-            textBox1.BackColor = SystemColors.HotTrack;
-            textBox1.Location = new Point(123, 37);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(210, 31);
-            textBox1.TabIndex = 2;
+            buscarTxtFrmRoles.BackColor = SystemColors.HotTrack;
+            buscarTxtFrmRoles.Location = new Point(123, 37);
+            buscarTxtFrmRoles.Name = "buscarTxtFrmRoles";
+            buscarTxtFrmRoles.Size = new Size(210, 31);
+            buscarTxtFrmRoles.TabIndex = 2;
             // 
-            // button1
+            // buscarBtnFrmRoles
             // 
-            button1.Location = new Point(5, 35);
-            button1.Name = "button1";
-            button1.Size = new Size(112, 34);
-            button1.TabIndex = 3;
-            button1.Text = "Buscar";
-            button1.UseVisualStyleBackColor = true;
+            buscarBtnFrmRoles.Location = new Point(5, 35);
+            buscarBtnFrmRoles.Name = "buscarBtnFrmRoles";
+            buscarBtnFrmRoles.Size = new Size(112, 34);
+            buscarBtnFrmRoles.TabIndex = 3;
+            buscarBtnFrmRoles.Text = "buscar";
+            buscarBtnFrmRoles.UseVisualStyleBackColor = true;
+            buscarBtnFrmRoles.Click += buscarBtnFrmRoles_Click;
             // 
-            // textBox2
+            // idRolTxtFrmRoles
             // 
-            textBox2.BackColor = SystemColors.HotTrack;
-            textBox2.Location = new Point(85, 157);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(210, 31);
-            textBox2.TabIndex = 4;
+            idRolTxtFrmRoles.BackColor = SystemColors.HotTrack;
+            idRolTxtFrmRoles.Location = new Point(85, 157);
+            idRolTxtFrmRoles.Name = "idRolTxtFrmRoles";
+            idRolTxtFrmRoles.Size = new Size(210, 31);
+            idRolTxtFrmRoles.TabIndex = 4;
             // 
-            // textBox3
+            // descripcionRolTxtFrmRoles
             // 
-            textBox3.BackColor = SystemColors.HotTrack;
-            textBox3.Location = new Point(578, 154);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(210, 31);
-            textBox3.TabIndex = 5;
+            descripcionRolTxtFrmRoles.BackColor = SystemColors.HotTrack;
+            descripcionRolTxtFrmRoles.Location = new Point(578, 154);
+            descripcionRolTxtFrmRoles.Name = "descripcionRolTxtFrmRoles";
+            descripcionRolTxtFrmRoles.Size = new Size(210, 31);
+            descripcionRolTxtFrmRoles.TabIndex = 5;
+            // 
+            // limpiarBtnFrmRoles
+            // 
+            limpiarBtnFrmRoles.Location = new Point(339, 35);
+            limpiarBtnFrmRoles.Name = "limpiarBtnFrmRoles";
+            limpiarBtnFrmRoles.Size = new Size(112, 34);
+            limpiarBtnFrmRoles.TabIndex = 6;
+            limpiarBtnFrmRoles.Text = "limpiar";
+            limpiarBtnFrmRoles.UseVisualStyleBackColor = true;
+            limpiarBtnFrmRoles.Click += limpiarBtnFrmRoles_Click;
+            // 
+            // agregarBtnFrmRoles
+            // 
+            agregarBtnFrmRoles.BackColor = Color.Lime;
+            agregarBtnFrmRoles.Location = new Point(457, 35);
+            agregarBtnFrmRoles.Name = "agregarBtnFrmRoles";
+            agregarBtnFrmRoles.Size = new Size(112, 34);
+            agregarBtnFrmRoles.TabIndex = 7;
+            agregarBtnFrmRoles.Text = "agregar";
+            agregarBtnFrmRoles.UseVisualStyleBackColor = false;
+            agregarBtnFrmRoles.Click += agregarBtnFrmRoles_Click;
+            // 
+            // eliminarBtnFrmRoles
+            // 
+            eliminarBtnFrmRoles.BackColor = Color.White;
+            eliminarBtnFrmRoles.Location = new Point(575, 35);
+            eliminarBtnFrmRoles.Name = "eliminarBtnFrmRoles";
+            eliminarBtnFrmRoles.Size = new Size(112, 34);
+            eliminarBtnFrmRoles.TabIndex = 8;
+            eliminarBtnFrmRoles.Text = "eliminar";
+            eliminarBtnFrmRoles.UseVisualStyleBackColor = false;
+            eliminarBtnFrmRoles.Click += eliminarBtnFrmRoles_Click;
+            // 
+            // guardarBtnFrmRoles
+            // 
+            guardarBtnFrmRoles.BackColor = Color.White;
+            guardarBtnFrmRoles.Location = new Point(693, 35);
+            guardarBtnFrmRoles.Name = "guardarBtnFrmRoles";
+            guardarBtnFrmRoles.Size = new Size(95, 34);
+            guardarBtnFrmRoles.TabIndex = 9;
+            guardarBtnFrmRoles.Text = "guardar";
+            guardarBtnFrmRoles.UseVisualStyleBackColor = false;
+            guardarBtnFrmRoles.Click += guardarBtnFrmRoles_Click;
             // 
             // roles
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(button1);
-            Controls.Add(textBox1);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(guardarBtnFrmRoles);
+            Controls.Add(eliminarBtnFrmRoles);
+            Controls.Add(agregarBtnFrmRoles);
+            Controls.Add(limpiarBtnFrmRoles);
+            Controls.Add(descripcionRolTxtFrmRoles);
+            Controls.Add(idRolTxtFrmRoles);
+            Controls.Add(buscarBtnFrmRoles);
+            Controls.Add(buscarTxtFrmRoles);
+            Controls.Add(idRolLblFrmRoles);
+            Controls.Add(descripcionRolLblFrmRoles);
             Name = "roles";
             Text = "roles";
+            Load += roles_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
-        private Label label2;
-        private TextBox textBox1;
-        private Button button1;
-        private TextBox textBox2;
-        private TextBox textBox3;
+        private Label descripcionRolLblFrmRoles;
+        private Label idRolLblFrmRoles;
+        private TextBox buscarTxtFrmRoles;
+        private Button buscarBtnFrmRoles;
+        private TextBox idRolTxtFrmRoles;
+        private TextBox descripcionRolTxtFrmRoles;
+        private Button limpiarBtnFrmRoles;
+        private Button agregarBtnFrmRoles;
+        private Button eliminarBtnFrmRoles;
+        private Button guardarBtnFrmRoles;
     }
 }

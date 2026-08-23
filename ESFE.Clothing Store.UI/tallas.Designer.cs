@@ -28,103 +28,129 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            label1 = new Label();
-            label2 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            button2 = new Button();
-            button3 = new Button();
+            buscarBtnFrmTallas = new Button();
+            idTallaLblFrmTallas = new Label();
+            tallaProductoLblFrmTallas = new Label();
+            buscarTxtFrmTallas = new TextBox();
+            idTallaTxtFrmTallas = new TextBox();
+            tallaProductoTxtFrmTallas = new TextBox();
+            agregarBtnFrmTallas = new Button();
+            guardarBtnFrmTallas = new Button();
+            eliminarBtnFrmTallas = new Button();
+            limpiarBtnFrmTallas = new Button();
             SuspendLayout();
             // 
-            // button1
+            // buscarBtnFrmTallas
             // 
-            button1.BackColor = Color.FromArgb(255, 128, 128);
-            button1.Location = new Point(26, 33);
-            button1.Name = "button1";
-            button1.Size = new Size(112, 31);
-            button1.TabIndex = 0;
-            button1.Text = "buscar";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            buscarBtnFrmTallas.BackColor = Color.FromArgb(255, 128, 128);
+            buscarBtnFrmTallas.Location = new Point(26, 33);
+            buscarBtnFrmTallas.Name = "buscarBtnFrmTallas";
+            buscarBtnFrmTallas.Size = new Size(112, 31);
+            buscarBtnFrmTallas.TabIndex = 0;
+            buscarBtnFrmTallas.Text = "buscar";
+            buscarBtnFrmTallas.UseVisualStyleBackColor = false;
+            buscarBtnFrmTallas.Click += buscarBtnFrmTallas_Click;
             // 
-            // label1
+            // idTallaLblFrmTallas
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.FromArgb(0, 192, 192);
-            label1.Location = new Point(50, 133);
-            label1.Name = "label1";
-            label1.Size = new Size(72, 25);
-            label1.TabIndex = 1;
-            label1.Text = "id tallas";
+            idTallaLblFrmTallas.AutoSize = true;
+            idTallaLblFrmTallas.BackColor = Color.FromArgb(0, 192, 192);
+            idTallaLblFrmTallas.Location = new Point(50, 133);
+            idTallaLblFrmTallas.Name = "idTallaLblFrmTallas";
+            idTallaLblFrmTallas.Size = new Size(72, 25);
+            idTallaLblFrmTallas.TabIndex = 1;
+            idTallaLblFrmTallas.Text = "id tallas";
             // 
-            // label2
+            // tallaProductoLblFrmTallas
             // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.FromArgb(0, 192, 192);
-            label2.Location = new Point(374, 133);
-            label2.Name = "label2";
-            label2.Size = new Size(123, 25);
-            label2.TabIndex = 2;
-            label2.Text = "talla producto";
+            tallaProductoLblFrmTallas.AutoSize = true;
+            tallaProductoLblFrmTallas.BackColor = Color.FromArgb(0, 192, 192);
+            tallaProductoLblFrmTallas.Location = new Point(374, 133);
+            tallaProductoLblFrmTallas.Name = "tallaProductoLblFrmTallas";
+            tallaProductoLblFrmTallas.Size = new Size(123, 25);
+            tallaProductoLblFrmTallas.TabIndex = 2;
+            tallaProductoLblFrmTallas.Text = "talla producto";
             // 
-            // textBox1
+            // buscarTxtFrmTallas
             // 
-            textBox1.Location = new Point(150, 33);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(190, 31);
-            textBox1.TabIndex = 3;
+            buscarTxtFrmTallas.Location = new Point(150, 33);
+            buscarTxtFrmTallas.Name = "buscarTxtFrmTallas";
+            buscarTxtFrmTallas.Size = new Size(190, 31);
+            buscarTxtFrmTallas.TabIndex = 3;
             // 
-            // textBox2
+            // idTallaTxtFrmTallas
             // 
-            textBox2.Location = new Point(150, 133);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(190, 31);
-            textBox2.TabIndex = 4;
+            idTallaTxtFrmTallas.Location = new Point(150, 133);
+            idTallaTxtFrmTallas.Name = "idTallaTxtFrmTallas";
+            idTallaTxtFrmTallas.ReadOnly = true;
+            idTallaTxtFrmTallas.Size = new Size(190, 31);
+            idTallaTxtFrmTallas.TabIndex = 4;
             // 
-            // textBox3
+            // tallaProductoTxtFrmTallas
             // 
-            textBox3.Location = new Point(514, 130);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(190, 31);
-            textBox3.TabIndex = 5;
+            tallaProductoTxtFrmTallas.Location = new Point(514, 130);
+            tallaProductoTxtFrmTallas.Name = "tallaProductoTxtFrmTallas";
+            tallaProductoTxtFrmTallas.Size = new Size(190, 31);
+            tallaProductoTxtFrmTallas.TabIndex = 5;
             // 
-            // button2
+            // agregarBtnFrmTallas
             // 
-            button2.BackColor = Color.FromArgb(255, 128, 128);
-            button2.Location = new Point(385, 33);
-            button2.Name = "button2";
-            button2.Size = new Size(112, 31);
-            button2.TabIndex = 6;
-            button2.Text = "cambiar";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            agregarBtnFrmTallas.BackColor = Color.FromArgb(255, 128, 128);
+            agregarBtnFrmTallas.Location = new Point(385, 33);
+            agregarBtnFrmTallas.Name = "agregarBtnFrmTallas";
+            agregarBtnFrmTallas.Size = new Size(112, 31);
+            agregarBtnFrmTallas.TabIndex = 6;
+            agregarBtnFrmTallas.Text = "agregar";
+            agregarBtnFrmTallas.UseVisualStyleBackColor = false;
+            agregarBtnFrmTallas.Click += agregarBtnFrmTallas_Click;
             // 
-            // button3
+            // guardarBtnFrmTallas
             // 
-            button3.BackColor = Color.FromArgb(255, 128, 128);
-            button3.Location = new Point(548, 33);
-            button3.Name = "button3";
-            button3.Size = new Size(112, 31);
-            button3.TabIndex = 7;
-            button3.Text = "Editar";
-            button3.UseVisualStyleBackColor = false;
-            button3.Click += button3_Click;
+            guardarBtnFrmTallas.BackColor = Color.FromArgb(255, 128, 128);
+            guardarBtnFrmTallas.Location = new Point(548, 33);
+            guardarBtnFrmTallas.Name = "guardarBtnFrmTallas";
+            guardarBtnFrmTallas.Size = new Size(112, 31);
+            guardarBtnFrmTallas.TabIndex = 7;
+            guardarBtnFrmTallas.Text = "guardar";
+            guardarBtnFrmTallas.UseVisualStyleBackColor = false;
+            guardarBtnFrmTallas.Click += guardarBtnFrmTallas_Click;
+            // 
+            // eliminarBtnFrmTallas
+            // 
+            eliminarBtnFrmTallas.BackColor = Color.FromArgb(255, 128, 128);
+            eliminarBtnFrmTallas.Location = new Point(385, 80);
+            eliminarBtnFrmTallas.Name = "eliminarBtnFrmTallas";
+            eliminarBtnFrmTallas.Size = new Size(112, 31);
+            eliminarBtnFrmTallas.TabIndex = 8;
+            eliminarBtnFrmTallas.Text = "eliminar";
+            eliminarBtnFrmTallas.UseVisualStyleBackColor = false;
+            eliminarBtnFrmTallas.Click += eliminarBtnFrmTallas_Click;
+            // 
+            // limpiarBtnFrmTallas
+            // 
+            limpiarBtnFrmTallas.Location = new Point(548, 80);
+            limpiarBtnFrmTallas.Name = "limpiarBtnFrmTallas";
+            limpiarBtnFrmTallas.Size = new Size(112, 31);
+            limpiarBtnFrmTallas.TabIndex = 9;
+            limpiarBtnFrmTallas.Text = "limpiar";
+            limpiarBtnFrmTallas.UseVisualStyleBackColor = true;
+            limpiarBtnFrmTallas.Click += limpiarBtnFrmTallas_Click;
             // 
             // tallas
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(button1);
+            Controls.Add(limpiarBtnFrmTallas);
+            Controls.Add(eliminarBtnFrmTallas);
+            Controls.Add(guardarBtnFrmTallas);
+            Controls.Add(agregarBtnFrmTallas);
+            Controls.Add(tallaProductoTxtFrmTallas);
+            Controls.Add(idTallaTxtFrmTallas);
+            Controls.Add(buscarTxtFrmTallas);
+            Controls.Add(tallaProductoLblFrmTallas);
+            Controls.Add(idTallaLblFrmTallas);
+            Controls.Add(buscarBtnFrmTallas);
             Name = "tallas";
             Text = "tallas";
             ResumeLayout(false);
@@ -133,13 +159,15 @@
 
         #endregion
 
-        private Button button1;
-        private Label label1;
-        private Label label2;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private Button button2;
-        private Button button3;
+        private Button buscarBtnFrmTallas;
+        private Label idTallaLblFrmTallas;
+        private Label tallaProductoLblFrmTallas;
+        private TextBox buscarTxtFrmTallas;
+        private TextBox idTallaTxtFrmTallas;
+        private TextBox tallaProductoTxtFrmTallas;
+        private Button agregarBtnFrmTallas;
+        private Button guardarBtnFrmTallas;
+        private Button eliminarBtnFrmTallas;
+        private Button limpiarBtnFrmTallas;
     }
 }

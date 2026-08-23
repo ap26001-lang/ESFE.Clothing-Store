@@ -6,7 +6,7 @@ namespace ESFE._Clothing_Store.EN
 {
     public class Productos
     {
-        public int CodigoProducto { get; set; }
+        public string CodigoProducto { get; set; }
         public string NombreProducto { get; set; }
         public string precio { get; set; }
         public int idTipoProducto { get; set; } 

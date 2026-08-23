@@ -16,7 +16,7 @@ namespace ESFE.Clothing_Store.UI
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             // Iniciar directamente con el formulario Estado 
-            Application.Run(new Estado());
+            Application.Run(new tallas());
         }
     }
 }
