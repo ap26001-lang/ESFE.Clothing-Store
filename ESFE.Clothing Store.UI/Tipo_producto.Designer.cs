@@ -96,7 +96,6 @@ namespace ESFE.Clothing_Store.UI
             idTipoProductoTxtFrmTipoProducto.Name = "idTipoProductoTxtFrmTipoProducto";
             idTipoProductoTxtFrmTipoProducto.Size = new Size(181, 23);
             idTipoProductoTxtFrmTipoProducto.TabIndex = 10;
-            idTipoProductoTxtFrmTipoProducto.ReadOnly = true;
             // 
             // tipoProductoTxtFrmTipoProducto
             // 

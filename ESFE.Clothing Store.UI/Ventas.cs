@@ -30,25 +30,25 @@ namespace ESFE.Clothing_Store.UI
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.BackColor = Color.FromArgb(245, 246, 248);
+            this.BackColor = System.Drawing.Color.FromArgb(250, 245, 240); // Crema muy claro
 
             // Encabezado
             Panel panelTitulo = new Panel();
             panelTitulo.Location = new Point(0, 0);
             panelTitulo.Size = new Size(760, 90);
-            panelTitulo.BackColor = Color.FromArgb(35, 39, 47);
+            panelTitulo.BackColor = System.Drawing.Color.FromArgb(120, 81, 51); // Café oscuro
 
             Label lblTitulo = new Label();
             lblTitulo.Text = "REGISTRO DE VENTA";
             lblTitulo.Font = new Font("Segoe UI", 22, FontStyle.Bold);
-            lblTitulo.ForeColor = Color.White;
+            lblTitulo.ForeColor = System.Drawing.Color.FromArgb(255, 245, 230); // Crema
             lblTitulo.Location = new Point(35, 18);
             lblTitulo.AutoSize = true;
 
             Label lblSubtitulo = new Label();
             lblSubtitulo.Text = "ESFE Clothing Store";
             lblSubtitulo.Font = new Font("Segoe UI", 10);
-            lblSubtitulo.ForeColor = Color.LightGray;
+            lblSubtitulo.ForeColor = System.Drawing.Color.FromArgb(200, 170, 140); // Café claro
             lblSubtitulo.Location = new Point(38, 57);
             lblSubtitulo.AutoSize = true;
 
@@ -62,6 +62,8 @@ namespace ESFE.Clothing_Store.UI
             txtCodigo.Location = new Point(60, 150);
             txtCodigo.Size = new Size(280, 30);
             txtCodigo.Font = new Font("Segoe UI", 11);
+            txtCodigo.BackColor = System.Drawing.Color.FromArgb(255, 250, 245); // Crema muy claro
+            txtCodigo.ForeColor = System.Drawing.Color.FromArgb(80, 60, 40); // Café oscuro
             this.Controls.Add(lblCodigo);
             this.Controls.Add(txtCodigo);
 
@@ -71,8 +73,8 @@ namespace ESFE.Clothing_Store.UI
             btnBuscar.Font = new Font("Segoe UI", 9, FontStyle.Bold);
             btnBuscar.Location = new Point(350, 150);
             btnBuscar.Size = new Size(100, 30);
-            btnBuscar.BackColor = Color.FromArgb(0, 123, 255);
-            btnBuscar.ForeColor = Color.White;
+            btnBuscar.BackColor = System.Drawing.Color.FromArgb(169, 132, 94); // Café
+            btnBuscar.ForeColor = System.Drawing.Color.FromArgb(255, 245, 230); // Crema
             btnBuscar.FlatStyle = FlatStyle.Flat;
             btnBuscar.FlatAppearance.BorderSize = 0;
             btnBuscar.Cursor = Cursors.Hand;
@@ -85,6 +87,8 @@ namespace ESFE.Clothing_Store.UI
             txtFecha.Location = new Point(470, 150);
             txtFecha.Size = new Size(200, 30);
             txtFecha.Font = new Font("Segoe UI", 10);
+            txtFecha.BackColor = System.Drawing.Color.FromArgb(255, 250, 245);
+            txtFecha.ForeColor = System.Drawing.Color.FromArgb(80, 60, 40);
             txtFecha.ReadOnly = true;
             this.Controls.Add(lblFecha);
             this.Controls.Add(txtFecha);
@@ -95,6 +99,8 @@ namespace ESFE.Clothing_Store.UI
             txtCantidad.Location = new Point(60, 235);
             txtCantidad.Size = new Size(280, 30);
             txtCantidad.Font = new Font("Segoe UI", 10);
+            txtCantidad.BackColor = System.Drawing.Color.FromArgb(255, 250, 245);
+            txtCantidad.ForeColor = System.Drawing.Color.FromArgb(80, 60, 40);
             this.Controls.Add(lblCantidad);
             this.Controls.Add(txtCantidad);
 
@@ -104,6 +110,8 @@ namespace ESFE.Clothing_Store.UI
             txtProducto.Location = new Point(390, 235);
             txtProducto.Size = new Size(280, 30);
             txtProducto.Font = new Font("Segoe UI", 10);
+            txtProducto.BackColor = System.Drawing.Color.FromArgb(255, 250, 245);
+            txtProducto.ForeColor = System.Drawing.Color.FromArgb(80, 60, 40);
             this.Controls.Add(lblProducto);
             this.Controls.Add(txtProducto);
 
@@ -113,6 +121,8 @@ namespace ESFE.Clothing_Store.UI
             txtCliente.Location = new Point(60, 320);
             txtCliente.Size = new Size(610, 30);
             txtCliente.Font = new Font("Segoe UI", 10);
+            txtCliente.BackColor = System.Drawing.Color.FromArgb(255, 250, 245);
+            txtCliente.ForeColor = System.Drawing.Color.FromArgb(80, 60, 40);
             this.Controls.Add(lblCliente);
             this.Controls.Add(txtCliente);
 
@@ -122,8 +132,8 @@ namespace ESFE.Clothing_Store.UI
             btnGuardar.Font = new Font("Segoe UI", 10, FontStyle.Bold);
             btnGuardar.Location = new Point(60, 405);
             btnGuardar.Size = new Size(190, 50);
-            btnGuardar.BackColor = Color.FromArgb(40, 167, 69);
-            btnGuardar.ForeColor = Color.White;
+            btnGuardar.BackColor = System.Drawing.Color.FromArgb(140, 100, 60); // Café oscuro
+            btnGuardar.ForeColor = System.Drawing.Color.FromArgb(255, 245, 230); // Crema
             btnGuardar.FlatStyle = FlatStyle.Flat;
             btnGuardar.FlatAppearance.BorderSize = 0;
             btnGuardar.Cursor = Cursors.Hand;
@@ -136,8 +146,8 @@ namespace ESFE.Clothing_Store.UI
             btnEliminar.Font = new Font("Segoe UI", 10, FontStyle.Bold);
             btnEliminar.Location = new Point(260, 405);
             btnEliminar.Size = new Size(190, 50);
-            btnEliminar.BackColor = Color.FromArgb(220, 53, 69);
-            btnEliminar.ForeColor = Color.White;
+            btnEliminar.BackColor = System.Drawing.Color.FromArgb(160, 100, 60); // Café medio-oscuro
+            btnEliminar.ForeColor = System.Drawing.Color.FromArgb(255, 245, 230); // Crema
             btnEliminar.FlatStyle = FlatStyle.Flat;
             btnEliminar.FlatAppearance.BorderSize = 0;
             btnEliminar.Cursor = Cursors.Hand;
@@ -150,8 +160,8 @@ namespace ESFE.Clothing_Store.UI
             btnLimpiar.Font = new Font("Segoe UI", 10, FontStyle.Bold);
             btnLimpiar.Location = new Point(460, 405);
             btnLimpiar.Size = new Size(190, 50);
-            btnLimpiar.BackColor = Color.FromArgb(108, 117, 125);
-            btnLimpiar.ForeColor = Color.White;
+            btnLimpiar.BackColor = Color.FromArgb(195, 155, 110); // Café claro
+            btnLimpiar.ForeColor = Color.FromArgb(80, 60, 40); // Café oscuro
             btnLimpiar.FlatStyle = FlatStyle.Flat;
             btnLimpiar.FlatAppearance.BorderSize = 0;
             btnLimpiar.Cursor = Cursors.Hand;
@@ -165,7 +175,7 @@ namespace ESFE.Clothing_Store.UI
             label.Text = texto;
             label.Location = new Point(x, y);
             label.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-            label.ForeColor = Color.FromArgb(50, 50, 50);
+            label.ForeColor = Color.FromArgb(120, 81, 51); // Café oscuro
             label.AutoSize = true;
             return label;
         }

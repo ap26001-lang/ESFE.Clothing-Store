@@ -43,8 +43,8 @@
             // descripcionRolLblFrmRoles
             // 
             descripcionRolLblFrmRoles.AutoSize = true;
-            descripcionRolLblFrmRoles.BackColor = Color.Red;
-            descripcionRolLblFrmRoles.ForeColor = Color.Black;
+            descripcionRolLblFrmRoles.BackColor = Color.FromArgb(250, 245, 240); // Crema
+            descripcionRolLblFrmRoles.ForeColor = Color.FromArgb(120, 81, 51); // Café
             descripcionRolLblFrmRoles.Location = new Point(424, 157);
             descripcionRolLblFrmRoles.Name = "descripcionRolLblFrmRoles";
             descripcionRolLblFrmRoles.Size = new Size(130, 25);
@@ -54,7 +54,8 @@
             // idRolLblFrmRoles
             // 
             idRolLblFrmRoles.AutoSize = true;
-            idRolLblFrmRoles.BackColor = Color.Red;
+            idRolLblFrmRoles.BackColor = Color.FromArgb(250, 245, 240); // Crema
+            idRolLblFrmRoles.ForeColor = Color.FromArgb(120, 81, 51); // Café
             idRolLblFrmRoles.Location = new Point(12, 157);
             idRolLblFrmRoles.Name = "idRolLblFrmRoles";
             idRolLblFrmRoles.Size = new Size(53, 25);
@@ -63,7 +64,8 @@
             // 
             // buscarTxtFrmRoles
             // 
-            buscarTxtFrmRoles.BackColor = SystemColors.HotTrack;
+            buscarTxtFrmRoles.BackColor = Color.FromArgb(255, 250, 245); // Crema muy claro
+            buscarTxtFrmRoles.ForeColor = Color.FromArgb(80, 60, 40); // Café oscuro
             buscarTxtFrmRoles.Location = new Point(123, 37);
             buscarTxtFrmRoles.Name = "buscarTxtFrmRoles";
             buscarTxtFrmRoles.Size = new Size(210, 31);
@@ -71,6 +73,9 @@
             // 
             // buscarBtnFrmRoles
             // 
+            buscarBtnFrmRoles.BackColor = Color.FromArgb(169, 132, 94); // Café
+            buscarBtnFrmRoles.ForeColor = Color.FromArgb(255, 245, 230); // Crema
+            buscarBtnFrmRoles.FlatStyle = FlatStyle.Flat;
             buscarBtnFrmRoles.Location = new Point(5, 35);
             buscarBtnFrmRoles.Name = "buscarBtnFrmRoles";
             buscarBtnFrmRoles.Size = new Size(112, 34);
@@ -81,7 +86,8 @@
             // 
             // idRolTxtFrmRoles
             // 
-            idRolTxtFrmRoles.BackColor = SystemColors.HotTrack;
+            idRolTxtFrmRoles.BackColor = Color.FromArgb(255, 250, 245); // Crema muy claro
+            idRolTxtFrmRoles.ForeColor = Color.FromArgb(80, 60, 40); // Café oscuro
             idRolTxtFrmRoles.Location = new Point(85, 157);
             idRolTxtFrmRoles.Name = "idRolTxtFrmRoles";
             idRolTxtFrmRoles.Size = new Size(210, 31);
@@ -89,7 +95,8 @@
             // 
             // descripcionRolTxtFrmRoles
             // 
-            descripcionRolTxtFrmRoles.BackColor = SystemColors.HotTrack;
+            descripcionRolTxtFrmRoles.BackColor = Color.FromArgb(255, 250, 245); // Crema muy claro
+            descripcionRolTxtFrmRoles.ForeColor = Color.FromArgb(80, 60, 40); // Café oscuro
             descripcionRolTxtFrmRoles.Location = new Point(578, 154);
             descripcionRolTxtFrmRoles.Name = "descripcionRolTxtFrmRoles";
             descripcionRolTxtFrmRoles.Size = new Size(210, 31);
@@ -97,6 +104,9 @@
             // 
             // limpiarBtnFrmRoles
             // 
+            limpiarBtnFrmRoles.BackColor = Color.FromArgb(169, 132, 94); // Café
+            limpiarBtnFrmRoles.ForeColor = Color.FromArgb(255, 245, 230); // Crema
+            limpiarBtnFrmRoles.FlatStyle = FlatStyle.Flat;
             limpiarBtnFrmRoles.Location = new Point(339, 35);
             limpiarBtnFrmRoles.Name = "limpiarBtnFrmRoles";
             limpiarBtnFrmRoles.Size = new Size(112, 34);
@@ -107,7 +117,9 @@
             // 
             // agregarBtnFrmRoles
             // 
-            agregarBtnFrmRoles.BackColor = Color.Lime;
+            agregarBtnFrmRoles.BackColor = Color.FromArgb(169, 132, 94); // Café
+            agregarBtnFrmRoles.ForeColor = Color.FromArgb(255, 245, 230); // Crema
+            agregarBtnFrmRoles.FlatStyle = FlatStyle.Flat;
             agregarBtnFrmRoles.Location = new Point(457, 35);
             agregarBtnFrmRoles.Name = "agregarBtnFrmRoles";
             agregarBtnFrmRoles.Size = new Size(112, 34);
@@ -118,7 +130,9 @@
             // 
             // eliminarBtnFrmRoles
             // 
-            eliminarBtnFrmRoles.BackColor = Color.White;
+            eliminarBtnFrmRoles.BackColor = Color.FromArgb(169, 132, 94); // Café
+            eliminarBtnFrmRoles.ForeColor = Color.FromArgb(255, 245, 230); // Crema
+            eliminarBtnFrmRoles.FlatStyle = FlatStyle.Flat;
             eliminarBtnFrmRoles.Location = new Point(575, 35);
             eliminarBtnFrmRoles.Name = "eliminarBtnFrmRoles";
             eliminarBtnFrmRoles.Size = new Size(112, 34);
@@ -129,7 +143,9 @@
             // 
             // guardarBtnFrmRoles
             // 
-            guardarBtnFrmRoles.BackColor = Color.White;
+            guardarBtnFrmRoles.BackColor = Color.FromArgb(169, 132, 94); // Café
+            guardarBtnFrmRoles.ForeColor = Color.FromArgb(255, 245, 230); // Crema
+            guardarBtnFrmRoles.FlatStyle = FlatStyle.Flat;
             guardarBtnFrmRoles.Location = new Point(693, 35);
             guardarBtnFrmRoles.Name = "guardarBtnFrmRoles";
             guardarBtnFrmRoles.Size = new Size(95, 34);

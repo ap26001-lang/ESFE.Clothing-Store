@@ -42,7 +42,9 @@
             // 
             // buscarBtnFrmTallas
             // 
-            buscarBtnFrmTallas.BackColor = Color.FromArgb(255, 128, 128);
+            buscarBtnFrmTallas.BackColor = Color.FromArgb(169, 132, 94); // Café
+            buscarBtnFrmTallas.ForeColor = Color.FromArgb(255, 245, 230);
+            buscarBtnFrmTallas.FlatStyle = FlatStyle.Flat;
             buscarBtnFrmTallas.Location = new Point(26, 33);
             buscarBtnFrmTallas.Name = "buscarBtnFrmTallas";
             buscarBtnFrmTallas.Size = new Size(112, 31);
@@ -54,7 +56,8 @@
             // idTallaLblFrmTallas
             // 
             idTallaLblFrmTallas.AutoSize = true;
-            idTallaLblFrmTallas.BackColor = Color.FromArgb(0, 192, 192);
+            idTallaLblFrmTallas.BackColor = Color.FromArgb(250, 245, 240); // Crema
+            idTallaLblFrmTallas.ForeColor = Color.FromArgb(120, 81, 51); // Café
             idTallaLblFrmTallas.Location = new Point(50, 133);
             idTallaLblFrmTallas.Name = "idTallaLblFrmTallas";
             idTallaLblFrmTallas.Size = new Size(72, 25);
@@ -64,7 +67,8 @@
             // tallaProductoLblFrmTallas
             // 
             tallaProductoLblFrmTallas.AutoSize = true;
-            tallaProductoLblFrmTallas.BackColor = Color.FromArgb(0, 192, 192);
+            tallaProductoLblFrmTallas.BackColor = Color.FromArgb(250, 245, 240); // Crema
+            tallaProductoLblFrmTallas.ForeColor = Color.FromArgb(120, 81, 51); // Café
             tallaProductoLblFrmTallas.Location = new Point(374, 133);
             tallaProductoLblFrmTallas.Name = "tallaProductoLblFrmTallas";
             tallaProductoLblFrmTallas.Size = new Size(123, 25);
@@ -73,6 +77,8 @@
             // 
             // buscarTxtFrmTallas
             // 
+            buscarTxtFrmTallas.BackColor = Color.FromArgb(255, 250, 245); // Crema muy claro
+            buscarTxtFrmTallas.ForeColor = Color.FromArgb(80, 60, 40); // Café oscuro
             buscarTxtFrmTallas.Location = new Point(150, 33);
             buscarTxtFrmTallas.Name = "buscarTxtFrmTallas";
             buscarTxtFrmTallas.Size = new Size(190, 31);
@@ -80,6 +86,8 @@
             // 
             // idTallaTxtFrmTallas
             // 
+            idTallaTxtFrmTallas.BackColor = Color.FromArgb(255, 250, 245); // Crema muy claro
+            idTallaTxtFrmTallas.ForeColor = Color.FromArgb(80, 60, 40); // Café oscuro
             idTallaTxtFrmTallas.Location = new Point(150, 133);
             idTallaTxtFrmTallas.Name = "idTallaTxtFrmTallas";
             idTallaTxtFrmTallas.Size = new Size(190, 31);
@@ -87,6 +95,8 @@
             // 
             // tallaProductoTxtFrmTallas
             // 
+            tallaProductoTxtFrmTallas.BackColor = Color.FromArgb(255, 250, 245); // Crema muy claro
+            tallaProductoTxtFrmTallas.ForeColor = Color.FromArgb(80, 60, 40); // Café oscuro
             tallaProductoTxtFrmTallas.Location = new Point(514, 130);
             tallaProductoTxtFrmTallas.Name = "tallaProductoTxtFrmTallas";
             tallaProductoTxtFrmTallas.Size = new Size(190, 31);
@@ -94,7 +104,9 @@
             // 
             // agregarBtnFrmTallas
             // 
-            agregarBtnFrmTallas.BackColor = Color.FromArgb(255, 128, 128);
+            agregarBtnFrmTallas.BackColor = Color.FromArgb(169, 132, 94); // Café
+            agregarBtnFrmTallas.ForeColor = Color.FromArgb(255, 245, 230);
+            agregarBtnFrmTallas.FlatStyle = FlatStyle.Flat;
             agregarBtnFrmTallas.Location = new Point(385, 33);
             agregarBtnFrmTallas.Name = "agregarBtnFrmTallas";
             agregarBtnFrmTallas.Size = new Size(112, 31);
@@ -105,7 +117,9 @@
             // 
             // guardarBtnFrmTallas
             // 
-            guardarBtnFrmTallas.BackColor = Color.FromArgb(255, 128, 128);
+            guardarBtnFrmTallas.BackColor = Color.FromArgb(169, 132, 94); // Café
+            guardarBtnFrmTallas.ForeColor = Color.FromArgb(255, 245, 230);
+            guardarBtnFrmTallas.FlatStyle = FlatStyle.Flat;
             guardarBtnFrmTallas.Location = new Point(548, 33);
             guardarBtnFrmTallas.Name = "guardarBtnFrmTallas";
             guardarBtnFrmTallas.Size = new Size(112, 31);
@@ -116,7 +130,9 @@
             // 
             // eliminarBtnFrmTallas
             // 
-            eliminarBtnFrmTallas.BackColor = Color.FromArgb(255, 128, 128);
+            eliminarBtnFrmTallas.BackColor = Color.FromArgb(169, 132, 94); // Café
+            eliminarBtnFrmTallas.ForeColor = Color.FromArgb(255, 245, 230);
+            eliminarBtnFrmTallas.FlatStyle = FlatStyle.Flat;
             eliminarBtnFrmTallas.Location = new Point(385, 80);
             eliminarBtnFrmTallas.Name = "eliminarBtnFrmTallas";
             eliminarBtnFrmTallas.Size = new Size(112, 31);
@@ -127,6 +143,9 @@
             // 
             // limpiarBtnFrmTallas
             // 
+            limpiarBtnFrmTallas.BackColor = Color.FromArgb(169, 132, 94); // Café
+            limpiarBtnFrmTallas.ForeColor = Color.FromArgb(255, 245, 230);
+            limpiarBtnFrmTallas.FlatStyle = FlatStyle.Flat;
             limpiarBtnFrmTallas.Location = new Point(548, 80);
             limpiarBtnFrmTallas.Name = "limpiarBtnFrmTallas";
             limpiarBtnFrmTallas.Size = new Size(112, 31);

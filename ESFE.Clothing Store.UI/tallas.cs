@@ -15,6 +15,32 @@ namespace ESFE.Clothing_Store.UI
         public tallas()
         {
             InitializeComponent();
+            ApplyLuxuryTheme();
+        }
+
+        private void ApplyLuxuryTheme()
+        {
+            this.BackColor = System.Drawing.Color.FromArgb(245, 240, 235); // Crema
+            this.ForeColor = System.Drawing.Color.FromArgb(70, 50, 40); // Café oscuro
+
+            foreach (Control control in this.Controls)
+            {
+                if (control is Label)
+                {
+                    control.ForeColor = System.Drawing.Color.FromArgb(70, 50, 40); // Café oscuro
+                }
+                else if (control is TextBox || control is ComboBox)
+                {
+                    control.BackColor = System.Drawing.Color.FromArgb(255, 250, 245); // Crema muy clara
+                    control.ForeColor = System.Drawing.Color.FromArgb(70, 50, 40); // Café oscuro
+                }
+                else if (control is Button)
+                {
+                    control.BackColor = System.Drawing.Color.FromArgb(140, 100, 70); // Café
+                    control.ForeColor = System.Drawing.Color.FromArgb(245, 240, 235); // Crema
+                    control.Font = new Font(control.Font.FontFamily, control.Font.Size, FontStyle.Bold);
+                }
+            }
         }
 
         private void buscarBtnFrmTallas_Click(object sender, EventArgs e)

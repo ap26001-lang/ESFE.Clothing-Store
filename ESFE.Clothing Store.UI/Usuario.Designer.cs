@@ -101,7 +101,6 @@ namespace ESFE.Clothing_Store.UI
             idUsuarioTxtFrmUsuario.Name = "idUsuarioTxtFrmUsuario";
             idUsuarioTxtFrmUsuario.Size = new Size(124, 23);
             idUsuarioTxtFrmUsuario.TabIndex = 10;
-            idUsuarioTxtFrmUsuario.ReadOnly = true;
             // 
             // usuarioTxtFrmUsuario
             // 
