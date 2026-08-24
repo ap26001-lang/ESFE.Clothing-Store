@@ -16,8 +16,8 @@ namespace ESFE._Clothing_Store.DAL
                 cn.Open();
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "sp_Ventas_Insertar";
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "INSERT INTO Ventas (Codigo_de_Venta, Fecha_y_hora, Cantidad_de_producto, id_Tipo_Producto, id_cliente) VALUES (@Codigo_de_Venta, @Fecha_y_Hora, @Cantidad_de_productos, @id_Tipo_Producto, @id_cliente)";
+                    cmd.CommandType = CommandType.Text;
 
                     var p = cmd.CreateParameter(); p.ParameterName = "@Codigo_de_Venta"; p.Value = entidad.Codigo_de_Venta ?? (object)DBNull.Value; cmd.Parameters.Add(p);
                     p = cmd.CreateParameter(); p.ParameterName = "@Fecha_y_Hora"; p.Value = entidad.Fecha_y_Hora; cmd.Parameters.Add(p);
@@ -39,8 +39,8 @@ namespace ESFE._Clothing_Store.DAL
                 cn.Open();
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "sp_Ventas_Actualizar";
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "UPDATE Ventas SET Fecha_y_hora = @Fecha_y_Hora, Cantidad_de_producto = @Cantidad_de_productos, id_Tipo_Producto = @id_Tipo_Producto, id_cliente = @id_cliente WHERE Codigo_de_Venta = @Codigo_de_Venta";
+                    cmd.CommandType = CommandType.Text;
 
                     var p = cmd.CreateParameter(); p.ParameterName = "@Codigo_de_Venta"; p.Value = entidad.Codigo_de_Venta ?? (object)DBNull.Value; cmd.Parameters.Add(p);
                     p = cmd.CreateParameter(); p.ParameterName = "@Fecha_y_Hora"; p.Value = entidad.Fecha_y_Hora; cmd.Parameters.Add(p);
@@ -89,8 +89,8 @@ namespace ESFE._Clothing_Store.DAL
                             var item = new Ventas
                             {
                                 Codigo_de_Venta = dr["Codigo_de_Venta"] != DBNull.Value ? dr["Codigo_de_Venta"].ToString() : string.Empty,
-                                Fecha_y_Hora = dr["Fecha_y_Hora"] != DBNull.Value ? Convert.ToDateTime(dr["Fecha_y_Hora"]) : DateTime.MinValue,
-                                Cantidad_de_productos = dr["Cantidad_de_productos"] != DBNull.Value ? Convert.ToInt32(dr["Cantidad_de_productos"]) : 0,
+                                Fecha_y_Hora = dr["Fecha_y_hora"] != DBNull.Value ? Convert.ToDateTime(dr["Fecha_y_hora"]) : DateTime.MinValue,
+                                Cantidad_de_productos = dr["Cantidad_de_producto"] != DBNull.Value ? Convert.ToInt32(dr["Cantidad_de_producto"]) : 0,
                                 id_Tipo_Producto = dr["id_Tipo_Producto"] != DBNull.Value ? Convert.ToInt32(dr["id_Tipo_Producto"]) : 0,
                                 id_cliente = dr["id_cliente"] != DBNull.Value ? Convert.ToInt32(dr["id_cliente"]) : 0
                             };
@@ -112,7 +112,7 @@ namespace ESFE._Clothing_Store.DAL
                 cn.Open();
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "sp_Ventas_ObtenerPorCodigo";
+                    cmd.CommandText = "sp_Ventas_ObtenerPorId";
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     var p = cmd.CreateParameter(); p.ParameterName = "@Codigo_de_Venta"; p.Value = codigoVenta ?? (object)DBNull.Value; cmd.Parameters.Add(p);
@@ -124,8 +124,8 @@ namespace ESFE._Clothing_Store.DAL
                             entidad = new Ventas
                             {
                                 Codigo_de_Venta = dr["Codigo_de_Venta"] != DBNull.Value ? dr["Codigo_de_Venta"].ToString() : string.Empty,
-                                Fecha_y_Hora = dr["Fecha_y_Hora"] != DBNull.Value ? Convert.ToDateTime(dr["Fecha_y_Hora"]) : DateTime.MinValue,
-                                Cantidad_de_productos = dr["Cantidad_de_productos"] != DBNull.Value ? Convert.ToInt32(dr["Cantidad_de_productos"]) : 0,
+                                Fecha_y_Hora = dr["Fecha_y_hora"] != DBNull.Value ? Convert.ToDateTime(dr["Fecha_y_hora"]) : DateTime.MinValue,
+                                Cantidad_de_productos = dr["Cantidad_de_producto"] != DBNull.Value ? Convert.ToInt32(dr["Cantidad_de_producto"]) : 0,
                                 id_Tipo_Producto = dr["id_Tipo_Producto"] != DBNull.Value ? Convert.ToInt32(dr["id_Tipo_Producto"]) : 0,
                                 id_cliente = dr["id_cliente"] != DBNull.Value ? Convert.ToInt32(dr["id_cliente"]) : 0
                             };

@@ -28,88 +28,133 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            button1 = new Button();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
+            tipoTelaLblFrmTela = new Label();
+            idTelaLblFrmTela = new Label();
+            idTelaTxtFrmTela = new TextBox();
+            tipoTelaTxtFrmTela = new TextBox();
+            buscarBtnFrmTela = new Button();
+            buscarTxtFrmTela = new TextBox();
+            agregarBtnFrmTela = new Button();
+            eliminarBtnFrmTela = new Button();
+            guardarBtnFrmTela = new Button();
+            limpiarBtnFrmTela = new Button();
             SuspendLayout();
             // 
-            // label1
+            // tipoTelaLblFrmTela
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Cyan;
-            label1.Location = new Point(53, 217);
-            label1.Name = "label1";
-            label1.Size = new Size(105, 25);
-            label1.TabIndex = 0;
-            label1.Text = "Tipo de tela";
+            tipoTelaLblFrmTela.AutoSize = true;
+            tipoTelaLblFrmTela.BackColor = Color.Cyan;
+            tipoTelaLblFrmTela.Location = new Point(42, 174);
+            tipoTelaLblFrmTela.Margin = new Padding(2, 0, 2, 0);
+            tipoTelaLblFrmTela.Name = "tipoTelaLblFrmTela";
+            tipoTelaLblFrmTela.Size = new Size(89, 20);
+            tipoTelaLblFrmTela.TabIndex = 0;
+            tipoTelaLblFrmTela.Text = "Tipo de tela";
             // 
-            // label2
+            // idTelaLblFrmTela
             // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.Cyan;
-            label2.Location = new Point(71, 162);
-            label2.Name = "label2";
-            label2.Size = new Size(62, 25);
-            label2.TabIndex = 1;
-            label2.Text = "Id Tela";
+            idTelaLblFrmTela.AutoSize = true;
+            idTelaLblFrmTela.BackColor = Color.Cyan;
+            idTelaLblFrmTela.Location = new Point(57, 130);
+            idTelaLblFrmTela.Margin = new Padding(2, 0, 2, 0);
+            idTelaLblFrmTela.Name = "idTelaLblFrmTela";
+            idTelaLblFrmTela.Size = new Size(53, 20);
+            idTelaLblFrmTela.TabIndex = 1;
+            idTelaLblFrmTela.Text = "Id Tela";
             // 
-            // textBox1
+            // idTelaTxtFrmTela
             // 
-            textBox1.Location = new Point(197, 162);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(150, 31);
-            textBox1.TabIndex = 2;
+            idTelaTxtFrmTela.Location = new Point(158, 130);
+            idTelaTxtFrmTela.Margin = new Padding(2, 2, 2, 2);
+            idTelaTxtFrmTela.Name = "idTelaTxtFrmTela";
+            idTelaTxtFrmTela.Size = new Size(121, 27);
+            idTelaTxtFrmTela.TabIndex = 2;
             // 
-            // textBox2
+            // tipoTelaTxtFrmTela
             // 
-            textBox2.Location = new Point(197, 217);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(150, 31);
-            textBox2.TabIndex = 3;
+            tipoTelaTxtFrmTela.Location = new Point(158, 174);
+            tipoTelaTxtFrmTela.Margin = new Padding(2, 2, 2, 2);
+            tipoTelaTxtFrmTela.Name = "tipoTelaTxtFrmTela";
+            tipoTelaTxtFrmTela.Size = new Size(121, 27);
+            tipoTelaTxtFrmTela.TabIndex = 3;
             // 
-            // button1
+            // buscarBtnFrmTela
             // 
-            button1.BackColor = Color.Blue;
-            button1.Location = new Point(46, 62);
-            button1.Name = "button1";
-            button1.Size = new Size(112, 34);
-            button1.TabIndex = 4;
-            button1.Text = "Buscar";
-            button1.UseVisualStyleBackColor = false;
+            buscarBtnFrmTela.BackColor = Color.Blue;
+            buscarBtnFrmTela.Location = new Point(37, 50);
+            buscarBtnFrmTela.Margin = new Padding(2, 2, 2, 2);
+            buscarBtnFrmTela.Name = "buscarBtnFrmTela";
+            buscarBtnFrmTela.Size = new Size(90, 27);
+            buscarBtnFrmTela.TabIndex = 4;
+            buscarBtnFrmTela.Text = "Buscar";
+            buscarBtnFrmTela.UseVisualStyleBackColor = false;
+            buscarBtnFrmTela.Click += buscarBtnFrmTela_Click;
             // 
-            // textBox3
+            // buscarTxtFrmTela
             // 
-            textBox3.Location = new Point(188, 65);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(183, 31);
-            textBox3.TabIndex = 5;
+            buscarTxtFrmTela.Location = new Point(150, 52);
+            buscarTxtFrmTela.Margin = new Padding(2, 2, 2, 2);
+            buscarTxtFrmTela.Name = "buscarTxtFrmTela";
+            buscarTxtFrmTela.Size = new Size(147, 27);
+            buscarTxtFrmTela.TabIndex = 5;
             // 
-            // textBox4
+            // agregarBtnFrmTela
             // 
-            textBox4.BackColor = Color.FromArgb(192, 0, 0);
-            textBox4.Location = new Point(269, 382);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(150, 31);
-            textBox4.TabIndex = 6;
-            textBox4.Text = "Disponibles";
+            agregarBtnFrmTela.Location = new Point(322, 245);
+            agregarBtnFrmTela.Name = "agregarBtnFrmTela";
+            agregarBtnFrmTela.Size = new Size(115, 29);
+            agregarBtnFrmTela.TabIndex = 7;
+            agregarBtnFrmTela.Text = "Agregar";
+            agregarBtnFrmTela.UseVisualStyleBackColor = true;
+            agregarBtnFrmTela.Click += agregarBtnFrmTela_Click;
+            // 
+            // eliminarBtnFrmTela
+            // 
+            eliminarBtnFrmTela.Location = new Point(473, 245);
+            eliminarBtnFrmTela.Name = "eliminarBtnFrmTela";
+            eliminarBtnFrmTela.Size = new Size(94, 29);
+            eliminarBtnFrmTela.TabIndex = 8;
+            eliminarBtnFrmTela.Text = "Eliminar";
+            eliminarBtnFrmTela.UseVisualStyleBackColor = true;
+            eliminarBtnFrmTela.Click += eliminarBtnFrmTela_Click;
+            // 
+            // guardarBtnFrmTela
+            // 
+            guardarBtnFrmTela.Location = new Point(322, 290);
+            guardarBtnFrmTela.Name = "guardarBtnFrmTela";
+            guardarBtnFrmTela.Size = new Size(115, 29);
+            guardarBtnFrmTela.TabIndex = 9;
+            guardarBtnFrmTela.Text = "Guardar";
+            guardarBtnFrmTela.UseVisualStyleBackColor = true;
+            guardarBtnFrmTela.Click += guardarBtnFrmTela_Click;
+            // 
+            // limpiarBtnFrmTela
+            // 
+            limpiarBtnFrmTela.Location = new Point(473, 290);
+            limpiarBtnFrmTela.Name = "limpiarBtnFrmTela";
+            limpiarBtnFrmTela.Size = new Size(94, 29);
+            limpiarBtnFrmTela.TabIndex = 10;
+            limpiarBtnFrmTela.Text = "Limpiar";
+            limpiarBtnFrmTela.UseVisualStyleBackColor = true;
+            limpiarBtnFrmTela.Click += limpiarBtnFrmTela_Click;
             // 
             // Tela
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(button1);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            ClientSize = new Size(640, 360);
+            Controls.Add(limpiarBtnFrmTela);
+            Controls.Add(guardarBtnFrmTela);
+            Controls.Add(eliminarBtnFrmTela);
+            Controls.Add(agregarBtnFrmTela);
+            Controls.Add(buscarTxtFrmTela);
+            Controls.Add(buscarBtnFrmTela);
+            Controls.Add(tipoTelaTxtFrmTela);
+            Controls.Add(idTelaTxtFrmTela);
+            Controls.Add(idTelaLblFrmTela);
+            Controls.Add(tipoTelaLblFrmTela);
             ForeColor = Color.Black;
+            Margin = new Padding(2, 2, 2, 2);
             Name = "Tela";
             Text = "Tela";
             TransparencyKey = Color.FromArgb(192, 64, 0);
@@ -119,12 +164,15 @@
 
         #endregion
 
-        private Label label1;
-        private Label label2;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private Button button1;
-        private TextBox textBox3;
-        private TextBox textBox4;
+        private Label tipoTelaLblFrmTela;
+        private Label idTelaLblFrmTela;
+        private TextBox idTelaTxtFrmTela;
+        private TextBox tipoTelaTxtFrmTela;
+        private Button buscarBtnFrmTela;
+        private TextBox buscarTxtFrmTela;
+        private Button agregarBtnFrmTela;
+        private Button eliminarBtnFrmTela;
+        private Button guardarBtnFrmTela;
+        private Button limpiarBtnFrmTela;
     }
 }

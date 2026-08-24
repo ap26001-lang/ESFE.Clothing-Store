@@ -42,7 +42,7 @@ namespace ESFE.Clothing_Store.UI
         {
             if (!int.TryParse(buscarUsuarioTxtFrmBitacora.Text.Trim(), out int idUsuario))
             {
-                MessageBox.Show("Ingrese un ID de usuario válido.", "Buscar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Ingrese un ID 8de usuario válido.", "Buscar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 

@@ -14,12 +14,23 @@ namespace ESFE._Clothing_Store.DAL
             using (IDbConnection cn = DBComun.ObtenerConexion())
             {
                 cn.Open();
+
+                int nuevoId = 1;
+                using (IDbCommand cmdMax = cn.CreateCommand())
+                {
+                    cmdMax.CommandText = "SELECT ISNULL(MAX(id_Tipo_Produc), 0) + 1 FROM Tipo_Producto";
+                    cmdMax.CommandType = CommandType.Text;
+                    object result = cmdMax.ExecuteScalar();
+                    nuevoId = result != null && result != DBNull.Value ? Convert.ToInt32(result) : 1;
+                }
+
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "sp_Tipo_Producto_Insertar";
+                    cmd.CommandText = "sp_TipoProducto_Insertar";
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    var p = cmd.CreateParameter(); p.ParameterName = "@Tipo_de_producto"; p.Value = entidad.Tipo_de_producto ?? (object)DBNull.Value; cmd.Parameters.Add(p);
+                    var p = cmd.CreateParameter(); p.ParameterName = "@id_Tipo_Produc"; p.Value = nuevoId; cmd.Parameters.Add(p);
+                    p = cmd.CreateParameter(); p.ParameterName = "@Tipo_de_producto"; p.Value = entidad.Tipo_de_producto ?? (object)DBNull.Value; cmd.Parameters.Add(p);
 
                     return cmd.ExecuteNonQuery();
                 }
@@ -35,10 +46,10 @@ namespace ESFE._Clothing_Store.DAL
                 cn.Open();
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "sp_Tipo_Producto_Actualizar";
+                    cmd.CommandText = "sp_TipoProducto_Actualizar";
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    var p = cmd.CreateParameter(); p.ParameterName = "@id_tipo_producto"; p.Value = entidad.id_tipo_producto; cmd.Parameters.Add(p);
+                    var p = cmd.CreateParameter(); p.ParameterName = "@id_Tipo_Produc"; p.Value = entidad.id_tipo_producto; cmd.Parameters.Add(p);
                     p = cmd.CreateParameter(); p.ParameterName = "@Tipo_de_producto"; p.Value = entidad.Tipo_de_producto ?? (object)DBNull.Value; cmd.Parameters.Add(p);
 
                     return cmd.ExecuteNonQuery();
@@ -53,10 +64,10 @@ namespace ESFE._Clothing_Store.DAL
                 cn.Open();
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "sp_Tipo_Producto_Eliminar";
+                    cmd.CommandText = "sp_TipoProducto_Eliminar";
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    var p = cmd.CreateParameter(); p.ParameterName = "@id_tipo_producto"; p.Value = idTipoProducto; cmd.Parameters.Add(p);
+                    var p = cmd.CreateParameter(); p.ParameterName = "@id_Tipo_Produc"; p.Value = idTipoProducto; cmd.Parameters.Add(p);
 
                     return cmd.ExecuteNonQuery();
                 }
@@ -72,7 +83,7 @@ namespace ESFE._Clothing_Store.DAL
                 cn.Open();
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "sp_Tipo_Producto_ObtenerTodos";
+                    cmd.CommandText = "sp_TipoProducto_ObtenerTodos";
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     using (IDataReader dr = cmd.ExecuteReader())
@@ -81,7 +92,7 @@ namespace ESFE._Clothing_Store.DAL
                         {
                             var item = new Tipo_Producto
                             {
-                                id_tipo_producto = dr["id_tipo_producto"] != DBNull.Value ? Convert.ToInt32(dr["id_tipo_producto"]) : 0,
+                                id_tipo_producto = dr["id_Tipo_Produc"] != DBNull.Value ? Convert.ToInt32(dr["id_Tipo_Produc"]) : 0,
                                 Tipo_de_producto = dr["Tipo_de_producto"] != DBNull.Value ? dr["Tipo_de_producto"].ToString() : string.Empty
                             };
                             lista.Add(item);
@@ -102,10 +113,10 @@ namespace ESFE._Clothing_Store.DAL
                 cn.Open();
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "sp_Tipo_Producto_ObtenerPorId";
+                    cmd.CommandText = "sp_TipoProducto_ObtenerPorId";
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    var p = cmd.CreateParameter(); p.ParameterName = "@id_tipo_producto"; p.Value = idTipoProducto; cmd.Parameters.Add(p);
+                    var p = cmd.CreateParameter(); p.ParameterName = "@id_Tipo_Produc"; p.Value = idTipoProducto; cmd.Parameters.Add(p);
 
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
@@ -113,7 +124,7 @@ namespace ESFE._Clothing_Store.DAL
                         {
                             entidad = new Tipo_Producto
                             {
-                                id_tipo_producto = dr["id_tipo_producto"] != DBNull.Value ? Convert.ToInt32(dr["id_tipo_producto"]) : 0,
+                                id_tipo_producto = dr["id_Tipo_Produc"] != DBNull.Value ? Convert.ToInt32(dr["id_Tipo_Produc"]) : 0,
                                 Tipo_de_producto = dr["Tipo_de_producto"] != DBNull.Value ? dr["Tipo_de_producto"].ToString() : string.Empty
                             };
                         }

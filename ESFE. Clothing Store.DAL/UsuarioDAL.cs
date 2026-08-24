@@ -14,12 +14,23 @@ namespace ESFE._Clothing_Store.DAL
             using (IDbConnection cn = DBComun.ObtenerConexion())
             {
                 cn.Open();
+
+                int nuevoId;
+                using (IDbCommand cmdMax = cn.CreateCommand())
+                {
+                    cmdMax.CommandText = "SELECT ISNULL(MAX(Id_Usuario), 0) + 1 FROM Usuario";
+                    cmdMax.CommandType = CommandType.Text;
+                    object result = cmdMax.ExecuteScalar();
+                    nuevoId = result != null && result != DBNull.Value ? Convert.ToInt32(result) : 1;
+                }
+
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
                     cmd.CommandText = "sp_Usuario_Insertar";
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    var p = cmd.CreateParameter(); p.ParameterName = "@usuario"; p.Value = entidad.usuario ?? (object)DBNull.Value; cmd.Parameters.Add(p);
+                    var p = cmd.CreateParameter(); p.ParameterName = "@Id_Usuario"; p.Value = nuevoId; cmd.Parameters.Add(p);
+                    p = cmd.CreateParameter(); p.ParameterName = "@Usuario"; p.Value = entidad.usuario ?? (object)DBNull.Value; cmd.Parameters.Add(p);
 
                     return cmd.ExecuteNonQuery();
                 }
@@ -38,8 +49,8 @@ namespace ESFE._Clothing_Store.DAL
                     cmd.CommandText = "sp_Usuario_Actualizar";
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    var p = cmd.CreateParameter(); p.ParameterName = "@id_Usuario"; p.Value = entidad.id_Usuario; cmd.Parameters.Add(p);
-                    p = cmd.CreateParameter(); p.ParameterName = "@usuario"; p.Value = entidad.usuario ?? (object)DBNull.Value; cmd.Parameters.Add(p);
+                    var p = cmd.CreateParameter(); p.ParameterName = "@Id_Usuario"; p.Value = entidad.id_Usuario; cmd.Parameters.Add(p);
+                    p = cmd.CreateParameter(); p.ParameterName = "@Usuario"; p.Value = entidad.usuario ?? (object)DBNull.Value; cmd.Parameters.Add(p);
 
                     return cmd.ExecuteNonQuery();
                 }
@@ -56,7 +67,7 @@ namespace ESFE._Clothing_Store.DAL
                     cmd.CommandText = "sp_Usuario_Eliminar";
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    var p = cmd.CreateParameter(); p.ParameterName = "@id_Usuario"; p.Value = idUsuario; cmd.Parameters.Add(p);
+                    var p = cmd.CreateParameter(); p.ParameterName = "@Id_Usuario"; p.Value = idUsuario; cmd.Parameters.Add(p);
 
                     return cmd.ExecuteNonQuery();
                 }
@@ -105,7 +116,7 @@ namespace ESFE._Clothing_Store.DAL
                     cmd.CommandText = "sp_Usuario_ObtenerPorId";
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    var p = cmd.CreateParameter(); p.ParameterName = "@id_Usuario"; p.Value = idUsuario; cmd.Parameters.Add(p);
+                    var p = cmd.CreateParameter(); p.ParameterName = "@Id_Usuario"; p.Value = idUsuario; cmd.Parameters.Add(p);
 
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
