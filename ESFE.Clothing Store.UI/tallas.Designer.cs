@@ -82,7 +82,6 @@
             // 
             idTallaTxtFrmTallas.Location = new Point(150, 133);
             idTallaTxtFrmTallas.Name = "idTallaTxtFrmTallas";
-            idTallaTxtFrmTallas.ReadOnly = true;
             idTallaTxtFrmTallas.Size = new Size(190, 31);
             idTallaTxtFrmTallas.TabIndex = 4;
             // 
