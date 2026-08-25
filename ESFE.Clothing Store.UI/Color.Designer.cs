@@ -46,39 +46,43 @@
             // tituloLblFrmColor
             // 
             tituloLblFrmColor.AutoSize = true;
-            tituloLblFrmColor.BackColor = System.Drawing.Color.FromArgb(255, 99, 71);
-            tituloLblFrmColor.ForeColor = System.Drawing.Color.WhiteSmoke;
-            tituloLblFrmColor.Location = new Point(12, 9);
+            tituloLblFrmColor.BackColor = Color.FromArgb(169, 132, 94);
+            tituloLblFrmColor.ForeColor = SystemColors.Control;
+            tituloLblFrmColor.Location = new Point(10, 7);
             tituloLblFrmColor.Name = "tituloLblFrmColor";
-            tituloLblFrmColor.Size = new Size(45, 20);
+            tituloLblFrmColor.Size = new Size(36, 15);
             tituloLblFrmColor.TabIndex = 0;
             tituloLblFrmColor.Text = "Color";
             // 
             // buscarLblFrmColor
             // 
             buscarLblFrmColor.AutoSize = true;
-            buscarLblFrmColor.BackColor = System.Drawing.Color.FromArgb(0, 128, 128);
-            buscarLblFrmColor.ForeColor = System.Drawing.Color.WhiteSmoke;
-            buscarLblFrmColor.Location = new Point(12, 44);
+            buscarLblFrmColor.BackColor = Color.FromArgb(169, 132, 94);
+            buscarLblFrmColor.ForeColor = SystemColors.Control;
+            buscarLblFrmColor.Location = new Point(10, 33);
             buscarLblFrmColor.Name = "buscarLblFrmColor";
-            buscarLblFrmColor.Size = new Size(205, 20);
+            buscarLblFrmColor.Size = new Size(162, 15);
             buscarLblFrmColor.TabIndex = 1;
             buscarLblFrmColor.Text = "Buscar color por nombre o ID";
             // 
             // buscarTxtFrmColor
             // 
-            buscarTxtFrmColor.Location = new Point(232, 41);
+            buscarTxtFrmColor.BackColor = Color.FromArgb(169, 132, 94);
+            buscarTxtFrmColor.ForeColor = SystemColors.Control;
+            buscarTxtFrmColor.Location = new Point(219, 25);
+            buscarTxtFrmColor.Margin = new Padding(3, 2, 3, 2);
             buscarTxtFrmColor.Name = "buscarTxtFrmColor";
-            buscarTxtFrmColor.Size = new Size(159, 27);
+            buscarTxtFrmColor.Size = new Size(140, 23);
             buscarTxtFrmColor.TabIndex = 2;
             // 
             // buscarBtnFrmColor
             // 
-            buscarBtnFrmColor.BackColor = System.Drawing.Color.FromArgb(255, 99, 71);
-            buscarBtnFrmColor.ForeColor = System.Drawing.Color.WhiteSmoke;
-            buscarBtnFrmColor.Location = new Point(417, 41);
+            buscarBtnFrmColor.BackColor = Color.FromArgb(169, 132, 94);
+            buscarBtnFrmColor.ForeColor = SystemColors.Control;
+            buscarBtnFrmColor.Location = new Point(382, 29);
+            buscarBtnFrmColor.Margin = new Padding(3, 2, 3, 2);
             buscarBtnFrmColor.Name = "buscarBtnFrmColor";
-            buscarBtnFrmColor.Size = new Size(130, 27);
+            buscarBtnFrmColor.Size = new Size(114, 23);
             buscarBtnFrmColor.TabIndex = 3;
             buscarBtnFrmColor.Text = "Buscar color";
             buscarBtnFrmColor.UseVisualStyleBackColor = false;
@@ -86,11 +90,12 @@
             // 
             // limpiarBtnFrmColor
             // 
-            limpiarBtnFrmColor.BackColor = System.Drawing.Color.FromArgb(102, 153, 204);
-            limpiarBtnFrmColor.ForeColor = System.Drawing.Color.WhiteSmoke;
-            limpiarBtnFrmColor.Location = new Point(12, 77);
+            limpiarBtnFrmColor.BackColor = Color.FromArgb(169, 132, 94);
+            limpiarBtnFrmColor.ForeColor = SystemColors.Control;
+            limpiarBtnFrmColor.Location = new Point(10, 59);
+            limpiarBtnFrmColor.Margin = new Padding(3, 2, 3, 2);
             limpiarBtnFrmColor.Name = "limpiarBtnFrmColor";
-            limpiarBtnFrmColor.Size = new Size(128, 30);
+            limpiarBtnFrmColor.Size = new Size(112, 28);
             limpiarBtnFrmColor.TabIndex = 4;
             limpiarBtnFrmColor.Text = "Limpiar";
             limpiarBtnFrmColor.UseVisualStyleBackColor = false;
@@ -99,64 +104,74 @@
             // idColorLblFrmColor
             // 
             idColorLblFrmColor.AutoSize = true;
-            idColorLblFrmColor.BackColor = System.Drawing.Color.FromArgb(224, 247, 250);
-            idColorLblFrmColor.ForeColor = System.Drawing.Color.FromArgb(34, 34, 34);
-            idColorLblFrmColor.Location = new Point(12, 140);
+            idColorLblFrmColor.BackColor = Color.FromArgb(169, 132, 94);
+            idColorLblFrmColor.ForeColor = SystemColors.Control;
+            idColorLblFrmColor.Location = new Point(10, 105);
             idColorLblFrmColor.Name = "idColorLblFrmColor";
-            idColorLblFrmColor.Size = new Size(62, 20);
+            idColorLblFrmColor.Size = new Size(49, 15);
             idColorLblFrmColor.TabIndex = 5;
             idColorLblFrmColor.Text = "id_color";
             // 
             // colorLblFrmColor
             // 
             colorLblFrmColor.AutoSize = true;
-            colorLblFrmColor.BackColor = System.Drawing.Color.FromArgb(224, 247, 250);
-            colorLblFrmColor.ForeColor = System.Drawing.Color.FromArgb(34, 34, 34);
-            colorLblFrmColor.Location = new Point(12, 215);
+            colorLblFrmColor.BackColor = Color.FromArgb(169, 132, 94);
+            colorLblFrmColor.ForeColor = SystemColors.Control;
+            colorLblFrmColor.Location = new Point(10, 161);
             colorLblFrmColor.Name = "colorLblFrmColor";
-            colorLblFrmColor.Size = new Size(45, 20);
+            colorLblFrmColor.Size = new Size(36, 15);
             colorLblFrmColor.TabIndex = 6;
             colorLblFrmColor.Text = "Color";
             // 
             // idColorTxtFrmColor
             // 
-            idColorTxtFrmColor.Location = new Point(93, 137);
+            idColorTxtFrmColor.BackColor = Color.FromArgb(169, 132, 94);
+            idColorTxtFrmColor.ForeColor = SystemColors.Control;
+            idColorTxtFrmColor.Location = new Point(81, 103);
+            idColorTxtFrmColor.Margin = new Padding(3, 2, 3, 2);
             idColorTxtFrmColor.Name = "idColorTxtFrmColor";
-            idColorTxtFrmColor.Size = new Size(159, 27);
+            idColorTxtFrmColor.Size = new Size(140, 23);
             idColorTxtFrmColor.TabIndex = 7;
             // 
             // colorTxtFrmColor
             // 
-            colorTxtFrmColor.Location = new Point(79, 212);
+            colorTxtFrmColor.BackColor = Color.FromArgb(169, 132, 94);
+            colorTxtFrmColor.ForeColor = SystemColors.Control;
+            colorTxtFrmColor.Location = new Point(81, 159);
+            colorTxtFrmColor.Margin = new Padding(3, 2, 3, 2);
             colorTxtFrmColor.Name = "colorTxtFrmColor";
-            colorTxtFrmColor.Size = new Size(159, 27);
+            colorTxtFrmColor.Size = new Size(140, 23);
             colorTxtFrmColor.TabIndex = 8;
             // 
             // eliminarLblFrmColor
             // 
             eliminarLblFrmColor.AutoSize = true;
-            eliminarLblFrmColor.BackColor = System.Drawing.Color.Red;
-            eliminarLblFrmColor.ForeColor = SystemColors.ControlLightLight;
-            eliminarLblFrmColor.Location = new Point(12, 288);
+            eliminarLblFrmColor.BackColor = Color.FromArgb(169, 132, 94);
+            eliminarLblFrmColor.ForeColor = SystemColors.Control;
+            eliminarLblFrmColor.Location = new Point(10, 216);
             eliminarLblFrmColor.Name = "eliminarLblFrmColor";
-            eliminarLblFrmColor.Size = new Size(325, 20);
+            eliminarLblFrmColor.Size = new Size(257, 15);
             eliminarLblFrmColor.TabIndex = 9;
             eliminarLblFrmColor.Text = "Eliminar color por nombre o ID (Administrador)";
             // 
             // eliminarTxtFrmColor
             // 
-            eliminarTxtFrmColor.Location = new Point(353, 285);
+            eliminarTxtFrmColor.BackColor = Color.FromArgb(169, 132, 94);
+            eliminarTxtFrmColor.ForeColor = SystemColors.Control;
+            eliminarTxtFrmColor.Location = new Point(309, 214);
+            eliminarTxtFrmColor.Margin = new Padding(3, 2, 3, 2);
             eliminarTxtFrmColor.Name = "eliminarTxtFrmColor";
-            eliminarTxtFrmColor.Size = new Size(159, 27);
+            eliminarTxtFrmColor.Size = new Size(140, 23);
             eliminarTxtFrmColor.TabIndex = 10;
             // 
             // eliminarBtnFrmColor
             // 
-            eliminarBtnFrmColor.BackColor = System.Drawing.Color.Red;
-            eliminarBtnFrmColor.ForeColor = SystemColors.ButtonHighlight;
-            eliminarBtnFrmColor.Location = new Point(530, 285);
+            eliminarBtnFrmColor.BackColor = Color.FromArgb(169, 132, 94);
+            eliminarBtnFrmColor.ForeColor = SystemColors.Control;
+            eliminarBtnFrmColor.Location = new Point(480, 208);
+            eliminarBtnFrmColor.Margin = new Padding(3, 2, 3, 2);
             eliminarBtnFrmColor.Name = "eliminarBtnFrmColor";
-            eliminarBtnFrmColor.Size = new Size(130, 27);
+            eliminarBtnFrmColor.Size = new Size(114, 29);
             eliminarBtnFrmColor.TabIndex = 11;
             eliminarBtnFrmColor.Text = "Eliminar color";
             eliminarBtnFrmColor.UseVisualStyleBackColor = false;
@@ -164,23 +179,23 @@
             // 
             // guardarBtnFrmColor
             // 
-            guardarBtnFrmColor.BackColor = System.Drawing.Color.FromArgb(46, 139, 87);
-            guardarBtnFrmColor.ForeColor = System.Drawing.Color.WhiteSmoke;
-            guardarBtnFrmColor.Location = new Point(265, 212);
+            guardarBtnFrmColor.BackColor = Color.FromArgb(169, 132, 94);
+            guardarBtnFrmColor.ForeColor = SystemColors.Control;
+            guardarBtnFrmColor.Location = new Point(309, 161);
+            guardarBtnFrmColor.Margin = new Padding(3, 2, 3, 2);
             guardarBtnFrmColor.Name = "guardarBtnFrmColor";
-            guardarBtnFrmColor.Size = new Size(128, 30);
+            guardarBtnFrmColor.Size = new Size(112, 22);
             guardarBtnFrmColor.TabIndex = 12;
             guardarBtnFrmColor.Text = "Guardar / Modificar";
             guardarBtnFrmColor.UseVisualStyleBackColor = false;
             guardarBtnFrmColor.Click += button4_Click;
             // 
-            // Color
+            // ColorForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            // Fondo neutro y luminoso para resaltar los colores de la paleta
-            BackColor = System.Drawing.Color.FromArgb(250, 250, 250);
-            ClientSize = new Size(800, 450);
+            BackColor = Color.FromArgb(250, 245, 240);
+            ClientSize = new Size(700, 279);
             Controls.Add(guardarBtnFrmColor);
             Controls.Add(eliminarBtnFrmColor);
             Controls.Add(eliminarTxtFrmColor);
@@ -194,7 +209,8 @@
             Controls.Add(buscarTxtFrmColor);
             Controls.Add(buscarLblFrmColor);
             Controls.Add(tituloLblFrmColor);
-            Name = "Color";
+            Margin = new Padding(3, 2, 3, 2);
+            Name = "ColorForm";
             Text = "Color";
             ResumeLayout(false);
             PerformLayout();

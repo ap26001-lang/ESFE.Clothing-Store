@@ -45,8 +45,8 @@ namespace ESFE.Clothing_Store.UI
             // tituloLblFrmUsuario
             // 
             tituloLblFrmUsuario.AutoSize = true;
-            tituloLblFrmUsuario.BackColor = SystemColors.ActiveCaptionText;
-            tituloLblFrmUsuario.ForeColor = SystemColors.ButtonFace;
+            tituloLblFrmUsuario.BackColor = Color.FromArgb(169, 132, 94);
+            tituloLblFrmUsuario.ForeColor = SystemColors.Control;
             tituloLblFrmUsuario.Location = new Point(2, 9);
             tituloLblFrmUsuario.Name = "tituloLblFrmUsuario";
             tituloLblFrmUsuario.Size = new Size(47, 15);
@@ -56,19 +56,19 @@ namespace ESFE.Clothing_Store.UI
             // buscarLblFrmUsuario
             // 
             buscarLblFrmUsuario.AutoSize = true;
-            buscarLblFrmUsuario.BackColor = SystemColors.ActiveCaptionText;
-            buscarLblFrmUsuario.ForeColor = SystemColors.ButtonFace;
+            buscarLblFrmUsuario.BackColor = Color.FromArgb(169, 132, 94);
+            buscarLblFrmUsuario.ForeColor = SystemColors.Control;
             buscarLblFrmUsuario.Location = new Point(2, 51);
             buscarLblFrmUsuario.Name = "buscarLblFrmUsuario";
-            buscarLblFrmUsuario.Size = new Size(250, 15);
+            buscarLblFrmUsuario.Size = new Size(134, 15);
             buscarLblFrmUsuario.TabIndex = 1;
             buscarLblFrmUsuario.Text = "Buscar por id de usuario";
             // 
             // idUsuarioLblFrmUsuario
             // 
             idUsuarioLblFrmUsuario.AutoSize = true;
-            idUsuarioLblFrmUsuario.BackColor = SystemColors.ActiveCaptionText;
-            idUsuarioLblFrmUsuario.ForeColor = SystemColors.ButtonFace;
+            idUsuarioLblFrmUsuario.BackColor = Color.FromArgb(169, 132, 94);
+            idUsuarioLblFrmUsuario.ForeColor = SystemColors.Control;
             idUsuarioLblFrmUsuario.Location = new Point(2, 144);
             idUsuarioLblFrmUsuario.Name = "idUsuarioLblFrmUsuario";
             idUsuarioLblFrmUsuario.Size = new Size(61, 15);
@@ -78,8 +78,8 @@ namespace ESFE.Clothing_Store.UI
             // usuarioLblFrmUsuario
             // 
             usuarioLblFrmUsuario.AutoSize = true;
-            usuarioLblFrmUsuario.BackColor = SystemColors.ActiveCaptionText;
-            usuarioLblFrmUsuario.ForeColor = SystemColors.ButtonFace;
+            usuarioLblFrmUsuario.BackColor = Color.FromArgb(169, 132, 94);
+            usuarioLblFrmUsuario.ForeColor = SystemColors.Control;
             usuarioLblFrmUsuario.Location = new Point(2, 183);
             usuarioLblFrmUsuario.Name = "usuarioLblFrmUsuario";
             usuarioLblFrmUsuario.Size = new Size(47, 15);
@@ -88,7 +88,8 @@ namespace ESFE.Clothing_Store.UI
             // 
             // buscarTxtFrmUsuario
             // 
-            buscarTxtFrmUsuario.ForeColor = SystemColors.ButtonFace;
+            buscarTxtFrmUsuario.BackColor = Color.FromArgb(169, 132, 94);
+            buscarTxtFrmUsuario.ForeColor = SystemColors.Control;
             buscarTxtFrmUsuario.Location = new Point(249, 43);
             buscarTxtFrmUsuario.Name = "buscarTxtFrmUsuario";
             buscarTxtFrmUsuario.Size = new Size(172, 23);
@@ -96,7 +97,8 @@ namespace ESFE.Clothing_Store.UI
             // 
             // idUsuarioTxtFrmUsuario
             // 
-            idUsuarioTxtFrmUsuario.ForeColor = SystemColors.ButtonFace;
+            idUsuarioTxtFrmUsuario.BackColor = Color.FromArgb(169, 132, 94);
+            idUsuarioTxtFrmUsuario.ForeColor = SystemColors.Control;
             idUsuarioTxtFrmUsuario.Location = new Point(72, 136);
             idUsuarioTxtFrmUsuario.Name = "idUsuarioTxtFrmUsuario";
             idUsuarioTxtFrmUsuario.Size = new Size(124, 23);
@@ -104,7 +106,8 @@ namespace ESFE.Clothing_Store.UI
             // 
             // usuarioTxtFrmUsuario
             // 
-            usuarioTxtFrmUsuario.ForeColor = SystemColors.ButtonFace;
+            usuarioTxtFrmUsuario.BackColor = Color.FromArgb(169, 132, 94);
+            usuarioTxtFrmUsuario.ForeColor = SystemColors.Control;
             usuarioTxtFrmUsuario.Location = new Point(72, 180);
             usuarioTxtFrmUsuario.Name = "usuarioTxtFrmUsuario";
             usuarioTxtFrmUsuario.Size = new Size(156, 23);
@@ -112,52 +115,62 @@ namespace ESFE.Clothing_Store.UI
             // 
             // buscarBtnFrmUsuario
             // 
+            buscarBtnFrmUsuario.BackColor = Color.FromArgb(169, 132, 94);
+            buscarBtnFrmUsuario.ForeColor = SystemColors.Control;
             buscarBtnFrmUsuario.Location = new Point(429, 41);
             buscarBtnFrmUsuario.Name = "buscarBtnFrmUsuario";
             buscarBtnFrmUsuario.Size = new Size(100, 27);
             buscarBtnFrmUsuario.TabIndex = 12;
             buscarBtnFrmUsuario.Text = "Buscar";
-            buscarBtnFrmUsuario.UseVisualStyleBackColor = true;
+            buscarBtnFrmUsuario.UseVisualStyleBackColor = false;
             buscarBtnFrmUsuario.Click += buscarBtnFrmUsuario_Click;
             // 
             // guardarBtnFrmUsuario
             // 
+            guardarBtnFrmUsuario.BackColor = Color.FromArgb(169, 132, 94);
+            guardarBtnFrmUsuario.ForeColor = SystemColors.Control;
             guardarBtnFrmUsuario.Location = new Point(72, 227);
             guardarBtnFrmUsuario.Name = "guardarBtnFrmUsuario";
             guardarBtnFrmUsuario.Size = new Size(100, 27);
             guardarBtnFrmUsuario.TabIndex = 13;
             guardarBtnFrmUsuario.Text = "Guardar";
-            guardarBtnFrmUsuario.UseVisualStyleBackColor = true;
+            guardarBtnFrmUsuario.UseVisualStyleBackColor = false;
             guardarBtnFrmUsuario.Click += guardarBtnFrmUsuario_Click;
             // 
             // eliminarBtnFrmUsuario
             // 
+            eliminarBtnFrmUsuario.BackColor = Color.FromArgb(169, 132, 94);
+            eliminarBtnFrmUsuario.ForeColor = SystemColors.Control;
             eliminarBtnFrmUsuario.Location = new Point(178, 227);
             eliminarBtnFrmUsuario.Name = "eliminarBtnFrmUsuario";
             eliminarBtnFrmUsuario.Size = new Size(100, 27);
             eliminarBtnFrmUsuario.TabIndex = 14;
             eliminarBtnFrmUsuario.Text = "Eliminar";
-            eliminarBtnFrmUsuario.UseVisualStyleBackColor = true;
+            eliminarBtnFrmUsuario.UseVisualStyleBackColor = false;
             eliminarBtnFrmUsuario.Click += eliminarBtnFrmUsuario_Click;
             // 
             // agregarBtnFrmUsuario
             // 
+            agregarBtnFrmUsuario.BackColor = Color.FromArgb(169, 132, 94);
+            agregarBtnFrmUsuario.ForeColor = SystemColors.Control;
             agregarBtnFrmUsuario.Location = new Point(284, 227);
             agregarBtnFrmUsuario.Name = "agregarBtnFrmUsuario";
             agregarBtnFrmUsuario.Size = new Size(100, 27);
             agregarBtnFrmUsuario.TabIndex = 15;
             agregarBtnFrmUsuario.Text = "Agregar";
-            agregarBtnFrmUsuario.UseVisualStyleBackColor = true;
+            agregarBtnFrmUsuario.UseVisualStyleBackColor = false;
             agregarBtnFrmUsuario.Click += agregarBtnFrmUsuario_Click;
             // 
             // limpiarBtnFrmUsuario
             // 
+            limpiarBtnFrmUsuario.BackColor = Color.FromArgb(169, 132, 94);
+            limpiarBtnFrmUsuario.ForeColor = SystemColors.Control;
             limpiarBtnFrmUsuario.Location = new Point(390, 227);
             limpiarBtnFrmUsuario.Name = "limpiarBtnFrmUsuario";
             limpiarBtnFrmUsuario.Size = new Size(100, 27);
             limpiarBtnFrmUsuario.TabIndex = 16;
             limpiarBtnFrmUsuario.Text = "Limpiar";
-            limpiarBtnFrmUsuario.UseVisualStyleBackColor = true;
+            limpiarBtnFrmUsuario.UseVisualStyleBackColor = false;
             limpiarBtnFrmUsuario.Click += limpiarBtnFrmUsuario_Click;
             // 
             // Usuario

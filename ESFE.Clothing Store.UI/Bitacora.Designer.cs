@@ -51,14 +51,14 @@ namespace ESFE.Clothing_Store.UI
             // tituloLblFrmBitacora
             // 
             tituloLblFrmBitacora.AutoSize = true;
-            tituloLblFrmBitacora.BackColor = Color.FromArgb(34, 34, 34);
-            tituloLblFrmBitacora.ForeColor = Color.FromArgb(212, 175, 55);
-            tituloLblFrmBitacora.Location = new Point(12, 9);
+            tituloLblFrmBitacora.BackColor = Color.FromArgb(169, 132, 94);
+            tituloLblFrmBitacora.ForeColor = SystemColors.Control;
+            tituloLblFrmBitacora.Location = new Point(10, 7);
             tituloLblFrmBitacora.Margin = new Padding(3, 0, 3, 2);
             tituloLblFrmBitacora.Name = "tituloLblFrmBitacora";
-            tituloLblFrmBitacora.Padding = new Padding(0, 0, 5, 3);
+            tituloLblFrmBitacora.Padding = new Padding(0, 0, 4, 2);
             tituloLblFrmBitacora.RightToLeft = RightToLeft.No;
-            tituloLblFrmBitacora.Size = new Size(69, 23);
+            tituloLblFrmBitacora.Size = new Size(54, 17);
             tituloLblFrmBitacora.TabIndex = 0;
             tituloLblFrmBitacora.Text = "Bitacora";
             tituloLblFrmBitacora.Click += label1_Click_1;
@@ -66,29 +66,32 @@ namespace ESFE.Clothing_Store.UI
             // buscarUsuarioLblFrmBitacora
             // 
             buscarUsuarioLblFrmBitacora.AutoSize = true;
-            buscarUsuarioLblFrmBitacora.BackColor = Color.FromArgb(248, 246, 244);
-            buscarUsuarioLblFrmBitacora.ForeColor = Color.FromArgb(68, 68, 68);
-            buscarUsuarioLblFrmBitacora.Location = new Point(12, 41);
+            buscarUsuarioLblFrmBitacora.BackColor = Color.FromArgb(169, 132, 94);
+            buscarUsuarioLblFrmBitacora.ForeColor = SystemColors.Control;
+            buscarUsuarioLblFrmBitacora.Location = new Point(10, 31);
             buscarUsuarioLblFrmBitacora.Name = "buscarUsuarioLblFrmBitacora";
-            buscarUsuarioLblFrmBitacora.Size = new Size(152, 20);
+            buscarUsuarioLblFrmBitacora.Size = new Size(120, 15);
             buscarUsuarioLblFrmBitacora.TabIndex = 1;
             buscarUsuarioLblFrmBitacora.Text = "Buscar por ID Usuario";
             // 
             // buscarUsuarioTxtFrmBitacora
             // 
-            buscarUsuarioTxtFrmBitacora.BackColor = Color.PeachPuff;
-            buscarUsuarioTxtFrmBitacora.Location = new Point(190, 38);
+            buscarUsuarioTxtFrmBitacora.BackColor = Color.FromArgb(169, 132, 94);
+            buscarUsuarioTxtFrmBitacora.ForeColor = SystemColors.Control;
+            buscarUsuarioTxtFrmBitacora.Location = new Point(166, 28);
+            buscarUsuarioTxtFrmBitacora.Margin = new Padding(3, 2, 3, 2);
             buscarUsuarioTxtFrmBitacora.Name = "buscarUsuarioTxtFrmBitacora";
-            buscarUsuarioTxtFrmBitacora.Size = new Size(177, 27);
+            buscarUsuarioTxtFrmBitacora.Size = new Size(155, 23);
             buscarUsuarioTxtFrmBitacora.TabIndex = 2;
             // 
             // buscarBtnFrmBitacora
             // 
-            buscarBtnFrmBitacora.BackColor = Color.FromArgb(34, 34, 34);
-            buscarBtnFrmBitacora.ForeColor = SystemColors.ButtonHighlight;
-            buscarBtnFrmBitacora.Location = new Point(373, 34);
+            buscarBtnFrmBitacora.BackColor = Color.FromArgb(169, 132, 94);
+            buscarBtnFrmBitacora.ForeColor = SystemColors.Control;
+            buscarBtnFrmBitacora.Location = new Point(326, 26);
+            buscarBtnFrmBitacora.Margin = new Padding(3, 2, 3, 2);
             buscarBtnFrmBitacora.Name = "buscarBtnFrmBitacora";
-            buscarBtnFrmBitacora.Size = new Size(75, 35);
+            buscarBtnFrmBitacora.Size = new Size(66, 26);
             buscarBtnFrmBitacora.TabIndex = 3;
             buscarBtnFrmBitacora.Text = "Buscar";
             buscarBtnFrmBitacora.UseVisualStyleBackColor = false;
@@ -96,11 +99,12 @@ namespace ESFE.Clothing_Store.UI
             // 
             // limpiarBtnFrmBitacora
             // 
-            limpiarBtnFrmBitacora.BackColor = Color.FromArgb(245, 245, 245);
-            limpiarBtnFrmBitacora.ForeColor = Color.FromArgb(68, 68, 68);
-            limpiarBtnFrmBitacora.Location = new Point(463, 35);
+            limpiarBtnFrmBitacora.BackColor = Color.FromArgb(169, 132, 94);
+            limpiarBtnFrmBitacora.ForeColor = SystemColors.Control;
+            limpiarBtnFrmBitacora.Location = new Point(405, 26);
+            limpiarBtnFrmBitacora.Margin = new Padding(3, 2, 3, 2);
             limpiarBtnFrmBitacora.Name = "limpiarBtnFrmBitacora";
-            limpiarBtnFrmBitacora.Size = new Size(73, 34);
+            limpiarBtnFrmBitacora.Size = new Size(64, 26);
             limpiarBtnFrmBitacora.TabIndex = 4;
             limpiarBtnFrmBitacora.Text = "Limpiar";
             limpiarBtnFrmBitacora.UseVisualStyleBackColor = false;
@@ -109,83 +113,96 @@ namespace ESFE.Clothing_Store.UI
             // idActividadLblFrmBitacora
             // 
             idActividadLblFrmBitacora.AutoSize = true;
-            idActividadLblFrmBitacora.BackColor = Color.FromArgb(248, 246, 244);
-            idActividadLblFrmBitacora.ForeColor = Color.FromArgb(80, 80, 80);
-            idActividadLblFrmBitacora.Location = new Point(8, 117);
+            idActividadLblFrmBitacora.BackColor = Color.FromArgb(169, 132, 94);
+            idActividadLblFrmBitacora.ForeColor = SystemColors.Control;
+            idActividadLblFrmBitacora.Location = new Point(7, 88);
             idActividadLblFrmBitacora.Name = "idActividadLblFrmBitacora";
-            idActividadLblFrmBitacora.Size = new Size(94, 20);
+            idActividadLblFrmBitacora.Size = new Size(74, 15);
             idActividadLblFrmBitacora.TabIndex = 5;
             idActividadLblFrmBitacora.Text = "ID Actividad:";
             // 
             // accionLblFrmBitacora
             // 
             accionLblFrmBitacora.AutoSize = true;
-            accionLblFrmBitacora.BackColor = Color.FromArgb(248, 246, 244);
-            accionLblFrmBitacora.ForeColor = Color.FromArgb(80, 80, 80);
-            accionLblFrmBitacora.Location = new Point(8, 175);
+            accionLblFrmBitacora.BackColor = Color.FromArgb(169, 132, 94);
+            accionLblFrmBitacora.ForeColor = SystemColors.Control;
+            accionLblFrmBitacora.Location = new Point(7, 131);
             accionLblFrmBitacora.Name = "accionLblFrmBitacora";
-            accionLblFrmBitacora.Size = new Size(122, 20);
+            accionLblFrmBitacora.Size = new Size(96, 15);
             accionLblFrmBitacora.TabIndex = 6;
             accionLblFrmBitacora.Text = "Accion realizada:";
             // 
             // idUsuarioLblFrmBitacora
             // 
             idUsuarioLblFrmBitacora.AutoSize = true;
-            idUsuarioLblFrmBitacora.BackColor = Color.FromArgb(248, 246, 244);
-            idUsuarioLblFrmBitacora.ForeColor = Color.FromArgb(80, 80, 80);
-            idUsuarioLblFrmBitacora.Location = new Point(12, 241);
+            idUsuarioLblFrmBitacora.BackColor = Color.FromArgb(169, 132, 94);
+            idUsuarioLblFrmBitacora.ForeColor = SystemColors.Control;
+            idUsuarioLblFrmBitacora.Location = new Point(10, 181);
             idUsuarioLblFrmBitacora.Name = "idUsuarioLblFrmBitacora";
-            idUsuarioLblFrmBitacora.Size = new Size(81, 20);
+            idUsuarioLblFrmBitacora.Size = new Size(64, 15);
             idUsuarioLblFrmBitacora.TabIndex = 7;
             idUsuarioLblFrmBitacora.Text = "ID Usuario:";
             // 
             // fechaHoraLblFrmBitacora
             // 
             fechaHoraLblFrmBitacora.AutoSize = true;
-            fechaHoraLblFrmBitacora.BackColor = Color.FromArgb(248, 246, 244);
-            fechaHoraLblFrmBitacora.ForeColor = Color.FromArgb(80, 80, 80);
-            fechaHoraLblFrmBitacora.Location = new Point(8, 302);
+            fechaHoraLblFrmBitacora.BackColor = Color.FromArgb(169, 132, 94);
+            fechaHoraLblFrmBitacora.ForeColor = SystemColors.Control;
+            fechaHoraLblFrmBitacora.Location = new Point(7, 226);
             fechaHoraLblFrmBitacora.Name = "fechaHoraLblFrmBitacora";
-            fechaHoraLblFrmBitacora.Size = new Size(98, 20);
+            fechaHoraLblFrmBitacora.Size = new Size(79, 15);
             fechaHoraLblFrmBitacora.TabIndex = 8;
             fechaHoraLblFrmBitacora.Text = "Fecha y Hora;";
             // 
             // idActividadTxtFrmBitacora
             // 
-            idActividadTxtFrmBitacora.Location = new Point(108, 117);
+            idActividadTxtFrmBitacora.BackColor = Color.FromArgb(169, 132, 94);
+            idActividadTxtFrmBitacora.ForeColor = SystemColors.Control;
+            idActividadTxtFrmBitacora.Location = new Point(94, 88);
+            idActividadTxtFrmBitacora.Margin = new Padding(3, 2, 3, 2);
             idActividadTxtFrmBitacora.Name = "idActividadTxtFrmBitacora";
-            idActividadTxtFrmBitacora.Size = new Size(245, 27);
+            idActividadTxtFrmBitacora.Size = new Size(215, 23);
             idActividadTxtFrmBitacora.TabIndex = 9;
             // 
             // accionTxtFrmBitacora
             // 
-            accionTxtFrmBitacora.Location = new Point(136, 168);
+            accionTxtFrmBitacora.BackColor = Color.FromArgb(169, 132, 94);
+            accionTxtFrmBitacora.ForeColor = SystemColors.Control;
+            accionTxtFrmBitacora.Location = new Point(119, 126);
+            accionTxtFrmBitacora.Margin = new Padding(3, 2, 3, 2);
             accionTxtFrmBitacora.Name = "accionTxtFrmBitacora";
-            accionTxtFrmBitacora.Size = new Size(350, 27);
+            accionTxtFrmBitacora.Size = new Size(307, 23);
             accionTxtFrmBitacora.TabIndex = 10;
             // 
             // idUsuarioTxtFrmBitacora
             // 
-            idUsuarioTxtFrmBitacora.Location = new Point(99, 238);
+            idUsuarioTxtFrmBitacora.BackColor = Color.FromArgb(169, 132, 94);
+            idUsuarioTxtFrmBitacora.ForeColor = SystemColors.Control;
+            idUsuarioTxtFrmBitacora.Location = new Point(87, 178);
+            idUsuarioTxtFrmBitacora.Margin = new Padding(3, 2, 3, 2);
             idUsuarioTxtFrmBitacora.Name = "idUsuarioTxtFrmBitacora";
-            idUsuarioTxtFrmBitacora.Size = new Size(238, 27);
+            idUsuarioTxtFrmBitacora.Size = new Size(209, 23);
             idUsuarioTxtFrmBitacora.TabIndex = 11;
             idUsuarioTxtFrmBitacora.TextChanged += textBox4_TextChanged;
             // 
             // fechaHoraTxtFrmBitacora
             // 
-            fechaHoraTxtFrmBitacora.Location = new Point(112, 299);
+            fechaHoraTxtFrmBitacora.BackColor = Color.FromArgb(169, 132, 94);
+            fechaHoraTxtFrmBitacora.ForeColor = SystemColors.Control;
+            fechaHoraTxtFrmBitacora.Location = new Point(98, 224);
+            fechaHoraTxtFrmBitacora.Margin = new Padding(3, 2, 3, 2);
             fechaHoraTxtFrmBitacora.Name = "fechaHoraTxtFrmBitacora";
-            fechaHoraTxtFrmBitacora.Size = new Size(188, 27);
+            fechaHoraTxtFrmBitacora.Size = new Size(165, 23);
             fechaHoraTxtFrmBitacora.TabIndex = 12;
             // 
             // agregarBtnFrmBitacora
             // 
-            agregarBtnFrmBitacora.BackColor = Color.FromArgb(212, 175, 55);
-            agregarBtnFrmBitacora.ForeColor = Color.FromArgb(34, 34, 34);
-            agregarBtnFrmBitacora.Location = new Point(8, 360);
+            agregarBtnFrmBitacora.BackColor = Color.FromArgb(169, 132, 94);
+            agregarBtnFrmBitacora.ForeColor = SystemColors.Control;
+            agregarBtnFrmBitacora.Location = new Point(7, 270);
+            agregarBtnFrmBitacora.Margin = new Padding(3, 2, 3, 2);
             agregarBtnFrmBitacora.Name = "agregarBtnFrmBitacora";
-            agregarBtnFrmBitacora.Size = new Size(156, 33);
+            agregarBtnFrmBitacora.Size = new Size(136, 25);
             agregarBtnFrmBitacora.TabIndex = 13;
             agregarBtnFrmBitacora.Text = "Agregar Registro";
             agregarBtnFrmBitacora.UseVisualStyleBackColor = false;
@@ -193,11 +210,12 @@ namespace ESFE.Clothing_Store.UI
             // 
             // verListaBtnFrmBitacora
             // 
-            verListaBtnFrmBitacora.BackColor = Color.FromArgb(34, 34, 34);
-            verListaBtnFrmBitacora.ForeColor = Color.FromArgb(212, 175, 55);
-            verListaBtnFrmBitacora.Location = new Point(182, 361);
+            verListaBtnFrmBitacora.BackColor = Color.FromArgb(169, 132, 94);
+            verListaBtnFrmBitacora.ForeColor = SystemColors.Control;
+            verListaBtnFrmBitacora.Location = new Point(159, 271);
+            verListaBtnFrmBitacora.Margin = new Padding(3, 2, 3, 2);
             verListaBtnFrmBitacora.Name = "verListaBtnFrmBitacora";
-            verListaBtnFrmBitacora.Size = new Size(185, 33);
+            verListaBtnFrmBitacora.Size = new Size(162, 25);
             verListaBtnFrmBitacora.TabIndex = 14;
             verListaBtnFrmBitacora.Text = "Ver lista (Admin)";
             verListaBtnFrmBitacora.UseVisualStyleBackColor = false;
@@ -205,11 +223,12 @@ namespace ESFE.Clothing_Store.UI
             // 
             // eliminarBtnFrmBitacora
             // 
-            eliminarBtnFrmBitacora.BackColor = Color.FromArgb(128, 34, 34);
-            eliminarBtnFrmBitacora.ForeColor = SystemColors.ButtonHighlight;
-            eliminarBtnFrmBitacora.Location = new Point(397, 360);
+            eliminarBtnFrmBitacora.BackColor = Color.FromArgb(169, 132, 94);
+            eliminarBtnFrmBitacora.ForeColor = SystemColors.Control;
+            eliminarBtnFrmBitacora.Location = new Point(347, 270);
+            eliminarBtnFrmBitacora.Margin = new Padding(3, 2, 3, 2);
             eliminarBtnFrmBitacora.Name = "eliminarBtnFrmBitacora";
-            eliminarBtnFrmBitacora.Size = new Size(139, 34);
+            eliminarBtnFrmBitacora.Size = new Size(122, 26);
             eliminarBtnFrmBitacora.TabIndex = 15;
             eliminarBtnFrmBitacora.Text = "Eliminar Registro";
             eliminarBtnFrmBitacora.UseVisualStyleBackColor = false;
@@ -217,10 +236,10 @@ namespace ESFE.Clothing_Store.UI
             // 
             // Bitacora
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Sienna;
-            ClientSize = new Size(812, 450);
+            BackColor = Color.FromArgb(250, 245, 240);
+            ClientSize = new Size(710, 338);
             Controls.Add(eliminarBtnFrmBitacora);
             Controls.Add(verListaBtnFrmBitacora);
             Controls.Add(agregarBtnFrmBitacora);
@@ -237,6 +256,7 @@ namespace ESFE.Clothing_Store.UI
             Controls.Add(buscarUsuarioTxtFrmBitacora);
             Controls.Add(buscarUsuarioLblFrmBitacora);
             Controls.Add(tituloLblFrmBitacora);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Bitacora";
             Text = "Bitacora";
             ResumeLayout(false);

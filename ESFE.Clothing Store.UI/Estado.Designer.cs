@@ -46,76 +46,86 @@
             // tituloLblFrmEstado
             // 
             tituloLblFrmEstado.AutoSize = true;
-            tituloLblFrmEstado.BackColor = System.Drawing.Color.FromArgb(255, 99, 71);
-            tituloLblFrmEstado.ForeColor = System.Drawing.Color.WhiteSmoke;
-            tituloLblFrmEstado.Padding = new Padding(6, 4, 6, 4);
-            tituloLblFrmEstado.Location = new Point(12, 9);
+            tituloLblFrmEstado.BackColor = Color.FromArgb(169, 132, 94);
+            tituloLblFrmEstado.ForeColor = SystemColors.Control;
+            tituloLblFrmEstado.Location = new Point(8, 10);
             tituloLblFrmEstado.Name = "tituloLblFrmEstado";
-            tituloLblFrmEstado.Size = new Size(66, 28);
+            tituloLblFrmEstado.Padding = new Padding(5, 3, 5, 3);
+            tituloLblFrmEstado.Size = new Size(52, 21);
             tituloLblFrmEstado.TabIndex = 0;
             tituloLblFrmEstado.Text = "Estado";
             // 
             // buscarLblFrmEstado
             // 
             buscarLblFrmEstado.AutoSize = true;
-            buscarLblFrmEstado.BackColor = System.Drawing.Color.FromArgb(0, 128, 128);
-            buscarLblFrmEstado.ForeColor = System.Drawing.Color.WhiteSmoke;
-            buscarLblFrmEstado.Location = new Point(12, 64);
+            buscarLblFrmEstado.BackColor = Color.FromArgb(169, 132, 94);
+            buscarLblFrmEstado.ForeColor = SystemColors.Control;
+            buscarLblFrmEstado.Location = new Point(8, 51);
             buscarLblFrmEstado.Name = "buscarLblFrmEstado";
-            buscarLblFrmEstado.Size = new Size(188, 20);
+            buscarLblFrmEstado.Size = new Size(149, 15);
             buscarLblFrmEstado.TabIndex = 1;
             buscarLblFrmEstado.Text = "Buscar estado por nombre ";
             // 
             // buscarTxtFrmEstado
             // 
-            buscarTxtFrmEstado.Location = new Point(224, 61);
+            buscarTxtFrmEstado.BackColor = Color.FromArgb(169, 132, 94);
+            buscarTxtFrmEstado.ForeColor = SystemColors.Control;
+            buscarTxtFrmEstado.Location = new Point(194, 49);
+            buscarTxtFrmEstado.Margin = new Padding(3, 2, 3, 2);
             buscarTxtFrmEstado.Name = "buscarTxtFrmEstado";
-            buscarTxtFrmEstado.Size = new Size(219, 27);
+            buscarTxtFrmEstado.Size = new Size(192, 23);
             buscarTxtFrmEstado.TabIndex = 2;
             // 
             // idEstadoLblFrmEstado
             // 
             idEstadoLblFrmEstado.AutoSize = true;
-            idEstadoLblFrmEstado.BackColor = System.Drawing.Color.FromArgb(227, 247, 237);
-            idEstadoLblFrmEstado.ForeColor = System.Drawing.Color.FromArgb(34, 34, 34);
-            idEstadoLblFrmEstado.Location = new Point(12, 120);
+            idEstadoLblFrmEstado.BackColor = Color.FromArgb(169, 132, 94);
+            idEstadoLblFrmEstado.ForeColor = SystemColors.Control;
+            idEstadoLblFrmEstado.Location = new Point(8, 93);
             idEstadoLblFrmEstado.Name = "idEstadoLblFrmEstado";
-            idEstadoLblFrmEstado.Size = new Size(77, 20);
+            idEstadoLblFrmEstado.Size = new Size(57, 15);
             idEstadoLblFrmEstado.TabIndex = 3;
             idEstadoLblFrmEstado.Text = "Id_estado";
             // 
             // estadoLblFrmEstado
             // 
             estadoLblFrmEstado.AutoSize = true;
-            estadoLblFrmEstado.BackColor = System.Drawing.Color.FromArgb(224, 247, 250);
-            estadoLblFrmEstado.ForeColor = System.Drawing.Color.FromArgb(34, 34, 34);
-            estadoLblFrmEstado.Location = new Point(12, 171);
+            estadoLblFrmEstado.BackColor = Color.FromArgb(169, 132, 94);
+            estadoLblFrmEstado.ForeColor = SystemColors.Control;
+            estadoLblFrmEstado.Location = new Point(8, 131);
             estadoLblFrmEstado.Name = "estadoLblFrmEstado";
-            estadoLblFrmEstado.Size = new Size(54, 20);
+            estadoLblFrmEstado.Size = new Size(42, 15);
             estadoLblFrmEstado.TabIndex = 4;
             estadoLblFrmEstado.Text = "Estado";
             // 
             // estadoTxtFrmEstado
             // 
-            estadoTxtFrmEstado.Location = new Point(82, 168);
+            estadoTxtFrmEstado.BackColor = Color.FromArgb(169, 132, 94);
+            estadoTxtFrmEstado.ForeColor = SystemColors.Control;
+            estadoTxtFrmEstado.Location = new Point(86, 131);
+            estadoTxtFrmEstado.Margin = new Padding(3, 2, 3, 2);
             estadoTxtFrmEstado.Name = "estadoTxtFrmEstado";
-            estadoTxtFrmEstado.Size = new Size(219, 27);
+            estadoTxtFrmEstado.Size = new Size(192, 23);
             estadoTxtFrmEstado.TabIndex = 5;
             // 
             // idEstadoTxtFrmEstado
             // 
-            idEstadoTxtFrmEstado.Location = new Point(101, 117);
+            idEstadoTxtFrmEstado.BackColor = Color.FromArgb(169, 132, 94);
+            idEstadoTxtFrmEstado.ForeColor = SystemColors.Control;
+            idEstadoTxtFrmEstado.Location = new Point(86, 91);
+            idEstadoTxtFrmEstado.Margin = new Padding(3, 2, 3, 2);
             idEstadoTxtFrmEstado.Name = "idEstadoTxtFrmEstado";
-            idEstadoTxtFrmEstado.Size = new Size(219, 27);
+            idEstadoTxtFrmEstado.Size = new Size(192, 23);
             idEstadoTxtFrmEstado.TabIndex = 6;
             // 
             // buscarBtnFrmEstado
             // 
-            buscarBtnFrmEstado.BackColor = System.Drawing.Color.FromArgb(255, 99, 71);
-            buscarBtnFrmEstado.ForeColor = System.Drawing.Color.WhiteSmoke;
-            buscarBtnFrmEstado.Location = new Point(471, 57);
+            buscarBtnFrmEstado.BackColor = Color.FromArgb(169, 132, 94);
+            buscarBtnFrmEstado.ForeColor = SystemColors.Control;
+            buscarBtnFrmEstado.Location = new Point(410, 46);
+            buscarBtnFrmEstado.Margin = new Padding(3, 2, 3, 2);
             buscarBtnFrmEstado.Name = "buscarBtnFrmEstado";
-            buscarBtnFrmEstado.Size = new Size(87, 35);
+            buscarBtnFrmEstado.Size = new Size(76, 26);
             buscarBtnFrmEstado.TabIndex = 7;
             buscarBtnFrmEstado.Text = "Buscar";
             buscarBtnFrmEstado.UseVisualStyleBackColor = false;
@@ -123,11 +133,12 @@
             // 
             // limpiarBtnFrmEstado
             // 
-            limpiarBtnFrmEstado.BackColor = System.Drawing.Color.FromArgb(102, 153, 204);
-            limpiarBtnFrmEstado.ForeColor = System.Drawing.Color.WhiteSmoke;
-            limpiarBtnFrmEstado.Location = new Point(577, 60);
+            limpiarBtnFrmEstado.BackColor = Color.FromArgb(169, 132, 94);
+            limpiarBtnFrmEstado.ForeColor = SystemColors.Control;
+            limpiarBtnFrmEstado.Location = new Point(503, 48);
+            limpiarBtnFrmEstado.Margin = new Padding(3, 2, 3, 2);
             limpiarBtnFrmEstado.Name = "limpiarBtnFrmEstado";
-            limpiarBtnFrmEstado.Size = new Size(87, 32);
+            limpiarBtnFrmEstado.Size = new Size(76, 24);
             limpiarBtnFrmEstado.TabIndex = 8;
             limpiarBtnFrmEstado.Text = "Limpiar";
             limpiarBtnFrmEstado.UseVisualStyleBackColor = false;
@@ -136,30 +147,32 @@
             // eliminarLblFrmEstado
             // 
             eliminarLblFrmEstado.AutoSize = true;
-            // Instrucciones en rosa pálido para suavidad
-            eliminarLblFrmEstado.BackColor = System.Drawing.Color.FromArgb(255, 240, 245);
-            eliminarLblFrmEstado.ForeColor = System.Drawing.Color.FromArgb(34, 34, 34);
-            eliminarLblFrmEstado.Location = new Point(12, 281);
+            eliminarLblFrmEstado.BackColor = Color.FromArgb(169, 132, 94);
+            eliminarLblFrmEstado.ForeColor = SystemColors.Control;
+            eliminarLblFrmEstado.Location = new Point(8, 214);
             eliminarLblFrmEstado.Name = "eliminarLblFrmEstado";
-            eliminarLblFrmEstado.Size = new Size(301, 20);
+            eliminarLblFrmEstado.Size = new Size(236, 15);
             eliminarLblFrmEstado.TabIndex = 9;
             eliminarLblFrmEstado.Text = "Eliminar o Agregar estado por nombrre o Id";
             // 
             // eliminarTxtFrmEstado
             // 
-            eliminarTxtFrmEstado.Location = new Point(319, 278);
+            eliminarTxtFrmEstado.BackColor = Color.FromArgb(169, 132, 94);
+            eliminarTxtFrmEstado.ForeColor = SystemColors.Control;
+            eliminarTxtFrmEstado.Location = new Point(277, 211);
+            eliminarTxtFrmEstado.Margin = new Padding(3, 2, 3, 2);
             eliminarTxtFrmEstado.Name = "eliminarTxtFrmEstado";
-            eliminarTxtFrmEstado.Size = new Size(219, 27);
+            eliminarTxtFrmEstado.Size = new Size(192, 23);
             eliminarTxtFrmEstado.TabIndex = 10;
             // 
             // eliminarBtnFrmEstado
             // 
-            // Botón Eliminar en tono tomate suave
-            eliminarBtnFrmEstado.BackColor = System.Drawing.Color.FromArgb(220, 90, 90);
-            eliminarBtnFrmEstado.ForeColor = System.Drawing.Color.WhiteSmoke;
-            eliminarBtnFrmEstado.Location = new Point(105, 320);
+            eliminarBtnFrmEstado.BackColor = Color.FromArgb(169, 132, 94);
+            eliminarBtnFrmEstado.ForeColor = SystemColors.Control;
+            eliminarBtnFrmEstado.Location = new Point(90, 243);
+            eliminarBtnFrmEstado.Margin = new Padding(3, 2, 3, 2);
             eliminarBtnFrmEstado.Name = "eliminarBtnFrmEstado";
-            eliminarBtnFrmEstado.Size = new Size(87, 35);
+            eliminarBtnFrmEstado.Size = new Size(76, 26);
             eliminarBtnFrmEstado.TabIndex = 11;
             eliminarBtnFrmEstado.Text = "Eliminar";
             eliminarBtnFrmEstado.UseVisualStyleBackColor = false;
@@ -167,24 +180,23 @@
             // 
             // guardarBtnFrmEstado
             // 
-            // Botón Agregar con acento dorado para CTA
-            guardarBtnFrmEstado.BackColor = System.Drawing.Color.FromArgb(212, 175, 55);
-            guardarBtnFrmEstado.ForeColor = System.Drawing.Color.FromArgb(34, 34, 34);
-            guardarBtnFrmEstado.Location = new Point(12, 320);
+            guardarBtnFrmEstado.BackColor = Color.FromArgb(169, 132, 94);
+            guardarBtnFrmEstado.ForeColor = SystemColors.Control;
+            guardarBtnFrmEstado.Location = new Point(8, 243);
+            guardarBtnFrmEstado.Margin = new Padding(3, 2, 3, 2);
             guardarBtnFrmEstado.Name = "guardarBtnFrmEstado";
-            guardarBtnFrmEstado.Size = new Size(87, 35);
+            guardarBtnFrmEstado.Size = new Size(76, 26);
             guardarBtnFrmEstado.TabIndex = 12;
-            guardarBtnFrmEstado.Click += button4_Click;
             guardarBtnFrmEstado.Text = "Guardar";
             guardarBtnFrmEstado.UseVisualStyleBackColor = false;
+            guardarBtnFrmEstado.Click += button4_Click;
             // 
             // Estado
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            // Fondo claro y neutro para resaltar la paleta del formulario
-            BackColor = System.Drawing.Color.FromArgb(250, 250, 250);
-            ClientSize = new Size(800, 450);
+            BackColor = Color.FromArgb(250, 245, 240);
+            ClientSize = new Size(700, 338);
             Controls.Add(guardarBtnFrmEstado);
             Controls.Add(eliminarBtnFrmEstado);
             Controls.Add(eliminarTxtFrmEstado);
@@ -199,6 +211,7 @@
             Controls.Add(buscarLblFrmEstado);
             Controls.Add(tituloLblFrmEstado);
             ForeColor = SystemColors.ButtonHighlight;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Estado";
             Text = "Estado";
             ResumeLayout(false);

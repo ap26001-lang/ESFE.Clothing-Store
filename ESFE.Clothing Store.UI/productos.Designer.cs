@@ -51,11 +51,12 @@
             // 
             // buscarBtnFrmProductos
             // 
-            buscarBtnFrmProductos.BackColor = Color.Lime;
-            buscarBtnFrmProductos.Location = new Point(362, 10);
-            buscarBtnFrmProductos.Margin = new Padding(2, 2, 2, 2);
+            buscarBtnFrmProductos.BackColor = Color.FromArgb(169, 132, 94);
+            buscarBtnFrmProductos.ForeColor = SystemColors.Control;
+            buscarBtnFrmProductos.Location = new Point(317, 8);
+            buscarBtnFrmProductos.Margin = new Padding(2);
             buscarBtnFrmProductos.Name = "buscarBtnFrmProductos";
-            buscarBtnFrmProductos.Size = new Size(90, 27);
+            buscarBtnFrmProductos.Size = new Size(79, 23);
             buscarBtnFrmProductos.TabIndex = 0;
             buscarBtnFrmProductos.Text = "buscar";
             buscarBtnFrmProductos.UseVisualStyleBackColor = false;
@@ -64,87 +65,95 @@
             // codigoProductoLblFrmProductos
             // 
             codigoProductoLblFrmProductos.AutoSize = true;
-            codigoProductoLblFrmProductos.BackColor = SystemColors.GrayText;
-            codigoProductoLblFrmProductos.Location = new Point(38, 82);
+            codigoProductoLblFrmProductos.BackColor = Color.FromArgb(169, 132, 94);
+            codigoProductoLblFrmProductos.ForeColor = SystemColors.Control;
+            codigoProductoLblFrmProductos.Location = new Point(14, 64);
             codigoProductoLblFrmProductos.Margin = new Padding(2, 0, 2, 0);
             codigoProductoLblFrmProductos.Name = "codigoProductoLblFrmProductos";
-            codigoProductoLblFrmProductos.Size = new Size(123, 20);
+            codigoProductoLblFrmProductos.Size = new Size(98, 15);
             codigoProductoLblFrmProductos.TabIndex = 1;
             codigoProductoLblFrmProductos.Text = "Codigo producto";
             // 
             // precioLblFrmProductos
             // 
             precioLblFrmProductos.AutoSize = true;
-            precioLblFrmProductos.BackColor = SystemColors.GrayText;
-            precioLblFrmProductos.Location = new Point(48, 131);
+            precioLblFrmProductos.BackColor = Color.FromArgb(169, 132, 94);
+            precioLblFrmProductos.ForeColor = SystemColors.Control;
+            precioLblFrmProductos.Location = new Point(72, 97);
             precioLblFrmProductos.Margin = new Padding(2, 0, 2, 0);
             precioLblFrmProductos.Name = "precioLblFrmProductos";
-            precioLblFrmProductos.Size = new Size(50, 20);
+            precioLblFrmProductos.Size = new Size(40, 15);
             precioLblFrmProductos.TabIndex = 2;
             precioLblFrmProductos.Text = "Precio";
             // 
             // nombreProductoLblFrmProductos
             // 
             nombreProductoLblFrmProductos.AutoSize = true;
-            nombreProductoLblFrmProductos.BackColor = SystemColors.GrayText;
-            nombreProductoLblFrmProductos.Location = new Point(341, 65);
+            nombreProductoLblFrmProductos.BackColor = Color.FromArgb(169, 132, 94);
+            nombreProductoLblFrmProductos.ForeColor = SystemColors.Control;
+            nombreProductoLblFrmProductos.Location = new Point(298, 54);
             nombreProductoLblFrmProductos.Margin = new Padding(2, 0, 2, 0);
             nombreProductoLblFrmProductos.Name = "nombreProductoLblFrmProductos";
-            nombreProductoLblFrmProductos.Size = new Size(129, 20);
+            nombreProductoLblFrmProductos.Size = new Size(103, 15);
             nombreProductoLblFrmProductos.TabIndex = 3;
             nombreProductoLblFrmProductos.Text = "Nombre producto";
             // 
             // idTallasLblFrmProductos
             // 
             idTallasLblFrmProductos.AutoSize = true;
-            idTallasLblFrmProductos.BackColor = SystemColors.GrayText;
-            idTallasLblFrmProductos.Location = new Point(38, 184);
+            idTallasLblFrmProductos.BackColor = Color.FromArgb(169, 132, 94);
+            idTallasLblFrmProductos.ForeColor = SystemColors.Control;
+            idTallasLblFrmProductos.Location = new Point(65, 134);
             idTallasLblFrmProductos.Margin = new Padding(2, 0, 2, 0);
             idTallasLblFrmProductos.Name = "idTallasLblFrmProductos";
-            idTallasLblFrmProductos.Size = new Size(61, 20);
+            idTallasLblFrmProductos.Size = new Size(47, 15);
             idTallasLblFrmProductos.TabIndex = 4;
             idTallasLblFrmProductos.Text = "id tallas";
             // 
             // idTipoProductoLblFrmProductos
             // 
             idTipoProductoLblFrmProductos.AutoSize = true;
-            idTipoProductoLblFrmProductos.BackColor = SystemColors.GrayText;
-            idTipoProductoLblFrmProductos.Location = new Point(352, 102);
+            idTipoProductoLblFrmProductos.BackColor = Color.FromArgb(169, 132, 94);
+            idTipoProductoLblFrmProductos.ForeColor = SystemColors.Control;
+            idTipoProductoLblFrmProductos.Location = new Point(308, 84);
             idTipoProductoLblFrmProductos.Margin = new Padding(2, 0, 2, 0);
             idTipoProductoLblFrmProductos.Name = "idTipoProductoLblFrmProductos";
-            idTipoProductoLblFrmProductos.Size = new Size(118, 20);
+            idTipoProductoLblFrmProductos.Size = new Size(93, 15);
             idTipoProductoLblFrmProductos.TabIndex = 5;
             idTipoProductoLblFrmProductos.Text = "id tipo producto";
             // 
             // idTelaLblFrmProductos
             // 
             idTelaLblFrmProductos.AutoSize = true;
-            idTelaLblFrmProductos.BackColor = SystemColors.GrayText;
-            idTelaLblFrmProductos.Location = new Point(371, 146);
+            idTelaLblFrmProductos.BackColor = Color.FromArgb(169, 132, 94);
+            idTelaLblFrmProductos.ForeColor = SystemColors.Control;
+            idTelaLblFrmProductos.Location = new Point(357, 123);
             idTelaLblFrmProductos.Margin = new Padding(2, 0, 2, 0);
             idTelaLblFrmProductos.Name = "idTelaLblFrmProductos";
-            idTelaLblFrmProductos.Size = new Size(51, 20);
+            idTelaLblFrmProductos.Size = new Size(39, 15);
             idTelaLblFrmProductos.TabIndex = 6;
             idTelaLblFrmProductos.Text = "id tela";
             // 
             // idColorLblFrmProductos
             // 
             idColorLblFrmProductos.AutoSize = true;
-            idColorLblFrmProductos.BackColor = SystemColors.GrayText;
-            idColorLblFrmProductos.Location = new Point(362, 189);
+            idColorLblFrmProductos.BackColor = Color.FromArgb(169, 132, 94);
+            idColorLblFrmProductos.ForeColor = SystemColors.Control;
+            idColorLblFrmProductos.Location = new Point(354, 159);
             idColorLblFrmProductos.Margin = new Padding(2, 0, 2, 0);
             idColorLblFrmProductos.Name = "idColorLblFrmProductos";
-            idColorLblFrmProductos.Size = new Size(60, 20);
+            idColorLblFrmProductos.Size = new Size(47, 15);
             idColorLblFrmProductos.TabIndex = 7;
             idColorLblFrmProductos.Text = "id color";
             // 
             // limpiarBtnFrmProductos
             // 
-            limpiarBtnFrmProductos.BackColor = Color.Lime;
-            limpiarBtnFrmProductos.Location = new Point(470, 10);
-            limpiarBtnFrmProductos.Margin = new Padding(2, 2, 2, 2);
+            limpiarBtnFrmProductos.BackColor = Color.FromArgb(169, 132, 94);
+            limpiarBtnFrmProductos.ForeColor = SystemColors.Control;
+            limpiarBtnFrmProductos.Location = new Point(411, 8);
+            limpiarBtnFrmProductos.Margin = new Padding(2);
             limpiarBtnFrmProductos.Name = "limpiarBtnFrmProductos";
-            limpiarBtnFrmProductos.Size = new Size(90, 27);
+            limpiarBtnFrmProductos.Size = new Size(79, 23);
             limpiarBtnFrmProductos.TabIndex = 8;
             limpiarBtnFrmProductos.Text = "limpiar";
             limpiarBtnFrmProductos.UseVisualStyleBackColor = false;
@@ -152,67 +161,82 @@
             // 
             // codigoProductoTxtFrmProductos
             // 
-            codigoProductoTxtFrmProductos.Location = new Point(165, 75);
-            codigoProductoTxtFrmProductos.Margin = new Padding(2, 2, 2, 2);
+            codigoProductoTxtFrmProductos.BackColor = Color.FromArgb(169, 132, 94);
+            codigoProductoTxtFrmProductos.ForeColor = SystemColors.Control;
+            codigoProductoTxtFrmProductos.Location = new Point(117, 56);
+            codigoProductoTxtFrmProductos.Margin = new Padding(2);
             codigoProductoTxtFrmProductos.Name = "codigoProductoTxtFrmProductos";
-            codigoProductoTxtFrmProductos.Size = new Size(128, 27);
+            codigoProductoTxtFrmProductos.Size = new Size(112, 23);
             codigoProductoTxtFrmProductos.TabIndex = 9;
             // 
             // precioTxtFrmProductos
             // 
-            precioTxtFrmProductos.Location = new Point(120, 126);
-            precioTxtFrmProductos.Margin = new Padding(2, 2, 2, 2);
+            precioTxtFrmProductos.BackColor = Color.FromArgb(169, 132, 94);
+            precioTxtFrmProductos.ForeColor = SystemColors.Control;
+            precioTxtFrmProductos.Location = new Point(117, 94);
+            precioTxtFrmProductos.Margin = new Padding(2);
             precioTxtFrmProductos.Name = "precioTxtFrmProductos";
-            precioTxtFrmProductos.Size = new Size(128, 27);
+            precioTxtFrmProductos.Size = new Size(112, 23);
             precioTxtFrmProductos.TabIndex = 10;
             // 
             // idTallasTxtFrmProductos
             // 
-            idTallasTxtFrmProductos.Location = new Point(120, 179);
-            idTallasTxtFrmProductos.Margin = new Padding(2, 2, 2, 2);
+            idTallasTxtFrmProductos.BackColor = Color.FromArgb(169, 132, 94);
+            idTallasTxtFrmProductos.ForeColor = SystemColors.Control;
+            idTallasTxtFrmProductos.Location = new Point(117, 134);
+            idTallasTxtFrmProductos.Margin = new Padding(2);
             idTallasTxtFrmProductos.Name = "idTallasTxtFrmProductos";
-            idTallasTxtFrmProductos.Size = new Size(128, 27);
+            idTallasTxtFrmProductos.Size = new Size(112, 23);
             idTallasTxtFrmProductos.TabIndex = 11;
             // 
             // nombreProductoTxtFrmProductos
             // 
-            nombreProductoTxtFrmProductos.Location = new Point(484, 62);
-            nombreProductoTxtFrmProductos.Margin = new Padding(2, 2, 2, 2);
+            nombreProductoTxtFrmProductos.BackColor = Color.FromArgb(169, 132, 94);
+            nombreProductoTxtFrmProductos.ForeColor = SystemColors.Control;
+            nombreProductoTxtFrmProductos.Location = new Point(424, 46);
+            nombreProductoTxtFrmProductos.Margin = new Padding(2);
             nombreProductoTxtFrmProductos.Name = "nombreProductoTxtFrmProductos";
-            nombreProductoTxtFrmProductos.Size = new Size(128, 27);
+            nombreProductoTxtFrmProductos.Size = new Size(112, 23);
             nombreProductoTxtFrmProductos.TabIndex = 12;
             // 
             // idTipoProductoTxtFrmProductos
             // 
-            idTipoProductoTxtFrmProductos.Location = new Point(484, 102);
-            idTipoProductoTxtFrmProductos.Margin = new Padding(2, 2, 2, 2);
+            idTipoProductoTxtFrmProductos.BackColor = Color.FromArgb(169, 132, 94);
+            idTipoProductoTxtFrmProductos.ForeColor = SystemColors.Control;
+            idTipoProductoTxtFrmProductos.Location = new Point(424, 76);
+            idTipoProductoTxtFrmProductos.Margin = new Padding(2);
             idTipoProductoTxtFrmProductos.Name = "idTipoProductoTxtFrmProductos";
-            idTipoProductoTxtFrmProductos.Size = new Size(128, 27);
+            idTipoProductoTxtFrmProductos.Size = new Size(112, 23);
             idTipoProductoTxtFrmProductos.TabIndex = 13;
             // 
             // idTelaTxtFrmProductos
             // 
-            idTelaTxtFrmProductos.Location = new Point(446, 146);
-            idTelaTxtFrmProductos.Margin = new Padding(2, 2, 2, 2);
+            idTelaTxtFrmProductos.BackColor = Color.FromArgb(169, 132, 94);
+            idTelaTxtFrmProductos.ForeColor = SystemColors.Control;
+            idTelaTxtFrmProductos.Location = new Point(424, 115);
+            idTelaTxtFrmProductos.Margin = new Padding(2);
             idTelaTxtFrmProductos.Name = "idTelaTxtFrmProductos";
-            idTelaTxtFrmProductos.Size = new Size(128, 27);
+            idTelaTxtFrmProductos.Size = new Size(112, 23);
             idTelaTxtFrmProductos.TabIndex = 14;
             // 
             // idColorTxtFrmProductos
             // 
-            idColorTxtFrmProductos.Location = new Point(446, 189);
-            idColorTxtFrmProductos.Margin = new Padding(2, 2, 2, 2);
+            idColorTxtFrmProductos.BackColor = Color.FromArgb(169, 132, 94);
+            idColorTxtFrmProductos.ForeColor = SystemColors.Control;
+            idColorTxtFrmProductos.Location = new Point(424, 151);
+            idColorTxtFrmProductos.Margin = new Padding(2);
             idColorTxtFrmProductos.Name = "idColorTxtFrmProductos";
-            idColorTxtFrmProductos.Size = new Size(128, 27);
+            idColorTxtFrmProductos.Size = new Size(112, 23);
             idColorTxtFrmProductos.TabIndex = 15;
             // 
             // agregarBtnFrmProductos
             // 
-            agregarBtnFrmProductos.BackColor = Color.Red;
-            agregarBtnFrmProductos.Location = new Point(6, 10);
-            agregarBtnFrmProductos.Margin = new Padding(2, 2, 2, 2);
+            agregarBtnFrmProductos.BackColor = Color.FromArgb(169, 132, 94);
+            agregarBtnFrmProductos.ForeColor = SystemColors.Control;
+            agregarBtnFrmProductos.Location = new Point(5, 8);
+            agregarBtnFrmProductos.Margin = new Padding(2);
             agregarBtnFrmProductos.Name = "agregarBtnFrmProductos";
-            agregarBtnFrmProductos.Size = new Size(90, 27);
+            agregarBtnFrmProductos.Size = new Size(79, 23);
             agregarBtnFrmProductos.TabIndex = 16;
             agregarBtnFrmProductos.Text = "agregar";
             agregarBtnFrmProductos.UseVisualStyleBackColor = false;
@@ -220,31 +244,34 @@
             // 
             // buscarTxtFrmProductos
             // 
-            buscarTxtFrmProductos.Location = new Point(120, 11);
-            buscarTxtFrmProductos.Margin = new Padding(2, 2, 2, 2);
+            buscarTxtFrmProductos.BackColor = Color.FromArgb(169, 132, 94);
+            buscarTxtFrmProductos.ForeColor = SystemColors.Control;
+            buscarTxtFrmProductos.Location = new Point(105, 8);
+            buscarTxtFrmProductos.Margin = new Padding(2);
             buscarTxtFrmProductos.Name = "buscarTxtFrmProductos";
-            buscarTxtFrmProductos.Size = new Size(192, 27);
+            buscarTxtFrmProductos.Size = new Size(168, 23);
             buscarTxtFrmProductos.TabIndex = 17;
             buscarTxtFrmProductos.TextChanged += buscarTxtFrmProductos_TextChanged;
             // 
             // eliminarBtnFrmProductos
             // 
-            eliminarBtnFrmProductos.BackColor = Color.White;
-            eliminarBtnFrmProductos.Location = new Point(38, 284);
-            eliminarBtnFrmProductos.Margin = new Padding(2, 2, 2, 2);
+            eliminarBtnFrmProductos.BackColor = Color.FromArgb(169, 132, 94);
+            eliminarBtnFrmProductos.ForeColor = SystemColors.Control;
+            eliminarBtnFrmProductos.Location = new Point(33, 213);
+            eliminarBtnFrmProductos.Margin = new Padding(2);
             eliminarBtnFrmProductos.Name = "eliminarBtnFrmProductos";
-            eliminarBtnFrmProductos.Size = new Size(90, 27);
+            eliminarBtnFrmProductos.Size = new Size(79, 28);
             eliminarBtnFrmProductos.TabIndex = 18;
-            eliminarBtnFrmProductos.Text = "eliminar";
+            eliminarBtnFrmProductos.Text = "Eliminar";
             eliminarBtnFrmProductos.UseVisualStyleBackColor = false;
             eliminarBtnFrmProductos.Click += eliminarBtnFrmProductos_Click;
             // 
             // productos
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.MenuHighlight;
-            ClientSize = new Size(640, 360);
+            BackColor = Color.SeaShell;
+            ClientSize = new Size(560, 270);
             Controls.Add(eliminarBtnFrmProductos);
             Controls.Add(buscarTxtFrmProductos);
             Controls.Add(agregarBtnFrmProductos);
@@ -265,7 +292,7 @@
             Controls.Add(codigoProductoLblFrmProductos);
             Controls.Add(buscarBtnFrmProductos);
             ForeColor = SystemColors.ActiveCaptionText;
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "productos";
             Text = "productos";
             Load += productos_Load;

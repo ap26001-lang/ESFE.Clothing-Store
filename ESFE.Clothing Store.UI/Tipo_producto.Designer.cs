@@ -45,9 +45,9 @@ namespace ESFE.Clothing_Store.UI
             // tituloLblFrmTipoProducto
             // 
             tituloLblFrmTipoProducto.AutoSize = true;
-            tituloLblFrmTipoProducto.BackColor = SystemColors.ActiveCaption;
-            tituloLblFrmTipoProducto.ForeColor = SystemColors.ActiveCaptionText;
-            tituloLblFrmTipoProducto.Location = new Point(1, 9);
+            tituloLblFrmTipoProducto.BackColor = Color.FromArgb(169, 132, 94);
+            tituloLblFrmTipoProducto.ForeColor = SystemColors.Control;
+            tituloLblFrmTipoProducto.Location = new Point(11, 16);
             tituloLblFrmTipoProducto.Name = "tituloLblFrmTipoProducto";
             tituloLblFrmTipoProducto.Size = new Size(83, 15);
             tituloLblFrmTipoProducto.TabIndex = 0;
@@ -56,102 +56,121 @@ namespace ESFE.Clothing_Store.UI
             // buscarLblFrmTipoProducto
             // 
             buscarLblFrmTipoProducto.AutoSize = true;
-            buscarLblFrmTipoProducto.BackColor = SystemColors.ActiveCaption;
-            buscarLblFrmTipoProducto.Location = new Point(1, 48);
+            buscarLblFrmTipoProducto.BackColor = Color.FromArgb(169, 132, 94);
+            buscarLblFrmTipoProducto.ForeColor = SystemColors.Control;
+            buscarLblFrmTipoProducto.Location = new Point(12, 63);
             buscarLblFrmTipoProducto.Name = "buscarLblFrmTipoProducto";
-            buscarLblFrmTipoProducto.Size = new Size(216, 15);
+            buscarLblFrmTipoProducto.Size = new Size(184, 15);
             buscarLblFrmTipoProducto.TabIndex = 1;
             buscarLblFrmTipoProducto.Text = "Buscar por id de tipo de producto";
             // 
             // idTipoProductoLblFrmTipoProducto
             // 
             idTipoProductoLblFrmTipoProducto.AutoSize = true;
-            idTipoProductoLblFrmTipoProducto.BackColor = SystemColors.ActiveCaption;
-            idTipoProductoLblFrmTipoProducto.Location = new Point(1, 138);
+            idTipoProductoLblFrmTipoProducto.BackColor = Color.FromArgb(169, 132, 94);
+            idTipoProductoLblFrmTipoProducto.ForeColor = SystemColors.Control;
+            idTipoProductoLblFrmTipoProducto.Location = new Point(37, 145);
             idTipoProductoLblFrmTipoProducto.Name = "idTipoProductoLblFrmTipoProducto";
-            idTipoProductoLblFrmTipoProducto.Size = new Size(71, 15);
+            idTipoProductoLblFrmTipoProducto.Size = new Size(69, 15);
             idTipoProductoLblFrmTipoProducto.TabIndex = 4;
             idTipoProductoLblFrmTipoProducto.Text = "Id Producto";
             // 
             // tipoProductoLblFrmTipoProducto
             // 
             tipoProductoLblFrmTipoProducto.AutoSize = true;
-            tipoProductoLblFrmTipoProducto.BackColor = SystemColors.ActiveCaption;
-            tipoProductoLblFrmTipoProducto.Location = new Point(1, 196);
+            tipoProductoLblFrmTipoProducto.BackColor = Color.FromArgb(169, 132, 94);
+            tipoProductoLblFrmTipoProducto.ForeColor = SystemColors.Control;
+            tipoProductoLblFrmTipoProducto.Location = new Point(23, 198);
             tipoProductoLblFrmTipoProducto.Name = "tipoProductoLblFrmTipoProducto";
-            tipoProductoLblFrmTipoProducto.Size = new Size(56, 15);
+            tipoProductoLblFrmTipoProducto.Size = new Size(83, 15);
             tipoProductoLblFrmTipoProducto.TabIndex = 5;
             tipoProductoLblFrmTipoProducto.Text = "Tipo Producto";
             // 
             // buscarTxtFrmTipoProducto
             // 
-            buscarTxtFrmTipoProducto.Location = new Point(223, 40);
+            buscarTxtFrmTipoProducto.BackColor = Color.FromArgb(169, 132, 94);
+            buscarTxtFrmTipoProducto.ForeColor = SystemColors.Control;
+            buscarTxtFrmTipoProducto.Location = new Point(233, 55);
             buscarTxtFrmTipoProducto.Name = "buscarTxtFrmTipoProducto";
             buscarTxtFrmTipoProducto.Size = new Size(185, 23);
             buscarTxtFrmTipoProducto.TabIndex = 8;
             // 
             // idTipoProductoTxtFrmTipoProducto
             // 
-            idTipoProductoTxtFrmTipoProducto.Location = new Point(98, 130);
+            idTipoProductoTxtFrmTipoProducto.BackColor = Color.FromArgb(169, 132, 94);
+            idTipoProductoTxtFrmTipoProducto.ForeColor = SystemColors.Control;
+            idTipoProductoTxtFrmTipoProducto.Location = new Point(133, 137);
             idTipoProductoTxtFrmTipoProducto.Name = "idTipoProductoTxtFrmTipoProducto";
             idTipoProductoTxtFrmTipoProducto.Size = new Size(181, 23);
             idTipoProductoTxtFrmTipoProducto.TabIndex = 10;
             // 
             // tipoProductoTxtFrmTipoProducto
             // 
-            tipoProductoTxtFrmTipoProducto.Location = new Point(98, 188);
+            tipoProductoTxtFrmTipoProducto.BackColor = Color.FromArgb(169, 132, 94);
+            tipoProductoTxtFrmTipoProducto.ForeColor = SystemColors.Control;
+            tipoProductoTxtFrmTipoProducto.Location = new Point(133, 195);
             tipoProductoTxtFrmTipoProducto.Name = "tipoProductoTxtFrmTipoProducto";
             tipoProductoTxtFrmTipoProducto.Size = new Size(181, 23);
             tipoProductoTxtFrmTipoProducto.TabIndex = 11;
             // 
             // buscarBtnFrmTipoProducto
             // 
-            buscarBtnFrmTipoProducto.Location = new Point(414, 38);
+            buscarBtnFrmTipoProducto.BackColor = Color.FromArgb(169, 132, 94);
+            buscarBtnFrmTipoProducto.ForeColor = SystemColors.Control;
+            buscarBtnFrmTipoProducto.Location = new Point(470, 55);
             buscarBtnFrmTipoProducto.Name = "buscarBtnFrmTipoProducto";
             buscarBtnFrmTipoProducto.Size = new Size(100, 27);
             buscarBtnFrmTipoProducto.TabIndex = 12;
             buscarBtnFrmTipoProducto.Text = "Buscar";
-            buscarBtnFrmTipoProducto.UseVisualStyleBackColor = true;
+            buscarBtnFrmTipoProducto.UseVisualStyleBackColor = false;
             buscarBtnFrmTipoProducto.Click += buscarBtnFrmTipoProducto_Click;
             // 
             // guardarBtnFrmTipoProducto
             // 
-            guardarBtnFrmTipoProducto.Location = new Point(98, 230);
+            guardarBtnFrmTipoProducto.BackColor = Color.FromArgb(169, 132, 94);
+            guardarBtnFrmTipoProducto.ForeColor = SystemColors.Control;
+            guardarBtnFrmTipoProducto.Location = new Point(108, 237);
             guardarBtnFrmTipoProducto.Name = "guardarBtnFrmTipoProducto";
             guardarBtnFrmTipoProducto.Size = new Size(100, 27);
             guardarBtnFrmTipoProducto.TabIndex = 13;
             guardarBtnFrmTipoProducto.Text = "Guardar";
-            guardarBtnFrmTipoProducto.UseVisualStyleBackColor = true;
+            guardarBtnFrmTipoProducto.UseVisualStyleBackColor = false;
             guardarBtnFrmTipoProducto.Click += guardarBtnFrmTipoProducto_Click;
             // 
             // eliminarBtnFrmTipoProducto
             // 
-            eliminarBtnFrmTipoProducto.Location = new Point(204, 230);
+            eliminarBtnFrmTipoProducto.BackColor = Color.FromArgb(169, 132, 94);
+            eliminarBtnFrmTipoProducto.ForeColor = SystemColors.Control;
+            eliminarBtnFrmTipoProducto.Location = new Point(214, 237);
             eliminarBtnFrmTipoProducto.Name = "eliminarBtnFrmTipoProducto";
             eliminarBtnFrmTipoProducto.Size = new Size(100, 27);
             eliminarBtnFrmTipoProducto.TabIndex = 14;
             eliminarBtnFrmTipoProducto.Text = "Eliminar";
-            eliminarBtnFrmTipoProducto.UseVisualStyleBackColor = true;
+            eliminarBtnFrmTipoProducto.UseVisualStyleBackColor = false;
             eliminarBtnFrmTipoProducto.Click += eliminarBtnFrmTipoProducto_Click;
             // 
             // agregarBtnFrmTipoProducto
             // 
-            agregarBtnFrmTipoProducto.Location = new Point(310, 230);
+            agregarBtnFrmTipoProducto.BackColor = Color.FromArgb(169, 132, 94);
+            agregarBtnFrmTipoProducto.ForeColor = SystemColors.Control;
+            agregarBtnFrmTipoProducto.Location = new Point(320, 237);
             agregarBtnFrmTipoProducto.Name = "agregarBtnFrmTipoProducto";
             agregarBtnFrmTipoProducto.Size = new Size(100, 27);
             agregarBtnFrmTipoProducto.TabIndex = 15;
             agregarBtnFrmTipoProducto.Text = "Agregar";
-            agregarBtnFrmTipoProducto.UseVisualStyleBackColor = true;
+            agregarBtnFrmTipoProducto.UseVisualStyleBackColor = false;
             agregarBtnFrmTipoProducto.Click += agregarBtnFrmTipoProducto_Click;
             // 
             // limpiarBtnFrmTipoProducto
             // 
-            limpiarBtnFrmTipoProducto.Location = new Point(416, 230);
+            limpiarBtnFrmTipoProducto.BackColor = Color.FromArgb(169, 132, 94);
+            limpiarBtnFrmTipoProducto.ForeColor = SystemColors.Control;
+            limpiarBtnFrmTipoProducto.Location = new Point(426, 237);
             limpiarBtnFrmTipoProducto.Name = "limpiarBtnFrmTipoProducto";
             limpiarBtnFrmTipoProducto.Size = new Size(100, 27);
             limpiarBtnFrmTipoProducto.TabIndex = 16;
             limpiarBtnFrmTipoProducto.Text = "Limpiar";
-            limpiarBtnFrmTipoProducto.UseVisualStyleBackColor = true;
+            limpiarBtnFrmTipoProducto.UseVisualStyleBackColor = false;
             limpiarBtnFrmTipoProducto.Click += limpiarBtnFrmTipoProducto_Click;
             // 
             // Tipo_producto

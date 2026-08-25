@@ -43,56 +43,56 @@
             // tipoTelaLblFrmTela
             // 
             tipoTelaLblFrmTela.AutoSize = true;
-            tipoTelaLblFrmTela.BackColor = Color.FromArgb(250, 245, 240); // Crema
-            tipoTelaLblFrmTela.ForeColor = Color.FromArgb(120, 81, 51); // Café
-            tipoTelaLblFrmTela.Location = new Point(42, 174);
+            tipoTelaLblFrmTela.BackColor = Color.FromArgb(250, 245, 240);
+            tipoTelaLblFrmTela.ForeColor = Color.FromArgb(120, 81, 51);
+            tipoTelaLblFrmTela.Location = new Point(37, 130);
             tipoTelaLblFrmTela.Margin = new Padding(2, 0, 2, 0);
             tipoTelaLblFrmTela.Name = "tipoTelaLblFrmTela";
-            tipoTelaLblFrmTela.Size = new Size(89, 20);
+            tipoTelaLblFrmTela.Size = new Size(69, 15);
             tipoTelaLblFrmTela.TabIndex = 0;
             tipoTelaLblFrmTela.Text = "Tipo de tela";
             // 
             // idTelaLblFrmTela
             // 
             idTelaLblFrmTela.AutoSize = true;
-            idTelaLblFrmTela.BackColor = Color.FromArgb(250, 245, 240); // Crema
-            idTelaLblFrmTela.ForeColor = Color.FromArgb(120, 81, 51); // Café
-            idTelaLblFrmTela.Location = new Point(57, 130);
+            idTelaLblFrmTela.BackColor = Color.FromArgb(250, 245, 240);
+            idTelaLblFrmTela.ForeColor = Color.FromArgb(120, 81, 51);
+            idTelaLblFrmTela.Location = new Point(50, 98);
             idTelaLblFrmTela.Margin = new Padding(2, 0, 2, 0);
             idTelaLblFrmTela.Name = "idTelaLblFrmTela";
-            idTelaLblFrmTela.Size = new Size(53, 20);
+            idTelaLblFrmTela.Size = new Size(41, 15);
             idTelaLblFrmTela.TabIndex = 1;
             idTelaLblFrmTela.Text = "Id Tela";
             // 
             // idTelaTxtFrmTela
             // 
-            idTelaTxtFrmTela.BackColor = Color.FromArgb(255, 250, 245); // Crema muy claro
-            idTelaTxtFrmTela.ForeColor = Color.FromArgb(80, 60, 40); // Café oscuro
-            idTelaTxtFrmTela.Location = new Point(158, 130);
-            idTelaTxtFrmTela.Margin = new Padding(2, 2, 2, 2);
+            idTelaTxtFrmTela.BackColor = Color.FromArgb(255, 250, 245);
+            idTelaTxtFrmTela.ForeColor = Color.FromArgb(80, 60, 40);
+            idTelaTxtFrmTela.Location = new Point(138, 98);
+            idTelaTxtFrmTela.Margin = new Padding(2);
             idTelaTxtFrmTela.Name = "idTelaTxtFrmTela";
-            idTelaTxtFrmTela.Size = new Size(121, 27);
+            idTelaTxtFrmTela.Size = new Size(106, 23);
             idTelaTxtFrmTela.TabIndex = 2;
             // 
             // tipoTelaTxtFrmTela
             // 
-            tipoTelaTxtFrmTela.BackColor = Color.FromArgb(255, 250, 245); // Crema muy claro
-            tipoTelaTxtFrmTela.ForeColor = Color.FromArgb(80, 60, 40); // Café oscuro
-            tipoTelaTxtFrmTela.Location = new Point(158, 174);
-            tipoTelaTxtFrmTela.Margin = new Padding(2, 2, 2, 2);
+            tipoTelaTxtFrmTela.BackColor = Color.FromArgb(255, 250, 245);
+            tipoTelaTxtFrmTela.ForeColor = Color.FromArgb(80, 60, 40);
+            tipoTelaTxtFrmTela.Location = new Point(138, 130);
+            tipoTelaTxtFrmTela.Margin = new Padding(2);
             tipoTelaTxtFrmTela.Name = "tipoTelaTxtFrmTela";
-            tipoTelaTxtFrmTela.Size = new Size(121, 27);
+            tipoTelaTxtFrmTela.Size = new Size(106, 23);
             tipoTelaTxtFrmTela.TabIndex = 3;
             // 
             // buscarBtnFrmTela
             // 
-            buscarBtnFrmTela.BackColor = Color.FromArgb(169, 132, 94); // Café
-            buscarBtnFrmTela.ForeColor = Color.FromArgb(255, 245, 230);
+            buscarBtnFrmTela.BackColor = Color.FromArgb(169, 132, 94);
             buscarBtnFrmTela.FlatStyle = FlatStyle.Flat;
-            buscarBtnFrmTela.Location = new Point(37, 50);
-            buscarBtnFrmTela.Margin = new Padding(2, 2, 2, 2);
+            buscarBtnFrmTela.ForeColor = Color.FromArgb(255, 245, 230);
+            buscarBtnFrmTela.Location = new Point(32, 38);
+            buscarBtnFrmTela.Margin = new Padding(2);
             buscarBtnFrmTela.Name = "buscarBtnFrmTela";
-            buscarBtnFrmTela.Size = new Size(90, 27);
+            buscarBtnFrmTela.Size = new Size(79, 24);
             buscarBtnFrmTela.TabIndex = 4;
             buscarBtnFrmTela.Text = "Buscar";
             buscarBtnFrmTela.UseVisualStyleBackColor = false;
@@ -100,22 +100,23 @@
             // 
             // buscarTxtFrmTela
             // 
-            buscarTxtFrmTela.BackColor = Color.FromArgb(255, 250, 245); // Crema muy claro
-            buscarTxtFrmTela.ForeColor = Color.FromArgb(80, 60, 40); // Café oscuro
-            buscarTxtFrmTela.Location = new Point(150, 52);
-            buscarTxtFrmTela.Margin = new Padding(2, 2, 2, 2);
+            buscarTxtFrmTela.BackColor = Color.FromArgb(255, 250, 245);
+            buscarTxtFrmTela.ForeColor = Color.FromArgb(80, 60, 40);
+            buscarTxtFrmTela.Location = new Point(131, 39);
+            buscarTxtFrmTela.Margin = new Padding(2);
             buscarTxtFrmTela.Name = "buscarTxtFrmTela";
-            buscarTxtFrmTela.Size = new Size(147, 27);
+            buscarTxtFrmTela.Size = new Size(129, 23);
             buscarTxtFrmTela.TabIndex = 5;
             // 
             // agregarBtnFrmTela
             // 
-            agregarBtnFrmTela.BackColor = Color.FromArgb(169, 132, 94); // Café
-            agregarBtnFrmTela.ForeColor = Color.FromArgb(255, 245, 230);
+            agregarBtnFrmTela.BackColor = Color.FromArgb(169, 132, 94);
             agregarBtnFrmTela.FlatStyle = FlatStyle.Flat;
-            agregarBtnFrmTela.Location = new Point(322, 245);
+            agregarBtnFrmTela.ForeColor = Color.FromArgb(255, 245, 230);
+            agregarBtnFrmTela.Location = new Point(300, 40);
+            agregarBtnFrmTela.Margin = new Padding(3, 2, 3, 2);
             agregarBtnFrmTela.Name = "agregarBtnFrmTela";
-            agregarBtnFrmTela.Size = new Size(115, 29);
+            agregarBtnFrmTela.Size = new Size(101, 22);
             agregarBtnFrmTela.TabIndex = 7;
             agregarBtnFrmTela.Text = "Agregar";
             agregarBtnFrmTela.UseVisualStyleBackColor = true;
@@ -123,12 +124,13 @@
             // 
             // eliminarBtnFrmTela
             // 
-            eliminarBtnFrmTela.BackColor = Color.FromArgb(169, 132, 94); // Café
-            eliminarBtnFrmTela.ForeColor = Color.FromArgb(255, 245, 230);
+            eliminarBtnFrmTela.BackColor = Color.FromArgb(169, 132, 94);
             eliminarBtnFrmTela.FlatStyle = FlatStyle.Flat;
-            eliminarBtnFrmTela.Location = new Point(473, 245);
+            eliminarBtnFrmTela.ForeColor = Color.FromArgb(255, 245, 230);
+            eliminarBtnFrmTela.Location = new Point(449, 40);
+            eliminarBtnFrmTela.Margin = new Padding(3, 2, 3, 2);
             eliminarBtnFrmTela.Name = "eliminarBtnFrmTela";
-            eliminarBtnFrmTela.Size = new Size(94, 29);
+            eliminarBtnFrmTela.Size = new Size(82, 22);
             eliminarBtnFrmTela.TabIndex = 8;
             eliminarBtnFrmTela.Text = "Eliminar";
             eliminarBtnFrmTela.UseVisualStyleBackColor = true;
@@ -136,12 +138,13 @@
             // 
             // guardarBtnFrmTela
             // 
-            guardarBtnFrmTela.BackColor = Color.FromArgb(169, 132, 94); // Café
-            guardarBtnFrmTela.ForeColor = Color.FromArgb(255, 245, 230);
+            guardarBtnFrmTela.BackColor = Color.FromArgb(169, 132, 94);
             guardarBtnFrmTela.FlatStyle = FlatStyle.Flat;
-            guardarBtnFrmTela.Location = new Point(322, 290);
+            guardarBtnFrmTela.ForeColor = Color.FromArgb(255, 245, 230);
+            guardarBtnFrmTela.Location = new Point(300, 123);
+            guardarBtnFrmTela.Margin = new Padding(3, 2, 3, 2);
             guardarBtnFrmTela.Name = "guardarBtnFrmTela";
-            guardarBtnFrmTela.Size = new Size(115, 29);
+            guardarBtnFrmTela.Size = new Size(101, 22);
             guardarBtnFrmTela.TabIndex = 9;
             guardarBtnFrmTela.Text = "Guardar";
             guardarBtnFrmTela.UseVisualStyleBackColor = true;
@@ -149,12 +152,13 @@
             // 
             // limpiarBtnFrmTela
             // 
-            limpiarBtnFrmTela.BackColor = Color.FromArgb(169, 132, 94); // Café
-            limpiarBtnFrmTela.ForeColor = Color.FromArgb(255, 245, 230);
+            limpiarBtnFrmTela.BackColor = Color.FromArgb(169, 132, 94);
             limpiarBtnFrmTela.FlatStyle = FlatStyle.Flat;
-            limpiarBtnFrmTela.Location = new Point(473, 290);
+            limpiarBtnFrmTela.ForeColor = Color.FromArgb(255, 245, 230);
+            limpiarBtnFrmTela.Location = new Point(449, 124);
+            limpiarBtnFrmTela.Margin = new Padding(3, 2, 3, 2);
             limpiarBtnFrmTela.Name = "limpiarBtnFrmTela";
-            limpiarBtnFrmTela.Size = new Size(94, 29);
+            limpiarBtnFrmTela.Size = new Size(82, 26);
             limpiarBtnFrmTela.TabIndex = 10;
             limpiarBtnFrmTela.Text = "Limpiar";
             limpiarBtnFrmTela.UseVisualStyleBackColor = true;
@@ -162,9 +166,9 @@
             // 
             // Tela
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(640, 360);
+            ClientSize = new Size(560, 270);
             Controls.Add(limpiarBtnFrmTela);
             Controls.Add(guardarBtnFrmTela);
             Controls.Add(eliminarBtnFrmTela);
@@ -176,7 +180,7 @@
             Controls.Add(idTelaLblFrmTela);
             Controls.Add(tipoTelaLblFrmTela);
             ForeColor = Color.Black;
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "Tela";
             Text = "Tela";
             TransparencyKey = Color.FromArgb(192, 64, 0);
