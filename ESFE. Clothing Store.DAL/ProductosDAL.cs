@@ -7,9 +7,7 @@ namespace ESFE._Clothing_Store.DAL
 {
     public static class ProductosDAL
     {
-        /// <summary>
-        /// Inserta un nuevo producto en la base de datos.
-        /// </summary>
+        
         public static int Insertar(Productos entidad)
         {
             if (entidad == null) throw new ArgumentNullException(nameof(entidad));
@@ -36,9 +34,7 @@ namespace ESFE._Clothing_Store.DAL
             }
         }
 
-        /// <summary>
-        /// Actualiza un producto existente en la base de datos.
-        /// </summary>
+        
         public static int Actualizar(Productos entidad)
         {
             if (entidad == null) throw new ArgumentNullException(nameof(entidad));
@@ -65,9 +61,6 @@ namespace ESFE._Clothing_Store.DAL
             }
         }
 
-        /// <summary>
-        /// Elimina un producto de la base de datos.
-        /// </summary>
         public static int Eliminar(string codigoProducto)
         {
             using (IDbConnection cn = DBComun.ObtenerConexion())
@@ -85,9 +78,7 @@ namespace ESFE._Clothing_Store.DAL
             }
         }
 
-        /// <summary>
-        /// Obtiene todos los productos de la base de datos.
-        /// </summary>
+       
         public static List<Productos> ObtenerTodos()
         {
             var lista = new List<Productos>();
@@ -123,9 +114,6 @@ namespace ESFE._Clothing_Store.DAL
             return lista;
         }
 
-        /// <summary>
-        /// Obtiene un producto específico por su código.
-        /// </summary>
         public static Productos ObtenerPorId(string codigoProducto)
         {
             Productos item = null;
