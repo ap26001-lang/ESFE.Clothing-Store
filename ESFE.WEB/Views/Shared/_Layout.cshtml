@@ -1,50 +1,271 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ESFE.WEB</title>
-    <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ESFE.WEB.styles.css" asp-append-version="true" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MAISON ÉLITE</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+    <style>
+            :root {
+                --bg-sidebar: #130a06;
+                --bg-active: #23120b;
+                --color-gold: #c59b27;
+                --color-text-muted: #8c7b73;
+                --color-text-light: #e6dfd5;
+                --bg-main: #f9f6f0;
+                --color-dark: #130a06;
+            }
+
+            body {
+                background-color: var(--bg-main);
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                margin: 0;
+            }
+
+            /* ---------------------------------------------------
+               1. ESTILOS PARA MENÚ SUPERIOR (CLIENTE)
+            --------------------------------------------------- */
+            .client-header {
+                background-color: var(--bg-main);
+                border-bottom: 1px solid rgba(140, 123, 115, 0.2);
+                padding: 1.2rem 3rem;
+            }
+
+            .client-brand {
+                color: var(--color-dark);
+                font-family: serif;
+                letter-spacing: 4px;
+                font-size: 1.2rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                text-decoration: none;
+            }
+
+            .client-nav .nav-link {
+                color: var(--color-text-muted);
+                font-size: 0.85rem;
+                letter-spacing: 1.5px;
+                text-transform: uppercase;
+                font-weight: 500;
+                padding: 0.5rem 1.2rem;
+                transition: all 0.2s ease;
+                position: relative;
+            }
+
+            .client-nav .nav-link:hover {
+                color: var(--color-dark);
+            }
+
+            .client-nav .nav-link.active {
+                color: var(--color-dark);
+                font-weight: 600;
+            }
+
+            /* Línea inferior indicadora de menú activo */
+            .client-nav .nav-link.active::after {
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                left: 20%;
+                width: 60%;
+                height: 2px;
+                background-color: var(--color-gold);
+            }
+
+            .client-logout {
+                color: var(--color-text-muted);
+                font-size: 0.85rem;
+                letter-spacing: 1.5px;
+                text-transform: uppercase;
+                text-decoration: none;
+            }
+
+            .client-logout:hover {
+                color: var(--color-dark);
+            }
+
+            /* ---------------------------------------------------
+               2. ESTILOS PARA MENÚ LATERAL (ADMIN / VENDEDOR)
+            --------------------------------------------------- */
+            .wrapper-admin {
+                display: flex;
+                min-height: 100vh;
+            }
+
+            #sidebar {
+                width: 260px;
+                background-color: var(--bg-sidebar);
+                color: var(--color-text-light);
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 100;
+            }
+
+            .sidebar-header {
+                padding: 2rem 1.5rem 1rem 1.5rem;
+            }
+
+            .brand-title {
+                color: var(--color-gold);
+                font-family: serif;
+                letter-spacing: 3px;
+                font-size: 1.1rem;
+                font-weight: 700;
+                margin: 0;
+                text-transform: uppercase;
+            }
+
+            .role-subtitle {
+                color: var(--color-text-muted);
+                font-size: 0.85rem;
+                margin-top: 0.2rem;
+            }
+
+            .sidebar-menu {
+                list-style: none;
+                padding: 0;
+                margin: 1.5rem 0 0 0;
+                flex-grow: 1;
+            }
+
+            .sidebar-menu li a {
+                display: flex;
+                align-items: center;
+                padding: 0.85rem 1.5rem;
+                color: var(--color-text-light);
+                text-decoration: none;
+                font-size: 0.95rem;
+                transition: all 0.2s ease;
+                border-left: 3px solid transparent;
+            }
+
+            .sidebar-menu li a:hover,
+            .sidebar-menu li.active a {
+                background-color: var(--bg-active);
+                color: var(--color-gold);
+                border-left-color: var(--color-gold);
+            }
+
+            .sidebar-menu li a i {
+                margin-right: 12px;
+                font-size: 1.1rem;
+            }
+
+            .sidebar-footer {
+                padding: 1.5rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .admin-content {
+                margin-left: 260px;
+                width: calc(100% - 260px);
+                padding: 2rem;
+            }
+
+            .client-content {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 2.5rem 1.5rem;
+            }
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ESFE.WEB</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+
+    @* VISTA Y NAVEGACIÓN SI ES CLIENTE *@
+    @if (!User.Identity.IsAuthenticated || User.IsInRole("Cliente"))
+    {
+        <header class="client-header">
+            <div class="d-flex align-items-center justify-content-between">
+                <!-- LOGO -->
+                <a asp-controller="Home" asp-action="Index" class="client-brand">MAISON ÉLITE</a>
+
+                <!-- MENÚ CENTRAL -->
+                <nav class="client-nav d-flex align-items-center">
+                    <a asp-controller="Home" asp-action="Index" class="nav-link active">Inicio</a>
+                    <a asp-controller="Pedidos" asp-action="Index" class="nav-link">Mis Pedidos</a>
+                    <a asp-controller="Catalogo" asp-action="Index" class="nav-link">Catálogo</a>
+                    <a asp-controller="Perfil" asp-action="Index" class="nav-link">Mi Perfil</a>
+                </nav>
+
+                <!-- BOTÓN SALIR -->
+                <div>
+                    <a asp-controller="Account" asp-action="Logout" class="client-logout">Salir</a>
                 </div>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+        </header>
+
+        <main class="client-content">
             @RenderBody()
         </main>
-    </div>
+    }
+    else
+    {
+        @* VISTA Y NAVEGACIÓN SI ES ADMIN O VENDEDOR *@
+        <div class="wrapper-admin">
+            <nav id="sidebar">
+                <div>
+                    <div class="sidebar-header">
+                        <h1 class="brand-title">MAISON ÉLITE</h1>
+                        <div class="role-subtitle">
+                            @if (User.IsInRole("Administrador"))
+                            {
+                                <span>Administrador</span>
+                            }
+                            else if (User.IsInRole("Vendedor"))
+                            {
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - ESFE.WEB - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                                <span>Vendedor</span>
+                            }
+                        </div>
+                    </div>
+
+                    <ul class="sidebar-menu">
+                        @if (User.IsInRole("Administrador"))
+                        {
+                            <li class="active"><a asp-controller="Dashboard" asp-action="Index"><i class="bi bi-diamond-fill"></i> Dashboard</a></li>
+                            <li><a asp-controller="Catalogo" asp-action="Index"><i class="bi bi-square"></i> Catálogo</a></li>
+                            <li><a asp-controller="Clientes" asp-action="Index"><i class="bi bi-circle"></i> Clientes</a></li>
+                            <li><a asp-controller="PuntoVenta" asp-action="Index"><i class="bi bi-circle-half"></i> Punto de Venta</a></li>
+                            <li><a asp-controller="Ventas" asp-action="Historial"><i class="bi bi-pie-chart-half"></i> Historial de Ventas</a></li>
+                            <li><a asp-controller="Reportes" asp-action="Index"><i class="bi bi-pie-chart"></i> Reportes</a></li>
+                            <li><a asp-controller="Bitacora" asp-action="Index"><i class="bi bi-record-circle"></i> Bitácora</a></li>
+                            <li><a asp-controller="Respaldos" asp-action="Index"><i class="bi bi-bullseye"></i> Respaldos</a></li>
+                        }
+
+                        @if (User.IsInRole("Vendedor"))
+                        {
+                            <li class="active"><a asp-controller="Catalogo" asp-action="Index"><i class="bi bi-square"></i> Catálogo</a></li>
+                            <li><a asp-controller="Clientes" asp-action="Index"><i class="bi bi-circle"></i> Clientes</a></li>
+                            <li><a asp-controller="PuntoVenta" asp-action="Index"><i class="bi bi-circle-half"></i> Punto de Venta</a></li>
+                        }
+                    </ul>
+                </div>
+
+                <div class="sidebar-footer">
+                    <a asp-controller="Account" asp-action="Logout" class="client-logout" style="color: var(--color-text-muted);">
+                        <i class="bi bi-arrow-return-left me-2"></i> Cerrar sesión
+                    </a>
+                </div>
+            </nav>
+
+            <main class="admin-content">
+                @RenderBody()
+            </main>
         </div>
-    </footer>
+    }
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
