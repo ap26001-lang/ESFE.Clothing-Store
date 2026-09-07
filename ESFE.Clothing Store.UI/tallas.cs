@@ -66,11 +66,9 @@ namespace ESFE.Clothing_Store.UI
 
         private void agregarBtnFrmTallas_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(tallaProductoTxtFrmTallas.Text.Trim()))
-            {
-                MessageBox.Show("Ingrese la talla del producto", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            // Validaciones
+            if (!ValidadorCampos.ValidarSoloLetras(tallaProductoTxtFrmTallas.Text, "Talla Producto")) return;
+            if (!ValidadorCampos.ValidarLongitudMaxima(tallaProductoTxtFrmTallas.Text, "Talla Producto", 10)) return;
 
             try
             {

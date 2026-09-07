@@ -66,11 +66,9 @@ namespace ESFE.Clothing_Store.UI
 
         private void agregarBtnFrmTipoProducto_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(tipoProductoTxtFrmTipoProducto.Text.Trim()))
-            {
-                MessageBox.Show("Ingrese el tipo de producto", "Validaci\u00F3n", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            // Validaciones
+            if (!ValidadorCampos.ValidarSoloLetras(tipoProductoTxtFrmTipoProducto.Text, "Tipo de Producto")) return;
+            if (!ValidadorCampos.ValidarLongitudMaxima(tipoProductoTxtFrmTipoProducto.Text, "Tipo de Producto", 100)) return;
 
             try
             {
@@ -80,7 +78,7 @@ namespace ESFE.Clothing_Store.UI
                 };
 
                 TipoProductoDAL.Insertar(tipoProducto);
-                MessageBox.Show("Tipo de producto agregado exitosamente", "\u00C9xito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Tipo de producto agregado exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClearForm();
             }
             catch (Exception ex)

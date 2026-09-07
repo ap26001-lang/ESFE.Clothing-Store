@@ -66,11 +66,10 @@ namespace ESFE.Clothing_Store.UI
 
         private void agregarBtnFrmUsuario_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(usuarioTxtFrmUsuario.Text.Trim()))
-            {
-                MessageBox.Show("Ingrese el nombre de usuario", "Validaci\u00F3n", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            // Validaciones
+            if (!ValidadorCampos.ValidarSoloLetras(usuarioTxtFrmUsuario.Text, "Nombre de usuario")) return;
+            if (!ValidadorCampos.ValidarLongitudMinima(usuarioTxtFrmUsuario.Text, "Nombre de usuario", 4)) return;
+            if (!ValidadorCampos.ValidarLongitudMaxima(usuarioTxtFrmUsuario.Text, "Nombre de usuario", 50)) return;
 
             try
             {
@@ -80,7 +79,7 @@ namespace ESFE.Clothing_Store.UI
                 };
 
                 UsuarioDAL.Insertar(usuario);
-                MessageBox.Show("Usuario agregado exitosamente", "\u00C9xito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Usuario agregado exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClearForm();
             }
             catch (Exception ex)

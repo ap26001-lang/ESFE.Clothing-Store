@@ -66,11 +66,9 @@ namespace ESFE.Clothing_Store.UI
 
         private void agregarBtnFrmTela_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(tipoTelaTxtFrmTela.Text.Trim()))
-            {
-                MessageBox.Show("Ingrese el tipo de tela", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            // Validaciones
+            if (!ValidadorCampos.ValidarSoloLetras(tipoTelaTxtFrmTela.Text, "Tipo de Tela")) return;
+            if (!ValidadorCampos.ValidarLongitudMaxima(tipoTelaTxtFrmTela.Text, "Tipo de Tela", 50)) return;
 
             try
             {

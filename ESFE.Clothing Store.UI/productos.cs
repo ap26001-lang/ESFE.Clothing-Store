@@ -76,21 +76,24 @@ namespace ESFE.Clothing_Store.UI
 
         private void agregarBtnFrmProductos_Click(object sender, EventArgs e)
         {
-            if (!ValidateFields())
-            {
-                MessageBox.Show("Complete todos los campos requeridos", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            // Validaciones
+            if (!ValidadorCampos.ValidarSinCaracteresEspeciales(codigoProductoTxtFrmProductos.Text, "Código Producto")) return;
+            if (!ValidadorCampos.ValidarSoloLetras(nombreProductoTxtFrmProductos.Text, "Nombre Producto")) return;
+            if (!ValidadorCampos.ValidarMayorQueCero(precioTxtFrmProductos.Text, "Precio")) return;
+            if (!ValidadorCampos.ValidarSoloNumeros(idTipoProductoTxtFrmProductos.Text, "ID Tipo Producto")) return;
+            if (!ValidadorCampos.ValidarSoloNumeros(idTallasTxtFrmProductos.Text, "ID Tallas")) return;
+            if (!ValidadorCampos.ValidarSoloNumeros(idTelaTxtFrmProductos.Text, "ID Tela")) return;
+            if (!ValidadorCampos.ValidarSoloNumeros(idColorTxtFrmProductos.Text, "ID Color")) return;
 
             Productos prod = new Productos
             {
                 CodigoProducto = codigoProductoTxtFrmProductos.Text.Trim(),
                 NombreProducto = nombreProductoTxtFrmProductos.Text.Trim(),
                 precio = precioTxtFrmProductos.Text.Trim(),
-                idTipoProducto = ParseIntOrZero(idTipoProductoTxtFrmProductos.Text),
-                idtallas = ParseIntOrZero(idTallasTxtFrmProductos.Text),
-                idtelas = ParseIntOrZero(idTelaTxtFrmProductos.Text),
-                idcolor = ParseIntOrZero(idColorTxtFrmProductos.Text)
+                idTipoProducto = int.Parse(idTipoProductoTxtFrmProductos.Text),
+                idtallas = int.Parse(idTallasTxtFrmProductos.Text),
+                idtelas = int.Parse(idTelaTxtFrmProductos.Text),
+                idcolor = int.Parse(idColorTxtFrmProductos.Text)
             };
 
             try

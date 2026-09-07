@@ -124,12 +124,9 @@ namespace ESFE.Clothing_Store.UI
         // Guardar / Modificar
         private void button4_Click(object sender, EventArgs e)
         {
-            string nombreEstado = estadoTxtFrmEstado.Text.Trim();
-            if (string.IsNullOrEmpty(nombreEstado))
-            {
-                MessageBox.Show("Ingrese el nombre del estado.", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
+            // Validaciones
+            if (!ValidadorCampos.ValidarSoloLetras(estadoTxtFrmEstado.Text, "Nombre del Estado")) return;
+            if (!ValidadorCampos.ValidarLongitudMaxima(estadoTxtFrmEstado.Text, "Nombre del Estado", 50)) return;
 
             try
             {
@@ -137,55 +134,23 @@ namespace ESFE.Clothing_Store.UI
                 if (!string.IsNullOrEmpty(idTexto) && int.TryParse(idTexto, out int idActual) && idActual > 0)
                 {
                     // Actualizar estado existente
-                    var entidad = new EstadoEntidad { id_estado = idActual, estado = nombreEstado };
-                    int rows = EstadoDAL.Actualizar(entidad);
-                    if (rows > 0)
-                    {
-                        MessageBox.Show("Estado actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        FillFormFromEntity(entidad);
-                    }
-                    else
-                    {
-                        // Si el ID no existe en la base de datos se registra como nuevo con ese ID manual directo
-                        var existe = EstadoDAL.ObtenerPorId(idActual);
-                        if (existe == null)
-                        {
-                            MessageBox.Show($"El ID {idActual} no existe en la base de datos. Se registrará como un nuevo Estado con ese ID.", "Guardar nuevo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                            using (System.Data.IDbConnection cn = DBComun.ObtenerConexion())
-                            {
-                                cn.Open();
-                                using (System.Data.IDbCommand cmd = cn.CreateCommand())
-                                {
-                                    cmd.CommandText = "INSERT INTO [dbo].[Estado] (id_estado, Estado) VALUES (@id_estado, @Estado)";
-                                    var p1 = cmd.CreateParameter(); p1.ParameterName = "@id_estado"; p1.Value = idActual; cmd.Parameters.Add(p1);
-                                    var p2 = cmd.CreateParameter(); p2.ParameterName = "@Estado"; p2.Value = nombreEstado; cmd.Parameters.Add(p2);
-                                    cmd.ExecuteNonQuery();
-                                }
-                            }
-                            MessageBox.Show($"Estado agregado correctamente con el Id={idActual}.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            FillFormFromEntity(entidad);
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se pudo actualizar el estado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
+                    var entidad = new EstadoEntidad { id_estado = idActual, estado = estadoTxtFrmEstado.Text.Trim() };
+                    EstadoDAL.Actualizar(entidad);
+                    MessageBox.Show("Estado actualizado correctamente.", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    // Insertar nuevo estado autoincrementado (ID máximo + 1)
-                    var entidad = new EstadoEntidad { estado = nombreEstado };
+                    // Agregar nuevo estado
+                    var entidad = new EstadoEntidad { estado = estadoTxtFrmEstado.Text.Trim() };
                     int newId = EstadoDAL.Insertar(entidad);
                     if (newId > 0)
                     {
-                        entidad.id_estado = newId;
-                        FillFormFromEntity(entidad);
-                        MessageBox.Show($"Estado agregado correctamente con el Id={newId}.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        idEstadoTxtFrmEstado.Text = newId.ToString();
+                        MessageBox.Show($"Estado agregado correctamente. Id={newId}", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        MessageBox.Show("No se pudo agregar el estado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("No fue posible guardar el estado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

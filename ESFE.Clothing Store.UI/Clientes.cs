@@ -106,9 +106,18 @@ namespace ESFE.Clothing_Store.UI
             MessageBox.Show("No se encontró ningún cliente con ese identificador.", "Buscar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
-        // Agregar nuevo cliente -> llama al DAL que usa procedimientos almacenados
+        // Agregar nuevo cliente con validaciones
         private void button2_Click(object sender, EventArgs e)
         {
+            // Validaciones
+            if (!ValidadorCampos.ValidarSoloLetras(nombreTxtFrmClientes.Text, "Nombre")) return;
+            if (!ValidadorCampos.ValidarDUI(duiTxtFrmClientes.Text, "DUI")) return;
+            if (!ValidadorCampos.ValidarTelefono(telefonoTxtFrmClientes.Text, "Teléfono")) return;
+            if (!ValidadorCampos.ValidarCorreo(correoTxtFrmClientes.Text, "Correo")) return;
+            if (!ValidadorCampos.ValidarSoloNumeros(idRolTxtFrmClientes.Text, "ID Rol")) return;
+            if (!ValidadorCampos.ValidarSoloNumeros(idPermisoTxtFrmClientes.Text, "ID Permiso")) return;
+            if (!ValidadorCampos.ValidarSoloNumeros(idEstadoTxtFrmClientes.Text, "ID Estado")) return;
+
             try
             {
                 var entidad = new EN.Clientes
@@ -117,9 +126,9 @@ namespace ESFE.Clothing_Store.UI
                     Dui = duiTxtFrmClientes.Text?.Trim(),
                     Telefono = telefonoTxtFrmClientes.Text?.Trim(),
                     Correo = correoTxtFrmClientes.Text.Trim(),
-                    id_rol = ParseIntOrZero(idRolTxtFrmClientes.Text),
-                    id_permiso = ParseIntOrZero(idPermisoTxtFrmClientes.Text),
-                    id_estado = ParseIntOrZero(idEstadoTxtFrmClientes.Text)
+                    id_rol = int.Parse(idRolTxtFrmClientes.Text),
+                    id_permiso = int.Parse(idPermisoTxtFrmClientes.Text),
+                    id_estado = int.Parse(idEstadoTxtFrmClientes.Text)
                 };
 
                 int newId = ClientesDAL.Insertar(entidad);

@@ -35,11 +35,9 @@ namespace ESFE.Clothing_Store.UI
 
         private void agregarBtnFrmPermiso_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(nivelPermisoTxtFrmPermiso.Text.Trim()))
-            {
-                MessageBox.Show("Ingrese el nivel de permiso", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            // Validaciones
+            if (!ValidadorCampos.ValidarSoloLetras(nivelPermisoTxtFrmPermiso.Text, "Nivel de Permiso")) return;
+            if (!ValidadorCampos.ValidarLongitudMaxima(nivelPermisoTxtFrmPermiso.Text, "Nivel de Permiso", 50)) return;
 
             try
             {

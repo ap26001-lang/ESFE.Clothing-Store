@@ -76,11 +76,9 @@ namespace ESFE.Clothing_Store.UI
 
         private void agregarBtnFrmRoles_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(descripcionRolTxtFrmRoles.Text.Trim()))
-            {
-                MessageBox.Show("Ingrese una descripción para el rol", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            // Validaciones
+            if (!ValidadorCampos.ValidarSoloLetras(descripcionRolTxtFrmRoles.Text, "Descripción del Rol")) return;
+            if (!ValidadorCampos.ValidarLongitudMaxima(descripcionRolTxtFrmRoles.Text, "Descripción del Rol", 100)) return;
 
             try
             {
