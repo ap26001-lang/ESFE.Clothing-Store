@@ -1,290 +1,336 @@
 ﻿@{
-    ViewData["Title"] = "Inicio";
+    // Evaluación de sesión para elegir el Layout correspondiente
+    if (!User.Identity.IsAuthenticated)
+    {
+        Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+        ViewData["Title"] = "Iniciar Sesión";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+        ViewData["Title"] = "Inicio";
+    }
 }
 
-<style>
-    /* ---------------------------------------------------
-       ESTILOS DEL INDEX / DASHBOARD DE CLIENTE
-    --------------------------------------------------- */
+@if (!User.Identity.IsAuthenticated)
+{
+    @* ======================================================== *@
+    @* BLOQUE 1: FORMULARIO DE INICIO DE SESIÓN (MODO VISITANTE) *@
+    @* ======================================================== *@
+    <div style="width: 100%; max-width: 380px;">
+        <h3 class="fw-bold mb-1 text-dark">Iniciar Sesión</h3>
+        <p class="text-muted mb-4" style="font-size: 0.9rem;">Ingresa tus credenciales para acceder</p>
 
-    /* 1. Banner de Bienvenida */
-    .welcome-banner {
-        background-color: #130a06;
-        color: #f9f6f0;
-        padding: 2.5rem 3rem;
-        margin-bottom: 2.5rem;
-    }
+        <form asp-controller="Home" asp-action="Login" method="post">
+            <div class="mb-3">
+                <label class="form-label fw-semibold" style="font-size: 0.85rem;">Correo electrónico</label>
+                <input type="email" name="Email" class="form-control" placeholder="nombre@ejemplo.com" required />
+            </div>
 
-    .welcome-subtitle {
-        color: #c59b27;
-        font-size: 0.75rem;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        margin-bottom: 0.4rem;
-    }
+            <div class="mb-3">
+                <label class="form-label fw-semibold" style="font-size: 0.85rem;">Contraseña</label>
+                <input type="password" name="Password" class="form-control" placeholder="••••••••" required />
+            </div>
 
-    .welcome-name {
-        font-family: serif;
-        font-size: 2.2rem;
-        margin-bottom: 0.2rem;
-        font-weight: 400;
-    }
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="remember" />
+                    <label class="form-check-label text-muted" for="remember" style="font-size: 0.85rem;">Recordarme</label>
+                </div>
+                <a href="#" class="text-decoration-none" style="font-size: 0.85rem; color: #000;">¿Olvidaste tu contraseña?</a>
+            </div>
 
-    .welcome-tag {
-        color: #8c7b73;
-        font-size: 0.85rem;
-    }
-
-    .stat-number {
-        font-family: serif;
-        font-size: 2rem;
-        color: #c59b27;
-        line-height: 1;
-    }
-
-    .stat-label {
-        color: #8c7b73;
-        font-size: 0.7rem;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        margin-top: 0.4rem;
-    }
-
-    /* 2. Sección Encabezados */
-    .section-header {
-        color: #8c7b73;
-        font-size: 0.8rem;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        font-weight: 600;
-        margin-bottom: 1.2rem;
-    }
-
-    /* 3. Tarjeta de Último Pedido */
-    .order-card {
-        background-color: #ffffff;
-        border: 1px solid rgba(140, 123, 115, 0.2);
-        padding: 1.8rem;
-        margin-bottom: 3rem;
-    }
-
-    .order-code {
-        color: #8c7b73;
-        font-size: 0.9rem;
-        letter-spacing: 1px;
-    }
-
-    .badge-delivered {
-        background-color: #e6f4ea;
-        color: #137333;
-        font-size: 0.75rem;
-        padding: 0.35rem 0.8rem;
-        border-radius: 2px;
-        font-weight: 500;
-    }
-
-    .product-thumb {
-        width: 70px;
-        height: 85px;
-        object-fit: cover;
-        background-color: #f0ebe1;
-    }
-
-    .product-item-title {
-        font-weight: 600;
-        font-size: 0.95rem;
-        color: #130a06;
-        margin-bottom: 0.1rem;
-    }
-
-    .product-item-sub {
-        color: #8c7b73;
-        font-size: 0.8rem;
-        margin-bottom: 0.3rem;
-    }
-
-    .product-item-price {
-        font-family: serif;
-        font-size: 1.05rem;
-        color: #130a06;
-    }
-
-    .order-total-date {
-        color: #8c7b73;
-        font-size: 0.85rem;
-    }
-
-    .order-total-price {
-        font-family: serif;
-        font-size: 1.5rem;
-        color: #130a06;
-        font-weight: 600;
-    }
-
-    /* 4. Tarjetas de Novedades / Catálogo */
-    .novelty-card {
-        border: none;
-        background: transparent;
-    }
-
-    .novelty-img-container {
-        position: relative;
-        overflow: hidden;
-        background-color: #e6dfd5;
-        aspect-ratio: 3/4;
-        margin-bottom: 1rem;
-    }
-
-    .novelty-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .badge-new {
-        position: absolute;
-        top: 12px;
-        left: 12px;
-        background-color: #c59b27;
-        color: #ffffff;
-        font-size: 0.65rem;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        padding: 0.3rem 0.6rem;
-    }
-
-    .novelty-category {
-        color: #8c7b73;
-        font-size: 0.7rem;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-    }
-
-    .novelty-title {
-        font-size: 0.95rem;
-        font-weight: 600;
-        color: #130a06;
-        margin: 0.2rem 0;
-    }
-
-    .novelty-price {
-        font-family: serif;
-        font-size: 1.1rem;
-        color: #130a06;
-    }
-</style>
-
-<!-- BANNER DE BIENVENIDA -->
-<div class="welcome-banner d-flex align-items-center justify-content-between">
-    <div>
-        <div class="welcome-subtitle">BIENVENIDA DE VUELTA</div>
-        <h1 class="welcome-name">Sofía Mendoza</h1>
-        <div class="welcome-tag">Miembro VIP · desde 2024</div>
+            <button type="submit" class="btn btn-dark w-100 py-2 font-weight-bold">Ingresar</button>
+        </form>
     </div>
-    <div class="d-flex align-items-center gap-5 text-end">
+}
+else
+{
+    @* ======================================================== *@
+    @* BLOQUE 2: DASHBOARD Y CATÁLOGO (USUARIOS AUTENTICADOS)  *@
+    @* ======================================================== *@
+    <style>
+        /* ---------------------------------------------------
+                   ESTILOS DEL INDEX / DASHBOARD DE CLIENTE
+                --------------------------------------------------- */
+
+        /* 1. Banner de Bienvenida */
+        .welcome-banner {
+            background-color: #130a06;
+            color: #f9f6f0;
+            padding: 2.5rem 3rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .welcome-subtitle {
+            color: #c59b27;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+        }
+
+        .welcome-name {
+            font-family: serif;
+            font-size: 2.2rem;
+            margin-bottom: 0.2rem;
+            font-weight: 400;
+        }
+
+        .welcome-tag {
+            color: #8c7b73;
+            font-size: 0.85rem;
+        }
+
+        .stat-number {
+            font-family: serif;
+            font-size: 2rem;
+            color: #c59b27;
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: #8c7b73;
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: 0.4rem;
+        }
+
+        /* 2. Sección Encabezados */
+        .section-header {
+            color: #8c7b73;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+        }
+
+        /* 3. Tarjeta de Último Pedido */
+        .order-card {
+            background-color: #ffffff;
+            border: 1px solid rgba(140, 123, 115, 0.2);
+            padding: 1.8rem;
+            margin-bottom: 3rem;
+        }
+
+        .order-code {
+            color: #8c7b73;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .badge-delivered {
+            background-color: #e6f4ea;
+            color: #137333;
+            font-size: 0.75rem;
+            padding: 0.35rem 0.8rem;
+            border-radius: 2px;
+            font-weight: 500;
+        }
+
+        .product-thumb {
+            width: 70px;
+            height: 85px;
+            object-fit: cover;
+            background-color: #f0ebe1;
+        }
+
+        .product-item-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #130a06;
+            margin-bottom: 0.1rem;
+        }
+
+        .product-item-sub {
+            color: #8c7b73;
+            font-size: 0.8rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .product-item-price {
+            font-family: serif;
+            font-size: 1.05rem;
+            color: #130a06;
+        }
+
+        .order-total-date {
+            color: #8c7b73;
+            font-size: 0.85rem;
+        }
+
+        .order-total-price {
+            font-family: serif;
+            font-size: 1.5rem;
+            color: #130a06;
+            font-weight: 600;
+        }
+
+        /* 4. Tarjetas de Novedades / Catálogo */
+        .novelty-card {
+            border: none;
+            background: transparent;
+        }
+
+        .novelty-img-container {
+            position: relative;
+            overflow: hidden;
+            background-color: #e6dfd5;
+            aspect-ratio: 3/4;
+            margin-bottom: 1rem;
+        }
+
+        .novelty-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .badge-new {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background-color: #c59b27;
+            color: #ffffff;
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 0.3rem 0.6rem;
+        }
+
+        .novelty-category {
+            color: #8c7b73;
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .novelty-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #130a06;
+            margin: 0.2rem 0;
+        }
+
+        .novelty-price {
+            font-family: serif;
+            font-size: 1.1rem;
+            color: #130a06;
+        }
+    </style>
+
+    <!-- BANNER DE BIENVENIDA -->
+    <div class="welcome-banner d-flex align-items-center justify-content-between">
         <div>
-            <div class="stat-number">9</div>
-            <div class="stat-label">PEDIDOS</div>
+            <div class="welcome-subtitle">BIENVENIDA DE VUELTA</div>
+            <h1 class="welcome-name">Sofía Mendoza</h1>
+            <div class="welcome-tag">Miembro VIP · desde 2024</div>
         </div>
-        <div>
-            <div class="stat-number">$24.800</div>
-            <div class="stat-label">INVERTIDO</div>
+        <div class="d-flex align-items-center gap-5 text-end">
+            <div>
+                <div class="stat-number">9</div>
+                <div class="stat-label">PEDIDOS</div>
+            </div>
+            <div>
+                <div class="stat-number">$24.800</div>
+                <div class="stat-label">INVERTIDO</div>
+            </div>
         </div>
     </div>
-</div>
 
-<!-- SECCIÓN: ÚLTIMO PEDIDO -->
-<div class="section-header">ÚLTIMO PEDIDO</div>
+    <!-- SECCIÓN: ÚLTIMO PEDIDO -->
+    <div class="section-header">ÚLTIMO PEDIDO</div>
+    <div class="order-card">
+        <div class="d-flex justify-content-between align-items-center pb-3 border-bottom mb-4">
+            <span class="order-code">V-1058</span>
+            <span class="badge-delivered">Entregado</span>
+        </div>
 
-<div class="order-card">
-    <div class="d-flex justify-content-between align-items-center pb-3 border-bottom mb-4">
-        <span class="order-code">V-1058</span>
-        <span class="badge-delivered">Entregado</span>
-    </div>
+        <div class="row g-4 mb-4">
+            <!-- Ítem 1 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="d-flex align-items-center gap-3">
+                    <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&q=80&w=300" alt="Blazer Cachemira" class="product-thumb" />
+                    <div>
+                        <div class="product-item-title">Blazer Cachemira Oscuro</div>
+                        <div class="product-item-sub">Talla M</div>
+                        <div class="product-item-price">$2500</div>
+                    </div>
+                </div>
+            </div>
 
-    <div class="row g-4 mb-4">
-        <!-- Ítem 1 -->
-        <div class="col-md-6 col-lg-4">
-            <div class="d-flex align-items-center gap-3">
-                <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&q=80&w=300" alt="Blazer Cachemira" class="product-thumb" />
-                <div>
-                    <div class="product-item-title">Blazer Cachemira Oscuro</div>
-                    <div class="product-item-sub">Talla M</div>
-                    <div class="product-item-price">$2500</div>
+            <!-- Ítem 2 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="d-flex align-items-center gap-3">
+                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&q=80&w=300" alt="Blusa Lino Crema" class="product-thumb" />
+                    <div>
+                        <div class="product-item-title">Blusa Lino Crema</div>
+                        <div class="product-item-sub">Talla S</div>
+                        <div class="product-item-price">$620</div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Ítem 2 -->
-        <div class="col-md-6 col-lg-4">
-            <div class="d-flex align-items-center gap-3">
-                <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&q=80&w=300" alt="Blusa Lino Crema" class="product-thumb" />
-                <div>
-                    <div class="product-item-title">Blusa Lino Crema</div>
-                    <div class="product-item-sub">Talla S</div>
-                    <div class="product-item-price">$620</div>
+        <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+            <span class="order-total-date">2 sep 2026</span>
+            <span class="order-total-price">$3120</span>
+        </div>
+    </div>
+
+    <!-- SECCIÓN: NOVEDADES PARA TI -->
+    <div class="section-header">NOVEDADES PARA TI</div>
+    <div class="row g-4">
+        <!-- Producto 1 -->
+        <div class="col-6 col-md-3">
+            <div class="novelty-card">
+                <div class="novelty-img-container">
+                    <span class="badge-new">Nuevo</span>
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=500" alt="Vestido Seda" class="novelty-img" />
                 </div>
+                <div class="novelty-category">VESTIDO · TALLA S</div>
+                <div class="novelty-title">Vestido Seda Ivory</div>
+                <div class="novelty-price">$1800</div>
+            </div>
+        </div>
+
+        <!-- Producto 2 -->
+        <div class="col-6 col-md-3">
+            <div class="novelty-card">
+                <div class="novelty-img-container">
+                    <span class="badge-new">Nuevo</span>
+                    <img src="https://images.unsplash.com/photo-1584273143981-41c073dfe8f8?auto=format&fit=crop&q=80&w=500" alt="Falda Plisada" class="novelty-img" />
+                </div>
+                <div class="novelty-category">FALDA · TALLA M</div>
+                <div class="novelty-title">Plisada Champagne</div>
+                <div class="novelty-price">$1200</div>
+            </div>
+        </div>
+
+        <!-- Producto 3 -->
+        <div class="col-6 col-md-3">
+            <div class="novelty-card">
+                <div class="novelty-img-container">
+                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&q=80&w=500" alt="Abrigo Lana" class="novelty-img" />
+                </div>
+                <div class="novelty-category">ABRIGO · TALLA L</div>
+                <div class="novelty-title">Abrigo Lana Merino</div>
+                <div class="novelty-price">$3200</div>
+            </div>
+        </div>
+
+        <!-- Producto 4 -->
+        <div class="col-6 col-md-3">
+            <div class="novelty-card">
+                <div class="novelty-img-container">
+                    <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&q=80&w=500" alt="Pantalón Tweed" class="novelty-img" />
+                </div>
+                <div class="novelty-category">PANTALÓN · TALLA M</div>
+                <div class="novelty-title">Pantalón Tweed Beige</div>
+                <div class="novelty-price">$890</div>
             </div>
         </div>
     </div>
-
-    <div class="d-flex justify-content-between align-items-center pt-3 border-top">
-        <span class="order-total-date">2 sep 2026</span>
-        <span class="order-total-price">$3120</span>
-    </div>
-</div>
-
-<!-- SECCIÓN: NOVEDADES PARA TI -->
-<div class="section-header">NOVEDADES PARA TI</div>
-
-<div class="row g-4">
-    <!-- Producto 1 -->
-    <div class="col-6 col-md-3">
-        <div class="novelty-card">
-            <div class="novelty-img-container">
-                <span class="badge-new">Nuevo</span>
-                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=500" alt="Vestido Seda" class="novelty-img" />
-            </div>
-            <div class="novelty-category">VESTIDO · TALLA S</div>
-            <div class="novelty-title">Vestido Seda Ivory</div>
-            <div class="novelty-price">$1800</div>
-        </div>
-    </div>
-
-    <!-- Producto 2 -->
-    <div class="col-6 col-md-3">
-        <div class="novelty-card">
-            <div class="novelty-img-container">
-                <span class="badge-new">Nuevo</span>
-                <img src="https://images.unsplash.com/photo-1584273143981-41c073dfe8f8?auto=format&fit=crop&q=80&w=500" alt="Falda Plisada" class="novelty-img" />
-            </div>
-            <div class="novelty-category">FALDA · TALLA M</div>
-            <div class="novelty-title">Plisada Champagne</div>
-            <div class="novelty-price">$1200</div>
-        </div>
-    </div>
-
-    <!-- Producto 3 -->
-    <div class="col-6 col-md-3">
-        <div class="novelty-card">
-            <div class="novelty-img-container">
-                <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&q=80&w=500" alt="Abrigo Lana" class="novelty-img" />
-            </div>
-            <div class="novelty-category">ABRIGO · TALLA L</div>
-            <div class="novelty-title">Abrigo Lana Merino</div>
-            <div class="novelty-price">$3200</div>
-        </div>
-    </div>
-
-    <!-- Producto 4 -->
-    <div class="col-6 col-md-3">
-        <div class="novelty-card">
-            <div class="novelty-img-container">
-                <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&q=80&w=500" alt="Pantalón Tweed" class="novelty-img" />
-            </div>
-            <div class="novelty-category">PANTALÓN · TALLA M</div>
-            <div class="novelty-title">Pantalón Tweed Beige</div>
-            <div class="novelty-price">$890</div>
-        </div>
-    </div>
-</div>
+}

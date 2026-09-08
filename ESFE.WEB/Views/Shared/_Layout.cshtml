@@ -1,268 +1,125 @@
-﻿<!DOCTYPE html>
+﻿@* 
+
+*@
+<!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/ESFE.WEB.styles.css" asp-append-version="true" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MAISON ÉLITE</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
     <style>
             :root {
-                --bg-sidebar: #130a06;
-                --bg-active: #23120b;
+                --bg-dark: #130a06;
+                --bg-light: #f9f6f0;
                 --color-gold: #c59b27;
-                --color-text-muted: #8c7b73;
-                --color-text-light: #e6dfd5;
-                --bg-main: #f9f6f0;
-                --color-dark: #130a06;
+                --color-muted: #8c7b73;
             }
 
             body {
-                background-color: var(--bg-main);
+                background-color: var(--bg-light);
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                margin: 0;
+                color: var(--bg-dark);
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
             }
 
-            /* ---------------------------------------------------
-               1. ESTILOS PARA MENÚ SUPERIOR (CLIENTE)
-            --------------------------------------------------- */
-            .client-header {
-                background-color: var(--bg-main);
-                border-bottom: 1px solid rgba(140, 123, 115, 0.2);
-                padding: 1.2rem 3rem;
+            /* BANNER Y NAVBAR SUPERIOR */
+            .navbar-maison {
+                background-color: var(--bg-dark);
+                padding: 1rem 3rem;
+                border-bottom: 1px solid rgba(197, 155, 39, 0.2);
             }
 
-            .client-brand {
-                color: var(--color-dark);
+            .navbar-brand-custom {
+                color: var(--color-gold) !important;
                 font-family: serif;
-                letter-spacing: 4px;
+                letter-spacing: 3px;
                 font-size: 1.2rem;
                 font-weight: 700;
                 text-transform: uppercase;
-                text-decoration: none;
             }
 
-            .client-nav .nav-link {
-                color: var(--color-text-muted);
+            .nav-link-custom {
+                color: #ffffff !important;
+                letter-spacing: 1px;
                 font-size: 0.85rem;
-                letter-spacing: 1.5px;
                 text-transform: uppercase;
-                font-weight: 500;
-                padding: 0.5rem 1.2rem;
-                transition: all 0.2s ease;
-                position: relative;
+                margin: 0 0.8rem;
+                transition: color 0.2s;
             }
 
-            .client-nav .nav-link:hover {
-                color: var(--color-dark);
-            }
+                .nav-link-custom:hover {
+                    color: var(--color-gold) !important;
+                }
 
-            .client-nav .nav-link.active {
-                color: var(--color-dark);
-                font-weight: 600;
-            }
-
-            /* Línea inferior indicadora de menú activo */
-            .client-nav .nav-link.active::after {
-                content: '';
-                position: absolute;
-                bottom: -5px;
-                left: 20%;
-                width: 60%;
-                height: 2px;
-                background-color: var(--color-gold);
-            }
-
-            .client-logout {
-                color: var(--color-text-muted);
-                font-size: 0.85rem;
-                letter-spacing: 1.5px;
-                text-transform: uppercase;
-                text-decoration: none;
-            }
-
-            .client-logout:hover {
-                color: var(--color-dark);
-            }
-
-            /* ---------------------------------------------------
-               2. ESTILOS PARA MENÚ LATERAL (ADMIN / VENDEDOR)
-            --------------------------------------------------- */
-            .wrapper-admin {
-                display: flex;
-                min-height: 100vh;
-            }
-
-            #sidebar {
-                width: 260px;
-                background-color: var(--bg-sidebar);
-                color: var(--color-text-light);
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                position: fixed;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                z-index: 100;
-            }
-
-            .sidebar-header {
-                padding: 2rem 1.5rem 1rem 1.5rem;
-            }
-
-            .brand-title {
+            .user-pill {
+                background-color: rgba(197, 155, 39, 0.15);
+                border: 1px solid var(--color-gold);
                 color: var(--color-gold);
-                font-family: serif;
-                letter-spacing: 3px;
-                font-size: 1.1rem;
-                font-weight: 700;
-                margin: 0;
-                text-transform: uppercase;
-            }
-
-            .role-subtitle {
-                color: var(--color-text-muted);
+                padding: 0.4rem 1rem;
+                border-radius: 20px;
                 font-size: 0.85rem;
-                margin-top: 0.2rem;
             }
 
-            .sidebar-menu {
-                list-style: none;
-                padding: 0;
-                margin: 1.5rem 0 0 0;
-                flex-grow: 1;
-            }
-
-            .sidebar-menu li a {
-                display: flex;
-                align-items: center;
-                padding: 0.85rem 1.5rem;
-                color: var(--color-text-light);
-                text-decoration: none;
-                font-size: 0.95rem;
-                transition: all 0.2s ease;
-                border-left: 3px solid transparent;
-            }
-
-            .sidebar-menu li a:hover,
-            .sidebar-menu li.active a {
-                background-color: var(--bg-active);
-                color: var(--color-gold);
-                border-left-color: var(--color-gold);
-            }
-
-            .sidebar-menu li a i {
-                margin-right: 12px;
-                font-size: 1.1rem;
-            }
-
-            .sidebar-footer {
-                padding: 1.5rem;
-                border-top: 1px solid rgba(255, 255, 255, 0.05);
-            }
-
-            .admin-content {
-                margin-left: 260px;
-                width: calc(100% - 260px);
-                padding: 2rem;
-            }
-
-            .client-content {
-                max-width: 1200px;
-                margin: 0 auto;
-                padding: 2.5rem 1.5rem;
+            main {
+                flex: 1;
             }
     </style>
 </head>
 <body>
 
-    @* VISTA Y NAVEGACIÓN SI ES CLIENTE *@
-    @if (!User.Identity.IsAuthenticated || User.IsInRole("Cliente"))
-    {
-        <header class="client-header">
-            <div class="d-flex align-items-center justify-content-between">
-                <!-- LOGO -->
-                <a asp-controller="Home" asp-action="Index" class="client-brand">MAISON ÉLITE</a>
+    <!-- NAVBAR PRINCIPAL -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-maison">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand navbar-brand-custom" asp-controller="Home" asp-action="Index">MAISON ÉLITE</a>
 
-                <!-- MENÚ CENTRAL -->
-                <nav class="client-nav d-flex align-items-center">
-                    <a asp-controller="Home" asp-action="Index" class="nav-link active">Inicio</a>
-                    <a asp-controller="Pedidos" asp-action="Index" class="nav-link">Mis Pedidos</a>
-                    <a asp-controller="Catalogo" asp-action="Index" class="nav-link">Catálogo</a>
-                    <a asp-controller="Perfil" asp-action="Index" class="nav-link">Mi Perfil</a>
-                </nav>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <!-- BOTÓN SALIR -->
-                <div>
-                    <a asp-controller="Account" asp-action="Logout" class="client-logout">Salir</a>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-4">
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" asp-controller="Home" asp-action="Index">Catálogo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="#">Novedades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="#">Colecciones</a>
+                    </li>
+                </ul>
+
+                <div class="d-flex align-items-center gap-3">
+                    @* Comprobación simulada de usuario autenticado *@
+                    @if (User.Identity != null && User.Identity.IsAuthenticated)
+                    {
+                        <span class="user-pill">
+                            <i class="bi bi-person-fill"></i> @User.Identity.Name (Cliente VIP)
+                        </span>
+                        <a asp-controller="Account" asp-action="Logout" class="btn btn-outline-light btn-sm text-uppercase">Cerrar Sesión</a>
+                    }
+                    else
+                    {
+                        <!-- Si entra como correo común o invitado -->
+                        <span class="user-pill">
+                            Sofía Mendoza (Cliente VIP)
+                        </span>
+                        <a asp-controller="Account" asp-action="Login" class="btn btn-outline-warning btn-sm text-uppercase" style="border-color: var(--color-gold); color: var(--color-gold);">Iniciar Sesión</a>
+                    }
                 </div>
             </div>
-        </header>
-
-        <main class="client-content">
-            @RenderBody()
-        </main>
-    }
-    else
-    {
-        @* VISTA Y NAVEGACIÓN SI ES ADMIN O VENDEDOR *@
-        <div class="wrapper-admin">
-            <nav id="sidebar">
-                <div>
-                    <div class="sidebar-header">
-                        <h1 class="brand-title">MAISON ÉLITE</h1>
-                        <div class="role-subtitle">
-                            @if (User.IsInRole("Administrador"))
-                            {
-                                <span>Administrador</span>
-                            }
-                            else if (User.IsInRole("Vendedor"))
-                            {
-
-                                <span>Vendedor</span>
-                            }
-                        </div>
-                    </div>
-
-                    <ul class="sidebar-menu">
-                        @if (User.IsInRole("Administrador"))
-                        {
-                            <li class="active"><a asp-controller="Dashboard" asp-action="Index"><i class="bi bi-diamond-fill"></i> Dashboard</a></li>
-                            <li><a asp-controller="Catalogo" asp-action="Index"><i class="bi bi-square"></i> Catálogo</a></li>
-                            <li><a asp-controller="Clientes" asp-action="Index"><i class="bi bi-circle"></i> Clientes</a></li>
-                            <li><a asp-controller="PuntoVenta" asp-action="Index"><i class="bi bi-circle-half"></i> Punto de Venta</a></li>
-                            <li><a asp-controller="Ventas" asp-action="Historial"><i class="bi bi-pie-chart-half"></i> Historial de Ventas</a></li>
-                            <li><a asp-controller="Reportes" asp-action="Index"><i class="bi bi-pie-chart"></i> Reportes</a></li>
-                            <li><a asp-controller="Bitacora" asp-action="Index"><i class="bi bi-record-circle"></i> Bitácora</a></li>
-                            <li><a asp-controller="Respaldos" asp-action="Index"><i class="bi bi-bullseye"></i> Respaldos</a></li>
-                        }
-
-                        @if (User.IsInRole("Vendedor"))
-                        {
-                            <li class="active"><a asp-controller="Catalogo" asp-action="Index"><i class="bi bi-square"></i> Catálogo</a></li>
-                            <li><a asp-controller="Clientes" asp-action="Index"><i class="bi bi-circle"></i> Clientes</a></li>
-                            <li><a asp-controller="PuntoVenta" asp-action="Index"><i class="bi bi-circle-half"></i> Punto de Venta</a></li>
-                        }
-                    </ul>
-                </div>
-
-                <div class="sidebar-footer">
-                    <a asp-controller="Account" asp-action="Logout" class="client-logout" style="color: var(--color-text-muted);">
-                        <i class="bi bi-arrow-return-left me-2"></i> Cerrar sesión
-                    </a>
-                </div>
-            </nav>
-
-            <main class="admin-content">
-                @RenderBody()
-            </main>
         </div>
-    }
+    </nav>
+
+    <!-- CONTENIDO DEL CATÁLOGO / DASHBOARD (100% ANCHO) -->
+    <main class="container-fluid py-4 px-4">
+        @RenderBody()
+    </main>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
