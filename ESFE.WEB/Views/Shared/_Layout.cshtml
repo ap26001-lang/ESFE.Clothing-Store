@@ -1,128 +1,50 @@
-﻿@* 
-
-*@
-<!DOCTYPE html>
-<html lang="es">
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MAISON ÉLITE</title>
+    <title>@ViewData["Title"] - ESFE.WEB</title>
+    <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-
-    <style>
-            :root {
-                --bg-dark: #130a06;
-                --bg-light: #f9f6f0;
-                --color-gold: #c59b27;
-                --color-muted: #8c7b73;
-            }
-
-            body {
-                background-color: var(--bg-light);
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                color: var(--bg-dark);
-                min-height: 100vh;
-                display: flex;
-                flex-direction: column;
-            }
-
-            /* BANNER Y NAVBAR SUPERIOR */
-            .navbar-maison {
-                background-color: var(--bg-dark);
-                padding: 1rem 3rem;
-                border-bottom: 1px solid rgba(197, 155, 39, 0.2);
-            }
-
-            .navbar-brand-custom {
-                color: var(--color-gold) !important;
-                font-family: serif;
-                letter-spacing: 3px;
-                font-size: 1.2rem;
-                font-weight: 700;
-                text-transform: uppercase;
-            }
-
-            .nav-link-custom {
-                color: #ffffff !important;
-                letter-spacing: 1px;
-                font-size: 0.85rem;
-                text-transform: uppercase;
-                margin: 0 0.8rem;
-                transition: color 0.2s;
-            }
-
-                .nav-link-custom:hover {
-                    color: var(--color-gold) !important;
-                }
-
-            .user-pill {
-                background-color: rgba(197, 155, 39, 0.15);
-                border: 1px solid var(--color-gold);
-                color: var(--color-gold);
-                padding: 0.4rem 1rem;
-                border-radius: 20px;
-                font-size: 0.85rem;
-            }
-
-            main {
-                flex: 1;
-            }
-    </style>
+    <link rel="stylesheet" href="~/ESFE.WEB.styles.css" asp-append-version="true" />
 </head>
 <body>
-
-    <!-- NAVBAR PRINCIPAL -->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-maison">
-        <div class="container-fluid px-4">
-            <a class="navbar-brand navbar-brand-custom" asp-controller="Home" asp-action="Index">MAISON ÉLITE</a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-4">
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-custom" asp-controller="Home" asp-action="Index">Catálogo</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-custom" href="#">Novedades</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-custom" href="#">Colecciones</a>
-                    </li>
-                </ul>
-
-                <div class="d-flex align-items-center gap-3">
-                    @* Comprobación simulada de usuario autenticado *@
-                    @if (User.Identity != null && User.Identity.IsAuthenticated)
-                    {
-                        <span class="user-pill">
-                            <i class="bi bi-person-fill"></i> @User.Identity.Name (Cliente VIP)
-                        </span>
-                        <a asp-controller="Account" asp-action="Logout" class="btn btn-outline-light btn-sm text-uppercase">Cerrar Sesión</a>
-                    }
-                    else
-                    {
-                        <!-- Si entra como correo común o invitado -->
-                        <span class="user-pill">
-                            Sofía Mendoza (Cliente VIP)
-                        </span>
-                        <a asp-controller="Account" asp-action="Login" class="btn btn-outline-warning btn-sm text-uppercase" style="border-color: var(--color-gold); color: var(--color-gold);">Iniciar Sesión</a>
-                    }
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ESFE.WEB</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2026 - ESFE.WEB - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </nav>
-
-    <!-- CONTENIDO DEL CATÁLOGO / DASHBOARD (100% ANCHO) -->
-    <main class="container-fluid py-4 px-4">
-        @RenderBody()
-    </main>
-
+    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
