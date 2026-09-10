@@ -1,31 +1,117 @@
-html {
-  font-size: 14px;
+/* ==========================================================================
+   PALETA DE COLORES Y ESTILOS CORPORATIVOS - MAISON ÉLITE
+   ========================================================================== */
+:root {
+    --me-bg-dark: #1f120c; /* Café oscuro lateral */
+    --me-bg-cream: #fbf9f5; /* Fondo crema principal */
+    --me-gold: #c29b62; /* Dorado / Bronce */
+    --me-input-bg: #f7f4ee; /* Fondo de inputs */
+    --me-border: #e5dec9; /* Borde suave */
+    --me-text-dark: #2a221e; /* Texto principal */
+    --me-text-muted: #7a7067; /* Texto secundario */
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+html, body {
+    height: 100%;
+    background-color: var(--me-bg-cream);
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+/* Panel Izquierdo (Café) */
+.sidebar-dark {
+    background-color: var(--me-bg-dark);
+    color: #ffffff;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+.brand-subtitle {
+    color: var(--me-gold);
+    letter-spacing: 3px;
+    font-size: 0.85rem;
+    font-weight: 600;
 }
 
-body {
-  margin-bottom: 60px;
+.sidebar-title {
+    font-size: 2.8rem;
+    font-weight: 300;
+    line-height: 1.2;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+    .sidebar-title .gold-italic {
+        font-style: italic;
+        color: var(--me-gold);
+    }
+
+.stat-num {
+    font-size: 2.2rem;
+    color: var(--me-gold);
+    font-weight: 300;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+.stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+    color: #8c7e73;
 }
+
+/* Formulario Lado Derecho (Crema) */
+.form-label-custom {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--me-gold);
+}
+
+.form-control-custom {
+    background-color: var(--me-input-bg);
+    border: 1px solid var(--me-border);
+    border-radius: 2px;
+    padding: 12px 16px;
+    color: var(--me-text-dark);
+}
+
+    .form-control-custom:focus {
+        background-color: #ffffff;
+        border-color: var(--me-gold);
+        box-shadow: 0 0 0 0.2rem rgba(194, 155, 98, 0.25);
+    }
+
+.btn-dark-custom {
+    background-color: var(--me-bg-dark);
+    color: var(--me-gold);
+    border: none;
+    padding: 14px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    border-radius: 2px;
+    transition: opacity 0.2s ease;
+}
+
+    .btn-dark-custom:hover {
+        background-color: #2c1a12;
+        color: var(--me-gold);
+    }
+
+.btn-google-custom {
+    background-color: #ffffff;
+    border: 1px solid var(--me-border);
+    color: var(--me-text-dark);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 2px;
+}
+
+    .btn-google-custom:hover {
+        background-color: #f1ebd9;
+    }
+
+.switch-link {
+    color: var(--me-gold);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+    .switch-link:hover {
+        text-decoration: underline;
+        color: #a37f4c;
+    }

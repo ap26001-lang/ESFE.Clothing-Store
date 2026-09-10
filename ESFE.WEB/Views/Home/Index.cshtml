@@ -1,8 +1,140 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Maison Élite - Autenticación";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container-fluid vh-100 p-0">
+    <div class="row g-0 h-100">
+
+        <!-- PANEL LATERAL IZQUIERDO (Café Oscuro) -->
+        <div class="col-lg-6 sidebar-dark p-5 d-flex flex-column justify-content-between">
+            <div>
+                <span class="brand-subtitle text-uppercase">MAISON ÉLITE</span>
+            </div>
+
+            <div class="my-auto py-5">
+                <h1 class="sidebar-title mb-4">
+                    Moda<br />
+                    <span class="gold-italic">Premiun</span><br />
+                    para ti.
+                </h1>
+                <p class="text-secondary col-md-10 fs-6">
+                        Dejate deleitar por el estilo,la moda y el lujo.
+                </p>
+            </div>
+
+            <!-- MÓDULOS Y SEGURO -->
+            <div class="border-top border-secondary border-opacity-25 pt-4 d-flex gap-5">
+                <div>
+                    <div class="stat-num">13</div>
+                    <div class="stat-label text-uppercase">MÓDULOS</div>
+                </div>
+                <div>
+                    <div class="stat-num">100%</div>
+                    <div class="stat-label text-uppercase">SEGURO</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PANEL DERECHO -->
+        <div class="col-lg-6 d-flex align-items-center justify-content-center p-4">
+            <div class="w-100" style="max-width: 420px;">
+
+                <!-- ========================================== -->
+                <!-- 1. VISTA: INICIO DE SESIÓN (Entrada inicial) -->
+                <!-- ========================================== -->
+                <div id="view-login">
+                    <div class="mb-4">
+                        <h2 class="fw-normal display-6 text-dark mb-1">Bienvenido</h2>
+                        <p class="text-muted small">Ingresa con tus credenciales para continuar.</p>
+                    </div>
+
+                    <!-- Cuadro demostrativo para pruebas de roles -->
+                    <div class="p-3 mb-4 rounded bg-white border border-opacity-50 border-warning small">
+                        <div><strong>Admin:</strong> admin@tienda.com / admin123</div>
+                        <div><strong>Vendedor:</strong> vendedor@tienda.com / vend123</div>
+                        <div><strong>Cliente:</strong> cliente@gmail.com / user123</div>
+                    </div>
+
+                    <!-- Formulario Login -->
+                    <form id="formLogin" onsubmit="handleLoginSubmit(event)">
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label form-label-custom text-uppercase">CORREO ELECTRÓNICO</label>
+                            <input type="email" id="loginEmail" class="form-control form-control-custom" placeholder="nombre@empresa.com" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="loginPassword" class="form-label form-label-custom text-uppercase">CONTRASEÑA</label>
+                            <input type="password" id="loginPassword" class="form-control form-control-custom" placeholder="••••••••" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-dark-custom w-100 mb-3">INGRESAR</button>
+                    </form>
+
+                    <!-- Botón Google -->
+                    <button type="button" class="btn btn-google-custom w-100 d-flex align-items-center justify-content-center gap-2 mb-4" onclick="handleGoogleAuth()">
+                        <svg width="18" height="18" viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
+                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
+                        </svg>
+                        Iniciar sesión con Google
+                    </button>
+
+                    <!-- Enlace a Registro -->
+                    <div class="text-center small text-muted">
+                        ¿No tienes una cuenta? <a href="#" class="switch-link" onclick="toggleAuthView(event, 'register')">Regístrate aquí</a>
+                    </div>
+                </div>
+
+                <!-- ========================================== -->
+                <!-- 2. VISTA: REGISTRO DE CLIENTES             -->
+                <!-- ========================================== -->
+                <div id="view-register" class="d-none">
+                    <div class="mb-4">
+                        <h2 class="fw-normal display-6 text-dark mb-1">Registro de Cliente</h2>
+                        <p class="text-muted small">Crea tu cuenta para explorar nuestro catálogo exclusivo.</p>
+                    </div>
+
+                    <!-- Formulario para Registro de Clientes -->
+                    <form id="formRegister" onsubmit="handleRegisterSubmit(event)">
+                        <div class="mb-3">
+                            <label for="regName" class="form-label form-label-custom text-uppercase">NOMBRE COMPLETO</label>
+                            <input type="text" id="regName" class="form-control form-control-custom" placeholder="Tu Nombre y Apellido" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="regEmail" class="form-label form-label-custom text-uppercase">CORREO ELECTRÓNICO</label>
+                            <input type="email" id="regEmail" class="form-control form-control-custom" placeholder="ejemplo@gmail.com" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="regPassword" class="form-label form-label-custom text-uppercase">CONTRASEÑA</label>
+                            <input type="password" id="regPassword" class="form-control form-control-custom" placeholder="••••••••" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-dark-custom w-100 mb-3">REGISTRARME</button>
+                    </form>
+
+                    <!-- Botón Google Registro -->
+                    <button type="button" class="btn btn-google-custom w-100 d-flex align-items-center justify-content-center gap-2 mb-4" onclick="handleGoogleAuth()">
+                        <svg width="18" height="18" viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
+                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
+                        </svg>
+                        Registrarse con Google
+                    </button>
+
+                    <!-- Enlace volver a Login -->
+                    <div class="text-center small text-muted">
+                        ¿Ya tienes una cuenta? <a href="#" class="switch-link" onclick="toggleAuthView(event, 'login')">Inicia sesión</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
 </div>
