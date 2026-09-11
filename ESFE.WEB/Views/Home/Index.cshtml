@@ -104,3 +104,92 @@ else
         </div>
     </div>
 }
+
+@{
+    ViewData["Title"] = "Panel de Control";
+}
+
+@if (!User.Identity.IsAuthenticated)
+{
+    <!-- 1. FORMULARIO DE INICIO DE SESIÓN (VISITANTE) -->
+    <div style="width: 100%; max-width: 380px;" class="mx-auto my-5">
+        <h3 class="fw-bold mb-1 text-dark">Iniciar Sesión</h3>
+        <p class="text-muted mb-4" style="font-size: 0.9rem;">Ingresa tus credenciales para acceder</p>
+
+        <form asp-controller="Home" asp-action="Login" method="post">
+            <div class="mb-3">
+                <label class="form-label fw-semibold" style="font-size: 0.85rem;">Correo electrónico</label>
+                <input type="email" name="Email" class="form-control" placeholder="nombre@ejemplo.com" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold" style="font-size: 0.85rem;">Contraseña</label>
+                <input type="password" name="Password" class="form-control" placeholder="••••••••" required />
+            </div>
+
+            <button type="submit" class="btn btn-dark w-100 py-2 fw-bold">Ingresar</button>
+        </form>
+    </div>
+}
+else
+{
+    <style>
+        :root {
+            --color-gold: #c59b27;
+            --bg-dark: #121212;
+        }
+
+        .card-dashboard {
+            background-color: #fff;
+            border: 1px solid rgba(197, 155, 39, 0.3);
+            border-radius: 0;
+            padding: 1.5rem;
+        }
+    </style>
+
+    @* AQUÍ DEFINES SI EL USUARIO ES VENDEDOR O CLIENTE (SOFÍA) *@
+    @* Puedes cambiar esta condición según la variable de rol que maneje tu equipo *@
+
+    @if (User.IsInRole("Vendedor") || User.Identity.Name == "vendedor@esfe.com")
+    {
+        <!-- 2. PANEL DE VENDEDOR (VA PRIMERO) -->
+        <div class="container-fluid py-4">
+            <div class="d-flex justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2" style="font-family: serif; color: var(--bg-dark);">Panel de Vendedor</h1>
+                <span class="badge bg-dark text-warning p-2">Sesión: Vendedor</span>
+            </div>
+
+            <div class="card card-dashboard mb-4">
+                <h5 class="mb-3" style="font-family: serif;">Módulo de Gestión y Ventas</h5>
+                <p class="text-muted">Aquí administras los productos y el catálogo principal.</p>
+            </div>
+        </div>
+    }
+    else
+    {
+        <!-- 3. PANEL DE CLIENTE (SOFÍA MENDOZA / CLIENTE VIP) -->
+        <div class="container-fluid py-4">
+            <div class="d-flex justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2" style="font-family: serif; color: var(--bg-dark);">Mi Panel - Sofía Mendoza</h1>
+                <span class="badge bg-warning text-dark p-2">Cliente VIP</span>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card card-dashboard">
+                        <h5 class="mb-3" style="font-family: serif;">Mis Compras Recientes</h5>
+                        <p class="text-muted">Revisa el estado de tus pedidos y envíos actuales.</p>
+                        <button class="btn btn-dark btn-sm">Ver Historial</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-dashboard">
+                        <h5 class="mb-3" style="font-family: serif;">Información de Cuenta</h5>
+                        <p class="text-muted">Correo: sofia@esfe.com</p>
+                        <button class="btn btn-outline-dark btn-sm">Editar Perfil</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}

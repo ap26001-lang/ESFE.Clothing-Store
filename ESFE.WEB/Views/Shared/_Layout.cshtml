@@ -97,27 +97,38 @@
 </li>
                 </ul>
 
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" asp-controller="Home" asp-action="Index">Catálogo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="#">Novedades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="#">Colecciones</a>
+                    </li>
+                    <!-- Enlace del Panel de Vendedor integrado en el menú -->
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom text-warning fw-bold" asp-controller="Home" asp-action="Index">Panel Vendedor</a>
+                    </li>
+                </ul>
+
                 <div class="d-flex align-items-center gap-3">
-                    @* Comprobación simulada de usuario autenticado *@
                     @if (User.Identity != null && User.Identity.IsAuthenticated)
                     {
                         <span class="user-pill">
-                            <i class="bi bi-person-fill"></i> @User.Identity.Name (Cliente VIP)
+                            <i class="bi bi-person-fill"></i> @User.Identity.Name
                         </span>
                         <a asp-controller="Account" asp-action="Logout" class="btn btn-outline-light btn-sm text-uppercase">Cerrar Sesión</a>
                     }
                     else
                     {
-                        <!-- Si entra como correo común o invitado -->
                         <span class="user-pill">
                             Sofía Mendoza (Cliente VIP)
                         </span>
-                        <a asp-controller="Account" asp-action="Login" class="btn btn-outline-warning btn-sm text-uppercase" style="border-color: var(--color-gold); color: var(--color-gold);">Iniciar Sesión</a>
+                        <a asp-controller="Account" asp-action="Login" class="btn btn-outline-warning btn-sm text-uppercase" style="border-color: var(--color-gold);">Iniciar Sesión</a>
                     }
                 </div>
-            </div>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Panel Vendedor</a>
             </li>
         </div>
     </nav>
