@@ -67,6 +67,10 @@ namespace ESFE.WEB.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Vendedor()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();
