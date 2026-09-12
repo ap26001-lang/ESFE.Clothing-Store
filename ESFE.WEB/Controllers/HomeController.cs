@@ -1,6 +1,4 @@
-using ESFE.WEB.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace ESFE.WEB.Controllers
 {
@@ -11,15 +9,25 @@ namespace ESFE.WEB.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        // POST: Procesar Inicio de Sesión
+        [HttpPost]
+        public IActionResult Login(string Email, string Password)
         {
-            return View();
+            // Validación de credenciales para Administrador
+            if (Email == "admin@maisonelite.com" && Password == "Admin123")
+            {
+                // Redirecciona al panel de administración
+                return RedirectToAction("AdminDashboard");
+            }
+
+            ViewBag.Error = "Credenciales incorrectas.";
+            return View("Index");
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        // VISTA: Panel de Control del Administrador
+        public IActionResult AdminDashboard()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View();
         }
     }
 }
