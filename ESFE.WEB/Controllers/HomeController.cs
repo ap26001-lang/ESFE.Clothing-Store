@@ -48,5 +48,40 @@ namespace ESFE.WEB.Controllers
         {
             return View();
         }
+
+        public IActionResult Catalogo()
+        {
+            return View();
+        }
+
+        public IActionResult Clientes()
+        {
+            return View();
+        }
+
+        public IActionResult PuntoDeVenta()
+        {
+            return View();
+        }
+
+        public IActionResult HistorialVentas()
+        {
+            return View();
+        }
+
+        public IActionResult Reportes()
+        {
+            return View();
+        }
+
+        public IActionResult Bitacora()
+        {
+            return View();
+        }
+
+        public IActionResult Respaldos()
+        {
+            return View();
+        }
     }
 }
