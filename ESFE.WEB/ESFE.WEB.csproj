@@ -10,4 +10,9 @@
     <PackageReference Include="bootstrap" Version="5.3.8" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ESFE. Clothing Store.EN\ESFE. Clothing Store.EN.csproj" />
+    <ProjectReference Include="..\ESFE. Clothing Store.LN\ESFE. Clothing Store.LN.csproj" />
+  </ItemGroup>
+
 </Project>

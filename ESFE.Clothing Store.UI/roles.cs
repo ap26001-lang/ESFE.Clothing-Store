@@ -84,7 +84,7 @@ namespace ESFE.Clothing_Store.UI
             {
                 Roles rol = new Roles
                 {
-                    DiscripcionRoles = descripcionRolTxtFrmRoles.Text.Trim()
+                    Descripcion_Rol = descripcionRolTxtFrmRoles.Text.Trim()
                 };
 
                 RolesDAL.Insertar(rol);
@@ -114,8 +114,8 @@ namespace ESFE.Clothing_Store.UI
 
             Roles rol = new Roles
             {
-                idRoles = id,
-                DiscripcionRoles = descripcionRolTxtFrmRoles.Text.Trim()
+                id_rol = id,
+                Descripcion_Rol = descripcionRolTxtFrmRoles.Text.Trim()
             };
 
             try
@@ -170,8 +170,8 @@ namespace ESFE.Clothing_Store.UI
 
         private void FillFormFromEntity(Roles rol)
         {
-            idRolTxtFrmRoles.Text = rol.idRoles.ToString();
-            descripcionRolTxtFrmRoles.Text = rol.DiscripcionRoles ?? string.Empty;
+            idRolTxtFrmRoles.Text = rol.id_rol.ToString();
+            descripcionRolTxtFrmRoles.Text = rol.Descripcion_Rol ?? string.Empty;
         }
 
         private void ClearForm()

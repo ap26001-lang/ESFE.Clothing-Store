@@ -1,26 +1,136 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@{
+    var idRol = Context.Session.GetInt32("id_Rol");
+    var usuario = Context.Session.GetString("usuario");
+    var correo = Context.Session.GetString("correo");
+}
+
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Maison Élite</title>
 
-    <!-- Librería Bootstrap e integración con site.css -->
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <!-- Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <!-- Estilos Personalizados de la Aplicación -->
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
-<body class="p-0 m-0 bg-light">
+<body class="bg-light d-flex flex-column min-vh-100">
 
-    <!-- Renderizado principal de las Vistas (Index.cshtml) -->
-    <main role="main">
+    <!-- NAVBAR PRINCIPAL -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+            <div class="container">
+                <a class="navbar-brand fw-bold text-uppercase tracking-wide" asp-controller="Home" asp-action="Index">
+                    <i class="bi bi-gem me-2"></i>Maison Élite
+                </a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarMain">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Index"><i class="bi bi-house me-1"></i>Inicio</a>
+                        </li>
+
+                        @if (correo != null)
+                        {
+                            @* Opciones exclusivas de Administrador (Rol 101) *@
+                            @if (idRol == 101)
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-shield-lock me-1"></i>Administración
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+                                        <li><a class="dropdown-item" asp-controller="Usuario" asp-action="Index"><i class="bi bi-people me-2"></i>Gestión de Usuarios</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Roles" asp-action="Index"><i class="bi bi-person-badge me-2"></i>Gestión de Roles</a></li>
+                                    </ul>
+                                </li>
+                            }
+
+                            @* Opciones para Admin (101) y Vendedor (303) *@
+                            @if (idRol == 101 || idRol == 303)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Productos" asp-action="Index"><i class="bi bi-box-seam me-1"></i>Inventario</a>
+                                </li>
+                            }
+
+                            @* Opciones visibles para Clientes (202) y todos los autenticados *@
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Catálogo" asp-action="Index"><i class="bi bi-bag me-1"></i>Catálogo</a>
+                            </li>
+                        }
+                    </ul>
+
+                    <!-- MÓDULO DE USUARIO / SESIÓN -->
+                    <ul class="navbar-nav ms-auto">
+                        @if (correo != null)
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle active fw-semibold" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-person-circle me-1"></i>Hola, @(usuario ?? "Usuario")
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="userDropdown">
+                                    <li><span class="dropdown-item-text text-muted small"><i class="bi bi-envelope me-1"></i>@correo</span></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <a class="dropdown-item text-danger" asp-controller="Login" asp-action="Logout">
+                                            <i class="bi bi-box-arrow-right me-2"></i>Cerrar Sesión
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="btn btn-outline-light btn-sm me-2" asp-controller="Login" asp-action="Index">
+                                    <i class="bi bi-box-arrow-in-right me-1"></i>Iniciar Sesión
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-primary btn-sm" asp-controller="Login" asp-action="Registro">
+                                    <i class="bi bi-person-plus me-1"></i>Registrarse
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- CONTENEDOR PRINCIPAL DE CONTENIDO DE LAS VISTAS -->
+    <main role="main" class="flex-grow-1 container py-4">
         @RenderBody()
     </main>
 
-    <!-- Scripts nativos de Bootstrap y jQuery en Visual Studio -->
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- FOOTER -->
+    <footer class="footer mt-auto py-3 bg-dark text-white-50 border-top border-secondary">
+        <div class="container text-center">
+            <small>&copy; @DateTime.Now.Year - <strong>Maison Élite</strong> - Todos los derechos reservados.</small>
+        </div>
+    </footer>
 
-    <!-- ARCHIVO JAVASCRIPT CON LA LÓGICA DE BOTONES Y ROLES -->
+    <!-- Bootstrap 5 JavaScript Bundle con Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script Principal JavaScript -->
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)

@@ -32,7 +32,7 @@ namespace ESFE._Clothing_Store.DAL
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     var p = cmd.CreateParameter(); p.ParameterName = "@id_rol"; p.Value = nuevoId; cmd.Parameters.Add(p);
-                    p = cmd.CreateParameter(); p.ParameterName = "@Descripcion_Rol"; p.Value = entidad.DiscripcionRoles ?? (object)DBNull.Value; cmd.Parameters.Add(p);
+                    p = cmd.CreateParameter(); p.ParameterName = "@Descripcion_Rol"; p.Value = entidad.Descripcion_Rol ?? (object)DBNull.Value; cmd.Parameters.Add(p);
 
                     cmd.ExecuteNonQuery();
                     return nuevoId;
@@ -55,8 +55,8 @@ namespace ESFE._Clothing_Store.DAL
                     cmd.CommandText = "sp_Roles_Actualizar";
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    var p = cmd.CreateParameter(); p.ParameterName = "@id_rol"; p.Value = entidad.idRoles; cmd.Parameters.Add(p);
-                    p = cmd.CreateParameter(); p.ParameterName = "@Descripcion_Rol"; p.Value = entidad.DiscripcionRoles ?? (object)DBNull.Value; cmd.Parameters.Add(p);
+                    var p = cmd.CreateParameter(); p.ParameterName = "@id_rol"; p.Value = entidad.id_rol; cmd.Parameters.Add(p);
+                    p = cmd.CreateParameter(); p.ParameterName = "@Descripcion_Rol"; p.Value = entidad.Descripcion_Rol ?? (object)DBNull.Value; cmd.Parameters.Add(p);
 
                     return cmd.ExecuteNonQuery();
                 }
@@ -66,7 +66,7 @@ namespace ESFE._Clothing_Store.DAL
         /// <summary>
         /// Elimina un rol de la base de datos.
         /// </summary>
-        public static int Eliminar(int idRoles)
+        public static int Eliminar(int idRol)
         {
             using (IDbConnection cn = DBComun.ObtenerConexion())
             {
@@ -76,7 +76,7 @@ namespace ESFE._Clothing_Store.DAL
                     cmd.CommandText = "sp_Roles_Eliminar";
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    var p = cmd.CreateParameter(); p.ParameterName = "@id_rol"; p.Value = idRoles; cmd.Parameters.Add(p);
+                    var p = cmd.CreateParameter(); p.ParameterName = "@id_rol"; p.Value = idRol; cmd.Parameters.Add(p);
 
                     return cmd.ExecuteNonQuery();
                 }
@@ -104,8 +104,8 @@ namespace ESFE._Clothing_Store.DAL
                         {
                             var item = new Roles
                             {
-                                idRoles = dr["id_rol"] != DBNull.Value ? Convert.ToInt32(dr["id_rol"]) : 0,
-                                DiscripcionRoles = dr["Descripcion_Rol"] != DBNull.Value ? dr["Descripcion_Rol"].ToString() : string.Empty
+                                id_rol = dr["id_rol"] != DBNull.Value ? Convert.ToInt32(dr["id_rol"]) : 0,
+                                Descripcion_Rol = dr["Descripcion_Rol"] != DBNull.Value ? dr["Descripcion_Rol"].ToString() : string.Empty
                             };
                             lista.Add(item);
                         }
@@ -119,7 +119,7 @@ namespace ESFE._Clothing_Store.DAL
         /// <summary>
         /// Obtiene un rol específico por su ID.
         /// </summary>
-        public static Roles ObtenerPorId(int idRoles)
+        public static Roles ObtenerPorId(int idRol)
         {
             Roles item = null;
 
@@ -131,7 +131,7 @@ namespace ESFE._Clothing_Store.DAL
                     cmd.CommandText = "sp_Roles_ObtenerPorId";
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    var p = cmd.CreateParameter(); p.ParameterName = "@id_rol"; p.Value = idRoles; cmd.Parameters.Add(p);
+                    var p = cmd.CreateParameter(); p.ParameterName = "@id_rol"; p.Value = idRol; cmd.Parameters.Add(p);
 
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
@@ -139,8 +139,8 @@ namespace ESFE._Clothing_Store.DAL
                         {
                             item = new Roles
                             {
-                                idRoles = dr["id_rol"] != DBNull.Value ? Convert.ToInt32(dr["id_rol"]) : 0,
-                                DiscripcionRoles = dr["Descripcion_Rol"] != DBNull.Value ? dr["Descripcion_Rol"].ToString() : string.Empty
+                                id_rol = dr["id_rol"] != DBNull.Value ? Convert.ToInt32(dr["id_rol"]) : 0,
+                                Descripcion_Rol = dr["Descripcion_Rol"] != DBNull.Value ? dr["Descripcion_Rol"].ToString() : string.Empty
                             };
                         }
                     }
@@ -151,4 +151,3 @@ namespace ESFE._Clothing_Store.DAL
         }
     }
 }
-

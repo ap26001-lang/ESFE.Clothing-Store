@@ -4,19 +4,25 @@ namespace ESFE.WEB.Controllers
 {
     public class HomeController : Controller
     {
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
 
-        // POST: Procesar Inicio de Sesión
+        // POST: Procesar Inicio de Sesión Tradicional
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Login(string Email, string Password)
         {
-            // Validación de credenciales para Administrador
+            if (string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password))
+            {
+                ViewBag.Error = "Por favor, ingresa tu correo y contraseña.";
+                return View("Index");
+            }
+
             if (Email == "admin@maisonelite.com" && Password == "Admin123")
             {
-                // Redirecciona al panel de administración
                 return RedirectToAction("AdminDashboard");
             }
 
@@ -24,7 +30,20 @@ namespace ESFE.WEB.Controllers
             return View("Index");
         }
 
-        // VISTA: Panel de Control del Administrador
+        // POST: Simulación de Inicio de Sesión con Google
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SimularGoogleLogin()
+        {
+            // Guardamos datos simulados en ViewBag/TempData para mostrarlos en el Dashboard
+            TempData["UsuarioSimulado"] = "Usuario de Google";
+            TempData["EmailSimulado"] = "usuario.google@gmail.com";
+
+            // Redirige directamente al panel de administración/dashboard
+            return RedirectToAction("AdminDashboard");
+        }
+
+        [HttpGet]
         public IActionResult AdminDashboard()
         {
             return View();

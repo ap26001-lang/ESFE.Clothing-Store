@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using ESFE._Clothing_Store.DAL;
 using ESFE._Clothing_Store.EN;
@@ -6,29 +7,49 @@ namespace ESFE._Clothing_Store.LN
 {
     public class UsuarioLN
     {
-        public int Insertar(Usuario entidad)
+        // Instancia global de la capa de acceso a datos
+        private readonly UsuarioDAL _usuarioDAL = new UsuarioDAL();
+
+        public Usuario ValidarLogin(string correo, string clave)
         {
-            return UsuarioDAL.Insertar(entidad);
+            return _usuarioDAL.ValidarLogin(correo, clave);
         }
 
-        public int Actualizar(Usuario entidad)
+        public int ObtenerSiguienteId()
         {
-            return UsuarioDAL.Actualizar(entidad);
+            return _usuarioDAL.ObtenerSiguienteId();
         }
 
-        public int Eliminar(int idUsuario)
+        public int AgregarUsuario(Usuario pUsuario)
         {
-            return UsuarioDAL.Eliminar(idUsuario);
+            // Asignar el ID autogenerado
+            pUsuario.id_Usuario = _usuarioDAL.ObtenerSiguienteId();
+
+            // Regla de Negocio: Asignación automática de id_Rol según el correo
+            if (pUsuario.correo.StartsWith("admin", StringComparison.OrdinalIgnoreCase))
+            {
+                pUsuario.id_Rol = 101; // Rol Administrador
+            }
+            else if (pUsuario.correo.EndsWith("@maisonelite.com", StringComparison.OrdinalIgnoreCase))
+            {
+                pUsuario.id_Rol = 303; // Rol Vendedor
+            }
+            else
+            {
+                pUsuario.id_Rol = 202; // Rol Cliente
+            }
+
+            return _usuarioDAL.AgregarUsuario(pUsuario);
         }
 
         public List<Usuario> ObtenerTodos()
         {
-            return UsuarioDAL.ObtenerTodos();
+            return _usuarioDAL.ObtenerTodos();
         }
 
-        public Usuario ObtenerPorId(int idUsuario)
+        public Usuario ObtenerPorId(int id)
         {
-            return UsuarioDAL.ObtenerPorId(idUsuario);
+            return _usuarioDAL.ObtenerPorId(id);
         }
     }
 }

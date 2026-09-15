@@ -6,7 +6,7 @@ namespace ESFE._Clothing_Store.EN
 {
     public class Roles
     {
-        public int idRoles { get; set; }
-        public string DiscripcionRoles { get; set; }
+        public int id_rol { get; set; }
+        public string Descripcion_Rol { get; set; }
     }
 }

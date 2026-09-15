@@ -52,7 +52,8 @@ namespace ESFE.Clothing_Store.UI
                 return;
             }
 
-            ESFE._Clothing_Store.EN.Usuario usuario = UsuarioDAL.ObtenerPorId(id);
+            var dal = new UsuarioDAL();
+            ESFE._Clothing_Store.EN.Usuario usuario = dal.ObtenerPorId(id);
             if (usuario != null)
             {
                 FillFormFromEntity(usuario);

@@ -1,117 +1,170 @@
 /* ==========================================================================
-   PALETA DE COLORES Y ESTILOS CORPORATIVOS - MAISON ÉLITE
+   PALETA DE COLORES Y ESTILOS CORPORATIVOS PREMIUM - MAISON ÉLITE
    ========================================================================== */
 :root {
-    --me-bg-dark: #1f120c; /* Café oscuro lateral */
-    --me-bg-cream: #fbf9f5; /* Fondo crema principal */
-    --me-gold: #c29b62; /* Dorado / Bronce */
-    --me-input-bg: #f7f4ee; /* Fondo de inputs */
-    --me-border: #e5dec9; /* Borde suave */
-    --me-text-dark: #2a221e; /* Texto principal */
-    --me-text-muted: #7a7067; /* Texto secundario */
+    --me-bg-dark: #120b08; /* Café de alta costura casi negro */
+    --me-bg-cream: #f9f6f0; /* Crema sedoso principal */
+    --me-gold: #d4af37; /* Dorado metálico pulido */
+    --me-gold-hover: #b89228; /* Dorado oscuro para interactividad */
+    --me-input-bg: #f2eee6; /* Fondo suave de inputs */
+    --me-border: #e2d7c3; /* Borde marfil/dorado sutil */
+    --me-text-dark: #1c1613; /* Texto ébano */
+    --me-text-muted: #82756a; /* Texto bronce atenuado */
 }
 
 html, body {
     height: 100%;
     background-color: var(--me-bg-cream);
+    color: var(--me-text-dark);
+    font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* Panel Izquierdo (Café) */
+/* ==========================================================================
+   PANEL IZQUIERDO PREMIUM (Branding Maison Élite)
+   ========================================================================== */
 .sidebar-dark {
-    background-color: var(--me-bg-dark);
+    background: linear-gradient(135deg, #180f0b 0%, #0d0705 100%) !important;
     color: #ffffff;
+    position: relative;
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.15);
 }
+
+    /* Detalle sutil de brillo dorado en el lateral */
+    .sidebar-dark::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 1px;
+        height: 100%;
+        background: linear-gradient(180deg, transparent, var(--me-gold), transparent);
+        opacity: 0.5;
+    }
 
 .brand-subtitle {
     color: var(--me-gold);
-    letter-spacing: 3px;
-    font-size: 0.85rem;
-    font-weight: 600;
+    letter-spacing: 4px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
 }
 
 .sidebar-title {
-    font-size: 2.8rem;
-    font-weight: 300;
-    line-height: 1.2;
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem;
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
 }
 
     .sidebar-title .gold-italic {
         font-style: italic;
         color: var(--me-gold);
+        font-weight: 400;
     }
 
-.stat-num {
-    font-size: 2.2rem;
-    color: var(--me-gold);
-    font-weight: 300;
-}
-
-.stat-label {
-    font-size: 0.7rem;
-    letter-spacing: 1.5px;
-    color: #8c7e73;
-}
-
-/* Formulario Lado Derecho (Crema) */
-.form-label-custom {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    color: var(--me-gold);
-}
-
-.form-control-custom {
-    background-color: var(--me-input-bg);
-    border: 1px solid var(--me-border);
-    border-radius: 2px;
-    padding: 12px 16px;
-    color: var(--me-text-dark);
-}
-
-    .form-control-custom:focus {
-        background-color: #ffffff;
-        border-color: var(--me-gold);
-        box-shadow: 0 0 0 0.2rem rgba(194, 155, 98, 0.25);
-    }
-
-.btn-dark-custom {
-    background-color: var(--me-bg-dark);
-    color: var(--me-gold);
-    border: none;
-    padding: 14px;
-    font-size: 0.85rem;
+/* ==========================================================================
+   FORMULARIO Y CONTROLES PERSONALIZADOS PREMIUM
+   ========================================================================== */
+.form-label-custom,
+.form-label {
+    font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 2px;
-    border-radius: 2px;
-    transition: opacity 0.2s ease;
+    color: var(--me-text-dark);
+    text-transform: uppercase;
+}
+
+.form-control-custom,
+.form-control {
+    background-color: var(--me-input-bg);
+    border: 1px solid var(--me-border);
+    border-radius: 4px;
+    padding: 14px 18px;
+    color: var(--me-text-dark);
+    font-size: 0.95rem;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+    .form-control-custom:focus,
+    .form-control:focus {
+        background-color: #ffffff;
+        border-color: var(--me-gold);
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+        outline: none;
+    }
+
+/* BOTÓN PRINCIPAL PREMIUM (Dorado/Oscuro con elevación) */
+.btn-dark-custom {
+    background: linear-gradient(135deg, #1f120c 0%, #120b08 100%);
+    color: var(--me-gold);
+    border: 1px solid var(--me-gold);
+    padding: 16px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
     .btn-dark-custom:hover {
-        background-color: #2c1a12;
-        color: var(--me-gold);
+        background: var(--me-gold);
+        color: #120b08;
+        border-color: var(--me-gold);
+        box-shadow: 0 6px 20px rgba(212, 175, 55, 0.35);
+        transform: translateY(-1px);
     }
 
+/* BOTÓN GOOGLE ELEGANTE */
 .btn-google-custom {
     background-color: #ffffff;
     border: 1px solid var(--me-border);
     color: var(--me-text-dark);
     font-size: 0.85rem;
     font-weight: 600;
-    padding: 10px;
-    border-radius: 2px;
+    padding: 12px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
 }
 
     .btn-google-custom:hover {
-        background-color: #f1ebd9;
+        background-color: #f7f3eb;
+        border-color: var(--me-gold);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.06);
     }
 
+/* ENLACES DE CONMUTACIÓN */
 .switch-link {
-    color: var(--me-gold);
+    color: var(--me-gold-hover);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease;
 }
 
     .switch-link:hover {
-        text-decoration: underline;
-        color: #a37f4c;
+        color: var(--me-gold);
+        border-bottom-color: var(--me-gold);
     }
+
+/* ANIMACIONES Y ACABADOS */
+#view-login, #view-register {
+    animation: luxuryFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes luxuryFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

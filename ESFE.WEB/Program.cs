@@ -3,27 +3,38 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// Habilitar el servicio de Sesión
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
+
+// Habilitar archivos estáticos (CSS, JS, imágenes)
+app.UseStaticFiles();
+
 app.UseRouting();
+
+// Activar el middleware de Sesión
+app.UseSession();
 
 app.UseAuthorization();
 
-app.MapStaticAssets();
-
+// Mapeo tradicional de rutas ASP.NET Core MVC
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
-    .WithStaticAssets();
-
+    pattern: "{controller=Login}/{action=Index}/{id?}");
 
 app.Run();
