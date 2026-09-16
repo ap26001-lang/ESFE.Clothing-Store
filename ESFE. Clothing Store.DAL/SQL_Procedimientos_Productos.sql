@@ -1,3 +1,8 @@
+
+CREATE DATABASE TIENDA_ROPA;
+GO
+USE TIENDA_ROPA;
+GO
 -- Procedimientos Almacenados para la tabla Productos
 -- Base de datos: BDDesarrollo
 

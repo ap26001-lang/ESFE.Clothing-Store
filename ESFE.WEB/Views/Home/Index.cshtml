@@ -151,13 +151,12 @@
                     <a class="nav-link text-white-50" href="#" id="opt-catalogo-vendedor" onclick="switchTabVendedor('catalogo-vendedor')"><i class="bi bi-grid me-2"></i>Catálogo</a>
                 </li>
             </ul>
-            <button class="btn btn-outline-light btn-sm text-start w-100 mt-auto" onclick="logout()"><i class="bi bi-box-arrow-left me-2"></i>Cerrar sesión</button>
+            <a href="@Url.Action("Index", "Login")" class="btn btn-outline-light btn-sm text-start w-100 mt-auto"><i class="bi bi-box-arrow-left me-2"></i>Cerrar sesión</a>
         </div>
     </div>
 
     <div class="container-fluid p-4">
         <!-- SECCIÓN: PUNTO DE VENTA (POS) -->
-        <div id="tab-pos">
             <div class="row g-4">
                 <div class="col-md-7">
                     <input type="text" class="form-control mb-3" placeholder="Buscar prenda...">

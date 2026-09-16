@@ -21,26 +21,23 @@ namespace ESFE.WEB.Controllers
                 return View("Index");
             }
 
+            // Comprobación de administrador en memoria
             if (Email == "admin@maisonelite.com" && Password == "Admin123")
+            {
+                return RedirectToAction("AdminDashboard");
+            }
+
+            // Comprobar credenciales en la base de datos
+            ESFE._Clothing_Store.DAL.UsuarioDAL usuarioDAL = new ESFE._Clothing_Store.DAL.UsuarioDAL();
+            var usuario = usuarioDAL.ValidarLogin(Email, Password);
+
+            if (usuario != null)
             {
                 return RedirectToAction("AdminDashboard");
             }
 
             ViewBag.Error = "Credenciales incorrectas.";
             return View("Index");
-        }
-
-        // POST: Simulación de Inicio de Sesión con Google
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult SimularGoogleLogin()
-        {
-            // Guardamos datos simulados en ViewBag/TempData para mostrarlos en el Dashboard
-            TempData["UsuarioSimulado"] = "Usuario de Google";
-            TempData["EmailSimulado"] = "usuario.google@gmail.com";
-
-            // Redirige directamente al panel de administración/dashboard
-            return RedirectToAction("AdminDashboard");
         }
 
         [HttpGet]
