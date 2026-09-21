@@ -15,6 +15,11 @@ namespace ESFE._Clothing_Store.LN
             return _usuarioDAL.ValidarLogin(correo, clave);
         }
 
+        public Usuario ObtenerPorCorreo(string correo)
+        {
+            return _usuarioDAL.ObtenerPorCorreo(correo);
+        }
+
         public int ObtenerSiguienteId()
         {
             return _usuarioDAL.ObtenerSiguienteId();

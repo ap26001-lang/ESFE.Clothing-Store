@@ -1,0 +1,1706 @@
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    ViewData["Title"] = "Cliente";
+    Layout = null;
+
+    var usuario = ViewBag.Usuario as string ?? "Cliente";
+
+    var inicial = usuario.Length > 0
+        ? usuario.Substring(0, 1).ToUpper()
+        : "C";
+}
+
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>
+        Maison Élite | Cliente
+    </title>
+
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin />
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap"
+          rel="stylesheet" />
+
+
+    <style>
+
+        :root {
+            --me-bg-dark: #120b08;
+            --me-bg-dark-2: #1c100b;
+            --me-bg-cream: #f9f6f0;
+            --me-gold: #d4af37;
+            --me-gold-hover: #b89228;
+            --me-border: #e2d7c3;
+            --me-text-dark: #1c1613;
+            --me-text-muted: #82756a;
+        }
+
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+
+        body {
+            background: var(--me-bg-cream);
+            color: var(--me-text-dark);
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+
+
+        /* ==========================
+           ESTRUCTURA
+        ========================== */
+
+        .cliente-layout {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+
+        /* ==========================
+           MENÚ LATERAL
+        ========================== */
+
+        .sidebar {
+            width: 165px;
+            min-width: 165px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+
+            background: var(--me-bg-dark);
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+
+        .brand {
+            padding: 22px 18px;
+
+            border-bottom:
+                1px solid
+                rgba(212,175,55,.10);
+        }
+
+
+        .brand-name {
+            color: var(--me-gold);
+
+            font-family:
+                'Playfair Display',
+                serif;
+
+            font-size: 11px;
+
+            letter-spacing: 3px;
+
+            white-space: nowrap;
+        }
+
+
+        .brand-role {
+            margin-top: 8px;
+
+            color: #765d4b;
+
+            font-size: 8px;
+        }
+
+
+        .sidebar-menu {
+            padding: 17px 8px;
+        }
+
+
+        .menu-button {
+            width: 100%;
+
+            height: 34px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            padding: 0 10px;
+
+            margin-bottom: 5px;
+
+            border: none;
+
+            background: transparent;
+
+            color: #a48d7c;
+
+            font-family:
+                'Montserrat',
+                sans-serif;
+
+            font-size: 9px;
+
+            text-align: left;
+
+            cursor: pointer;
+        }
+
+
+        .menu-button:hover {
+            background: #21140f;
+            color: #d9c3ae;
+        }
+
+
+        .menu-button.active {
+            background: #2a1812;
+            color: var(--me-gold);
+        }
+
+
+        .menu-icon {
+            width: 13px;
+            text-align: center;
+        }
+
+
+        .sidebar-bottom {
+            border-top:
+                1px solid
+                rgba(212,175,55,.10);
+
+            padding:
+                17px 8px 20px;
+        }
+
+
+        .logout {
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            padding:
+                0 10px;
+
+            color: #765d4b;
+
+            text-decoration: none;
+
+            font-size: 8px;
+        }
+
+
+        .logout:hover {
+            color: #b38d68;
+        }
+
+
+        /* ==========================
+           CONTENIDO
+        ========================== */
+
+        .main {
+            margin-left: 165px;
+
+            width:
+                calc(100% - 165px);
+
+            min-height: 100vh;
+
+            background: #fbfaf7;
+        }
+
+
+        .topbar {
+            height: 45px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 20px;
+
+            background: white;
+
+            border-bottom:
+                1px solid
+                var(--me-border);
+        }
+
+
+        .page-title {
+            margin: 0;
+
+            font-family:
+                'Playfair Display',
+                serif;
+
+            font-size: 15px;
+
+            font-weight: 400;
+        }
+
+
+        .user-circle {
+            width: 23px;
+            height: 23px;
+
+            border-radius: 50%;
+
+            background: #c7a15e;
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 9px;
+
+            font-weight: 600;
+        }
+
+
+        .content {
+            max-width: 1050px;
+
+            margin: auto;
+
+            padding:
+                25px 25px 50px;
+        }
+
+
+        /* ==========================
+           SECCIONES
+        ========================== */
+
+        .section {
+            display: none;
+        }
+
+
+        .section.active {
+            display: block;
+        }
+
+
+        /* ==========================
+           BIENVENIDA
+        ========================== */
+
+        .welcome {
+            background:
+                var(--me-bg-dark);
+
+            color: white;
+
+            padding: 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+
+        .welcome-small {
+            color:
+                var(--me-gold);
+
+            font-size: 8px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+
+            margin-bottom: 6px;
+        }
+
+
+        .welcome h1 {
+            margin: 0;
+
+            font-family:
+                'Playfair Display',
+                serif;
+
+            font-weight: 400;
+
+            font-size: 28px;
+        }
+
+
+        .welcome p {
+            margin: 7px 0 0;
+
+            color: #a88f7e;
+
+            font-size: 8px;
+        }
+
+
+        .stats {
+            display: flex;
+
+            gap: 30px;
+        }
+
+
+        .stat {
+            text-align: center;
+        }
+
+
+        .stat strong {
+            display: block;
+
+            color:
+                var(--me-gold);
+
+            font-family:
+                'Playfair Display',
+                serif;
+
+            font-size: 20px;
+        }
+
+
+        .stat span {
+            color: #765d4b;
+
+            font-size: 7px;
+
+            text-transform: uppercase;
+        }
+
+
+        /* ==========================
+           TÍTULOS
+        ========================== */
+
+        .section-title {
+            margin:
+                25px 0 10px;
+
+            color: #806e60;
+
+            font-size: 8px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* ==========================
+           PEDIDO
+        ========================== */
+
+        .order {
+            background: white;
+
+            border:
+                1px solid
+                var(--me-border);
+
+            padding: 18px;
+        }
+
+
+        .order-top {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 15px;
+        }
+
+
+        .order-id {
+            color: #b38858;
+
+            font-size: 8px;
+        }
+
+
+        .status {
+            background: #eef8f2;
+
+            color: #3b8769;
+
+            border:
+                1px solid
+                #bfe2ce;
+
+            padding: 4px 8px;
+
+            font-size: 7px;
+        }
+
+
+        .products {
+            display: flex;
+
+            gap: 25px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .product-small {
+            display: flex;
+
+            gap: 10px;
+
+            align-items: center;
+        }
+
+
+        .product-image {
+            width: 60px;
+
+            height: 60px;
+
+            background: #eee7dd;
+
+            border:
+                1px solid
+                #ded1c1;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: #9d8b7b;
+
+            font-size: 7px;
+        }
+
+
+        .product-name {
+            font-size: 8px;
+
+            font-weight: 600;
+        }
+
+
+        .product-size {
+            color: #82756a;
+
+            font-size: 7px;
+
+            margin-top: 4px;
+        }
+
+
+        .product-price {
+            font-family:
+                'Playfair Display',
+                serif;
+
+            font-size: 12px;
+
+            margin-top: 4px;
+        }
+
+
+        .order-bottom {
+            border-top:
+                1px solid
+                #eee6dc;
+
+            margin-top: 15px;
+
+            padding-top: 13px;
+
+            display: flex;
+
+            justify-content: space-between;
+        }
+
+
+        .order-date {
+            color: #82756a;
+
+            font-size: 8px;
+        }
+
+
+        .order-total {
+            font-family:
+                'Playfair Display',
+                serif;
+
+            font-size: 16px;
+        }
+
+
+        /* ==========================
+           PRODUCTOS
+        ========================== */
+
+        .products-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 10px;
+        }
+
+
+        .card {
+            background: white;
+
+            border:
+                1px solid
+                var(--me-border);
+        }
+
+
+        .card-image {
+            height: 140px;
+
+            background: #eee7dd;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: #9d8b7b;
+
+            font-size: 8px;
+        }
+
+
+        .card-body {
+            padding: 11px;
+        }
+
+
+        .card-name {
+            font-size: 8px;
+
+            font-weight: 600;
+        }
+
+
+        .card-price {
+            margin-top: 5px;
+
+            font-family:
+                'Playfair Display',
+                serif;
+
+            font-size: 13px;
+        }
+
+
+        .card-button {
+            width: 100%;
+
+            height: 28px;
+
+            margin-top: 10px;
+
+            background: #f8f4ee;
+
+            border:
+                1px solid
+                var(--me-border);
+
+            color: #604c40;
+
+            font-size: 7px;
+
+            cursor: pointer;
+        }
+
+
+        .card-button:hover {
+            border-color:
+                var(--me-gold);
+
+            color: #60471f;
+        }
+
+
+        /* ==========================
+           PEDIDOS
+        ========================== */
+
+        .order-list {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 9px;
+        }
+
+
+        .order-row {
+            background: white;
+
+            border:
+                1px solid
+                var(--me-border);
+
+            padding: 15px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+
+        .order-row-info {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 4px;
+        }
+
+
+        .order-row-id {
+            color: #b38858;
+
+            font-size: 8px;
+        }
+
+
+        .order-row-name {
+            font-size: 8px;
+        }
+
+
+        .order-row-date {
+            color: #82756a;
+
+            font-size: 7px;
+        }
+
+
+        .order-row-total {
+            font-family:
+                'Playfair Display',
+                serif;
+
+            font-size: 15px;
+        }
+
+
+        /* ==========================
+           PERFIL
+        ========================== */
+
+        .profile {
+            background: white;
+
+            border:
+                1px solid
+                var(--me-border);
+
+            padding: 25px;
+        }
+
+
+        .profile h2 {
+            margin: 0 0 20px;
+
+            font-family:
+                'Playfair Display',
+                serif;
+
+            font-weight: 400;
+
+            font-size: 21px;
+        }
+
+
+        .profile-row {
+            padding: 13px 0;
+
+            border-bottom:
+                1px solid
+                #eee6dc;
+        }
+
+
+        .profile-label {
+            display: block;
+
+            color: #82756a;
+
+            font-size: 7px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .8px;
+
+            margin-bottom: 4px;
+        }
+
+
+        .profile-value {
+            font-size: 9px;
+        }
+
+
+        /* ==========================
+           RESPONSIVE
+        ========================== */
+
+        @@media (max-width: 850px) {
+
+            .products-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .welcome {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+
+        }
+
+
+        @@media (max-width: 600px) {
+
+            .sidebar {
+                width: 130px;
+                min-width: 130px;
+            }
+
+            .main {
+                margin-left: 130px;
+                width:
+                    calc(100% - 130px);
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .content {
+                padding: 15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="cliente-layout">
+
+
+    <!-- ==========================
+         MENÚ LATERAL
+    =========================== -->
+
+    <aside class="sidebar">
+
+        <div>
+
+            <div class="brand">
+
+                <div class="brand-name">
+                    MAISON ÉLITE
+                </div>
+
+                <div class="brand-role">
+                    Cliente
+                </div>
+
+            </div>
+
+
+            <nav class="sidebar-menu">
+
+                <button
+                    class="menu-button active"
+                    onclick="mostrarSeccion('inicio', this)">
+
+                    <span class="menu-icon">
+                        ◉
+                    </span>
+
+                    Inicio
+
+                </button>
+
+
+                <button
+                    class="menu-button"
+                    onclick="mostrarSeccion('pedidos', this)">
+
+                    <span class="menu-icon">
+                        ○
+                    </span>
+
+                    Mis pedidos
+
+                </button>
+
+
+                <button
+                    class="menu-button"
+                    onclick="mostrarSeccion('catalogo', this)">
+
+                    <span class="menu-icon">
+                        □
+                    </span>
+
+                    Catálogo
+
+                </button>
+
+
+                <button
+                    class="menu-button"
+                    onclick="mostrarSeccion('perfil', this)">
+
+                    <span class="menu-icon">
+                        ○
+                    </span>
+
+                    Mi perfil
+
+                </button>
+
+            </nav>
+
+        </div>
+
+
+        <div class="sidebar-bottom">
+
+            <a class="logout"
+               href="@Url.Action("CerrarSesion", "Login")">
+
+                ↩
+
+                Cerrar sesión
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ==========================
+         CONTENIDO
+    =========================== -->
+
+    <main class="main">
+
+
+        <header class="topbar">
+
+            <h1 class="page-title">
+                Maison Élite
+            </h1>
+
+
+            <div class="user-circle">
+                @inicial
+            </div>
+
+        </header>
+
+
+        <div class="content">
+
+
+            <!-- ======================
+                 INICIO
+            ======================= -->
+
+            <section
+                id="inicio"
+                class="section active">
+
+
+                <div class="welcome">
+
+                    <div>
+
+                        <div class="welcome-small">
+                            Bienvenida de vuelta
+                        </div>
+
+                        <h1>
+                            @usuario
+                        </h1>
+
+                        <p>
+                            Gracias por formar parte de Maison Élite.
+                        </p>
+
+                    </div>
+
+
+                    <div class="stats">
+
+                        <div class="stat">
+
+                            <strong>
+                                9
+                            </strong>
+
+                            <span>
+                                Pedidos
+                            </span>
+
+                        </div>
+
+
+                        <div class="stat">
+
+                            <strong>
+                                $24,800
+                            </strong>
+
+                            <span>
+                                Compras
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="section-title">
+                    Último pedido
+                </div>
+
+
+                <div class="order">
+
+
+                    <div class="order-top">
+
+                        <span class="order-id">
+                            V-1058
+                        </span>
+
+                        <span class="status">
+                            Entregado
+                        </span>
+
+                    </div>
+
+
+                    <div class="products">
+
+
+                        <div class="product-small">
+
+                            <div class="product-image">
+                                Producto
+                            </div>
+
+                            <div>
+
+                                <div class="product-name">
+                                    Blazer Cachemira Oscuro
+                                </div>
+
+                                <div class="product-size">
+                                    Talla M
+                                </div>
+
+                                <div class="product-price">
+                                    $2,500
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="product-small">
+
+                            <div class="product-image">
+                                Producto
+                            </div>
+
+                            <div>
+
+                                <div class="product-name">
+                                    Blusa Lino Crema
+                                </div>
+
+                                <div class="product-size">
+                                    Talla S
+                                </div>
+
+                                <div class="product-price">
+                                    $620
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="order-bottom">
+
+                        <span class="order-date">
+                            2 septiembre 2026
+                        </span>
+
+                        <span class="order-total">
+                            $3,120
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="section-title">
+                    Novedades para ti
+                </div>
+
+
+                <div class="products-grid">
+
+
+                    <div class="card">
+
+                        <div class="card-image">
+                            Imagen
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="card-name">
+                                Vestido Seda Ivory
+                            </div>
+
+                            <div class="card-price">
+                                $1,800
+                            </div>
+
+                            <button
+                                class="card-button"
+                                onclick="mostrarSeccion('catalogo')">
+
+                                Ver catálogo
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="card-image">
+                            Imagen
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="card-name">
+                                Falda Plisado Champagne
+                            </div>
+
+                            <div class="card-price">
+                                $740
+                            </div>
+
+                            <button
+                                class="card-button"
+                                onclick="mostrarSeccion('catalogo')">
+
+                                Ver catálogo
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="card-image">
+                            Imagen
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="card-name">
+                                Blazer Cachemira
+                            </div>
+
+                            <div class="card-price">
+                                $2,500
+                            </div>
+
+                            <button
+                                class="card-button"
+                                onclick="mostrarSeccion('catalogo')">
+
+                                Ver catálogo
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="card-image">
+                            Imagen
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="card-name">
+                                Abrigo Lana Merino
+                            </div>
+
+                            <div class="card-price">
+                                $3,200
+                            </div>
+
+                            <button
+                                class="card-button"
+                                onclick="mostrarSeccion('catalogo')">
+
+                                Ver catálogo
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- ======================
+                 MIS PEDIDOS
+            ======================= -->
+
+            <section
+                id="pedidos"
+                class="section">
+
+
+                <div class="section-title">
+                    Mis pedidos
+                </div>
+
+
+                <div class="order-list">
+
+
+                    <div class="order-row">
+
+                        <div class="order-row-info">
+
+                            <span class="order-row-id">
+                                V-1058
+                            </span>
+
+                            <span class="order-row-name">
+                                Blazer Cachemira + Blusa Lino
+                            </span>
+
+                            <span class="order-row-date">
+                                2 septiembre 2026 · Entregado
+                            </span>
+
+                        </div>
+
+                        <span class="order-row-total">
+                            $3,120
+                        </span>
+
+                    </div>
+
+
+                    <div class="order-row">
+
+                        <div class="order-row-info">
+
+                            <span class="order-row-id">
+                                V-1042
+                            </span>
+
+                            <span class="order-row-name">
+                                Vestido Seda Ivory
+                            </span>
+
+                            <span class="order-row-date">
+                                20 agosto 2026 · Entregado
+                            </span>
+
+                        </div>
+
+                        <span class="order-row-total">
+                            $1,800
+                        </span>
+
+                    </div>
+
+
+                    <div class="order-row">
+
+                        <div class="order-row-info">
+
+                            <span class="order-row-id">
+                                V-1027
+                            </span>
+
+                            <span class="order-row-name">
+                                Abrigo Lana Merino
+                            </span>
+
+                            <span class="order-row-date">
+                                5 agosto 2026 · Entregado
+                            </span>
+
+                        </div>
+
+                        <span class="order-row-total">
+                            $3,200
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- ======================
+                 CATÁLOGO
+            ======================= -->
+
+            <section
+                id="catalogo"
+                class="section">
+
+
+                <div class="section-title">
+                    Catálogo
+                </div>
+
+
+                <div class="products-grid">
+
+
+                    <div class="card">
+
+                        <div class="card-image">
+                            Imagen
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="card-name">
+                                Blazer Cachemira Oscuro
+                            </div>
+
+                            <div class="card-price">
+                                $2,500
+                            </div>
+
+                            <button
+                                class="card-button"
+                                onclick="verProducto('Blazer Cachemira Oscuro')">
+
+                                Ver producto
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="card-image">
+                            Imagen
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="card-name">
+                                Vestido Seda Ivory
+                            </div>
+
+                            <div class="card-price">
+                                $1,800
+                            </div>
+
+                            <button
+                                class="card-button"
+                                onclick="verProducto('Vestido Seda Ivory')">
+
+                                Ver producto
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="card-image">
+                            Imagen
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="card-name">
+                                Abrigo Lana Merino
+                            </div>
+
+                            <div class="card-price">
+                                $3,200
+                            </div>
+
+                            <button
+                                class="card-button"
+                                onclick="verProducto('Abrigo Lana Merino')">
+
+                                Ver producto
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="card-image">
+                            Imagen
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="card-name">
+                                Pantalón Tweed Beige
+                            </div>
+
+                            <div class="card-price">
+                                $890
+                            </div>
+
+                            <button
+                                class="card-button"
+                                onclick="verProducto('Pantalón Tweed Beige')">
+
+                                Ver producto
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="card-image">
+                            Imagen
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="card-name">
+                                Blusa Lino Crema
+                            </div>
+
+                            <div class="card-price">
+                                $620
+                            </div>
+
+                            <button
+                                class="card-button"
+                                onclick="verProducto('Blusa Lino Crema')">
+
+                                Ver producto
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="card-image">
+                            Imagen
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="card-name">
+                                Falda Plisado Champagne
+                            </div>
+
+                            <div class="card-price">
+                                $740
+                            </div>
+
+                            <button
+                                class="card-button"
+                                onclick="verProducto('Falda Plisado Champagne')">
+
+                                Ver producto
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- ======================
+                 PERFIL
+            ======================= -->
+
+            <section
+                id="perfil"
+                class="section">
+
+
+                <div class="section-title">
+                    Mi perfil
+                </div>
+
+
+                <div class="profile">
+
+
+                    <h2>
+                        Información personal
+                    </h2>
+
+
+                    <div class="profile-row">
+
+                        <span class="profile-label">
+                            Nombre
+                        </span>
+
+                        <span class="profile-value">
+                            @usuario
+                        </span>
+
+                    </div>
+
+
+                    <div class="profile-row">
+
+                        <span class="profile-label">
+                            Correo
+                        </span>
+
+                        <span class="profile-value">
+                            Cliente registrado
+                        </span>
+
+                    </div>
+
+
+                    <div class="profile-row">
+
+                        <span class="profile-label">
+                            Tipo de cuenta
+                        </span>
+
+                        <span class="profile-value">
+                            Cliente
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script>
+
+    function mostrarSeccion(nombre, boton) {
+
+        const secciones =
+            document.querySelectorAll(".section");
+
+
+        secciones.forEach(function (seccion) {
+
+            seccion.classList.remove("active");
+
+        });
+
+
+        const destino =
+            document.getElementById(nombre);
+
+
+        if (destino) {
+
+            destino.classList.add("active");
+
+        }
+
+
+        const botones =
+            document.querySelectorAll(".menu-button");
+
+
+        botones.forEach(function (item) {
+
+            item.classList.remove("active");
+
+        });
+
+
+        if (boton) {
+
+            boton.classList.add("active");
+
+        }
+
+        else {
+
+            botones.forEach(function (item) {
+
+                const texto =
+                    item.textContent
+                        .trim()
+                        .toLowerCase();
+
+                if (
+                    (nombre === "inicio" && texto.includes("inicio")) ||
+                    (nombre === "pedidos" && texto.includes("pedidos")) ||
+                    (nombre === "catalogo" && texto.includes("catálogo")) ||
+                    (nombre === "perfil" && texto.includes("perfil"))
+                ) {
+
+                    item.classList.add("active");
+
+                }
+
+            });
+
+        }
+
+    }
+
+
+    function verProducto(nombre) {
+
+        alert(
+            "Producto seleccionado: " +
+            nombre
+        );
+
+    }
+
+</script>
+
+
+</body>
+
+</html>

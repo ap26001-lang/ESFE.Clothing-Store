@@ -1,6 +1,11 @@
-﻿@{
-    ViewData["Title"] = "Clientes - Maison Élite";
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    ViewData["Title"] = "Clientes";
     Layout = null;
+
+    var usuario = Context.Session.GetString("Usuario") ?? "Vendedor";
+    var inicial = usuario.Length > 0 ? usuario.Substring(0, 1).ToUpper() : "V";
 }
 
 <!DOCTYPE html>
@@ -8,270 +13,1589 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gestión de Clientes - Maison Élite</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <title>Clientes | Maison Élite</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet" />
 
     <style>
-            :root {
-                --sidebar-bg: #1c140e;
-                --sidebar-hover: #2a1f17;
-                --gold-accent: #c4a47c;
-                --gold-light: #e5d3b3;
-                --bg-main: #f8f6f2;
-                --card-bg: #ffffff;
-                --text-dark: #2b2b2b;
-                --text-muted: #7f7f7f;
-            }
+        :root {
+            --me-bg-dark: #120b08;
+            --me-bg-dark-2: #1c100b;
+            --me-bg-cream: #f9f6f0;
+            --me-gold: #d4af37;
+            --me-gold-hover: #b89228;
+            --me-input-bg: #f2eee6;
+            --me-border: #e2d7c3;
+            --me-text-dark: #1c1613;
+            --me-text-muted: #82756a;
+            --me-danger: #eaa8a0;
+        }
 
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-                font-family: 'Plus Jakarta Sans', sans-serif;
-            }
+        * {
+            box-sizing: border-box;
+        }
 
-            body {
-                background-color: var(--bg-main);
-                color: var(--text-dark);
-                display: flex;
-                height: 100vh;
-                overflow: hidden;
-            }
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
 
+        body {
+            background: var(--me-bg-cream);
+            color: var(--me-text-dark);
+            font-family: 'Montserrat', Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        /* =========================
+           ESTRUCTURA
+        ========================= */
+
+        .seller-layout {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+        }
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+            width: 156px;
+            min-width: 156px;
+            height: 100vh;
+            background: var(--me-bg-dark);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .brand {
+            padding: 21px 18px 22px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.10);
+        }
+
+        .brand-name {
+            color: var(--me-gold);
+            font-family: 'Playfair Display', serif;
+            font-size: 10px;
+            letter-spacing: 3px;
+            white-space: nowrap;
+        }
+
+        .brand-role {
+            margin-top: 8px;
+            color: #765d4b;
+            font-size: 8px;
+        }
+
+        .sidebar-menu {
+            padding: 16px 7px;
+            flex: 1;
+        }
+
+        .menu-link {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            height: 30px;
+            padding: 0 10px;
+            margin-bottom: 5px;
+            color: #a48d7c;
+            text-decoration: none;
+            font-size: 9px;
+            transition: .2s;
+        }
+
+        .menu-link:hover {
+            background: #21140f;
+            color: #d9c3ae;
+        }
+
+        .menu-link.active {
+            background: #2a1812;
+            color: var(--me-gold);
+        }
+
+        .menu-icon {
+            width: 11px;
+            text-align: center;
+            font-size: 10px;
+        }
+
+        .sidebar-bottom {
+            border-top: 1px solid rgba(212, 175, 55, 0.10);
+            padding: 17px 7px 20px;
+        }
+
+        .logout-link {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 0 10px;
+            color: #765d4b;
+            text-decoration: none;
+            font-size: 8px;
+        }
+
+        .logout-link:hover {
+            color: #b38d68;
+        }
+
+        /* =========================
+           CONTENIDO
+        ========================= */
+
+        .main {
+            flex: 1;
+            min-width: 0;
+            height: 100vh;
+            overflow-y: auto;
+            background: #fbfaf7;
+        }
+
+        .topbar {
+            height: 43px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 17px;
+            background: #fff;
+            border-bottom: 1px solid var(--me-border);
+        }
+
+        .page-title {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: #2c1d17;
+        }
+
+        .user-circle {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #c7a15e;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            font-weight: 600;
+        }
+
+        .content {
+            padding: 21px 20px 30px;
+        }
+
+        /* =========================
+           TARJETAS DE RESUMEN
+        ========================= */
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .summary-card {
+            height: 66px;
+            background: #fff;
+            border: 1px solid var(--me-border);
+            padding: 13px 15px;
+        }
+
+        .summary-label {
+            color: #927f70;
+            font-size: 7px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .summary-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: #241811;
+        }
+
+        /* =========================
+           BARRA DE BUSQUEDA
+        ========================= */
+
+        .toolbar {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 16px;
+        }
+
+        .search-box {
+            flex: 1;
+            height: 26px;
+            border: 1px solid var(--me-border);
+            background: #fff;
+            padding: 0 11px;
+            outline: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 8px;
+            color: var(--me-text-dark);
+        }
+
+        .search-box:focus {
+            border-color: #c7aa78;
+        }
+
+        .filter-select {
+            width: 76px;
+            height: 26px;
+            border: 1px solid var(--me-border);
+            background: #fff;
+            padding: 0 7px;
+            outline: none;
+            font-size: 8px;
+            color: #4b3930;
+        }
+
+        .btn-primary {
+            height: 26px;
+            padding: 0 13px;
+            border: 1px solid #20120d;
+            background: var(--me-bg-dark);
+            color: var(--me-gold);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 8px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .btn-primary:hover {
+            background: #24150f;
+        }
+
+        /* =========================
+           TABLA
+        ========================= */
+
+        .table-container {
+            background: #fff;
+            border: 1px solid var(--me-border);
+            overflow-x: auto;
+        }
+
+        .clients-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 750px;
+        }
+
+        .clients-table thead {
+            background: #fff;
+        }
+
+        .clients-table th {
+            height: 29px;
+            padding: 0 13px;
+            text-align: left;
+            border-bottom: 1px solid var(--me-border);
+            color: #806e60;
+            font-size: 7px;
+            letter-spacing: .8px;
+            font-weight: 500;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .clients-table td {
+            height: 41px;
+            padding: 5px 13px;
+            border-bottom: 1px solid #eee6db;
+            color: #403029;
+            font-size: 8px;
+            white-space: nowrap;
+        }
+
+        .clients-table tbody tr:hover {
+            background: #fcfaf6;
+        }
+
+        .client-cell {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .avatar {
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f1ece3;
+            color: #927d6c;
+            font-size: 7px;
+            font-weight: 600;
+        }
+
+        .avatar.dark {
+            background: var(--me-bg-dark);
+            color: white;
+        }
+
+        .client-name {
+            font-weight: 600;
+            color: #211712;
+            font-size: 8px;
+        }
+
+        .client-email {
+            margin-top: 2px;
+            color: #9b8c81;
+            font-size: 7px;
+        }
+
+        .number-center {
+            text-align: center !important;
+        }
+
+        .money {
+            font-family: 'Playfair Display', serif;
+            font-size: 11px !important;
+            color: #2a1c16 !important;
+        }
+
+        /* =========================
+           CATEGORIAS
+        ========================= */
+
+        .category {
+            display: inline-block;
+            padding: 2px 7px;
+            font-size: 7px;
+            border-radius: 1px;
+        }
+
+        .category.vip {
+            background: var(--me-bg-dark);
+            color: white;
+        }
+
+        .category.regular {
+            background: #f0e9df;
+            color: #765d4b;
+        }
+
+        .category.nuevo {
+            background: #eef3ff;
+            color: #4b6fa8;
+        }
+
+        /* =========================
+           BOTONES TABLA
+        ========================= */
+
+        .actions {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .btn-edit,
+        .btn-delete {
+            height: 19px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 7px;
+        }
+
+        .btn-edit {
+            width: 37px;
+            background: #f8f4ee;
+            border: 1px solid #dfd2c2;
+            color: #604c40;
+        }
+
+        .btn-edit:hover {
+            background: #eee6da;
+        }
+
+        .btn-delete {
+            width: 22px;
+            background: #fff;
+            border: 1px solid var(--me-danger);
+            color: #c9857c;
+            font-size: 9px;
+        }
+
+        .btn-delete:hover {
+            background: #fff0ed;
+        }
+
+        /* =========================
+           MODAL
+        ========================= */
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 14, 11, .52);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal {
+            width: 430px;
+            max-width: calc(100vw - 30px);
+            background: #fbf8f2;
+            border: 1px solid #dfd1c0;
+            box-shadow: 0 15px 50px rgba(0,0,0,.20);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 20px 10px;
+        }
+
+        .modal-title {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 400;
+            color: #2a1c16;
+        }
+
+        .modal-close {
+            border: 0;
+            background: transparent;
+            color: #8d7969;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: 4px 20px 20px;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            color: #7d6959;
+            font-size: 7px;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+        }
+
+        .form-control {
+            width: 100%;
+            height: 30px;
+            border: 1px solid #decfbd;
+            background: #fff;
+            outline: none;
+            padding: 0 9px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 8px;
+            color: #2c1d17;
+        }
+
+        .form-control:focus {
+            border-color: #c5a46c;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            padding: 13px 20px 18px;
+        }
+
+        .btn-cancel {
+            height: 28px;
+            min-width: 90px;
+            border: 1px solid #dfd1c0;
+            background: #f4efe7;
+            color: #604c40;
+            cursor: pointer;
+            font-size: 8px;
+        }
+
+        .btn-save {
+            height: 28px;
+            min-width: 90px;
+            border: 1px solid #20120d;
+            background: var(--me-bg-dark);
+            color: var(--me-gold);
+            cursor: pointer;
+            font-size: 8px;
+        }
+
+        .btn-save:hover {
+            background: #24150f;
+        }
+
+        /* =========================
+           MENSAJE VACIO
+        ========================= */
+
+        .empty-row {
+            text-align: center !important;
+            padding: 35px !important;
+            color: #9b8b7e !important;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @@media (max-width: 900px) {
             .sidebar {
-                width: 260px;
-                background-color: var(--sidebar-bg);
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                padding: 24px 16px;
-                color: #d1d1d1;
+                width: 145px;
+                min-width: 145px;
             }
 
-            .brand-header {
-                padding: 0 12px 24px 12px;
-                border-bottom: 1px solid rgba(196, 164, 124, 0.15);
+            .summary-grid {
+                grid-template-columns: 1fr;
             }
 
-            .brand-title {
-                font-family: 'Playfair Display', serif;
-                color: var(--gold-accent);
-                font-size: 1.4rem;
-                letter-spacing: 2px;
-                font-weight: 600;
+            .toolbar {
+                flex-wrap: wrap;
             }
 
-            .brand-subtitle {
-                font-size: 0.75rem;
-                color: var(--gold-light);
-                letter-spacing: 1.5px;
-                text-transform: uppercase;
-                opacity: 0.8;
+            .search-box {
+                min-width: 100%;
+            }
+        }
+
+        @@media (max-width: 600px) {
+            .sidebar {
+                width: 125px;
+                min-width: 125px;
             }
 
-            .nav-menu {
-                list-style: none;
-                margin-top: 20px;
-                display: flex;
-                flex-direction: column;
-                gap: 6px;
+            .content {
+                padding: 15px 10px;
             }
 
-            .nav-item a {
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                padding: 12px 16px;
-                color: #b0a8a0;
-                text-decoration: none;
-                font-size: 0.9rem;
-                border-radius: 8px;
-                transition: all 0.2s ease;
+            .form-row {
+                grid-template-columns: 1fr;
             }
-
-                .nav-item.active a, .nav-item a:hover {
-                    background-color: var(--sidebar-hover);
-                    color: #ffffff;
-                }
-
-            .nav-item.active a {
-                border-left: 3px solid var(--gold-accent);
-                color: var(--gold-accent);
-            }
-
-            .nav-item i {
-                font-size: 1rem;
-                width: 20px;
-            }
-
-            .sidebar-footer {
-                border-top: 1px solid rgba(196, 164, 124, 0.15);
-                padding-top: 16px;
-            }
-
-            .logout-btn {
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                padding: 12px 16px;
-                color: #b0a8a0;
-                text-decoration: none;
-                font-size: 0.9rem;
-                border-radius: 8px;
-            }
-
-            .main-content {
-                flex: 1;
-                overflow-y: auto;
-                padding: 32px 40px;
-                display: flex;
-                flex-direction: column;
-                gap: 24px;
-            }
-
-            .header-bar {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-
-            .page-title {
-                font-family: 'Playfair Display', serif;
-                font-size: 1.8rem;
-                color: var(--text-dark);
-            }
-
-            .btn-gold {
-                background-color: var(--sidebar-bg);
-                color: var(--gold-accent);
-                border: 1px solid var(--gold-accent);
-                padding: 10px 18px;
-                border-radius: 8px;
-                font-size: 0.9rem;
-                font-weight: 600;
-                cursor: pointer;
-                text-decoration: none;
-                display: flex;
-                align-items: center;
-                gap: 8px;
-            }
-
-                .btn-gold:hover {
-                    background-color: var(--gold-accent);
-                    color: #ffffff;
-                }
-
-            .content-card {
-                background-color: var(--card-bg);
-                padding: 28px;
-                border-radius: 12px;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            }
-
-            .custom-table {
-                width: 100%;
-                border-collapse: collapse;
-                text-align: left;
-                margin-top: 12px;
-            }
-
-                .custom-table th {
-                    padding: 14px 16px;
-                    font-size: 0.75rem;
-                    font-weight: 700;
-                    color: var(--text-muted);
-                    letter-spacing: 1px;
-                    text-transform: uppercase;
-                    border-bottom: 2px solid #f0f0f0;
-                }
-
-                .custom-table td {
-                    padding: 16px;
-                    font-size: 0.9rem;
-                    border-bottom: 1px solid #f0f0f0;
-                }
+        }
     </style>
 </head>
+
 <body>
 
+<div class="seller-layout">
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
     <aside class="sidebar">
+
         <div>
-            <div class="brand-header">
-                <div class="brand-title">MAISON ÉLITE</div>
-                <div class="brand-subtitle">Administrador</div>
+            <div class="brand">
+                <div class="brand-name">MAISON ÉLITE</div>
+                <div class="brand-role">Vendedor</div>
             </div>
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="@Url.Action("AdminDashboard", "Home")"><i class="fa-solid fa-compass"></i> Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a href="@Url.Action("Catalogo", "Home")"><i class="fa-solid fa-book-open"></i> Catálogo</a>
-                </li>
-                <li class="nav-item active">
-                    <a href="@Url.Action("Clientes", "Home")"><i class="fa-solid fa-users"></i> Clientes</a>
-                </li>
-                <li class="nav-item">
-                    <a href="@Url.Action("PuntoDeVenta", "Home")"><i class="fa-solid fa-cash-register"></i> Punto de Venta</a>
-                </li>
-                <li class="nav-item">
-                    <a href="@Url.Action("HistorialVentas", "Home")"><i class="fa-solid fa-clock-rotate-left"></i> Historial de Ventas</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#"><i class="fa-solid fa-chart-pie"></i> Reportes</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#"><i class="fa-solid fa-list-check"></i> Bitácora</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#"><i class="fa-solid fa-shield-halved"></i> Respaldos</a>
-                </li>
-            </ul>
+
+            <nav class="sidebar-menu">
+
+                <a class="menu-link"
+                   href="@Url.Action("Catalogo", "Home")">
+                    <span class="menu-icon">□</span>
+                    Catálogo
+                </a>
+
+                <a class="menu-link active"
+                   href="@Url.Action("Clientes", "Home")">
+                    <span class="menu-icon">○</span>
+                    Clientes
+                </a>
+
+                <a class="menu-link"
+                   href="@Url.Action("PuntoDeVenta", "Home")">
+                    <span class="menu-icon">◐</span>
+                    Punto de Venta
+                </a>
+
+            </nav>
         </div>
-        <div class="sidebar-footer">
-            <a href="@Url.Action("Index", "Home")" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión</a>
+
+        <div class="sidebar-bottom">
+            <a class="logout-link"
+               href="@Url.Action("Index", "Home")">
+                ↩
+                Cerrar sesión
+            </a>
         </div>
+
     </aside>
 
-    <main class="main-content">
-        <header class="header-bar">
-            <div>
-                <h1 class="page-title">Clientes Registrados</h1>
-                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Directorio de clientes de la tienda.</p>
+
+    <!-- =========================
+         CONTENIDO
+    ========================== -->
+
+    <main class="main">
+
+        <header class="topbar">
+            <h1 class="page-title">Clientes</h1>
+
+            <div class="user-circle">
+                @inicial
             </div>
-            <a href="#" class="btn-gold"><i class="fa-solid fa-user-plus"></i> Registrar Cliente</a>
         </header>
 
-        <section class="content-card">
-            <table class="custom-table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Correo</th>
-                        <th>Teléfono</th>
-                        <th>Compras</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>#CLI-001</td>
-                        <td><strong>Sofía Martínez</strong></td>
-                        <td>sofia@email.com</td>
-                        <td>+503 7123-4567</td>
-                        <td>12 pedidos</td>
-                    </tr>
-                    <tr>
-                        <td>#CLI-002</td>
-                        <td><strong>Carlos Gómez</strong></td>
-                        <td>carlos.g@email.com</td>
-                        <td>+503 7890-1234</td>
-                        <td>5 pedidos</td>
-                    </tr>
-                </tbody>
-            </table>
+
+        <section class="content">
+
+            <!-- =========================
+                 RESUMEN
+            ========================== -->
+
+            <div class="summary-grid">
+
+                <div class="summary-card">
+                    <div class="summary-label">
+                        Total clientes
+                    </div>
+
+                    <div class="summary-value"
+                         id="totalClientes">
+                        0
+                    </div>
+                </div>
+
+
+                <div class="summary-card">
+                    <div class="summary-label">
+                        Clientes VIP
+                    </div>
+
+                    <div class="summary-value"
+                         id="clientesVip">
+                        0
+                    </div>
+                </div>
+
+
+                <div class="summary-card">
+                    <div class="summary-label">
+                        Ingresos acumulados
+                    </div>
+
+                    <div class="summary-value"
+                         id="ingresosAcumulados">
+                        $0
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 BUSCADOR
+            ========================== -->
+
+            <div class="toolbar">
+
+                <input
+                    type="text"
+                    id="buscarCliente"
+                    class="search-box"
+                    placeholder="Buscar por nombre, DNI o email..."
+                    autocomplete="off" />
+
+                <select id="filtroCategoria"
+                        class="filter-select">
+
+                    <option value="Todos">Todos</option>
+                    <option value="VIP">VIP</option>
+                    <option value="Regular">Regular</option>
+                    <option value="Nuevo">Nuevo</option>
+
+                </select>
+
+                <button type="button"
+                        class="btn-primary"
+                        onclick="abrirModalNuevo()">
+                    + Registrar cliente
+                </button>
+
+            </div>
+
+
+            <!-- =========================
+                 TABLA
+            ========================== -->
+
+            <div class="table-container">
+
+                <table class="clients-table">
+
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>DNI</th>
+                            <th>Ciudad</th>
+                            <th class="number-center">Compras</th>
+                            <th>Total</th>
+                            <th>Categoría</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tablaClientes">
+                    </tbody>
+
+                </table>
+
+            </div>
+
         </section>
+
     </main>
+
+</div>
+
+
+<!-- =========================
+     MODAL CLIENTE
+========================== -->
+
+<div id="modalCliente"
+     class="modal-overlay">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <h2 id="tituloModal"
+                class="modal-title">
+                Registrar cliente
+            </h2>
+
+            <button type="button"
+                    class="modal-close"
+                    onclick="cerrarModal()">
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="formCliente"
+              onsubmit="guardarCliente(event)">
+
+            <div class="modal-body">
+
+                <input type="hidden"
+                       id="clienteId" />
+
+
+                <div class="form-group">
+
+                    <label class="form-label">
+                        Nombre
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nombreCliente"
+                        class="form-control"
+                        placeholder="Nombre completo"
+                        required />
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label class="form-label">
+                            DNI
+                        </label>
+
+                        <input
+                            type="text"
+                            id="dniCliente"
+                            class="form-control"
+                            placeholder="12345678"
+                            required />
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label class="form-label">
+                            Ciudad
+                        </label>
+
+                        <input
+                            type="text"
+                            id="ciudadCliente"
+                            class="form-control"
+                            placeholder="Ciudad"
+                            required />
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label class="form-label">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="emailCliente"
+                        class="form-control"
+                        placeholder="cliente@email.com"
+                        required />
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label class="form-label">
+                            Compras
+                        </label>
+
+                        <input
+                            type="number"
+                            id="comprasCliente"
+                            class="form-control"
+                            min="0"
+                            value="0"
+                            required />
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label class="form-label">
+                            Total comprado ($)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="totalCliente"
+                            class="form-control"
+                            min="0"
+                            step="0.01"
+                            value="0"
+                            required />
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label class="form-label">
+                        Categoría
+                    </label>
+
+                    <select
+                        id="categoriaCliente"
+                        class="form-control">
+
+                        <option value="VIP">
+                            VIP
+                        </option>
+
+                        <option value="Regular">
+                            Regular
+                        </option>
+
+                        <option value="Nuevo">
+                            Nuevo
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button type="button"
+                        class="btn-cancel"
+                        onclick="cerrarModal()">
+                    Cancelar
+                </button>
+
+                <button type="submit"
+                        class="btn-save">
+                    Guardar
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    /* =========================================
+       DATOS INICIALES
+    ========================================== */
+
+    let clientes = [
+        {
+            id: 1,
+            nombre: "Sofia Mendoza",
+            email: "sofia@correo.com",
+            dni: "12345678",
+            ciudad: "Bogotá",
+            compras: 9,
+            total: 24800,
+            categoria: "VIP"
+        },
+
+        {
+            id: 2,
+            nombre: "Andrés Castillo",
+            email: "andres@correo.com",
+            dni: "87654321",
+            ciudad: "Medellín",
+            compras: 5,
+            total: 11200,
+            categoria: "Regular"
+        },
+
+        {
+            id: 3,
+            nombre: "Valentina Ríos",
+            email: "vale@correo.com",
+            dni: "45678901",
+            ciudad: "Cali",
+            compras: 7,
+            total: 18600,
+            categoria: "VIP"
+        },
+
+        {
+            id: 4,
+            nombre: "Camilo Herrera",
+            email: "camilo@correo.com",
+            dni: "23456789",
+            ciudad: "Cartagena",
+            compras: 1,
+            total: 890,
+            categoria: "Nuevo"
+        },
+
+        {
+            id: 5,
+            nombre: "Isabella Torres",
+            email: "isa@correo.com",
+            dni: "34567890",
+            ciudad: "Bogotá",
+            compras: 3,
+            total: 6400,
+            categoria: "Regular"
+        },
+
+        {
+            id: 6,
+            nombre: "Martín Díaz",
+            email: "martin@correo.com",
+            dni: "56789012",
+            ciudad: "Barranquilla",
+            compras: 2,
+            total: 3200,
+            categoria: "Regular"
+        }
+    ];
+
+
+    let clienteEditando = null;
+
+
+    /* =========================================
+       INICIALIZAR
+    ========================================== */
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        renderClientes();
+
+        document
+            .getElementById("buscarCliente")
+            .addEventListener("input", renderClientes);
+
+        document
+            .getElementById("filtroCategoria")
+            .addEventListener("change", renderClientes);
+
+    });
+
+
+    /* =========================================
+       MOSTRAR CLIENTES
+    ========================================== */
+
+    function renderClientes() {
+
+        const tabla =
+            document.getElementById("tablaClientes");
+
+        const busqueda =
+            document
+                .getElementById("buscarCliente")
+                .value
+                .toLowerCase()
+                .trim();
+
+        const categoria =
+            document
+                .getElementById("filtroCategoria")
+                .value;
+
+
+        const filtrados = clientes.filter(cliente => {
+
+            const coincideBusqueda =
+                cliente.nombre.toLowerCase().includes(busqueda) ||
+                cliente.email.toLowerCase().includes(busqueda) ||
+                cliente.dni.toLowerCase().includes(busqueda);
+
+            const coincideCategoria =
+                categoria === "Todos" ||
+                cliente.categoria === categoria;
+
+            return coincideBusqueda &&
+                   coincideCategoria;
+
+        });
+
+
+        tabla.innerHTML = "";
+
+
+        if (filtrados.length === 0) {
+
+            tabla.innerHTML = `
+                <tr>
+                    <td colspan="7" class="empty-row">
+                        No se encontraron clientes.
+                    </td>
+                </tr>
+            `;
+
+        } else {
+
+            filtrados.forEach(cliente => {
+
+                const iniciales =
+                    obtenerIniciales(cliente.nombre);
+
+                const categoriaClase =
+                    cliente.categoria.toLowerCase();
+
+                const fila = document.createElement("tr");
+
+                fila.innerHTML = `
+
+                    <td>
+                        <div class="client-cell">
+
+                            <div class="avatar ${cliente.categoria === "VIP" ? "dark" : ""}">
+                                ${iniciales}
+                            </div>
+
+                            <div>
+
+                                <div class="client-name">
+                                    ${escapeHtml(cliente.nombre)}
+                                </div>
+
+                                <div class="client-email">
+                                    ${escapeHtml(cliente.email)}
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </td>
+
+                    <td>
+                        ${escapeHtml(cliente.dni)}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(cliente.ciudad)}
+                    </td>
+
+                    <td class="number-center">
+                        ${cliente.compras}
+                    </td>
+
+                    <td class="money">
+                        ${formatearDinero(cliente.total)}
+                    </td>
+
+                    <td>
+                        <span class="category ${categoriaClase}">
+                            ${escapeHtml(cliente.categoria)}
+                        </span>
+                    </td>
+
+                    <td>
+
+                        <div class="actions">
+
+                            <button
+                                type="button"
+                                class="btn-edit"
+                                onclick="editarCliente(${cliente.id})">
+                                Editar
+                            </button>
+
+                            <button
+                                type="button"
+                                class="btn-delete"
+                                onclick="eliminarCliente(${cliente.id})">
+                                ×
+                            </button>
+
+                        </div>
+
+                    </td>
+                `;
+
+                tabla.appendChild(fila);
+
+            });
+
+        }
+
+        actualizarResumen();
+
+    }
+
+
+    /* =========================================
+       RESUMEN
+    ========================================== */
+
+    function actualizarResumen() {
+
+        const totalClientes =
+            clientes.length;
+
+        const clientesVip =
+            clientes.filter(c =>
+                c.categoria === "VIP"
+            ).length;
+
+        const ingresos =
+            clientes.reduce(
+                (total, cliente) =>
+                    total + Number(cliente.total),
+                0
+            );
+
+
+        document.getElementById("totalClientes")
+            .textContent = totalClientes;
+
+
+        document.getElementById("clientesVip")
+            .textContent = clientesVip;
+
+
+        document.getElementById("ingresosAcumulados")
+            .textContent = formatearDinero(ingresos);
+
+    }
+
+
+    /* =========================================
+       NUEVO CLIENTE
+    ========================================== */
+
+    function abrirModalNuevo() {
+
+        clienteEditando = null;
+
+        document.getElementById("tituloModal")
+            .textContent = "Registrar cliente";
+
+        document.getElementById("formCliente")
+            .reset();
+
+        document.getElementById("clienteId")
+            .value = "";
+
+        document.getElementById("comprasCliente")
+            .value = 0;
+
+        document.getElementById("totalCliente")
+            .value = 0;
+
+        document.getElementById("categoriaCliente")
+            .value = "Nuevo";
+
+        abrirModal();
+
+    }
+
+
+    /* =========================================
+       EDITAR
+    ========================================== */
+
+    function editarCliente(id) {
+
+        const cliente =
+            clientes.find(c => c.id === id);
+
+        if (!cliente) {
+            return;
+        }
+
+        clienteEditando = id;
+
+        document.getElementById("tituloModal")
+            .textContent = "Editar cliente";
+
+        document.getElementById("clienteId")
+            .value = cliente.id;
+
+        document.getElementById("nombreCliente")
+            .value = cliente.nombre;
+
+        document.getElementById("dniCliente")
+            .value = cliente.dni;
+
+        document.getElementById("ciudadCliente")
+            .value = cliente.ciudad;
+
+        document.getElementById("emailCliente")
+            .value = cliente.email;
+
+        document.getElementById("comprasCliente")
+            .value = cliente.compras;
+
+        document.getElementById("totalCliente")
+            .value = cliente.total;
+
+        document.getElementById("categoriaCliente")
+            .value = cliente.categoria;
+
+        abrirModal();
+
+    }
+
+
+    /* =========================================
+       GUARDAR
+    ========================================== */
+
+    function guardarCliente(event) {
+
+        event.preventDefault();
+
+
+        const nombre =
+            document
+                .getElementById("nombreCliente")
+                .value
+                .trim();
+
+        const dni =
+            document
+                .getElementById("dniCliente")
+                .value
+                .trim();
+
+        const ciudad =
+            document
+                .getElementById("ciudadCliente")
+                .value
+                .trim();
+
+        const email =
+            document
+                .getElementById("emailCliente")
+                .value
+                .trim();
+
+        const compras =
+            Number(
+                document
+                    .getElementById("comprasCliente")
+                    .value
+            );
+
+        const total =
+            Number(
+                document
+                    .getElementById("totalCliente")
+                    .value
+            );
+
+        const categoria =
+            document
+                .getElementById("categoriaCliente")
+                .value;
+
+
+        if (!nombre ||
+            !dni ||
+            !ciudad ||
+            !email) {
+
+            alert("Completa todos los campos.");
+
+            return;
+        }
+
+
+        if (compras < 0 || total < 0) {
+
+            alert("Compras y total no pueden ser negativos.");
+
+            return;
+        }
+
+
+        if (clienteEditando !== null) {
+
+            const cliente =
+                clientes.find(
+                    c => c.id === clienteEditando
+                );
+
+            if (cliente) {
+
+                cliente.nombre = nombre;
+                cliente.dni = dni;
+                cliente.ciudad = ciudad;
+                cliente.email = email;
+                cliente.compras = compras;
+                cliente.total = total;
+                cliente.categoria = categoria;
+
+            }
+
+        } else {
+
+            const nuevoId =
+                clientes.length > 0
+                    ? Math.max(...clientes.map(c => c.id)) + 1
+                    : 1;
+
+
+            clientes.push({
+
+                id: nuevoId,
+
+                nombre: nombre,
+
+                dni: dni,
+
+                ciudad: ciudad,
+
+                email: email,
+
+                compras: compras,
+
+                total: total,
+
+                categoria: categoria
+
+            });
+
+        }
+
+
+        cerrarModal();
+
+        renderClientes();
+
+    }
+
+
+    /* =========================================
+       ELIMINAR
+    ========================================== */
+
+    function eliminarCliente(id) {
+
+        const cliente =
+            clientes.find(c => c.id === id);
+
+        if (!cliente) {
+            return;
+        }
+
+
+        const confirmar =
+            confirm(
+                "¿Deseas eliminar a " +
+                cliente.nombre +
+                "?"
+            );
+
+
+        if (!confirmar) {
+            return;
+        }
+
+
+        clientes =
+            clientes.filter(
+                c => c.id !== id
+            );
+
+
+        renderClientes();
+
+    }
+
+
+    /* =========================================
+       MODAL
+    ========================================== */
+
+    function abrirModal() {
+
+        document
+            .getElementById("modalCliente")
+            .classList.add("show");
+
+    }
+
+
+    function cerrarModal() {
+
+        document
+            .getElementById("modalCliente")
+            .classList.remove("show");
+
+        clienteEditando = null;
+
+    }
+
+
+    document
+        .getElementById("modalCliente")
+        .addEventListener("click", function (event) {
+
+            if (event.target === this) {
+                cerrarModal();
+            }
+
+        });
+
+
+    document.addEventListener("keydown", function (event) {
+
+        if (event.key === "Escape") {
+            cerrarModal();
+        }
+
+    });
+
+
+    /* =========================================
+       UTILIDADES
+    ========================================== */
+
+    function obtenerIniciales(nombre) {
+
+        const partes =
+            nombre.trim().split(" ");
+
+        if (partes.length === 1) {
+            return partes[0]
+                .substring(0, 2)
+                .toUpperCase();
+        }
+
+        return (
+            partes[0].charAt(0) +
+            partes[1].charAt(0)
+        ).toUpperCase();
+
+    }
+
+
+    function formatearDinero(valor) {
+
+        return "$" +
+            Number(valor).toLocaleString(
+                "en-US",
+                {
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 2
+                }
+            );
+
+    }
+
+
+    function escapeHtml(text) {
+
+        const div =
+            document.createElement("div");
+
+        div.textContent = text;
+
+        return div.innerHTML;
+
+    }
+
+</script>
 
 </body>
 </html>

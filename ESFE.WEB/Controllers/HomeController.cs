@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace ESFE.WEB.Controllers
 {
@@ -10,74 +11,145 @@ namespace ESFE.WEB.Controllers
             return View();
         }
 
-        // POST: Procesar Inicio de Sesión Tradicional
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Login(string Email, string Password)
-        {
-            if (string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password))
-            {
-                ViewBag.Error = "Por favor, ingresa tu correo y contraseña.";
-                return View("Index");
-            }
-
-            // Comprobación de administrador en memoria
-            if (Email == "admin@maisonelite.com" && Password == "Admin123")
-            {
-                return RedirectToAction("AdminDashboard");
-            }
-
-            // Comprobar credenciales en la base de datos
-            ESFE._Clothing_Store.DAL.UsuarioDAL usuarioDAL = new ESFE._Clothing_Store.DAL.UsuarioDAL();
-            var usuario = usuarioDAL.ValidarLogin(Email, Password);
-
-            if (usuario != null)
-            {
-                return RedirectToAction("AdminDashboard");
-            }
-
-            ViewBag.Error = "Credenciales incorrectas.";
-            return View("Index");
-        }
+        // ==============================
+        // ADMINISTRADOR
+        // ==============================
 
         [HttpGet]
         public IActionResult AdminDashboard()
         {
+            var rol = HttpContext.Session.GetInt32("Rol");
+
+            if (rol != 101)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
             return View();
         }
 
+
+        // ==============================
+        // VENDEDOR
+        // ==============================
+
+        [HttpGet]
         public IActionResult Catalogo()
         {
+            var rol = HttpContext.Session.GetInt32("Rol");
+
+            if (rol != 303)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
             return View();
         }
 
+
+        [HttpGet]
         public IActionResult Clientes()
         {
+            var rol = HttpContext.Session.GetInt32("Rol");
+
+            if (rol != 303)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
             return View();
         }
 
+
+        [HttpGet]
         public IActionResult PuntoDeVenta()
         {
+            var rol = HttpContext.Session.GetInt32("Rol");
+
+            if (rol != 303)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
             return View();
         }
 
+
+        [HttpGet]
         public IActionResult HistorialVentas()
         {
+            var rol = HttpContext.Session.GetInt32("Rol");
+
+            if (rol != 303)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
             return View();
         }
 
+
+        [HttpGet]
         public IActionResult Reportes()
         {
+            var rol = HttpContext.Session.GetInt32("Rol");
+
+            if (rol != 303)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
             return View();
         }
 
+
+        [HttpGet]
         public IActionResult Bitacora()
         {
+            var rol = HttpContext.Session.GetInt32("Rol");
+
+            if (rol != 303)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
             return View();
         }
 
+
+        [HttpGet]
         public IActionResult Respaldos()
         {
+            var rol = HttpContext.Session.GetInt32("Rol");
+
+            if (rol != 303)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            return View();
+        }
+
+
+        // ==============================
+        // CLIENTE
+        // 202 = Cliente
+        // ==============================
+
+        [HttpGet]
+        public IActionResult Cliente()
+        {
+            var rol = HttpContext.Session.GetInt32("Rol");
+
+            if (rol != 202)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            ViewBag.Usuario =
+                HttpContext.Session.GetString("Usuario")
+                ?? "Cliente";
+
             return View();
         }
     }

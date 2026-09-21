@@ -1,309 +1,2015 @@
-﻿@{
-    ViewData["Title"] = "Punto de Venta - Maison Élite";
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    ViewData["Title"] = "Punto de Venta";
     Layout = null;
+
+    var usuario = Context.Session.GetString("Usuario") ?? "Vendedor";
+    var inicial = usuario.Length > 0
+        ? usuario.Substring(0, 1).ToUpper()
+        : "V";
 }
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Punto de Venta - Maison Élite</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>Punto de Venta | Maison Élite</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin />
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap"
+          rel="stylesheet" />
 
     <style>
-            :root {
-                --sidebar-bg: #1c140e;
-                --sidebar-hover: #2a1f17;
-                --gold-accent: #c4a47c;
-                --gold-light: #e5d3b3;
-                --bg-main: #f8f6f2;
-                --card-bg: #ffffff;
-                --text-dark: #2b2b2b;
-                --text-muted: #7f7f7f;
+
+        :root {
+            --me-bg-dark: #120b08;
+            --me-bg-cream: #f9f6f0;
+            --me-gold: #d4af37;
+            --me-gold-hover: #b89228;
+            --me-border: #e2d7c3;
+            --me-text-dark: #1c1613;
+            --me-text-muted: #82756a;
+        }
+
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+
+        body {
+            background: var(--me-bg-cream);
+            color: var(--me-text-dark);
+            font-family: 'Montserrat', Arial, sans-serif;
+            overflow: hidden;
+        }
+
+
+        /* =========================================
+           ESTRUCTURA
+        ========================================= */
+
+        .seller-layout {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+        }
+
+
+        /* =========================================
+           SIDEBAR
+        ========================================= */
+
+        .sidebar {
+            width: 160px;
+            min-width: 160px;
+            height: 100vh;
+
+            background: var(--me-bg-dark);
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+
+        .brand {
+            padding: 20px 18px 22px;
+
+            border-bottom:
+                1px solid rgba(212,175,55,.10);
+        }
+
+
+        .brand-name {
+            color: var(--me-gold);
+
+            font-family: 'Playfair Display', serif;
+
+            font-size: 10px;
+
+            letter-spacing: 3px;
+
+            white-space: nowrap;
+        }
+
+
+        .brand-role {
+            margin-top: 8px;
+
+            color: #765d4b;
+
+            font-size: 8px;
+        }
+
+
+        .sidebar-menu {
+            padding: 16px 10px;
+
+            flex: 1;
+        }
+
+
+        .menu-link {
+            display: flex;
+            align-items: center;
+
+            gap: 9px;
+
+            height: 31px;
+
+            padding: 0 10px;
+
+            margin-bottom: 5px;
+
+            color: #a48d7c;
+
+            text-decoration: none;
+
+            font-size: 9px;
+
+            transition: .2s;
+        }
+
+
+        .menu-link:hover {
+            background: #21140f;
+
+            color: #d9c3ae;
+        }
+
+
+        .menu-link.active {
+            background: #2a1812;
+
+            color: var(--me-gold);
+        }
+
+
+        .menu-icon {
+            width: 11px;
+
+            text-align: center;
+
+            font-size: 10px;
+        }
+
+
+        .sidebar-bottom {
+            padding: 17px 10px 20px;
+
+            border-top:
+                1px solid rgba(212,175,55,.10);
+        }
+
+
+        .logout-link {
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            padding: 0 10px;
+
+            color: #765d4b;
+
+            text-decoration: none;
+
+            font-size: 8px;
+        }
+
+
+        .logout-link:hover {
+            color: #b38d68;
+        }
+
+
+        /* =========================================
+           CONTENIDO
+        ========================================= */
+
+        .main {
+            flex: 1;
+
+            min-width: 0;
+
+            height: 100vh;
+
+            background: #fbfaf7;
+
+            overflow: hidden;
+        }
+
+
+        .topbar {
+            height: 43px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 17px;
+
+            background: white;
+
+            border-bottom:
+                1px solid var(--me-border);
+        }
+
+
+        .page-title {
+            margin: 0;
+
+            font-family:
+                'Playfair Display', serif;
+
+            font-size: 14px;
+
+            font-weight: 400;
+
+            color: #2c1d17;
+        }
+
+
+        .user-circle {
+            width: 22px;
+            height: 22px;
+
+            border-radius: 50%;
+
+            background: #c7a15e;
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 9px;
+
+            font-weight: 600;
+        }
+
+
+        .content {
+            display: grid;
+
+            grid-template-columns:
+                minmax(500px, 1fr) 342px;
+
+            gap: 16px;
+
+            height: calc(100vh - 43px);
+
+            padding: 20px;
+        }
+
+
+        /* =========================================
+           PARTE IZQUIERDA
+        ========================================= */
+
+        .products-section {
+            min-width: 0;
+
+            overflow: hidden;
+        }
+
+
+        .search-box {
+            width: 100%;
+
+            height: 29px;
+
+            padding: 0 11px;
+
+            border:
+                1px solid var(--me-border);
+
+            background: white;
+
+            outline: none;
+
+            font-family:
+                'Montserrat', sans-serif;
+
+            font-size: 8px;
+
+            color: #34251e;
+
+            margin-bottom: 10px;
+        }
+
+
+        .search-box:focus {
+            border-color: #c6a56d;
+        }
+
+
+        /* =========================================
+           PRODUCTOS
+        ========================================= */
+
+        .products-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 9px;
+
+            max-height: calc(100vh - 110px);
+
+            overflow-y: auto;
+
+            padding-right: 2px;
+        }
+
+
+        .product-card {
+            height: 86px;
+
+            background: white;
+
+            border:
+                1px solid var(--me-border);
+
+            padding: 11px;
+
+            cursor: pointer;
+
+            transition:
+                transform .15s,
+                border-color .15s,
+                box-shadow .15s;
+        }
+
+
+        .product-card:hover {
+            border-color: #c5a46d;
+
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 3px 12px rgba(40,25,15,.07);
+        }
+
+
+        .product-code {
+            color: #8b7768;
+
+            font-size: 7px;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 3px;
+        }
+
+
+        .product-name {
+            color: #241711;
+
+            font-size: 9px;
+
+            font-weight: 600;
+
+            margin-bottom: 4px;
+        }
+
+
+        .product-price {
+            color: #241711;
+
+            font-family:
+                'Playfair Display', serif;
+
+            font-size: 13px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .product-stock {
+            color: #5d947e;
+
+            font-size: 7px;
+        }
+
+
+        .product-stock.low {
+            color: #b75c4e;
+        }
+
+
+        /* =========================================
+           COLUMNA DERECHA
+        ========================================= */
+
+        .sale-section {
+            min-width: 0;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 10px;
+        }
+
+
+        .client-box {
+            background: white;
+
+            border:
+                1px solid var(--me-border);
+
+            padding: 13px;
+
+            height: 72px;
+        }
+
+
+        .section-label {
+            display: block;
+
+            color: #806e60;
+
+            font-size: 7px;
+
+            letter-spacing: .8px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 6px;
+        }
+
+
+        .client-select {
+            width: 100%;
+
+            height: 28px;
+
+            border:
+                1px solid #dfd2c2;
+
+            background: #fff;
+
+            padding: 0 9px;
+
+            outline: none;
+
+            font-family:
+                'Montserrat', sans-serif;
+
+            font-size: 8px;
+
+            color: #33251e;
+        }
+
+
+        /* =========================================
+           CARRITO
+        ========================================= */
+
+        .cart-box {
+            flex: 1;
+
+            min-height: 200px;
+
+            background: white;
+
+            border:
+                1px solid var(--me-border);
+
+            display: flex;
+
+            flex-direction: column;
+
+            overflow: hidden;
+        }
+
+
+        .cart-title {
+            margin: 0;
+
+            padding: 14px;
+
+            font-family:
+                'Playfair Display', serif;
+
+            font-size: 14px;
+
+            font-weight: 400;
+
+            color: #2a1c16;
+
+            border-bottom:
+                1px solid #eee6dc;
+        }
+
+
+        .cart-items {
+            flex: 1;
+
+            overflow-y: auto;
+
+            padding: 4px 10px;
+        }
+
+
+        .empty-cart {
+            height: 100%;
+
+            min-height: 100px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            color: #9b8c81;
+
+            font-size: 8px;
+        }
+
+
+        .cart-item {
+            display: grid;
+
+            grid-template-columns:
+                1fr auto;
+
+            gap: 8px;
+
+            padding: 10px 4px;
+
+            border-bottom:
+                1px solid #eee6dc;
+        }
+
+
+        .cart-item-name {
+            color: #271913;
+
+            font-size: 8px;
+
+            font-weight: 600;
+        }
+
+
+        .cart-item-price {
+            color: #806e60;
+
+            font-size: 7px;
+
+            margin-top: 3px;
+        }
+
+
+        .cart-item-right {
+            text-align: right;
+        }
+
+
+        .cart-item-total {
+            font-family:
+                'Playfair Display', serif;
+
+            font-size: 10px;
+
+            color: #241711;
+
+            margin-bottom: 4px;
+        }
+
+
+        .quantity-controls {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: flex-end;
+
+            gap: 4px;
+        }
+
+
+        .quantity-btn {
+            width: 17px;
+            height: 17px;
+
+            padding: 0;
+
+            border:
+                1px solid #dfd2c2;
+
+            background: #f8f4ee;
+
+            color: #604c40;
+
+            cursor: pointer;
+
+            font-size: 9px;
+        }
+
+
+        .quantity-number {
+            min-width: 15px;
+
+            text-align: center;
+
+            font-size: 8px;
+        }
+
+
+        .remove-item {
+            margin-left: 4px;
+
+            border: 0;
+
+            background: transparent;
+
+            color: #bd8077;
+
+            cursor: pointer;
+
+            font-size: 11px;
+        }
+
+
+        /* =========================================
+           TOTAL
+        ========================================= */
+
+        .total-box {
+            height: 92px;
+
+            background: var(--me-bg-dark);
+
+            padding: 13px;
+        }
+
+
+        .total-line {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 10px;
+        }
+
+
+        .total-label {
+            color: #806653;
+
+            font-size: 7px;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+        }
+
+
+        .total-value {
+            color: var(--me-gold);
+
+            font-family:
+                'Playfair Display', serif;
+
+            font-size: 17px;
+        }
+
+
+        .finish-sale {
+            width: 100%;
+
+            height: 32px;
+
+            border: 0;
+
+            background: #2b1912;
+
+            color: #684e3e;
+
+            font-family:
+                'Montserrat', sans-serif;
+
+            font-size: 8px;
+
+            cursor: not-allowed;
+        }
+
+
+        .finish-sale.enabled {
+            background: #3a2117;
+
+            color: var(--me-gold);
+
+            cursor: pointer;
+        }
+
+
+        .finish-sale.enabled:hover {
+            background: #4a281b;
+        }
+
+
+        /* =========================================
+           MODAL DE VENTA
+        ========================================= */
+
+        .sale-modal-overlay {
+            position: fixed;
+
+            inset: 0;
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                rgba(20,14,11,.55);
+
+            z-index: 1000;
+        }
+
+
+        .sale-modal-overlay.show {
+            display: flex;
+        }
+
+
+        .sale-modal {
+            width: 390px;
+
+            max-width:
+                calc(100vw - 30px);
+
+            background: #fbf8f2;
+
+            border:
+                1px solid #dfd1c0;
+
+            box-shadow:
+                0 15px 50px rgba(0,0,0,.2);
+        }
+
+
+        .sale-modal-header {
+            padding: 18px 20px 10px;
+        }
+
+
+        .sale-modal-title {
+            margin: 0;
+
+            font-family:
+                'Playfair Display', serif;
+
+            font-size: 20px;
+
+            font-weight: 400;
+        }
+
+
+        .sale-modal-body {
+            padding: 5px 20px 15px;
+        }
+
+
+        .sale-summary {
+            padding: 12px;
+
+            background: white;
+
+            border:
+                1px solid var(--me-border);
+
+            font-size: 9px;
+
+            line-height: 1.8;
+        }
+
+
+        .sale-modal-footer {
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 8px;
+
+            padding:
+                10px 20px 18px;
+        }
+
+
+        .modal-btn {
+            height: 29px;
+
+            min-width: 90px;
+
+            cursor: pointer;
+
+            font-family:
+                'Montserrat', sans-serif;
+
+            font-size: 8px;
+        }
+
+
+        .modal-cancel {
+            border:
+                1px solid #dfd1c0;
+
+            background: #f4efe7;
+
+            color: #604c40;
+        }
+
+
+        .modal-confirm {
+            border:
+                1px solid #20120d;
+
+            background: var(--me-bg-dark);
+
+            color: var(--me-gold);
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @@media (max-width: 900px) {
+
+            .content {
+                grid-template-columns: 1fr;
+                overflow-y: auto;
             }
 
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-                font-family: 'Plus Jakarta Sans', sans-serif;
+            .sale-section {
+                min-height: 500px;
             }
 
-            body {
-                background-color: var(--bg-main);
-                color: var(--text-dark);
-                display: flex;
-                height: 100vh;
-                overflow: hidden;
-            }
+        }
+
+
+        @@media (max-width: 600px) {
 
             .sidebar {
-                width: 260px;
-                background-color: var(--sidebar-bg);
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                padding: 24px 16px;
-                color: #d1d1d1;
+                width: 125px;
+                min-width: 125px;
             }
 
-            .brand-header {
-                padding: 0 12px 24px 12px;
-                border-bottom: 1px solid rgba(196, 164, 124, 0.15);
-            }
-
-            .brand-title {
-                font-family: 'Playfair Display', serif;
-                color: var(--gold-accent);
-                font-size: 1.4rem;
-                letter-spacing: 2px;
-                font-weight: 600;
-            }
-
-            .brand-subtitle {
-                font-size: 0.75rem;
-                color: var(--gold-light);
-                letter-spacing: 1.5px;
-                text-transform: uppercase;
-                opacity: 0.8;
-            }
-
-            .nav-menu {
-                list-style: none;
-                margin-top: 20px;
-                display: flex;
-                flex-direction: column;
-                gap: 6px;
-            }
-
-            .nav-item a {
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                padding: 12px 16px;
-                color: #b0a8a0;
-                text-decoration: none;
-                font-size: 0.9rem;
-                border-radius: 8px;
-                transition: all 0.2s ease;
-            }
-
-                .nav-item.active a, .nav-item a:hover {
-                    background-color: var(--sidebar-hover);
-                    color: #ffffff;
-                }
-
-            .nav-item.active a {
-                border-left: 3px solid var(--gold-accent);
-                color: var(--gold-accent);
-            }
-
-            .nav-item i {
-                font-size: 1rem;
-                width: 20px;
-            }
-
-            .sidebar-footer {
-                border-top: 1px solid rgba(196, 164, 124, 0.15);
-                padding-top: 16px;
-            }
-
-            .logout-btn {
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                padding: 12px 16px;
-                color: #b0a8a0;
-                text-decoration: none;
-                font-size: 0.9rem;
-                border-radius: 8px;
-            }
-
-            .main-content {
-                flex: 1;
-                overflow-y: auto;
-                padding: 32px 40px;
-                display: flex;
-                flex-direction: column;
-                gap: 24px;
-            }
-
-            .header-bar {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-
-            .page-title {
-                font-family: 'Playfair Display', serif;
-                font-size: 1.8rem;
-                color: var(--text-dark);
-            }
-
-            .pos-grid {
-                display: grid;
-                grid-template-columns: 2fr 1fr;
-                gap: 24px;
-            }
-
-            .content-card {
-                background-color: var(--card-bg);
-                padding: 24px;
-                border-radius: 12px;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            }
-
-            .search-box {
-                width: 100%;
-                padding: 12px 16px;
-                border: 1px solid #e0e0e0;
-                border-radius: 8px;
-                font-size: 0.9rem;
-                margin-bottom: 20px;
-                outline: none;
-            }
-
-                .search-box:focus {
-                    border-color: var(--gold-accent);
-                }
-
-            .custom-table {
-                width: 100%;
-                border-collapse: collapse;
-                text-align: left;
-            }
-
-                .custom-table th {
-                    padding: 12px;
-                    font-size: 0.75rem;
-                    font-weight: 700;
-                    color: var(--text-muted);
-                    border-bottom: 2px solid #f0f0f0;
-                }
-
-                .custom-table td {
-                    padding: 12px;
-                    font-size: 0.9rem;
-                    border-bottom: 1px solid #f0f0f0;
-                }
-
-            .summary-title {
-                font-weight: 700;
-                font-size: 1.1rem;
-                margin-bottom: 16px;
-                border-bottom: 1px solid #f0f0f0;
-                padding-bottom: 8px;
-            }
-
-            .summary-row {
-                display: flex;
-                justify-content: space-between;
-                margin-bottom: 12px;
-                font-size: 0.95rem;
-            }
-
-            .summary-total {
-                font-weight: 700;
-                font-size: 1.2rem;
-                color: var(--sidebar-bg);
-                border-top: 2px solid #f0f0f0;
-                padding-top: 12px;
-            }
-
-            .btn-checkout {
-                width: 100%;
-                background-color: var(--sidebar-bg);
-                color: var(--gold-accent);
-                border: 1px solid var(--gold-accent);
+            .content {
                 padding: 12px;
-                border-radius: 8px;
-                font-weight: 700;
-                cursor: pointer;
-                margin-top: 20px;
-                transition: all 0.2s;
             }
 
-                .btn-checkout:hover {
-                    background-color: var(--gold-accent);
-                    color: #ffffff;
-                }
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
     </style>
+
 </head>
+
+
 <body>
 
+<div class="seller-layout">
+
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
     <aside class="sidebar">
+
         <div>
-            <div class="brand-header">
-                <div class="brand-title">MAISON ÉLITE</div>
-                <div class="brand-subtitle">Administrador</div>
+
+            <div class="brand">
+
+                <div class="brand-name">
+                    MAISON ÉLITE
+                </div>
+
+                <div class="brand-role">
+                    Vendedor
+                </div>
+
             </div>
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="@Url.Action("AdminDashboard", "Home")"><i class="fa-solid fa-compass"></i> Dashboard</a></li>
-                <li class="nav-item"><a href="@Url.Action("Catalogo", "Home")"><i class="fa-solid fa-book-open"></i> Catálogo</a></li>
-                <li class="nav-item"><a href="@Url.Action("Clientes", "Home")"><i class="fa-solid fa-users"></i> Clientes</a></li>
-                <li class="nav-item active"><a href="@Url.Action("PuntoDeVenta", "Home")"><i class="fa-solid fa-cash-register"></i> Punto de Venta</a></li>
-                <li class="nav-item"><a href="@Url.Action("HistorialVentas", "Home")"><i class="fa-solid fa-clock-rotate-left"></i> Historial de Ventas</a></li>
-                <li class="nav-item"><a href="#"><i class="fa-solid fa-chart-pie"></i> Reportes</a></li>
-                <li class="nav-item"><a href="#"><i class="fa-solid fa-list-check"></i> Bitácora</a></li>
-                <li class="nav-item"><a href="#"><i class="fa-solid fa-shield-halved"></i> Respaldos</a></li>
-            </ul>
+
+
+            <nav class="sidebar-menu">
+
+                <a class="menu-link"
+                   href="@Url.Action("Catalogo", "Home")">
+
+                    <span class="menu-icon">
+                        □
+                    </span>
+
+                    Catálogo
+
+                </a>
+
+
+                <a class="menu-link"
+                   href="@Url.Action("Clientes", "Home")">
+
+                    <span class="menu-icon">
+                        ○
+                    </span>
+
+                    Clientes
+
+                </a>
+
+
+                <a class="menu-link active"
+                   href="@Url.Action("PuntoDeVenta", "Home")">
+
+                    <span class="menu-icon">
+                        ◐
+                    </span>
+
+                    Punto de Venta
+
+                </a>
+
+            </nav>
+
         </div>
-        <div class="sidebar-footer">
-            <a href="@Url.Action("Index", "Home")" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión</a>
+
+
+        <div class="sidebar-bottom">
+
+            <a class="logout-link"
+               href="@Url.Action("Index", "Home")">
+
+                ↩
+
+                Cerrar sesión
+
+            </a>
+
         </div>
+
     </aside>
 
-    <main class="main-content">
-        <header class="header-bar">
-            <div>
-                <h1 class="page-title">Punto de Venta (POS)</h1>
-                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Módulo de caja y facturación rápida en tienda.</p>
+
+
+    <!-- =========================================
+         CONTENIDO PRINCIPAL
+    ========================================== -->
+
+    <main class="main">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <h1 class="page-title">
+                Punto de Venta
+            </h1>
+
+
+            <div class="user-circle">
+                @inicial
             </div>
+
         </header>
 
-        <div class="pos-grid">
-            <section class="content-card">
-                <input type="text" class="search-box" placeholder="Buscar prenda por código o nombre..." />
-                <table class="custom-table">
-                    <thead>
-                        <tr>
-                            <th>Prenda</th>
-                            <th>Precio</th>
-                            <th>Cant.</th>
-                            <th>Subtotal</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Blazer Cachemira</td>
-                            <td>$250.00</td>
-                            <td>1</td>
-                            <td>$250.00</td>
-                            <td><i class="fa-solid fa-trash" style="color: #c94a4a; cursor: pointer;"></i></td>
-                        </tr>
-                        <tr>
-                            <td>Vestido Seda Italiana</td>
-                            <td>$243.00</td>
-                            <td>1</td>
-                            <td>$243.00</td>
-                            <td><i class="fa-solid fa-trash" style="color: #c94a4a; cursor: pointer;"></i></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
 
-            <section class="content-card">
-                <div class="summary-title">Resumen de Venta</div>
-                <div class="summary-row"><span>Subtotal</span> <span>$493.00</span></div>
-                <div class="summary-row"><span>IVA (13%)</span> <span>$64.09</span></div>
-                <div class="summary-row summary-total"><span>Total</span> <span>$557.09</span></div>
-                <button class="btn-checkout"><i class="fa-solid fa-credit-card"></i> Procesar Pago</button>
-            </section>
-        </div>
+
+        <!-- CONTENIDO -->
+
+        <section class="content">
+
+
+            <!-- =================================
+                 PRODUCTOS
+            ================================== -->
+
+            <div class="products-section">
+
+
+                <input
+                    type="text"
+                    id="buscarProducto"
+                    class="search-box"
+                    placeholder="Buscar prenda..."
+                    autocomplete="off" />
+
+
+                <div
+                    id="productsGrid"
+                    class="products-grid">
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================
+                 VENTA
+            ================================== -->
+
+            <div class="sale-section">
+
+
+                <!-- CLIENTE -->
+
+                <div class="client-box">
+
+                    <label class="section-label">
+                        Cliente
+                    </label>
+
+
+                    <select
+                        id="clienteVenta"
+                        class="client-select">
+
+                        <option value="">
+                            Seleccionar cliente...
+                        </option>
+
+                        <option value="Sofia Mendoza">
+                            Sofia Mendoza
+                        </option>
+
+                        <option value="Andrés Castillo">
+                            Andrés Castillo
+                        </option>
+
+                        <option value="Valentina Ríos">
+                            Valentina Ríos
+                        </option>
+
+                        <option value="Camilo Herrera">
+                            Camilo Herrera
+                        </option>
+
+                        <option value="Isabella Torres">
+                            Isabella Torres
+                        </option>
+
+                        <option value="Martín Díaz">
+                            Martín Díaz
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- CARRITO -->
+
+                <div class="cart-box">
+
+                    <h2 class="cart-title">
+                        Carrito
+                    </h2>
+
+
+                    <div
+                        id="cartItems"
+                        class="cart-items">
+
+                        <div class="empty-cart">
+                            Agrega prendas al carrito
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- TOTAL -->
+
+                <div class="total-box">
+
+                    <div class="total-line">
+
+                        <span class="total-label">
+                            Total
+                        </span>
+
+                        <span
+                            id="totalVenta"
+                            class="total-value">
+                            $0
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        id="btnFinalizar"
+                        class="finish-sale"
+                        onclick="finalizarVenta()">
+
+                        FINALIZAR VENTA
+
+                    </button>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
     </main>
 
+</div>
+
+
+
+<!-- =========================================
+     MODAL FINALIZAR VENTA
+========================================== -->
+
+<div
+    id="saleModal"
+    class="sale-modal-overlay">
+
+
+    <div class="sale-modal">
+
+
+        <div class="sale-modal-header">
+
+            <h2 class="sale-modal-title">
+                Confirmar venta
+            </h2>
+
+        </div>
+
+
+        <div class="sale-modal-body">
+
+            <div
+                id="saleSummary"
+                class="sale-summary">
+            </div>
+
+        </div>
+
+
+        <div class="sale-modal-footer">
+
+            <button
+                type="button"
+                class="modal-btn modal-cancel"
+                onclick="cerrarModalVenta()">
+
+                Cancelar
+
+            </button>
+
+
+            <button
+                type="button"
+                class="modal-btn modal-confirm"
+                onclick="confirmarVenta()">
+
+                Confirmar venta
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+    /* =========================================
+       PRODUCTOS
+    ========================================== */
+
+    const productos = [
+
+        {
+            id: 1,
+            codigo: "BLAZER - M",
+            nombre: "Blazer Cachemira Oscuro",
+            precio: 2500,
+            stock: 8
+        },
+
+        {
+            id: 2,
+            codigo: "VESTIDO - S",
+            nombre: "Vestido Seda Ivory",
+            precio: 1800,
+            stock: 5
+        },
+
+        {
+            id: 3,
+            codigo: "ABRIGO - L",
+            nombre: "Abrigo Lana Merino",
+            precio: 3200,
+            stock: 3
+        },
+
+        {
+            id: 4,
+            codigo: "PANTALÓN - M",
+            nombre: "Pantalón Tweed Beige",
+            precio: 890,
+            stock: 14
+        },
+
+        {
+            id: 5,
+            codigo: "BLUSA - S",
+            nombre: "Blusa Lino Crema",
+            precio: 620,
+            stock: 20
+        },
+
+        {
+            id: 6,
+            codigo: "FALDA - XS",
+            nombre: "Falda Plisado Champagne",
+            precio: 740,
+            stock: 7
+        }
+
+    ];
+
+
+    /* =========================================
+       CARRITO
+    ========================================== */
+
+    let carrito = [];
+
+
+    /* =========================================
+       INICIO
+    ========================================== */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            mostrarProductos();
+
+            document
+                .getElementById("buscarProducto")
+                .addEventListener(
+                    "input",
+                    mostrarProductos
+                );
+
+        }
+    );
+
+
+    /* =========================================
+       MOSTRAR PRODUCTOS
+    ========================================== */
+
+    function mostrarProductos() {
+
+        const contenedor =
+            document.getElementById(
+                "productsGrid"
+            );
+
+
+        const busqueda =
+            document
+                .getElementById(
+                    "buscarProducto"
+                )
+                .value
+                .toLowerCase()
+                .trim();
+
+
+        const filtrados =
+            productos.filter(
+                producto =>
+
+                    producto.nombre
+                        .toLowerCase()
+                        .includes(busqueda)
+
+                    ||
+
+                    producto.codigo
+                        .toLowerCase()
+                        .includes(busqueda)
+            );
+
+
+        contenedor.innerHTML = "";
+
+
+        if (filtrados.length === 0) {
+
+            contenedor.innerHTML = `
+
+                <div
+                    style="
+                    grid-column:1/-1;
+                    padding:30px;
+                    text-align:center;
+                    color:#9b8c81;
+                    font-size:8px;
+                    ">
+
+                    No se encontraron prendas.
+
+                </div>
+
+            `;
+
+            return;
+        }
+
+
+        filtrados.forEach(
+            producto => {
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                card.className =
+                    "product-card";
+
+
+                card.onclick =
+                    function () {
+
+                        agregarAlCarrito(
+                            producto.id
+                        );
+
+                    };
+
+
+                card.innerHTML = `
+
+                    <div class="product-code">
+
+                        ${producto.codigo}
+
+                    </div>
+
+
+                    <div class="product-name">
+
+                        ${escapeHtml(
+                            producto.nombre
+                        )}
+
+                    </div>
+
+
+                    <div class="product-price">
+
+                        ${formatearDinero(
+                            producto.precio
+                        )}
+
+                    </div>
+
+
+                    <div
+                        class="product-stock
+                        ${producto.stock <= 3
+                            ? "low"
+                            : ""}">
+
+                        ${producto.stock}
+                        disponibles
+
+                    </div>
+
+                `;
+
+
+                contenedor.appendChild(card);
+
+            }
+        );
+
+    }
+
+
+    /* =========================================
+       AGREGAR AL CARRITO
+    ========================================== */
+
+    function agregarAlCarrito(id) {
+
+        const producto =
+            productos.find(
+                p => p.id === id
+            );
+
+
+        if (!producto) {
+            return;
+        }
+
+
+        if (producto.stock <= 0) {
+
+            alert(
+                "Este producto no tiene existencias."
+            );
+
+            return;
+        }
+
+
+        const existente =
+            carrito.find(
+                item => item.id === id
+            );
+
+
+        if (existente) {
+
+            if (
+                existente.cantidad
+                >= producto.stock
+            ) {
+
+                alert(
+                    "No hay más unidades disponibles."
+                );
+
+                return;
+            }
+
+
+            existente.cantidad++;
+
+        } else {
+
+            carrito.push({
+
+                id: producto.id,
+
+                nombre: producto.nombre,
+
+                precio: producto.precio,
+
+                cantidad: 1
+
+            });
+
+        }
+
+
+        mostrarCarrito();
+
+    }
+
+
+    /* =========================================
+       MOSTRAR CARRITO
+    ========================================== */
+
+    function mostrarCarrito() {
+
+        const contenedor =
+            document.getElementById(
+                "cartItems"
+            );
+
+
+        contenedor.innerHTML = "";
+
+
+        if (carrito.length === 0) {
+
+            contenedor.innerHTML = `
+
+                <div class="empty-cart">
+
+                    Agrega prendas al carrito
+
+                </div>
+
+            `;
+
+            actualizarTotal();
+
+            return;
+        }
+
+
+        carrito.forEach(
+            item => {
+
+                const div =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                div.className =
+                    "cart-item";
+
+
+                div.innerHTML = `
+
+                    <div>
+
+                        <div class="cart-item-name">
+
+                            ${escapeHtml(
+                                item.nombre
+                            )}
+
+                        </div>
+
+
+                        <div class="cart-item-price">
+
+                            ${formatearDinero(
+                                item.precio
+                            )}
+                            c/u
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="cart-item-right">
+
+                        <div class="cart-item-total">
+
+                            ${formatearDinero(
+                                item.precio *
+                                item.cantidad
+                            )}
+
+                        </div>
+
+
+                        <div class="quantity-controls">
+
+                            <button
+                                class="quantity-btn"
+                                onclick="cambiarCantidad(
+                                    ${item.id},
+                                    -1
+                                )">
+
+                                −
+
+                            </button>
+
+
+                            <span
+                                class="quantity-number">
+
+                                ${item.cantidad}
+
+                            </span>
+
+
+                            <button
+                                class="quantity-btn"
+                                onclick="cambiarCantidad(
+                                    ${item.id},
+                                    1
+                                )">
+
+                                +
+
+                            </button>
+
+
+                            <button
+                                class="remove-item"
+                                onclick="quitarDelCarrito(
+                                    ${item.id}
+                                )">
+
+                                ×
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+
+                contenedor.appendChild(div);
+
+            }
+        );
+
+
+        actualizarTotal();
+
+    }
+
+
+    /* =========================================
+       CAMBIAR CANTIDAD
+    ========================================== */
+
+    function cambiarCantidad(
+        id,
+        cantidad
+    ) {
+
+        const item =
+            carrito.find(
+                producto => producto.id === id
+            );
+
+
+        const producto =
+            productos.find(
+                producto => producto.id === id
+            );
+
+
+        if (!item || !producto) {
+            return;
+        }
+
+
+        const nuevaCantidad =
+            item.cantidad + cantidad;
+
+
+        if (nuevaCantidad <= 0) {
+
+            quitarDelCarrito(id);
+
+            return;
+
+        }
+
+
+        if (
+            nuevaCantidad >
+            producto.stock
+        ) {
+
+            alert(
+                "No hay suficientes unidades."
+            );
+
+            return;
+        }
+
+
+        item.cantidad =
+            nuevaCantidad;
+
+
+        mostrarCarrito();
+
+    }
+
+
+    /* =========================================
+       QUITAR DEL CARRITO
+    ========================================== */
+
+    function quitarDelCarrito(id) {
+
+        carrito =
+            carrito.filter(
+                item => item.id !== id
+            );
+
+
+        mostrarCarrito();
+
+    }
+
+
+    /* =========================================
+       TOTAL
+    ========================================== */
+
+    function actualizarTotal() {
+
+        const total =
+            carrito.reduce(
+                (suma, item) =>
+
+                    suma +
+                    (
+                        item.precio *
+                        item.cantidad
+                    ),
+
+                0
+            );
+
+
+        document.getElementById(
+            "totalVenta"
+        ).textContent =
+            formatearDinero(total);
+
+
+        const boton =
+            document.getElementById(
+                "btnFinalizar"
+            );
+
+
+        if (
+            carrito.length > 0
+            &&
+            document.getElementById(
+                "clienteVenta"
+            ).value !== ""
+        ) {
+
+            boton.classList.add(
+                "enabled"
+            );
+
+        } else {
+
+            boton.classList.remove(
+                "enabled"
+            );
+
+        }
+
+    }
+
+
+    /* =========================================
+       CLIENTE CAMBIA
+    ========================================== */
+
+    document
+        .getElementById(
+            "clienteVenta"
+        )
+        .addEventListener(
+            "change",
+            actualizarTotal
+        );
+
+
+    /* =========================================
+       FINALIZAR VENTA
+    ========================================== */
+
+    function finalizarVenta() {
+
+        const cliente =
+            document.getElementById(
+                "clienteVenta"
+            ).value;
+
+
+        if (!cliente) {
+
+            alert(
+                "Selecciona un cliente antes de finalizar la venta."
+            );
+
+            return;
+
+        }
+
+
+        if (carrito.length === 0) {
+
+            alert(
+                "Agrega al menos una prenda al carrito."
+            );
+
+            return;
+
+        }
+
+
+        const total =
+            carrito.reduce(
+                (suma, item) =>
+
+                    suma +
+                    (
+                        item.precio *
+                        item.cantidad
+                    ),
+
+                0
+            );
+
+
+        document.getElementById(
+            "saleSummary"
+        ).innerHTML = `
+
+            <strong>Cliente:</strong>
+            ${escapeHtml(cliente)}
+            <br>
+
+            <strong>Productos:</strong>
+            ${carrito.length}
+            <br>
+
+            <strong>Total:</strong>
+            ${formatearDinero(total)}
+
+        `;
+
+
+        document
+            .getElementById(
+                "saleModal"
+            )
+            .classList.add("show");
+
+    }
+
+
+    /* =========================================
+       CONFIRMAR VENTA
+    ========================================== */
+
+    function confirmarVenta() {
+
+        carrito.forEach(
+            item => {
+
+                const producto =
+                    productos.find(
+                        p => p.id === item.id
+                    );
+
+
+                if (producto) {
+
+                    producto.stock -=
+                        item.cantidad;
+
+                }
+
+            }
+        );
+
+
+        alert(
+            "Venta realizada correctamente."
+        );
+
+
+        carrito = [];
+
+
+        document.getElementById(
+            "clienteVenta"
+        ).value = "";
+
+
+        cerrarModalVenta();
+
+
+        mostrarProductos();
+
+        mostrarCarrito();
+
+    }
+
+
+    /* =========================================
+       CERRAR MODAL
+    ========================================== */
+
+    function cerrarModalVenta() {
+
+        document
+            .getElementById(
+                "saleModal"
+            )
+            .classList.remove("show");
+
+    }
+
+
+    document
+        .getElementById(
+            "saleModal"
+        )
+        .addEventListener(
+            "click",
+            function (event) {
+
+                if (
+                    event.target === this
+                ) {
+
+                    cerrarModalVenta();
+
+                }
+
+            }
+        );
+
+
+    /* =========================================
+       UTILIDADES
+    ========================================== */
+
+    function formatearDinero(valor) {
+
+        return "$" +
+            Number(valor)
+                .toLocaleString(
+                    "en-US",
+                    {
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 2
+                    }
+                );
+
+    }
+
+
+    function escapeHtml(text) {
+
+        const div =
+            document.createElement(
+                "div"
+            );
+
+        div.textContent = text;
+
+        return div.innerHTML;
+
+    }
+
+</script>
+
 </body>
+
 </html>
