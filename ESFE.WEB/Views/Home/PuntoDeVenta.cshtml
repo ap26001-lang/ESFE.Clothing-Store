@@ -652,33 +652,29 @@
             font-size: 8px;
         }
 
+                .custom-table td {
+                    padding: 12px;
+                    font-size: 0.9rem;
+                    border-bottom: 1px solid #f0f0f0;
+                    vertical-align: middle;
+                }
 
-        .remove-item {
-            margin-left: 4px;
+            .input-qty {
+                width: 50px;
+                padding: 4px 8px;
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                text-align: center;
+                font-weight: 600;
+            }
 
-            border: 0;
-
-            background: transparent;
-
-            color: #bd8077;
-
-            cursor: pointer;
-
-            font-size: 11px;
-        }
-
-
-        /* =========================================
-           TOTAL
-        ========================================= */
-
-        .total-box {
-            height: 92px;
-
-            background: var(--me-bg-dark);
-
-            padding: 13px;
-        }
+            .summary-title {
+                font-weight: 700;
+                font-size: 1.1rem;
+                margin-bottom: 16px;
+                border-bottom: 1px solid #f0f0f0;
+                padding-bottom: 8px;
+            }
 
 
         .total-line {
@@ -905,8 +901,89 @@
                 grid-template-columns: 1fr;
             }
 
-        }
+                .btn-checkout:hover {
+                    background-color: var(--gold-accent);
+                    color: #ffffff;
+                }
 
+            /* --- ESTILOS MODAL PAGO --- */
+            .modal-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.6);
+                display: none;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+            }
+
+            .modal-container {
+                background: #fff;
+                width: 440px;
+                border-radius: 12px;
+                padding: 24px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            }
+
+            .modal-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 12px;
+                margin-bottom: 16px;
+            }
+
+                .modal-header h3 {
+                    font-family: 'Playfair Display', serif;
+                    color: var(--sidebar-bg);
+                }
+
+            .close-modal {
+                background: none;
+                border: none;
+                font-size: 1.2rem;
+                cursor: pointer;
+                color: var(--text-muted);
+            }
+
+            .form-group {
+                margin-bottom: 14px;
+            }
+
+                .form-group label {
+                    display: block;
+                    font-size: 0.8rem;
+                    font-weight: 600;
+                    margin-bottom: 6px;
+                    color: var(--text-dark);
+                }
+
+            .form-control {
+                width: 100%;
+                padding: 10px 12px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                font-size: 0.9rem;
+            }
+
+            .modal-footer {
+                display: flex;
+                justify-content: flex-end;
+                gap: 10px;
+                margin-top: 20px;
+            }
+
+            .btn-cancel {
+                background: #e0e0e0;
+                border: none;
+                padding: 10px 16px;
+                border-radius: 6px;
+                cursor: pointer;
+            }
     </style>
 
 </head>
@@ -936,47 +1013,16 @@
                 </div>
 
             </div>
-
-
-            <nav class="sidebar-menu">
-
-                <a class="menu-link"
-                   href="@Url.Action("Catalogo", "Home")">
-
-                    <span class="menu-icon">
-                        □
-                    </span>
-
-                    Catálogo
-
-                </a>
-
-
-                <a class="menu-link"
-                   href="@Url.Action("Clientes", "Home")">
-
-                    <span class="menu-icon">
-                        ○
-                    </span>
-
-                    Clientes
-
-                </a>
-
-
-                <a class="menu-link active"
-                   href="@Url.Action("PuntoDeVenta", "Home")">
-
-                    <span class="menu-icon">
-                        ◐
-                    </span>
-
-                    Punto de Venta
-
-                </a>
-
-            </nav>
-
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="@Url.Action("AdminDashboard", "Home")"><i class="fa-solid fa-compass"></i> Dashboard</a></li>
+                <li class="nav-item"><a href="@Url.Action("Catalogo", "Home")"><i class="fa-solid fa-book-open"></i> Catálogo</a></li>
+                <li class="nav-item"><a href="@Url.Action("Clientes", "Home")"><i class="fa-solid fa-users"></i> Clientes</a></li>
+                <li class="nav-item active"><a href="@Url.Action("PuntoDeVenta", "Home")"><i class="fa-solid fa-cash-register"></i> Punto de Venta</a></li>
+                <li class="nav-item"><a href="@Url.Action("HistorialVentas", "Home")"><i class="fa-solid fa-clock-rotate-left"></i> Historial de Ventas</a></li>
+                <li class="nav-item"><a href="@Url.Action("Reportes", "Home")"><i class="fa-solid fa-chart-pie"></i> Reportes</a></li>
+                <li class="nav-item"><a href="@Url.Action("Bitacora", "Home")"><i class="fa-solid fa-list-check"></i> Bitácora</a></li>
+                <li class="nav-item"><a href="@Url.Action("Respaldos", "Home")"><i class="fa-solid fa-shield-halved"></i> Respaldos</a></li>
+            </ul>
         </div>
 
 
@@ -1019,997 +1065,151 @@
 
         </header>
 
+        <div class="pos-grid">
+            <section class="content-card">
+                <input type="text" id="txtBuscarPrenda" class="search-box" placeholder="Buscar prenda por código o nombre..." onkeyup="filtrarPrendas()" />
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Prenda</th>
+                            <th>Precio</th>
+                            <th>Cant.</th>
+                            <th>Subtotal</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbodyPOS">
+                        <tr data-codigo="PRD-001" data-precio="250.00">
+                            <td>Blazer Cachemira <br><small style="color:var(--text-muted);">#PRD-001</small></td>
+                            <td>$250.00</td>
+                            <td><input type="number" class="input-qty" value="1" min="1" onchange="recalcular()"></td>
+                            <td class="col-subtotal">$250.00</td>
+                            <td><i class="fa-solid fa-trash" style="color: #c94a4a; cursor: pointer;" onclick="eliminarFila(this)"></i></td>
+                        </tr>
+                        <tr data-codigo="PRD-002" data-precio="243.00">
+                            <td>Vestido Seda Italiana <br><small style="color:var(--text-muted);">#PRD-002</small></td>
+                            <td>$243.00</td>
+                            <td><input type="number" class="input-qty" value="1" min="1" onchange="recalcular()"></td>
+                            <td class="col-subtotal">$243.00</td>
+                            <td><i class="fa-solid fa-trash" style="color: #c94a4a; cursor: pointer;" onclick="eliminarFila(this)"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
 
-
-        <!-- CONTENIDO -->
-
-        <section class="content">
-
-
-            <!-- =================================
-                 PRODUCTOS
-            ================================== -->
-
-            <div class="products-section">
-
-
-                <input
-                    type="text"
-                    id="buscarProducto"
-                    class="search-box"
-                    placeholder="Buscar prenda..."
-                    autocomplete="off" />
-
-
-                <div
-                    id="productsGrid"
-                    class="products-grid">
-                </div>
-
-
-            </div>
-
-
-
-            <!-- =================================
-                 VENTA
-            ================================== -->
-
-            <div class="sale-section">
-
-
-                <!-- CLIENTE -->
-
-                <div class="client-box">
-
-                    <label class="section-label">
-                        Cliente
-                    </label>
-
-
-                    <select
-                        id="clienteVenta"
-                        class="client-select">
-
-                        <option value="">
-                            Seleccionar cliente...
-                        </option>
-
-                        <option value="Sofia Mendoza">
-                            Sofia Mendoza
-                        </option>
-
-                        <option value="Andrés Castillo">
-                            Andrés Castillo
-                        </option>
-
-                        <option value="Valentina Ríos">
-                            Valentina Ríos
-                        </option>
-
-                        <option value="Camilo Herrera">
-                            Camilo Herrera
-                        </option>
-
-                        <option value="Isabella Torres">
-                            Isabella Torres
-                        </option>
-
-                        <option value="Martín Díaz">
-                            Martín Díaz
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-
-                <!-- CARRITO -->
-
-                <div class="cart-box">
-
-                    <h2 class="cart-title">
-                        Carrito
-                    </h2>
-
-
-                    <div
-                        id="cartItems"
-                        class="cart-items">
-
-                        <div class="empty-cart">
-                            Agrega prendas al carrito
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- TOTAL -->
-
-                <div class="total-box">
-
-                    <div class="total-line">
-
-                        <span class="total-label">
-                            Total
-                        </span>
-
-                        <span
-                            id="totalVenta"
-                            class="total-value">
-                            $0
-                        </span>
-
-                    </div>
-
-
-                    <button
-                        type="button"
-                        id="btnFinalizar"
-                        class="finish-sale"
-                        onclick="finalizarVenta()">
-
-                        FINALIZAR VENTA
-
-                    </button>
-
-                </div>
-
-
-            </div>
-
-        </section>
-
+            <section class="content-card">
+                <div class="summary-title">Resumen de Venta</div>
+                <div class="summary-row"><span>Subtotal</span> <span id="lblSubtotal">$493.00</span></div>
+                <div class="summary-row"><span>IVA (13%)</span> <span id="lblIva">$64.09</span></div>
+                <div class="summary-row summary-total"><span>Total</span> <span id="lblTotal">$557.09</span></div>
+                <button class="btn-checkout" id="btnAbrirCobro"><i class="fa-solid fa-credit-card"></i> Procesar Pago</button>
+            </section>
+        </div>
     </main>
 
-</div>
-
-
-
-<!-- =========================================
-     MODAL FINALIZAR VENTA
-========================================== -->
-
-<div
-    id="saleModal"
-    class="sale-modal-overlay">
-
-
-    <div class="sale-modal">
-
-
-        <div class="sale-modal-header">
-
-            <h2 class="sale-modal-title">
-                Confirmar venta
-            </h2>
-
-        </div>
-
-
-        <div class="sale-modal-body">
-
-            <div
-                id="saleSummary"
-                class="sale-summary">
+    <!-- MODAL PROCESAR VENTA -->
+    <div class="modal-overlay" id="modalCobro">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Completar Venta</h3>
+                <button class="close-modal" id="btnCerrarModal">&times;</button>
             </div>
+            <form asp-controller="Home" asp-action="ProcesarVenta" method="post">
+                <div class="form-group">
+                    <label>Cliente</label>
+                    <select name="ClienteId" class="form-control" required>
+                        <option value="1">Sofía Martínez (#CLI-001)</option>
+                        <option value="2">Carlos Gómez (#CLI-002)</option>
+                        <option value="0">Cliente Final (Consumidor Final)</option>
+                    </select>
+                </div>
 
+                <div class="form-group">
+                    <label>Método de Pago</label>
+                    <select name="MetodoPago" class="form-control" required>
+                        <option value="Efectivo">Efectivo</option>
+                        <option value="Tarjeta">Tarjeta de Crédito / Débito</option>
+                        <option value="Transferencia">Transferencia Bancaria</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Monto Total a Cobrar</label>
+                    <input type="text" id="txtTotalModal" class="form-control" value="$557.09" readonly style="font-weight: bold; background-color: #f0f0f0;" />
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel" id="btnCancelarModal">Cancelar</button>
+                    <button type="submit" class="btn-checkout" style="width: auto; margin-top: 0;">Confirmar Venta</button>
+                </div>
+            </form>
         </div>
-
-
-        <div class="sale-modal-footer">
-
-            <button
-                type="button"
-                class="modal-btn modal-cancel"
-                onclick="cerrarModalVenta()">
-
-                Cancelar
-
-            </button>
-
-
-            <button
-                type="button"
-                class="modal-btn modal-confirm"
-                onclick="confirmarVenta()">
-
-                Confirmar venta
-
-            </button>
-
-        </div>
-
     </div>
 
-</div>
-
-
-
-<script>
-
-    /* =========================================
-       PRODUCTOS
-    ========================================== */
-
-    const productos = [
-
-        {
-            id: 1,
-            codigo: "BLAZER - M",
-            nombre: "Blazer Cachemira Oscuro",
-            precio: 2500,
-            stock: 8
-        },
-
-        {
-            id: 2,
-            codigo: "VESTIDO - S",
-            nombre: "Vestido Seda Ivory",
-            precio: 1800,
-            stock: 5
-        },
-
-        {
-            id: 3,
-            codigo: "ABRIGO - L",
-            nombre: "Abrigo Lana Merino",
-            precio: 3200,
-            stock: 3
-        },
-
-        {
-            id: 4,
-            codigo: "PANTALÓN - M",
-            nombre: "Pantalón Tweed Beige",
-            precio: 890,
-            stock: 14
-        },
-
-        {
-            id: 5,
-            codigo: "BLUSA - S",
-            nombre: "Blusa Lino Crema",
-            precio: 620,
-            stock: 20
-        },
-
-        {
-            id: 6,
-            codigo: "FALDA - XS",
-            nombre: "Falda Plisado Champagne",
-            precio: 740,
-            stock: 7
-        }
-
-    ];
-
-
-    /* =========================================
-       CARRITO
-    ========================================== */
-
-    let carrito = [];
-
-
-    /* =========================================
-       INICIO
-    ========================================== */
-
-    document.addEventListener(
-        "DOMContentLoaded",
-        function () {
-
-            mostrarProductos();
-
-            document
-                .getElementById("buscarProducto")
-                .addEventListener(
-                    "input",
-                    mostrarProductos
-                );
-
-        }
-    );
-
-
-    /* =========================================
-       MOSTRAR PRODUCTOS
-    ========================================== */
-
-    function mostrarProductos() {
-
-        const contenedor =
-            document.getElementById(
-                "productsGrid"
-            );
-
-
-        const busqueda =
-            document
-                .getElementById(
-                    "buscarProducto"
-                )
-                .value
-                .toLowerCase()
-                .trim();
-
-
-        const filtrados =
-            productos.filter(
-                producto =>
-
-                    producto.nombre
-                        .toLowerCase()
-                        .includes(busqueda)
-
-                    ||
-
-                    producto.codigo
-                        .toLowerCase()
-                        .includes(busqueda)
-            );
-
-
-        contenedor.innerHTML = "";
-
-
-        if (filtrados.length === 0) {
-
-            contenedor.innerHTML = `
-
-                <div
-                    style="
-                    grid-column:1/-1;
-                    padding:30px;
-                    text-align:center;
-                    color:#9b8c81;
-                    font-size:8px;
-                    ">
-
-                    No se encontraron prendas.
-
-                </div>
-
-            `;
-
-            return;
-        }
-
-
-        filtrados.forEach(
-            producto => {
-
-                const card =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                card.className =
-                    "product-card";
-
-
-                card.onclick =
-                    function () {
-
-                        agregarAlCarrito(
-                            producto.id
-                        );
-
-                    };
-
-
-                card.innerHTML = `
-
-                    <div class="product-code">
-
-                        ${producto.codigo}
-
-                    </div>
-
-
-                    <div class="product-name">
-
-                        ${escapeHtml(
-                            producto.nombre
-                        )}
-
-                    </div>
-
-
-                    <div class="product-price">
-
-                        ${formatearDinero(
-                            producto.precio
-                        )}
-
-                    </div>
-
-
-                    <div
-                        class="product-stock
-                        ${producto.stock <= 3
-                            ? "low"
-                            : ""}">
-
-                        ${producto.stock}
-                        disponibles
-
-                    </div>
-
-                `;
-
-
-                contenedor.appendChild(card);
-
-            }
-        );
-
-    }
-
-
-    /* =========================================
-       AGREGAR AL CARRITO
-    ========================================== */
-
-    function agregarAlCarrito(id) {
-
-        const producto =
-            productos.find(
-                p => p.id === id
-            );
-
-
-        if (!producto) {
-            return;
-        }
-
-
-        if (producto.stock <= 0) {
-
-            alert(
-                "Este producto no tiene existencias."
-            );
-
-            return;
-        }
-
-
-        const existente =
-            carrito.find(
-                item => item.id === id
-            );
-
-
-        if (existente) {
-
-            if (
-                existente.cantidad
-                >= producto.stock
-            ) {
-
-                alert(
-                    "No hay más unidades disponibles."
-                );
-
-                return;
+    <!-- SCRIPT BUSCADOR, CÁLCULOS Y MODAL -->
+    <script>
+            function filtrarPrendas() {
+                const input = document.getElementById('txtBuscarPrenda').value.toLowerCase();
+                const filas = document.querySelectorAll('#tbodyPOS tr');
+
+                filas.forEach(fila => {
+                    const textoFila = fila.innerText.toLowerCase();
+                    if (textoFila.includes(input)) {
+                        fila.style.display = '';
+                    } else {
+                        fila.style.display = 'none';
+                    }
+                });
             }
 
+            function recalcular() {
+                const filas = document.querySelectorAll('#tbodyPOS tr');
+                let subtotalGlobal = 0;
 
-            existente.cantidad++;
+                filas.forEach(fila => {
+                    if (fila.style.display !== 'none') {
+                        const precio = parseFloat(fila.getAttribute('data-precio')) || 0;
+                        const cantInput = fila.querySelector('.input-qty');
+                        const cant = parseInt(cantInput.value) || 1;
 
-        } else {
+                        const subtotalFila = precio * cant;
+                        fila.querySelector('.col-subtotal').innerText = '$' + subtotalFila.toFixed(2);
 
-            carrito.push({
+                        subtotalGlobal += subtotalFila;
+                    }
+                });
 
-                id: producto.id,
+                const iva = subtotalGlobal * 0.13;
+                const total = subtotalGlobal + iva;
 
-                nombre: producto.nombre,
+                document.getElementById('lblSubtotal').innerText = '$' + subtotalGlobal.toFixed(2);
+                document.getElementById('lblIva').innerText = '$' + iva.toFixed(2);
+                document.getElementById('lblTotal').innerText = '$' + total.toFixed(2);
+                document.getElementById('txtTotalModal').value = '$' + total.toFixed(2);
+            }
 
-                precio: producto.precio,
+            function eliminarFila(btn) {
+                const fila = btn.closest('tr');
+                fila.remove();
+                recalcular();
+            }
 
-                cantidad: 1
+            const modalCobro = document.getElementById('modalCobro');
+            const btnAbrir = document.getElementById('btnAbrirCobro');
+            const btnCerrar = document.getElementById('btnCerrarModal');
+            const btnCancelar = document.getElementById('btnCancelarModal');
 
+            btnAbrir.addEventListener('click', () => {
+                modalCobro.style.display = 'flex';
             });
 
-        }
-
-
-        mostrarCarrito();
-
-    }
-
-
-    /* =========================================
-       MOSTRAR CARRITO
-    ========================================== */
-
-    function mostrarCarrito() {
-
-        const contenedor =
-            document.getElementById(
-                "cartItems"
-            );
-
-
-        contenedor.innerHTML = "";
-
-
-        if (carrito.length === 0) {
-
-            contenedor.innerHTML = `
-
-                <div class="empty-cart">
-
-                    Agrega prendas al carrito
-
-                </div>
-
-            `;
-
-            actualizarTotal();
-
-            return;
-        }
-
-
-        carrito.forEach(
-            item => {
-
-                const div =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                div.className =
-                    "cart-item";
-
-
-                div.innerHTML = `
-
-                    <div>
-
-                        <div class="cart-item-name">
-
-                            ${escapeHtml(
-                                item.nombre
-                            )}
-
-                        </div>
-
-
-                        <div class="cart-item-price">
-
-                            ${formatearDinero(
-                                item.precio
-                            )}
-                            c/u
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="cart-item-right">
-
-                        <div class="cart-item-total">
-
-                            ${formatearDinero(
-                                item.precio *
-                                item.cantidad
-                            )}
-
-                        </div>
-
-
-                        <div class="quantity-controls">
-
-                            <button
-                                class="quantity-btn"
-                                onclick="cambiarCantidad(
-                                    ${item.id},
-                                    -1
-                                )">
-
-                                −
-
-                            </button>
-
-
-                            <span
-                                class="quantity-number">
-
-                                ${item.cantidad}
-
-                            </span>
-
-
-                            <button
-                                class="quantity-btn"
-                                onclick="cambiarCantidad(
-                                    ${item.id},
-                                    1
-                                )">
-
-                                +
-
-                            </button>
-
-
-                            <button
-                                class="remove-item"
-                                onclick="quitarDelCarrito(
-                                    ${item.id}
-                                )">
-
-                                ×
-
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                `;
-
-
-                contenedor.appendChild(div);
-
-            }
-        );
-
-
-        actualizarTotal();
-
-    }
-
-
-    /* =========================================
-       CAMBIAR CANTIDAD
-    ========================================== */
-
-    function cambiarCantidad(
-        id,
-        cantidad
-    ) {
-
-        const item =
-            carrito.find(
-                producto => producto.id === id
-            );
-
-
-        const producto =
-            productos.find(
-                producto => producto.id === id
-            );
-
-
-        if (!item || !producto) {
-            return;
-        }
-
-
-        const nuevaCantidad =
-            item.cantidad + cantidad;
-
-
-        if (nuevaCantidad <= 0) {
-
-            quitarDelCarrito(id);
-
-            return;
-
-        }
-
-
-        if (
-            nuevaCantidad >
-            producto.stock
-        ) {
-
-            alert(
-                "No hay suficientes unidades."
-            );
-
-            return;
-        }
-
-
-        item.cantidad =
-            nuevaCantidad;
-
-
-        mostrarCarrito();
-
-    }
-
-
-    /* =========================================
-       QUITAR DEL CARRITO
-    ========================================== */
-
-    function quitarDelCarrito(id) {
-
-        carrito =
-            carrito.filter(
-                item => item.id !== id
-            );
-
-
-        mostrarCarrito();
-
-    }
-
-
-    /* =========================================
-       TOTAL
-    ========================================== */
-
-    function actualizarTotal() {
-
-        const total =
-            carrito.reduce(
-                (suma, item) =>
-
-                    suma +
-                    (
-                        item.precio *
-                        item.cantidad
-                    ),
-
-                0
-            );
-
-
-        document.getElementById(
-            "totalVenta"
-        ).textContent =
-            formatearDinero(total);
-
-
-        const boton =
-            document.getElementById(
-                "btnFinalizar"
-            );
-
-
-        if (
-            carrito.length > 0
-            &&
-            document.getElementById(
-                "clienteVenta"
-            ).value !== ""
-        ) {
-
-            boton.classList.add(
-                "enabled"
-            );
-
-        } else {
-
-            boton.classList.remove(
-                "enabled"
-            );
-
-        }
-
-    }
-
-
-    /* =========================================
-       CLIENTE CAMBIA
-    ========================================== */
-
-    document
-        .getElementById(
-            "clienteVenta"
-        )
-        .addEventListener(
-            "change",
-            actualizarTotal
-        );
-
-
-    /* =========================================
-       FINALIZAR VENTA
-    ========================================== */
-
-    function finalizarVenta() {
-
-        const cliente =
-            document.getElementById(
-                "clienteVenta"
-            ).value;
-
-
-        if (!cliente) {
-
-            alert(
-                "Selecciona un cliente antes de finalizar la venta."
-            );
-
-            return;
-
-        }
-
-
-        if (carrito.length === 0) {
-
-            alert(
-                "Agrega al menos una prenda al carrito."
-            );
-
-            return;
-
-        }
-
-
-        const total =
-            carrito.reduce(
-                (suma, item) =>
-
-                    suma +
-                    (
-                        item.precio *
-                        item.cantidad
-                    ),
-
-                0
-            );
-
-
-        document.getElementById(
-            "saleSummary"
-        ).innerHTML = `
-
-            <strong>Cliente:</strong>
-            ${escapeHtml(cliente)}
-            <br>
-
-            <strong>Productos:</strong>
-            ${carrito.length}
-            <br>
-
-            <strong>Total:</strong>
-            ${formatearDinero(total)}
-
-        `;
-
-
-        document
-            .getElementById(
-                "saleModal"
-            )
-            .classList.add("show");
-
-    }
-
-
-    /* =========================================
-       CONFIRMAR VENTA
-    ========================================== */
-
-    function confirmarVenta() {
-
-        carrito.forEach(
-            item => {
-
-                const producto =
-                    productos.find(
-                        p => p.id === item.id
-                    );
-
-
-                if (producto) {
-
-                    producto.stock -=
-                        item.cantidad;
-
-                }
-
-            }
-        );
-
-
-        alert(
-            "Venta realizada correctamente."
-        );
-
-
-        carrito = [];
-
-
-        document.getElementById(
-            "clienteVenta"
-        ).value = "";
-
-
-        cerrarModalVenta();
-
-
-        mostrarProductos();
-
-        mostrarCarrito();
-
-    }
-
-
-    /* =========================================
-       CERRAR MODAL
-    ========================================== */
-
-    function cerrarModalVenta() {
-
-        document
-            .getElementById(
-                "saleModal"
-            )
-            .classList.remove("show");
-
-    }
-
-
-    document
-        .getElementById(
-            "saleModal"
-        )
-        .addEventListener(
-            "click",
-            function (event) {
-
-                if (
-                    event.target === this
-                ) {
-
-                    cerrarModalVenta();
-
-                }
-
-            }
-        );
-
-
-    /* =========================================
-       UTILIDADES
-    ========================================== */
-
-    function formatearDinero(valor) {
-
-        return "$" +
-            Number(valor)
-                .toLocaleString(
-                    "en-US",
-                    {
-                        minimumFractionDigits: 0,
-                        maximumFractionDigits: 2
-                    }
-                );
-
-    }
-
-
-    function escapeHtml(text) {
-
-        const div =
-            document.createElement(
-                "div"
-            );
-
-        div.textContent = text;
-
-        return div.innerHTML;
-
-    }
-
-</script>
-
+            btnCerrar.addEventListener('click', () => {
+                modalCobro.style.display = 'none';
+            });
+
+            btnCancelar.addEventListener('click', () => {
+                modalCobro.style.display = 'none';
+            });
+    </script>
 </body>
-
 </html>

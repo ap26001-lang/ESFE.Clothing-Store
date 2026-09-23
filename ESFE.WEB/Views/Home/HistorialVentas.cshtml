@@ -149,11 +149,30 @@
                 box-shadow: 0 4px 15px rgba(0,0,0,0.03);
             }
 
+            /* BARRA DE FILTROS Y BÚSQUEDA */
+            .filter-bar {
+                display: flex;
+                gap: 16px;
+                margin-bottom: 20px;
+            }
+
+            .search-input {
+                flex: 1;
+                padding: 10px 14px;
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                font-size: 0.9rem;
+                outline: none;
+            }
+
+                .search-input:focus {
+                    border-color: var(--gold-accent);
+                }
+
             .custom-table {
                 width: 100%;
                 border-collapse: collapse;
                 text-align: left;
-                margin-top: 12px;
             }
 
                 .custom-table th {
@@ -170,6 +189,7 @@
                     padding: 16px;
                     font-size: 0.9rem;
                     border-bottom: 1px solid #f0f0f0;
+                    vertical-align: middle;
                 }
 
             .badge-completed {
@@ -180,6 +200,114 @@
                 font-size: 0.75rem;
                 font-weight: 600;
             }
+
+            /* BOTONES DE ACCIÓN */
+            .btn-action {
+                background: none;
+                border: none;
+                color: var(--sidebar-bg);
+                cursor: pointer;
+                font-size: 1.05rem;
+                padding: 6px 8px;
+                border-radius: 6px;
+                transition: all 0.2s;
+            }
+
+                .btn-action:hover {
+                    background-color: #f0ecf4;
+                    color: var(--gold-accent);
+                }
+
+            /* MODAL DE TICKET */
+            .modal-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.6);
+                display: none;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+            }
+
+            .modal-container {
+                background: #fff;
+                width: 480px;
+                border-radius: 12px;
+                padding: 24px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            }
+
+            .modal-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 12px;
+                margin-bottom: 16px;
+            }
+
+                .modal-header h3 {
+                    font-family: 'Playfair Display', serif;
+                    color: var(--sidebar-bg);
+                }
+
+            .close-modal {
+                background: none;
+                border: none;
+                font-size: 1.2rem;
+                cursor: pointer;
+                color: var(--text-muted);
+            }
+
+            .ticket-info {
+                font-size: 0.85rem;
+                color: var(--text-muted);
+                margin-bottom: 16px;
+                line-height: 1.5;
+            }
+
+            .ticket-item {
+                display: flex;
+                justify-content: space-between;
+                font-size: 0.9rem;
+                padding: 8px 0;
+                border-bottom: 1px dashed #eee;
+            }
+
+            .ticket-total {
+                display: flex;
+                justify-content: space-between;
+                font-weight: 700;
+                font-size: 1.1rem;
+                margin-top: 16px;
+                padding-top: 12px;
+                border-top: 2px solid #2b2b2b;
+            }
+
+            .modal-footer {
+                display: flex;
+                justify-content: flex-end;
+                gap: 10px;
+                margin-top: 20px;
+            }
+
+            .btn-print {
+                background-color: var(--sidebar-bg);
+                color: var(--gold-accent);
+                border: 1px solid var(--gold-accent);
+                padding: 8px 16px;
+                border-radius: 6px;
+                font-weight: 600;
+                cursor: pointer;
+            }
+
+                .btn-print:hover {
+                    background-color: var(--gold-accent);
+                    color: #fff;
+                }
     </style>
 </head>
 <body>
@@ -215,6 +343,11 @@
         </header>
 
         <section class="content-card">
+            <!-- BUSCADOR INTERACTIVO -->
+            <div class="filter-bar">
+                <input type="text" id="txtBuscarVenta" class="search-input" placeholder="Buscar por N° Ticket o Cliente..." onkeyup="filtrarVentas()" />
+            </div>
+
             <table class="custom-table">
                 <thead>
                     <tr>
@@ -223,27 +356,108 @@
                         <th>Cliente</th>
                         <th>Total</th>
                         <th>Estado</th>
+                        <th style="text-align: center;">Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>S
-                        <td>#VTA-1001</td>
+                <tbody id="tbodyHistorial">
+                    <tr>
+                        <td><strong>#VTA-1001</strong></td>
                         <td>14 Sep 2026 - 10:30 AM</td>
                         <td>Sofía Martínez</td>
                         <td>$557.09</td>
                         <td><span class="badge-completed">Completado</span></td>
+                        <td style="text-align: center;">
+                            <button class="btn-action" title="Ver Detalle" onclick="verDetalleTicket('#VTA-1001', 'Sofía Martínez', '14 Sep 2026 - 10:30 AM', 'Tarjeta', '$557.09')">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                            <button class="btn-action" title="Imprimir Ticket" onclick="window.print()">
+                                <i class="fa-solid fa-print"></i>
+                            </button>
+                        </td>
                     </tr>
                     <tr>
-                        <td>#VTA-1002</td>
+                        <td><strong>#VTA-1002</strong></td>
                         <td>14 Sep 2026 - 09:15 AM</td>
                         <td>Carlos Gómez</td>
                         <td>$250.00</td>
                         <td><span class="badge-completed">Completado</span></td>
+                        <td style="text-align: center;">
+                            <button class="btn-action" title="Ver Detalle" onclick="verDetalleTicket('#VTA-1002', 'Carlos Gómez', '14 Sep 2026 - 09:15 AM', 'Efectivo', '$250.00')">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                            <button class="btn-action" title="Imprimir Ticket" onclick="window.print()">
+                                <i class="fa-solid fa-print"></i>
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </section>
     </main>
 
+    <!-- MODAL DETALLE DE TICKET -->
+    <div class="modal-overlay" id="modalTicket">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 id="lblNumTicket">Detalle de Ticket</h3>
+                <button class="close-modal" id="btnCerrarModal">&times;</button>
+            </div>
+            <div class="ticket-info">
+                <div><strong>Cliente:</strong> <span id="lblClienteTicket">---</span></div>
+                <div><strong>Fecha:</strong> <span id="lblFechaTicket">---</span></div>
+                <div><strong>Pago:</strong> <span id="lblMetodoTicket">---</span></div>
+            </div>
+
+            <div style="border-top: 1px solid #eee; padding-top: 10px;">
+                <div class="ticket-item">
+                    <span>1x Blazer Cachemira</span>
+                    <span>$250.00</span>
+                </div>
+                <div class="ticket-item">
+                    <span>1x Vestido Seda Italiana</span>
+                    <span>$243.00</span>
+                </div>
+            </div>
+
+            <div class="ticket-total">
+                <span>Total Cobrado:</span>
+                <span id="lblTotalTicket">$0.00</span>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn-print" onclick="window.print()"><i class="fa-solid fa-print"></i> Imprimir</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT DE INTERACCIÓN -->
+    <script>
+            function filtrarVentas() {
+                const input = document.getElementById('txtBuscarVenta').value.toLowerCase();
+                const filas = document.querySelectorAll('#tbodyHistorial tr');
+
+                filas.forEach(fila => {
+                    const textoFila = fila.innerText.toLowerCase();
+                    fila.style.display = textoFila.includes(input) ? '' : 'none';
+                });
+            }
+
+            const modalTicket = document.getElementById('modalTicket');
+            const btnCerrar = document.getElementById('btnCerrarModal');
+
+            function verDetalleTicket(ticket, cliente, fecha, metodo, total) {
+                document.getElementById('lblNumTicket').innerText = 'Detalle ' + ticket;
+                document.getElementById('lblClienteTicket').innerText = cliente;
+                document.getElementById('lblFechaTicket').innerText = fecha;
+                document.getElementById('lblMetodoTicket').innerText = metodo;
+                document.getElementById('lblTotalTicket').innerText = total;
+
+                modalTicket.style.display = 'flex';
+            }
+
+            btnCerrar.addEventListener('click', () => {
+                modalTicket.style.display = 'none';
+            });
+    </script>
 </body>
 </html>

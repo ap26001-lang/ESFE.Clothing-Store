@@ -430,12 +430,91 @@
                 .products-grid { grid-template-columns: repeat(2, minmax(140px, 1fr)); }
             }
 
-            @@media (max-width: 540px) {
-                .seller-sidebar { width: 110px; flex-basis: 110px; }
-                .brand-title { font-size: 8px; letter-spacing: 2px; }
-                .seller-nav a, .logout-link { font-size: 8px; padding-left: 5px; }
-                .catalog-scroll { padding: 12px; }
-                .products-grid { grid-template-columns: 1fr; }
+                .action-btn:hover {
+                    color: var(--gold-accent);
+                }
+
+                .action-btn.btn-delete:hover {
+                    color: #d9534f;
+                }
+
+            /* --- ESTILOS DE VENTANAS MODALES --- */
+            .modal-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.6);
+                display: none;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+            }
+
+            .modal-container {
+                background: #fff;
+                width: 480px;
+                border-radius: 12px;
+                padding: 24px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            }
+
+            .modal-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 12px;
+                margin-bottom: 16px;
+            }
+
+                .modal-header h3 {
+                    font-family: 'Playfair Display', serif;
+                    color: var(--sidebar-bg);
+                }
+
+            .close-modal {
+                background: none;
+                border: none;
+                font-size: 1.2rem;
+                cursor: pointer;
+                color: var(--text-muted);
+            }
+
+            .form-group {
+                margin-bottom: 12px;
+            }
+
+                .form-group label {
+                    display: block;
+                    font-size: 0.8rem;
+                    font-weight: 600;
+                    margin-bottom: 4px;
+                    color: var(--text-dark);
+                }
+
+            .form-control {
+                width: 100%;
+                padding: 8px 12px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                font-size: 0.9rem;
+            }
+
+            .modal-footer {
+                display: flex;
+                justify-content: flex-end;
+                gap: 10px;
+                margin-top: 20px;
+            }
+
+            .btn-cancel {
+                background: #e0e0e0;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 6px;
+                cursor: pointer;
             }
     </style>
 </head>
@@ -469,42 +548,83 @@
             </div>
         </aside>
 
-        <main class="seller-main">
-            <header class="topbar">
-                <h1 class="page-title">Catálogo</h1>
-                <div class="user-badge" title="@usuario">@usuario.Substring(0, 1)</div>
-            </header>
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <header class="header-bar">
+            <div>
+                <h1 class="page-title">Catálogo de Prendas</h1>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Gestión de inventario, tallas y precios de la tienda.</p>
+            </div>
+            <button id="btnAbrirModalCrear" class="btn-gold">
+                <i class="fa-solid fa-plus"></i> Nueva Prenda
+            </button>
+        </header>
 
-            <div class="catalog-scroll">
-                <div class="toolbar">
-                    <input id="searchProduct" type="text" placeholder="Buscar prenda..." autocomplete="off" />
-                    <select id="typeFilter">
-                        <option value="">Todos</option>
-                        <option value="Blazer">Blazer</option>
-                        <option value="Vestido">Vestido</option>
-                        <option value="Abrigo">Abrigo</option>
-                        <option value="Pantalón">Pantalón</option>
-                        <option value="Falda">Falda</option>
-                    </select>
-                    <select id="sizeFilter">
-                        <option value="">Todas</option>
-                        <option value="XS">XS</option>
-                        <option value="S">S</option>
-                        <option value="M">M</option>
-                        <option value="L">L</option>
-                        <option value="XL">XL</option>
-                    </select>
-                    <select id="sortFilter">
-                        <option value="">Precio: sin orden</option>
-                        <option value="priceAsc">Precio: menor a mayor</option>
-                        <option value="priceDesc">Precio: mayor a menor</option>
-                        <option value="nameAsc">Nombre: A-Z</option>
-                        <option value="nameDesc">Nombre: Z-A</option>
-                    </select>
-                    <button id="newProductButton" class="new-product-btn" type="button">+ Nuevo producto</button>
-                </div>
-
-                <div id="productsGrid" class="products-grid"></div>
+        <section class="content-card">
+            <div class="table-responsive">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Prenda</th>
+                            <th>Categoría</th>
+                            <th>Precio</th>
+                            <th>Stock</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#PRD-001</td>
+                            <td><strong>Blazer Cachemira</strong></td>
+                            <td>Sacos / Abrigos</td>
+                            <td>$250.00</td>
+                            <td>84 uds.</td>
+                            <td><span class="badge-status">Disponible</span></td>
+                            <td>
+                                <button class="action-btn btn-editar" title="Editar" data-codigo="#PRD-001" data-nombre="Blazer Cachemira" data-precio="250.00">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+                                <button class="action-btn btn-delete btn-eliminar" title="Eliminar" data-codigo="#PRD-001" data-nombre="Blazer Cachemira">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#PRD-002</td>
+                            <td><strong>Vestido Seda Italiana</strong></td>
+                            <td>Vestidos</td>
+                            <td>$243.00</td>
+                            <td>77 uds.</td>
+                            <td><span class="badge-status">Disponible</span></td>
+                            <td>
+                                <button class="action-btn btn-editar" title="Editar" data-codigo="#PRD-002" data-nombre="Vestido Seda Italiana" data-precio="243.00">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+                                <button class="action-btn btn-delete btn-eliminar" title="Eliminar" data-codigo="#PRD-002" data-nombre="Vestido Seda Italiana">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#PRD-003</td>
+                            <td><strong>Abrigo Lana Fina</strong></td>
+                            <td>Sacos / Abrigos</td>
+                            <td>$500.00</td>
+                            <td>61 uds.</td>
+                            <td><span class="badge-status">Disponible</span></td>
+                            <td>
+                                <button class="action-btn btn-editar" title="Editar" data-codigo="#PRD-003" data-nombre="Abrigo Lana Fina" data-precio="500.00">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+                                <button class="action-btn btn-delete btn-eliminar" title="Eliminar" data-codigo="#PRD-003" data-nombre="Abrigo Lana Fina">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </main>
     </div>
@@ -761,7 +881,114 @@
             sizeFilter.addEventListener("change", renderProducts);
             sortFilter.addEventListener("change", renderProducts);
 
-            renderProducts();
+    <!-- MODAL 1: CREAR NUEVA PRENDA -->
+    <div class="modal-overlay" id="modalCrear">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Agregar Nueva Prenda</h3>
+                <button class="close-modal" id="btnCerrarCrear">&times;</button>
+            </div>
+            <form asp-controller="Home" asp-action="GuardarPrenda" method="post">
+                <div class="form-group">
+                    <label>Código de Prenda</label>
+                    <input type="text" name="Codigo_Product" class="form-control" placeholder="Ej: P2026" required />
+                </div>
+                <div class="form-group">
+                    <label>Nombre de Prenda</label>
+                    <input type="text" name="Nombre_Produc" class="form-control" placeholder="Ej: Blazer de Lino" required />
+                </div>
+                <div class="form-group">
+                    <label>Precio ($)</label>
+                    <input type="number" step="0.01" name="Precio" class="form-control" placeholder="Ej: 45.00" required />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel" id="btnCancelarCrear">Cancelar</button>
+                    <button type="submit" class="btn-gold" style="border:none;">Guardar Prenda</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 2: EDITAR PRENDA -->
+    <div class="modal-overlay" id="modalEditar">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Editar Prenda</h3>
+                <button class="close-modal" id="btnCerrarEditar">&times;</button>
+            </div>
+            <form asp-controller="Home" asp-action="EditarPrenda" method="post">
+                <div class="form-group">
+                    <label>Código de Prenda</label>
+                    <input type="text" id="editCodigo" name="Codigo_Product" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label>Nombre de Prenda</label>
+                    <input type="text" id="editNombre" name="Nombre_Produc" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label>Precio ($)</label>
+                    <input type="number" step="0.01" id="editPrecio" name="Precio" class="form-control" required />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel" id="btnCancelarEditar">Cancelar</button>
+                    <button type="submit" class="btn-gold" style="border:none;">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- SCRIPT DE INTERACCIÓN DE BOTONES Y MODALES -->
+    <script>
+            // --- MODAL CREAR ---
+            const modalCrear = document.getElementById('modalCrear');
+            document.getElementById('btnAbrirModalCrear').addEventListener('click', () => {
+                modalCrear.style.display = 'flex';
+            });
+            document.getElementById('btnCerrarCrear').addEventListener('click', () => {
+                modalCrear.style.display = 'none';
+            });
+            document.getElementById('btnCancelarCrear').addEventListener('click', () => {
+                modalCrear.style.display = 'none';
+            });
+
+            // --- MODAL EDITAR ---
+            const modalEditar = document.getElementById('modalEditar');
+            const btnsEditar = document.querySelectorAll('.btn-editar');
+
+            btnsEditar.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const codigo = btn.getAttribute('data-codigo');
+                    const nombre = btn.getAttribute('data-nombre');
+                    const precio = btn.getAttribute('data-precio');
+
+                    document.getElementById('editCodigo').value = codigo;
+                    document.getElementById('editNombre').value = nombre;
+                    document.getElementById('editPrecio').value = precio;
+
+                    modalEditar.style.display = 'flex';
+                });
+            });
+
+            document.getElementById('btnCerrarEditar').addEventListener('click', () => {
+                modalEditar.style.display = 'none';
+            });
+            document.getElementById('btnCancelarEditar').addEventListener('click', () => {
+                modalEditar.style.display = 'none';
+            });
+
+            // --- ACCIÓN ELIMINAR ---
+            const btnsEliminar = document.querySelectorAll('.btn-eliminar');
+
+            btnsEliminar.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const nombre = btn.getAttribute('data-nombre');
+                    const codigo = btn.getAttribute('data-codigo');
+
+                    if (confirm(`¿Estás seguro de que deseas eliminar la prenda "${nombre}" (${codigo})?`)) {
+                        alert(`Solicitud de eliminación enviada para ${codigo}`);
+                    }
+                });
+            });
     </script>
 </body>
 </html>

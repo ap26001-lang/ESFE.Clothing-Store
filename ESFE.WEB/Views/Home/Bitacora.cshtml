@@ -2,7 +2,6 @@
     ViewData["Title"] = "Bitácora - Maison Élite";
     Layout = null;
 }
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -149,11 +148,47 @@
                 box-shadow: 0 4px 15px rgba(0,0,0,0.03);
             }
 
+            .filter-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+                gap: 16px;
+            }
+
+            .search-wrapper {
+                position: relative;
+                flex: 1;
+                max-width: 360px;
+            }
+
+                .search-wrapper i {
+                    position: absolute;
+                    left: 14px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    color: var(--text-muted);
+                    font-size: 0.85rem;
+                }
+
+            .search-input {
+                width: 100%;
+                padding: 10px 14px 10px 38px;
+                border: 1px solid #e2e8f0;
+                border-radius: 8px;
+                font-size: 0.85rem;
+                outline: none;
+                transition: border-color 0.2s;
+            }
+
+                .search-input:focus {
+                    border-color: var(--gold-accent);
+                }
+
             .custom-table {
                 width: 100%;
                 border-collapse: collapse;
                 text-align: left;
-                margin-top: 12px;
             }
 
                 .custom-table th {
@@ -173,12 +208,31 @@
                 }
 
             .badge-log {
-                background-color: rgba(196, 164, 124, 0.15);
-                color: #8a6d3b;
-                padding: 4px 10px;
+                padding: 4px 12px;
                 border-radius: 20px;
                 font-size: 0.75rem;
                 font-weight: 600;
+                display: inline-block;
+            }
+
+            .badge-create {
+                background-color: rgba(64, 130, 109, 0.12);
+                color: #2e6050;
+            }
+
+            .badge-login {
+                background-color: rgba(196, 164, 124, 0.2);
+                color: #8a6d3b;
+            }
+
+            .badge-update {
+                background-color: rgba(70, 130, 180, 0.12);
+                color: #2b5b84;
+            }
+
+            .badge-delete {
+                background-color: rgba(205, 92, 92, 0.12);
+                color: #a33c3c;
             }
     </style>
 </head>
@@ -215,7 +269,14 @@
         </header>
 
         <section class="content-card">
-            <table class="custom-table">
+            <div class="filter-container">
+                <div class="search-wrapper">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="txtBuscar" class="search-input" placeholder="Buscar por acción, usuario o detalle..." onkeyup="filtrarTabla()" />
+                </div>
+            </div>
+
+            <table class="custom-table" id="tablaBitacora">
                 <thead>
                     <tr>
                         <th>Fecha / Hora</th>
@@ -229,21 +290,46 @@
                     <tr>
                         <td>14 Sep 2026 - 10:45 AM</td>
                         <td>Admin</td>
-                        <td><span class="badge-log">Creación</span></td>
+                        <td><span class="badge-log badge-create">Creación</span></td>
                         <td>Inventario</td>
                         <td>Producto #PRD-003 agregado</td>
                     </tr>
                     <tr>
                         <td>14 Sep 2026 - 10:12 AM</td>
                         <td>Admin</td>
-                        <td><span class="badge-log">Inicio de Sesión</span></td>
+                        <td><span class="badge-log badge-login">Inicio de Sesión</span></td>
                         <td>Seguridad</td>
                         <td>Acceso exitoso al Admin Panel</td>
+                    </tr>
+                    <tr>
+                        <td>14 Sep 2026 - 09:30 AM</td>
+                        <td>Cajero_1</td>
+                        <td><span class="badge-log badge-create">Creación</span></td>
+                        <td>Ventas</td>
+                        <td>Venta #VTA-1002 procesada</td>
+                    </tr>
+                    <tr>
+                        <td>13 Sep 2026 - 04:15 PM</td>
+                        <td>Admin</td>
+                        <td><span class="badge-log badge-update">Modificación</span></td>
+                        <td>Clientes</td>
+                        <td>Datos del cliente #CLI-001 actualizados</td>
                     </tr>
                 </tbody>
             </table>
         </section>
     </main>
 
+    <script>
+            function filtrarTabla() {
+                const filtro = document.getElementById('txtBuscar').value.toLowerCase();
+                const filas = document.querySelectorAll('#tablaBitacora tbody tr');
+
+                filas.forEach(fila => {
+                    const textoFila = fila.innerText.toLowerCase();
+                    fila.style.display = textoFila.includes(filtro) ? '' : 'none';
+                });
+            }
+    </script>
 </body>
 </html>

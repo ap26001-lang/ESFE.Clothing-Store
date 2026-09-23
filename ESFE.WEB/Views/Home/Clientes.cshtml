@@ -180,65 +180,21 @@
             color: #2c1d17;
         }
 
-        .user-circle {
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            background: #c7a15e;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 9px;
-            font-weight: 600;
-        }
-
-        .content {
-            padding: 21px 20px 30px;
-        }
-
-        /* =========================
-           TARJETAS DE RESUMEN
-        ========================= */
-
-        .summary-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-
-        .summary-card {
-            height: 66px;
-            background: #fff;
-            border: 1px solid var(--me-border);
-            padding: 13px 15px;
-        }
-
-        .summary-label {
-            color: #927f70;
-            font-size: 7px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-        }
-
-        .summary-value {
-            font-family: 'Playfair Display', serif;
-            font-size: 20px;
-            color: #241811;
-        }
-
-        /* =========================
-           BARRA DE BUSQUEDA
-        ========================= */
-
-        .toolbar {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            margin-bottom: 16px;
-        }
+            .btn-gold {
+                background-color: var(--sidebar-bg);
+                color: var(--gold-accent);
+                border: 1px solid var(--gold-accent);
+                padding: 10px 18px;
+                border-radius: 8px;
+                font-size: 0.9rem;
+                font-weight: 600;
+                cursor: pointer;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                transition: all 0.2s;
+            }
 
         .search-box {
             flex: 1;
@@ -515,100 +471,90 @@
             text-transform: uppercase;
         }
 
-        .form-control {
-            width: 100%;
-            height: 30px;
-            border: 1px solid #decfbd;
-            background: #fff;
-            outline: none;
-            padding: 0 9px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 8px;
-            color: #2c1d17;
-        }
+                .custom-table td {
+                    padding: 16px;
+                    font-size: 0.9rem;
+                    border-bottom: 1px solid #f0f0f0;
+                }
 
-        .form-control:focus {
-            border-color: #c5a46c;
-        }
-
-        .modal-footer {
-            display: flex;
-            justify-content: flex-end;
-            gap: 8px;
-            padding: 13px 20px 18px;
-        }
-
-        .btn-cancel {
-            height: 28px;
-            min-width: 90px;
-            border: 1px solid #dfd1c0;
-            background: #f4efe7;
-            color: #604c40;
-            cursor: pointer;
-            font-size: 8px;
-        }
-
-        .btn-save {
-            height: 28px;
-            min-width: 90px;
-            border: 1px solid #20120d;
-            background: var(--me-bg-dark);
-            color: var(--me-gold);
-            cursor: pointer;
-            font-size: 8px;
-        }
-
-        .btn-save:hover {
-            background: #24150f;
-        }
-
-        /* =========================
-           MENSAJE VACIO
-        ========================= */
-
-        .empty-row {
-            text-align: center !important;
-            padding: 35px !important;
-            color: #9b8b7e !important;
-        }
-
-        /* =========================
-           RESPONSIVE
-        ========================= */
-
-        @@media (max-width: 900px) {
-            .sidebar {
-                width: 145px;
-                min-width: 145px;
+            /* ESTILOS DEL MODAL DE REGISTRO */
+            .modal-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.6);
+                display: none;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
             }
 
-            .summary-grid {
-                grid-template-columns: 1fr;
+            .modal-container {
+                background: #fff;
+                width: 480px;
+                border-radius: 12px;
+                padding: 24px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             }
 
-            .toolbar {
-                flex-wrap: wrap;
+            .modal-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 12px;
+                margin-bottom: 16px;
             }
 
-            .search-box {
-                min-width: 100%;
-            }
-        }
+                .modal-header h3 {
+                    font-family: 'Playfair Display', serif;
+                    color: var(--sidebar-bg);
+                }
 
-        @@media (max-width: 600px) {
-            .sidebar {
-                width: 125px;
-                min-width: 125px;
-            }
-
-            .content {
-                padding: 15px 10px;
+            .close-modal {
+                background: none;
+                border: none;
+                font-size: 1.2rem;
+                cursor: pointer;
+                color: var(--text-muted);
             }
 
-            .form-row {
-                grid-template-columns: 1fr;
+            .form-group {
+                margin-bottom: 12px;
             }
-        }
+
+                .form-group label {
+                    display: block;
+                    font-size: 0.8rem;
+                    font-weight: 600;
+                    margin-bottom: 4px;
+                    color: var(--text-dark);
+                }
+
+            .form-control {
+                width: 100%;
+                padding: 8px 12px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                font-size: 0.9rem;
+            }
+
+            .modal-footer {
+                display: flex;
+                justify-content: flex-end;
+                gap: 10px;
+                margin-top: 20px;
+            }
+
+            .btn-cancel {
+                background: #e0e0e0;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 6px;
+                cursor: pointer;
+            }
     </style>
 </head>
 
@@ -674,6 +620,9 @@
             <div class="user-circle">
                 @inicial
             </div>
+            <button id="btnAbrirModalCliente" class="btn-gold">
+                <i class="fa-solid fa-user-plus"></i> Registrar Cliente
+            </button>
         </header>
 
 
@@ -786,816 +735,52 @@
 
     </main>
 
-</div>
-
-
-<!-- =========================
-     MODAL CLIENTE
-========================== -->
-
-<div id="modalCliente"
-     class="modal-overlay">
-
-    <div class="modal">
-
-        <div class="modal-header">
-
-            <h2 id="tituloModal"
-                class="modal-title">
-                Registrar cliente
-            </h2>
-
-            <button type="button"
-                    class="modal-close"
-                    onclick="cerrarModal()">
-                ×
-            </button>
-
+    <!-- MODAL PARA REGISTRAR CLIENTE -->
+    <div class="modal-overlay" id="modalCliente">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Registrar Nuevo Cliente</h3>
+                <button class="close-modal" id="btnCerrarModal">&times;</button>
+            </div>
+            <form asp-controller="Home" asp-action="GuardarCliente" method="post">
+                <div class="form-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" name="Nombre" class="form-control" placeholder="Ej: Sofía Martínez" required />
+                </div>
+                <div class="form-group">
+                    <label>Correo Electrónico</label>
+                    <input type="email" name="Correo" class="form-control" placeholder="Ej: correo@ejemplo.com" required />
+                </div>
+                <div class="form-group">
+                    <label>Teléfono</label>
+                    <input type="text" name="Telefono" class="form-control" placeholder="Ej: +503 7000-0000" required />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel" id="btnCancelarModal">Cancelar</button>
+                    <button type="submit" class="btn-gold" style="border:none;">Guardar Cliente</button>
+                </div>
+            </form>
         </div>
-
-
-        <form id="formCliente"
-              onsubmit="guardarCliente(event)">
-
-            <div class="modal-body">
-
-                <input type="hidden"
-                       id="clienteId" />
-
-
-                <div class="form-group">
-
-                    <label class="form-label">
-                        Nombre
-                    </label>
-
-                    <input
-                        type="text"
-                        id="nombreCliente"
-                        class="form-control"
-                        placeholder="Nombre completo"
-                        required />
-
-                </div>
-
-
-                <div class="form-row">
-
-                    <div class="form-group">
-
-                        <label class="form-label">
-                            DNI
-                        </label>
-
-                        <input
-                            type="text"
-                            id="dniCliente"
-                            class="form-control"
-                            placeholder="12345678"
-                            required />
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label class="form-label">
-                            Ciudad
-                        </label>
-
-                        <input
-                            type="text"
-                            id="ciudadCliente"
-                            class="form-control"
-                            placeholder="Ciudad"
-                            required />
-
-                    </div>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label class="form-label">
-                        Email
-                    </label>
-
-                    <input
-                        type="email"
-                        id="emailCliente"
-                        class="form-control"
-                        placeholder="cliente@email.com"
-                        required />
-
-                </div>
-
-
-                <div class="form-row">
-
-                    <div class="form-group">
-
-                        <label class="form-label">
-                            Compras
-                        </label>
-
-                        <input
-                            type="number"
-                            id="comprasCliente"
-                            class="form-control"
-                            min="0"
-                            value="0"
-                            required />
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label class="form-label">
-                            Total comprado ($)
-                        </label>
-
-                        <input
-                            type="number"
-                            id="totalCliente"
-                            class="form-control"
-                            min="0"
-                            step="0.01"
-                            value="0"
-                            required />
-
-                    </div>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label class="form-label">
-                        Categoría
-                    </label>
-
-                    <select
-                        id="categoriaCliente"
-                        class="form-control">
-
-                        <option value="VIP">
-                            VIP
-                        </option>
-
-                        <option value="Regular">
-                            Regular
-                        </option>
-
-                        <option value="Nuevo">
-                            Nuevo
-                        </option>
-
-                    </select>
-
-                </div>
-
-            </div>
-
-
-            <div class="modal-footer">
-
-                <button type="button"
-                        class="btn-cancel"
-                        onclick="cerrarModal()">
-                    Cancelar
-                </button>
-
-                <button type="submit"
-                        class="btn-save">
-                    Guardar
-                </button>
-
-            </div>
-
-        </form>
-
     </div>
 
-</div>
+    <!-- SCRIPT DE APERTURA Y CIERRE DEL MODAL -->
+    <script>
+            const modalCliente = document.getElementById('modalCliente');
+            const btnAbrir = document.getElementById('btnAbrirModalCliente');
+            const btnCerrar = document.getElementById('btnCerrarModal');
+            const btnCancelar = document.getElementById('btnCancelarModal');
 
-
-<script>
-
-    /* =========================================
-       DATOS INICIALES
-    ========================================== */
-
-    let clientes = [
-        {
-            id: 1,
-            nombre: "Sofia Mendoza",
-            email: "sofia@correo.com",
-            dni: "12345678",
-            ciudad: "Bogotá",
-            compras: 9,
-            total: 24800,
-            categoria: "VIP"
-        },
-
-        {
-            id: 2,
-            nombre: "Andrés Castillo",
-            email: "andres@correo.com",
-            dni: "87654321",
-            ciudad: "Medellín",
-            compras: 5,
-            total: 11200,
-            categoria: "Regular"
-        },
-
-        {
-            id: 3,
-            nombre: "Valentina Ríos",
-            email: "vale@correo.com",
-            dni: "45678901",
-            ciudad: "Cali",
-            compras: 7,
-            total: 18600,
-            categoria: "VIP"
-        },
-
-        {
-            id: 4,
-            nombre: "Camilo Herrera",
-            email: "camilo@correo.com",
-            dni: "23456789",
-            ciudad: "Cartagena",
-            compras: 1,
-            total: 890,
-            categoria: "Nuevo"
-        },
-
-        {
-            id: 5,
-            nombre: "Isabella Torres",
-            email: "isa@correo.com",
-            dni: "34567890",
-            ciudad: "Bogotá",
-            compras: 3,
-            total: 6400,
-            categoria: "Regular"
-        },
-
-        {
-            id: 6,
-            nombre: "Martín Díaz",
-            email: "martin@correo.com",
-            dni: "56789012",
-            ciudad: "Barranquilla",
-            compras: 2,
-            total: 3200,
-            categoria: "Regular"
-        }
-    ];
-
-
-    let clienteEditando = null;
-
-
-    /* =========================================
-       INICIALIZAR
-    ========================================== */
-
-    document.addEventListener("DOMContentLoaded", function () {
-
-        renderClientes();
-
-        document
-            .getElementById("buscarCliente")
-            .addEventListener("input", renderClientes);
-
-        document
-            .getElementById("filtroCategoria")
-            .addEventListener("change", renderClientes);
-
-    });
-
-
-    /* =========================================
-       MOSTRAR CLIENTES
-    ========================================== */
-
-    function renderClientes() {
-
-        const tabla =
-            document.getElementById("tablaClientes");
-
-        const busqueda =
-            document
-                .getElementById("buscarCliente")
-                .value
-                .toLowerCase()
-                .trim();
-
-        const categoria =
-            document
-                .getElementById("filtroCategoria")
-                .value;
-
-
-        const filtrados = clientes.filter(cliente => {
-
-            const coincideBusqueda =
-                cliente.nombre.toLowerCase().includes(busqueda) ||
-                cliente.email.toLowerCase().includes(busqueda) ||
-                cliente.dni.toLowerCase().includes(busqueda);
-
-            const coincideCategoria =
-                categoria === "Todos" ||
-                cliente.categoria === categoria;
-
-            return coincideBusqueda &&
-                   coincideCategoria;
-
-        });
-
-
-        tabla.innerHTML = "";
-
-
-        if (filtrados.length === 0) {
-
-            tabla.innerHTML = `
-                <tr>
-                    <td colspan="7" class="empty-row">
-                        No se encontraron clientes.
-                    </td>
-                </tr>
-            `;
-
-        } else {
-
-            filtrados.forEach(cliente => {
-
-                const iniciales =
-                    obtenerIniciales(cliente.nombre);
-
-                const categoriaClase =
-                    cliente.categoria.toLowerCase();
-
-                const fila = document.createElement("tr");
-
-                fila.innerHTML = `
-
-                    <td>
-                        <div class="client-cell">
-
-                            <div class="avatar ${cliente.categoria === "VIP" ? "dark" : ""}">
-                                ${iniciales}
-                            </div>
-
-                            <div>
-
-                                <div class="client-name">
-                                    ${escapeHtml(cliente.nombre)}
-                                </div>
-
-                                <div class="client-email">
-                                    ${escapeHtml(cliente.email)}
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </td>
-
-                    <td>
-                        ${escapeHtml(cliente.dni)}
-                    </td>
-
-                    <td>
-                        ${escapeHtml(cliente.ciudad)}
-                    </td>
-
-                    <td class="number-center">
-                        ${cliente.compras}
-                    </td>
-
-                    <td class="money">
-                        ${formatearDinero(cliente.total)}
-                    </td>
-
-                    <td>
-                        <span class="category ${categoriaClase}">
-                            ${escapeHtml(cliente.categoria)}
-                        </span>
-                    </td>
-
-                    <td>
-
-                        <div class="actions">
-
-                            <button
-                                type="button"
-                                class="btn-edit"
-                                onclick="editarCliente(${cliente.id})">
-                                Editar
-                            </button>
-
-                            <button
-                                type="button"
-                                class="btn-delete"
-                                onclick="eliminarCliente(${cliente.id})">
-                                ×
-                            </button>
-
-                        </div>
-
-                    </td>
-                `;
-
-                tabla.appendChild(fila);
-
+            btnAbrir.addEventListener('click', () => {
+                modalCliente.style.display = 'flex';
             });
 
-        }
-
-        actualizarResumen();
-
-    }
-
-
-    /* =========================================
-       RESUMEN
-    ========================================== */
-
-    function actualizarResumen() {
-
-        const totalClientes =
-            clientes.length;
-
-        const clientesVip =
-            clientes.filter(c =>
-                c.categoria === "VIP"
-            ).length;
-
-        const ingresos =
-            clientes.reduce(
-                (total, cliente) =>
-                    total + Number(cliente.total),
-                0
-            );
-
-
-        document.getElementById("totalClientes")
-            .textContent = totalClientes;
-
-
-        document.getElementById("clientesVip")
-            .textContent = clientesVip;
-
-
-        document.getElementById("ingresosAcumulados")
-            .textContent = formatearDinero(ingresos);
-
-    }
-
-
-    /* =========================================
-       NUEVO CLIENTE
-    ========================================== */
-
-    function abrirModalNuevo() {
-
-        clienteEditando = null;
-
-        document.getElementById("tituloModal")
-            .textContent = "Registrar cliente";
-
-        document.getElementById("formCliente")
-            .reset();
-
-        document.getElementById("clienteId")
-            .value = "";
-
-        document.getElementById("comprasCliente")
-            .value = 0;
-
-        document.getElementById("totalCliente")
-            .value = 0;
-
-        document.getElementById("categoriaCliente")
-            .value = "Nuevo";
-
-        abrirModal();
-
-    }
-
-
-    /* =========================================
-       EDITAR
-    ========================================== */
-
-    function editarCliente(id) {
-
-        const cliente =
-            clientes.find(c => c.id === id);
-
-        if (!cliente) {
-            return;
-        }
-
-        clienteEditando = id;
-
-        document.getElementById("tituloModal")
-            .textContent = "Editar cliente";
-
-        document.getElementById("clienteId")
-            .value = cliente.id;
-
-        document.getElementById("nombreCliente")
-            .value = cliente.nombre;
-
-        document.getElementById("dniCliente")
-            .value = cliente.dni;
-
-        document.getElementById("ciudadCliente")
-            .value = cliente.ciudad;
-
-        document.getElementById("emailCliente")
-            .value = cliente.email;
-
-        document.getElementById("comprasCliente")
-            .value = cliente.compras;
-
-        document.getElementById("totalCliente")
-            .value = cliente.total;
-
-        document.getElementById("categoriaCliente")
-            .value = cliente.categoria;
-
-        abrirModal();
-
-    }
-
-
-    /* =========================================
-       GUARDAR
-    ========================================== */
-
-    function guardarCliente(event) {
-
-        event.preventDefault();
-
-
-        const nombre =
-            document
-                .getElementById("nombreCliente")
-                .value
-                .trim();
-
-        const dni =
-            document
-                .getElementById("dniCliente")
-                .value
-                .trim();
-
-        const ciudad =
-            document
-                .getElementById("ciudadCliente")
-                .value
-                .trim();
-
-        const email =
-            document
-                .getElementById("emailCliente")
-                .value
-                .trim();
-
-        const compras =
-            Number(
-                document
-                    .getElementById("comprasCliente")
-                    .value
-            );
-
-        const total =
-            Number(
-                document
-                    .getElementById("totalCliente")
-                    .value
-            );
-
-        const categoria =
-            document
-                .getElementById("categoriaCliente")
-                .value;
-
-
-        if (!nombre ||
-            !dni ||
-            !ciudad ||
-            !email) {
-
-            alert("Completa todos los campos.");
-
-            return;
-        }
-
-
-        if (compras < 0 || total < 0) {
-
-            alert("Compras y total no pueden ser negativos.");
-
-            return;
-        }
-
-
-        if (clienteEditando !== null) {
-
-            const cliente =
-                clientes.find(
-                    c => c.id === clienteEditando
-                );
-
-            if (cliente) {
-
-                cliente.nombre = nombre;
-                cliente.dni = dni;
-                cliente.ciudad = ciudad;
-                cliente.email = email;
-                cliente.compras = compras;
-                cliente.total = total;
-                cliente.categoria = categoria;
-
-            }
-
-        } else {
-
-            const nuevoId =
-                clientes.length > 0
-                    ? Math.max(...clientes.map(c => c.id)) + 1
-                    : 1;
-
-
-            clientes.push({
-
-                id: nuevoId,
-
-                nombre: nombre,
-
-                dni: dni,
-
-                ciudad: ciudad,
-
-                email: email,
-
-                compras: compras,
-
-                total: total,
-
-                categoria: categoria
-
+            btnCerrar.addEventListener('click', () => {
+                modalCliente.style.display = 'none';
             });
 
-        }
-
-
-        cerrarModal();
-
-        renderClientes();
-
-    }
-
-
-    /* =========================================
-       ELIMINAR
-    ========================================== */
-
-    function eliminarCliente(id) {
-
-        const cliente =
-            clientes.find(c => c.id === id);
-
-        if (!cliente) {
-            return;
-        }
-
-
-        const confirmar =
-            confirm(
-                "¿Deseas eliminar a " +
-                cliente.nombre +
-                "?"
-            );
-
-
-        if (!confirmar) {
-            return;
-        }
-
-
-        clientes =
-            clientes.filter(
-                c => c.id !== id
-            );
-
-
-        renderClientes();
-
-    }
-
-
-    /* =========================================
-       MODAL
-    ========================================== */
-
-    function abrirModal() {
-
-        document
-            .getElementById("modalCliente")
-            .classList.add("show");
-
-    }
-
-
-    function cerrarModal() {
-
-        document
-            .getElementById("modalCliente")
-            .classList.remove("show");
-
-        clienteEditando = null;
-
-    }
-
-
-    document
-        .getElementById("modalCliente")
-        .addEventListener("click", function (event) {
-
-            if (event.target === this) {
-                cerrarModal();
-            }
-
-        });
-
-
-    document.addEventListener("keydown", function (event) {
-
-        if (event.key === "Escape") {
-            cerrarModal();
-        }
-
-    });
-
-
-    /* =========================================
-       UTILIDADES
-    ========================================== */
-
-    function obtenerIniciales(nombre) {
-
-        const partes =
-            nombre.trim().split(" ");
-
-        if (partes.length === 1) {
-            return partes[0]
-                .substring(0, 2)
-                .toUpperCase();
-        }
-
-        return (
-            partes[0].charAt(0) +
-            partes[1].charAt(0)
-        ).toUpperCase();
-
-    }
-
-
-    function formatearDinero(valor) {
-
-        return "$" +
-            Number(valor).toLocaleString(
-                "en-US",
-                {
-                    minimumFractionDigits: 0,
-                    maximumFractionDigits: 2
-                }
-            );
-
-    }
-
-
-    function escapeHtml(text) {
-
-        const div =
-            document.createElement("div");
-
-        div.textContent = text;
-
-        return div.innerHTML;
-
-    }
-
-</script>
-
+            btnCancelar.addEventListener('click', () => {
+                modalCliente.style.display = 'none';
+            });
+    </script>
 </body>
 </html>

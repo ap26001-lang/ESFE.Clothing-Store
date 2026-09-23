@@ -57,11 +57,35 @@ namespace ESFE.WEB.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
+        // POST: Recibir y procesar la edición de prenda desde el modal
+        [HttpPost]
+        public IActionResult EditarPrenda(string Codigo_Product, string Nombre_Produc, decimal Precio)
+        {
+            // Aquí tus compañeros pueden conectar la llamada a la BD cuando agreguen el método de actualizar en el DAL.
+            // Por ahora redirige de vuelta al catálogo para refrescar la vista suavemente.
+            return RedirectToAction("Catalogo");
+        }
+
+        // POST: Recibir y procesar el guardado de nueva prenda desde el modal
+        [HttpPost]
+        public IActionResult GuardarPrenda(string Codigo_Product, string Nombre_Produc, decimal Precio)
+        {
+            return RedirectToAction("Catalogo");
+        }
+
+        public IActionResult Clientes()
+        {
             return View();
         }
 
+        // POST: Recibir y procesar el registro de un nuevo cliente desde el modal
+        [HttpPost]
+        public IActionResult GuardarCliente(string Nombre, string Correo, string Telefono)
+        {
+            // Aquí tus compañeros conectarán la llamada a la BD (DAL) para guardar el cliente
+            return RedirectToAction("Clientes");
+        }
 
-        [HttpGet]
         public IActionResult PuntoDeVenta()
         {
             var rol = HttpContext.Session.GetInt32("Rol");
