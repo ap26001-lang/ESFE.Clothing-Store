@@ -1,0 +1,572 @@
+@{
+    ViewData["Title"] = "Catálogo de Prendas - Maison Élite";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catálogo de Prendas - Maison Élite</title>
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+        :root {
+            --sidebar-bg: #1c140e;
+            --sidebar-hover: #2a1f17;
+            --gold-accent: #c4a47c;
+            --gold-light: #e5d3b3;
+            --bg-main: #f8f6f2;
+            --card-bg: #ffffff;
+            --text-dark: #2b2b2b;
+            --text-muted: #7f7f7f;
+            --positive-green: #40826d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* --- SIDEBAR LATERAL (IDÉNTICO A DASHBOARD) --- */
+        .sidebar {
+            width: 260px;
+            background-color: var(--sidebar-bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 24px 16px;
+            color: #d1d1d1;
+        }
+
+        .brand-header {
+            padding: 0 12px 24px 12px;
+            border-bottom: 1px solid rgba(196, 164, 124, 0.15);
+        }
+
+        .brand-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold-accent);
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .brand-subtitle {
+            font-size: 0.75rem;
+            color: var(--gold-light);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+
+        .nav-menu {
+            list-style: none;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .nav-item a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: #b0a8a0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-item.active a, .nav-item a:hover {
+            background-color: var(--sidebar-hover);
+            color: #ffffff;
+        }
+
+        .nav-item.active a {
+            border-left: 3px solid var(--gold-accent);
+            color: var(--gold-accent);
+        }
+
+        .nav-item i {
+            font-size: 1rem;
+            width: 20px;
+        }
+
+        .sidebar-footer {
+            border-top: 1px solid rgba(196, 164, 124, 0.15);
+            padding-top: 16px;
+        }
+
+        .logout-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: #b0a8a0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .logout-btn:hover {
+            background-color: rgba(217, 83, 79, 0.15);
+            color: #d9534f;
+        }
+
+        /* --- CONTENIDO PRINCIPAL --- */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 32px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--text-dark);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background-color: var(--gold-accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .btn-gold {
+            background-color: var(--sidebar-bg);
+            color: var(--gold-accent);
+            border: 1px solid var(--gold-accent);
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-gold:hover {
+            background-color: var(--gold-accent);
+            color: #ffffff;
+        }
+
+        .content-card {
+            background-color: var(--card-bg);
+            padding: 28px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .filter-bar {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: var(--gold-accent);
+        }
+
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .custom-table th {
+            padding: 14px 16px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .custom-table td {
+            padding: 16px;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #f0f0f0;
+            vertical-align: middle;
+        }
+
+        .badge-status {
+            background-color: rgba(64, 130, 109, 0.12);
+            color: #40826d;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .btn-action {
+            background: none;
+            border: none;
+            color: var(--sidebar-bg);
+            cursor: pointer;
+            font-size: 1.05rem;
+            padding: 6px 8px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .btn-action:hover {
+            background-color: #f0ecf4;
+            color: var(--gold-accent);
+        }
+
+        /* MODALES */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-container {
+            background: #fff;
+            width: 480px;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+        }
+
+        .modal-header h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--sidebar-bg);
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #dcdcdc;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .form-control:focus {
+            border-color: var(--gold-accent);
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn-cancel {
+            background: #e5e5e5;
+            border: none;
+            padding: 9px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #444;
+        }
+
+        .btn-save-modal {
+            background-color: var(--sidebar-bg);
+            color: var(--gold-accent);
+            border: 1px solid var(--gold-accent);
+            padding: 9px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-save-modal:hover {
+            background-color: var(--gold-accent);
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR DE ADMINISTRADOR (EXACTO A DASHBOARD) -->
+    <aside class="sidebar">
+        <div>
+            <div class="brand-header">
+                <div class="brand-title">MAISON ÉLITE</div>
+                <div class="brand-subtitle">Administrador</div>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="@Url.Action("AdminDashboard", "Home")"><i class="fa-solid fa-compass"></i> Dashboard</a>
+                </li>
+                <li class="nav-item active">
+                    <a href="@Url.Action("AdminCatalogo", "Home")"><i class="fa-solid fa-book-open"></i> Catálogo</a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("AdminClientes", "Home")"><i class="fa-solid fa-users"></i> Clientes</a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("AdminPuntoDeVenta", "Home")"><i class="fa-solid fa-cash-register"></i> Punto de Venta</a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("AdminHistorialVentas", "Home")"><i class="fa-solid fa-clock-rotate-left"></i> Historial de Ventas</a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("AdminReportes", "Home")"><i class="fa-solid fa-chart-pie"></i> Reportes</a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("AdminBitacora", "Home")"><i class="fa-solid fa-list-check"></i> Bitácora</a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("AdminRespaldos", "Home")"><i class="fa-solid fa-shield-halved"></i> Respaldos</a>
+                </li>
+            </ul>
+        </div>
+        <div class="sidebar-footer">
+            <a href="@Url.Action("Index", "Home")" class="logout-btn">
+                <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
+            </a>
+        </div>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+        <header class="header-bar">
+            <div>
+                <h1 class="page-title">Catálogo de Prendas</h1>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Gestión de inventario, tallas y precios de la tienda.</p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <button id="btnAbrirModalCrear" class="btn-gold">
+                    <i class="fa-solid fa-plus"></i> Nueva Prenda
+                </button>
+                <div class="user-avatar">A</div>
+            </div>
+        </header>
+
+        <section class="content-card">
+            <div class="filter-bar">
+                <input type="text" id="txtBuscarPrenda" class="search-input" placeholder="Buscar por código, nombre o categoría..." onkeyup="filtrarPrendas()" />
+            </div>
+
+            <table class="custom-table" id="tablaPrendas">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Prenda</th>
+                        <th>Categoría</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Estado</th>
+                        <th style="text-align: center;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#PRD-001</td>
+                        <td><strong>Blazer Cachemira</strong></td>
+                        <td>Sacos / Abrigos</td>
+                        <td>$250.00</td>
+                        <td>84 uds.</td>
+                        <td><span class="badge-status">Disponible</span></td>
+                        <td style="text-align: center;">
+                            <button class="btn-action btn-editar" title="Editar" data-codigo="#PRD-001" data-nombre="Blazer Cachemira" data-precio="250.00">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#PRD-002</td>
+                        <td><strong>Vestido Seda Italiana</strong></td>
+                        <td>Vestidos</td>
+                        <td>$243.00</td>
+                        <td>77 uds.</td>
+                        <td><span class="badge-status">Disponible</span></td>
+                        <td style="text-align: center;">
+                            <button class="btn-action btn-editar" title="Editar" data-codigo="#PRD-002" data-nombre="Vestido Seda Italiana" data-precio="243.00">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#PRD-003</td>
+                        <td><strong>Abrigo Lana Fina</strong></td>
+                        <td>Sacos / Abrigos</td>
+                        <td>$500.00</td>
+                        <td>61 uds.</td>
+                        <td><span class="badge-status">Disponible</span></td>
+                        <td style="text-align: center;">
+                            <button class="btn-action btn-editar" title="Editar" data-codigo="#PRD-003" data-nombre="Abrigo Lana Fina" data-precio="500.00">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- MODAL CREAR PRENDA -->
+    <div class="modal-overlay" id="modalCrear">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Agregar Nueva Prenda</h3>
+                <button class="close-modal" id="btnCerrarCrear">&times;</button>
+            </div>
+            <form asp-controller="Home" asp-action="GuardarPrenda" method="post">
+                <div class="form-group">
+                    <label>Código de Prenda</label>
+                    <input type="text" name="Codigo_Product" class="form-control" placeholder="Ej: P2026" required />
+                </div>
+                <div class="form-group">
+                    <label>Nombre de Prenda</label>
+                    <input type="text" name="Nombre_Produc" class="form-control" placeholder="Ej: Blazer de Lino" required />
+                </div>
+                <div class="form-group">
+                    <label>Precio ($)</label>
+                    <input type="number" step="0.01" name="Precio" class="form-control" placeholder="Ej: 45.00" required />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel" id="btnCancelarCrear">Cancelar</button>
+                    <button type="submit" class="btn-save-modal">Guardar Prenda</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL EDITAR PRENDA -->
+    <div class="modal-overlay" id="modalEditar">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Editar Prenda</h3>
+                <button class="close-modal" id="btnCerrarEditar">&times;</button>
+            </div>
+            <form asp-controller="Home" asp-action="EditarPrenda" method="post">
+                <div class="form-group">
+                    <label>Código de Prenda</label>
+                    <input type="text" id="editCodigo" name="Codigo_Product" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label>Nombre de Prenda</label>
+                    <input type="text" id="editNombre" name="Nombre_Produc" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label>Precio ($)</label>
+                    <input type="number" step="0.01" id="editPrecio" name="Precio" class="form-control" required />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel" id="btnCancelarEditar">Cancelar</button>
+                    <button type="submit" class="btn-save-modal">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Modal Crear
+        const modalCrear = document.getElementById('modalCrear');
+        document.getElementById('btnAbrirModalCrear').addEventListener('click', () => modalCrear.style.display = 'flex');
+        document.getElementById('btnCerrarCrear').addEventListener('click', () => modalCrear.style.display = 'none');
+        document.getElementById('btnCancelarCrear').addEventListener('click', () => modalCrear.style.display = 'none');
+
+        // Modal Editar
+        const modalEditar = document.getElementById('modalEditar');
+        document.querySelectorAll('.btn-editar').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.getElementById('editCodigo').value = btn.getAttribute('data-codigo');
+                document.getElementById('editNombre').value = btn.getAttribute('data-nombre');
+                document.getElementById('editPrecio').value = btn.getAttribute('data-precio');
+                modalEditar.style.display = 'flex';
+            });
+        });
+        document.getElementById('btnCerrarEditar').addEventListener('click', () => modalEditar.style.display = 'none');
+        document.getElementById('btnCancelarEditar').addEventListener('click', () => modalEditar.style.display = 'none');
+
+        // Filtro buscador
+        function filtrarPrendas() {
+            const input = document.getElementById('txtBuscarPrenda').value.toLowerCase();
+            const filas = document.querySelectorAll('#tablaPrendas tbody tr');
+            filas.forEach(f => {
+                f.style.display = f.innerText.toLowerCase().includes(input) ? '' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>
+</html>

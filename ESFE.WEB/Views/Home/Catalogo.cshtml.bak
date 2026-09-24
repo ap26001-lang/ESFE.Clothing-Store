@@ -1,0 +1,994 @@
+﻿@using Microsoft.AspNetCore.Http
+@{
+    ViewData["Title"] = "Catálogo";
+    Layout = null;
+    var usuario = Context.Session.GetString("Usuario") ?? "Vendedor";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catálogo | Maison Élite</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+            :root {
+                --me-bg-dark: #120b08;
+                --me-bg-cream: #f9f6f0;
+                --me-gold: #d4af37;
+                --me-gold-hover: #b89228;
+                --me-input-bg: #f2eee6;
+                --me-border: #e2d7c3;
+                --me-text-dark: #1c1613;
+                --me-text-muted: #82756a;
+            }
+
+            * { box-sizing: border-box; }
+
+            html, body {
+                margin: 0;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                background: var(--me-bg-cream);
+                color: var(--me-text-dark);
+                font-family: 'Montserrat', system-ui, sans-serif;
+            }
+
+            .seller-layout {
+                display: flex;
+                width: 100%;
+                height: 100vh;
+            }
+
+            .seller-sidebar {
+                width: 156px;
+                flex: 0 0 156px;
+                background: var(--me-bg-dark);
+                color: #d7c9bd;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+            .brand {
+                height: 68px;
+                padding: 20px 15px 0;
+                border-bottom: 1px solid rgba(212,175,55,.12);
+            }
+
+            .brand-title {
+                color: var(--me-gold);
+                font-family: 'Playfair Display', serif;
+                font-size: 10px;
+                letter-spacing: 3px;
+                white-space: nowrap;
+            }
+
+            .brand-subtitle {
+                margin-top: 4px;
+                color: #6e4d3a;
+                font-size: 8px;
+            }
+
+            .seller-nav {
+                padding: 16px 7px;
+            }
+
+            .seller-nav a,
+            .logout-link {
+                display: flex;
+                align-items: center;
+                gap: 9px;
+                min-height: 30px;
+                padding: 7px 10px;
+                margin-bottom: 5px;
+                color: #a58f80;
+                text-decoration: none;
+                font-size: 9px;
+                border: 1px solid transparent;
+            }
+
+            .seller-nav a:hover,
+            .seller-nav a.active {
+                background: #2a1710;
+                color: var(--me-gold);
+            }
+
+            .seller-nav .circle {
+                width: 9px;
+                height: 9px;
+                border: 1px solid currentColor;
+                border-radius: 50%;
+                flex: 0 0 9px;
+            }
+
+            .seller-nav .square {
+                width: 7px;
+                height: 7px;
+                border: 1px solid currentColor;
+                flex: 0 0 7px;
+            }
+
+            .seller-footer {
+                border-top: 1px solid rgba(212,175,55,.12);
+                padding: 14px 7px;
+            }
+
+            .logout-link {
+                color: #6f4f3d;
+                margin: 0;
+            }
+
+            .logout-link:hover {
+                color: #d6a99a;
+                background: #21120d;
+            }
+
+            .seller-main {
+                min-width: 0;
+                flex: 1;
+                background: #faf8f4;
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+            }
+
+            .topbar {
+                height: 49px;
+                flex: 0 0 49px;
+                background: #fff;
+                border-bottom: 1px solid #eee8df;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 15px;
+            }
+
+            .page-title {
+                margin: 0;
+                font-family: 'Playfair Display', serif;
+                font-size: 14px;
+                font-weight: 400;
+                color: #30231e;
+            }
+
+            .user-badge {
+                width: 21px;
+                height: 21px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: #c8a768;
+                color: #fff;
+                font-size: 9px;
+                text-transform: uppercase;
+            }
+
+            .catalog-scroll {
+                overflow-y: auto;
+                padding: 16px 20px 22px;
+            }
+
+            .toolbar {
+                display: grid;
+                grid-template-columns: minmax(260px, 1fr) 72px 62px 128px 104px;
+                gap: 9px;
+                margin-bottom: 15px;
+            }
+
+            .toolbar input,
+            .toolbar select {
+                width: 100%;
+                height: 26px;
+                border: 1px solid var(--me-border);
+                background: #fff;
+                color: #725b4e;
+                padding: 0 10px;
+                font-size: 9px;
+                outline: none;
+            }
+
+            .toolbar input:focus,
+            .toolbar select:focus {
+                border-color: #c5a26b;
+            }
+
+            .new-product-btn {
+                height: 26px;
+                border: 1px solid var(--me-bg-dark);
+                background: var(--me-bg-dark);
+                color: var(--me-gold);
+                font-size: 9px;
+                font-weight: 600;
+                cursor: pointer;
+            }
+
+            .new-product-btn:hover {
+                background: #24150f;
+            }
+
+            .products-grid {
+                display: grid;
+                grid-template-columns: repeat(4, minmax(150px, 1fr));
+                gap: 10px;
+            }
+
+            .product-card {
+                background: #fff;
+                border: 1px solid var(--me-border);
+                min-width: 0;
+            }
+
+            .product-image {
+                position: relative;
+                height: 275px;
+                overflow: hidden;
+                background: #eee7dc;
+            }
+
+            .product-image .image-placeholder {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #a8937f;
+                font-family: 'Playfair Display', serif;
+                font-size: 19px;
+                background: linear-gradient(145deg,#e6ded4,#f7f3ec 48%,#ddd0c0);
+            }
+
+            .stock-badge {
+                position: absolute;
+                right: 6px;
+                top: 6px;
+                background: #fffaf4;
+                border: 1px solid #dfd1c2;
+                color: #8c7565;
+                padding: 3px 5px;
+                font-size: 8px;
+            }
+
+            .product-info {
+                padding: 8px 10px 10px;
+            }
+
+            .product-meta {
+                font-size: 7px;
+                color: #a08b7b;
+                text-transform: uppercase;
+                letter-spacing: .5px;
+                margin-bottom: 3px;
+            }
+
+            .product-name {
+                min-height: 14px;
+                font-size: 9px;
+                color: #1f1713;
+                margin-bottom: 6px;
+            }
+
+            .product-price {
+                font-family: 'Playfair Display', serif;
+                font-size: 13px;
+                color: #8a160b;
+                margin-bottom: 9px;
+            }
+
+            .product-actions {
+                display: grid;
+                grid-template-columns: 1fr 26px;
+                gap: 5px;
+            }
+
+            .edit-btn,
+            .delete-btn {
+                height: 22px;
+                border: 1px solid var(--me-border);
+                background: #f8f2e9;
+                color: #735f52;
+                font-size: 8px;
+                cursor: pointer;
+            }
+
+            .edit-btn:hover {
+                background: #eee4d6;
+            }
+
+            .delete-btn {
+                color: #d98b80;
+                background: #fff8f7;
+                border-color: #edc3bc;
+            }
+
+            .delete-btn:hover {
+                background: #fbe7e4;
+            }
+
+            .empty-state {
+                grid-column: 1 / -1;
+                padding: 50px 20px;
+                text-align: center;
+                border: 1px dashed var(--me-border);
+                color: var(--me-text-muted);
+                font-size: 11px;
+                background: #fff;
+            }
+
+            .modal-backdrop-custom {
+                position: fixed;
+                inset: 0;
+                z-index: 1000;
+                display: none;
+                align-items: flex-start;
+                justify-content: center;
+                padding-top: 4px;
+                background: rgba(0,0,0,.48);
+            }
+
+            .modal-backdrop-custom.show {
+                display: flex;
+            }
+
+            .product-modal {
+                width: 320px;
+                max-width: calc(100vw - 30px);
+                background: #fbf8f3;
+                box-shadow: 0 18px 50px rgba(0,0,0,.28);
+                padding: 22px;
+            }
+
+            .modal-title {
+                margin: 0 0 17px;
+                font-family: 'Playfair Display', serif;
+                font-size: 17px;
+                font-weight: 400;
+            }
+
+            .field {
+                margin-bottom: 11px;
+            }
+
+            .field label {
+                display: block;
+                margin-bottom: 5px;
+                color: #826e61;
+                font-size: 7px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+            }
+
+            .field input,
+            .field select {
+                width: 100%;
+                height: 29px;
+                border: 1px solid var(--me-border);
+                background: #fff;
+                padding: 0 10px;
+                font-size: 10px;
+                color: #392c25;
+                outline: none;
+            }
+
+            .field input:focus,
+            .field select:focus {
+                border-color: var(--me-gold);
+            }
+
+            .field-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .modal-actions {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 9px;
+                margin-top: 18px;
+            }
+
+            .modal-actions button {
+                height: 31px;
+                border: 1px solid var(--me-border);
+                font-size: 9px;
+                cursor: pointer;
+            }
+
+            .cancel-btn {
+                background: #f8f2e9;
+                color: #6f5c50;
+            }
+
+            .save-btn {
+                background: var(--me-bg-dark);
+                border-color: var(--me-bg-dark) !important;
+                color: var(--me-gold);
+            }
+
+            .save-btn:hover {
+                background: #24150f;
+            }
+
+            @@media (max-width: 1000px) {
+                .toolbar { grid-template-columns: 1fr 90px 90px; }
+                .new-product-btn { grid-column: span 3; }
+                .products-grid { grid-template-columns: repeat(3, minmax(150px, 1fr)); }
+            }
+
+            @@media (max-width: 760px) {
+                .seller-sidebar { width: 130px; flex-basis: 130px; }
+                .toolbar { grid-template-columns: 1fr 1fr; }
+                .new-product-btn { grid-column: span 2; }
+                .products-grid { grid-template-columns: repeat(2, minmax(140px, 1fr)); }
+            }
+
+                .action-btn:hover {
+                    color: var(--gold-accent);
+                }
+
+                .action-btn.btn-delete:hover {
+                    color: #d9534f;
+                }
+
+            /* --- ESTILOS DE VENTANAS MODALES --- */
+            .modal-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.6);
+                display: none;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+            }
+
+            .modal-container {
+                background: #fff;
+                width: 480px;
+                border-radius: 12px;
+                padding: 24px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            }
+
+            .modal-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 12px;
+                margin-bottom: 16px;
+            }
+
+                .modal-header h3 {
+                    font-family: 'Playfair Display', serif;
+                    color: var(--sidebar-bg);
+                }
+
+            .close-modal {
+                background: none;
+                border: none;
+                font-size: 1.2rem;
+                cursor: pointer;
+                color: var(--text-muted);
+            }
+
+            .form-group {
+                margin-bottom: 12px;
+            }
+
+                .form-group label {
+                    display: block;
+                    font-size: 0.8rem;
+                    font-weight: 600;
+                    margin-bottom: 4px;
+                    color: var(--text-dark);
+                }
+
+            .form-control {
+                width: 100%;
+                padding: 8px 12px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                font-size: 0.9rem;
+            }
+
+            .modal-footer {
+                display: flex;
+                justify-content: flex-end;
+                gap: 10px;
+                margin-top: 20px;
+            }
+
+            .btn-cancel {
+                background: #e0e0e0;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 6px;
+                cursor: pointer;
+            }
+    </style>
+</head>
+
+<body>
+    <div class="seller-layout">
+        <aside class="seller-sidebar">
+            <div>
+                <div class="brand">
+                    <div class="brand-title">MAISON ÉLITE</div>
+                    <div class="brand-subtitle">Vendedor</div>
+                </div>
+
+                <nav class="seller-nav">
+                    <a class="active" href="@Url.Action("Catalogo", "Home")">
+                        <span class="square"></span> Catálogo
+                    </a>
+                    <a href="@Url.Action("Clientes", "Home")">
+                        <span class="circle"></span> Clientes
+                    </a>
+                    <a href="@Url.Action("PuntoDeVenta", "Home")">
+                        <span class="circle"></span> Punto de Venta
+                    </a>
+                </nav>
+            </div>
+
+            <div class="seller-footer">
+                <a class="logout-link" href="@Url.Action("CerrarSesion", "Login")">
+                    ↩&nbsp; Cerrar sesión
+                </a>
+            </div>
+        </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <header class="header-bar">
+            <div>
+                <h1 class="page-title">Catálogo de Prendas</h1>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Gestión de inventario, tallas y precios de la tienda.</p>
+            </div>
+            <button id="btnAbrirModalCrear" class="btn-gold">
+                <i class="fa-solid fa-plus"></i> Nueva Prenda
+            </button>
+        </header>
+
+        <section class="content-card">
+            <div class="table-responsive">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Prenda</th>
+                            <th>Categoría</th>
+                            <th>Precio</th>
+                            <th>Stock</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#PRD-001</td>
+                            <td><strong>Blazer Cachemira</strong></td>
+                            <td>Sacos / Abrigos</td>
+                            <td>$250.00</td>
+                            <td>84 uds.</td>
+                            <td><span class="badge-status">Disponible</span></td>
+                            <td>
+                                <button class="action-btn btn-editar" title="Editar" data-codigo="#PRD-001" data-nombre="Blazer Cachemira" data-precio="250.00">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+                                <button class="action-btn btn-delete btn-eliminar" title="Eliminar" data-codigo="#PRD-001" data-nombre="Blazer Cachemira">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#PRD-002</td>
+                            <td><strong>Vestido Seda Italiana</strong></td>
+                            <td>Vestidos</td>
+                            <td>$243.00</td>
+                            <td>77 uds.</td>
+                            <td><span class="badge-status">Disponible</span></td>
+                            <td>
+                                <button class="action-btn btn-editar" title="Editar" data-codigo="#PRD-002" data-nombre="Vestido Seda Italiana" data-precio="243.00">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+                                <button class="action-btn btn-delete btn-eliminar" title="Eliminar" data-codigo="#PRD-002" data-nombre="Vestido Seda Italiana">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#PRD-003</td>
+                            <td><strong>Abrigo Lana Fina</strong></td>
+                            <td>Sacos / Abrigos</td>
+                            <td>$500.00</td>
+                            <td>61 uds.</td>
+                            <td><span class="badge-status">Disponible</span></td>
+                            <td>
+                                <button class="action-btn btn-editar" title="Editar" data-codigo="#PRD-003" data-nombre="Abrigo Lana Fina" data-precio="500.00">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+                                <button class="action-btn btn-delete btn-eliminar" title="Eliminar" data-codigo="#PRD-003" data-nombre="Abrigo Lana Fina">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <div id="productModal" class="modal-backdrop-custom" aria-hidden="true">
+        <div class="product-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <h2 id="modalTitle" class="modal-title">Nuevo Producto</h2>
+
+            <form id="productForm">
+                <input id="productId" type="hidden" />
+
+                <div class="field">
+                    <label for="productName">Nombre</label>
+                    <input id="productName" type="text" maxlength="80" required />
+                </div>
+
+                <div class="field">
+                    <label for="productPrice">Precio ($)</label>
+                    <input id="productPrice" type="number" min="0" step="0.01" required />
+                </div>
+
+                <div class="field">
+                    <label for="productStock">Stock</label>
+                    <input id="productStock" type="number" min="0" step="1" required />
+                </div>
+
+                <div class="field-row">
+                    <div class="field">
+                        <label for="productType">Tipo</label>
+                        <select id="productType" required>
+                            <option value="Blazer">Blazer</option>
+                            <option value="Vestido">Vestido</option>
+                            <option value="Abrigo">Abrigo</option>
+                            <option value="Pantalón">Pantalón</option>
+                            <option value="Falda">Falda</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="productSize">Talla</label>
+                        <select id="productSize" required>
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M" selected>M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button id="cancelProductButton" class="cancel-btn" type="button">Cancelar</button>
+                    <button class="save-btn" type="submit">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+            const products = [
+                { id: 1, name: "Blazer Cachemira Oscuro", type: "Blazer", size: "M", price: 2500, stock: 8 },
+                { id: 2, name: "Vestido Seda Ivory", type: "Vestido", size: "S", price: 1800, stock: 5 },
+                { id: 3, name: "Abrigo Lana Merino", type: "Abrigo", size: "L", price: 3200, stock: 3 },
+                { id: 4, name: "Pantalón Tweed Beige", type: "Pantalón", size: "M", price: 890, stock: 14 },
+                { id: 5, name: "Falda Urbana", type: "Falda", size: "M", price: 1250, stock: 20 },
+                { id: 6, name: "Falda Plisada Champagne", type: "Falda", size: "S", price: 1490, stock: 7 }
+            ];
+
+            let nextId = 7;
+
+            const grid = document.getElementById("productsGrid");
+            const search = document.getElementById("searchProduct");
+            const typeFilter = document.getElementById("typeFilter");
+            const sizeFilter = document.getElementById("sizeFilter");
+            const sortFilter = document.getElementById("sortFilter");
+
+            const modal = document.getElementById("productModal");
+            const form = document.getElementById("productForm");
+            const modalTitle = document.getElementById("modalTitle");
+
+            const idInput = document.getElementById("productId");
+            const nameInput = document.getElementById("productName");
+            const priceInput = document.getElementById("productPrice");
+            const stockInput = document.getElementById("productStock");
+            const typeInput = document.getElementById("productType");
+            const sizeInput = document.getElementById("productSize");
+
+            function money(value) {
+                return "$" + Number(value).toLocaleString("en-US", {
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 2
+                });
+            }
+
+            function escapeHtml(value) {
+                return String(value)
+                    .replaceAll("&", "&amp;")
+                    .replaceAll("<", "&lt;")
+                    .replaceAll(">", "&gt;")
+                    .replaceAll('"', "&quot;")
+                    .replaceAll("'", "&#039;");
+            }
+
+            function renderProducts() {
+                const text = search.value.trim().toLowerCase();
+                const type = typeFilter.value;
+                const size = sizeFilter.value;
+                const sort = sortFilter.value;
+
+                let result = products.filter(p => {
+                    const matchesText =
+                        !text ||
+                        p.name.toLowerCase().includes(text) ||
+                        p.type.toLowerCase().includes(text);
+
+                    const matchesType = !type || p.type === type;
+                    const matchesSize = !size || p.size === size;
+
+                    return matchesText && matchesType && matchesSize;
+                });
+
+                if (sort === "priceAsc") result.sort((a, b) => a.price - b.price);
+                if (sort === "priceDesc") result.sort((a, b) => b.price - a.price);
+                if (sort === "nameAsc") result.sort((a, b) => a.name.localeCompare(b.name));
+                if (sort === "nameDesc") result.sort((a, b) => b.name.localeCompare(a.name));
+
+                if (result.length === 0) {
+                    grid.innerHTML = '<div class="empty-state">No se encontraron prendas.</div>';
+                    return;
+                }
+
+                grid.innerHTML = result.map(p => `
+                    <article class="product-card">
+                        <div class="product-image">
+                            <div class="image-placeholder">${escapeHtml(p.type)}</div>
+                            <span class="stock-badge">${p.stock} uds.</span>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="product-meta">${escapeHtml(p.type)} · TALLA ${escapeHtml(p.size)}</div>
+                            <div class="product-name">${escapeHtml(p.name)}</div>
+                            <div class="product-price">${money(p.price)}</div>
+
+                            <div class="product-actions">
+                                <button class="edit-btn" type="button" onclick="editProduct(${p.id})">Editar</button>
+                                <button class="delete-btn" type="button" title="Eliminar" onclick="deleteProduct(${p.id})">X</button>
+                            </div>
+                        </div>
+                    </article>
+                `).join("");
+            }
+
+            function openNewProduct() {
+                form.reset();
+                idInput.value = "";
+                modalTitle.textContent = "Nuevo Producto";
+                typeInput.value = "Blazer";
+                sizeInput.value = "M";
+                modal.classList.add("show");
+                modal.setAttribute("aria-hidden", "false");
+                nameInput.focus();
+            }
+
+            function closeProductModal() {
+                modal.classList.remove("show");
+                modal.setAttribute("aria-hidden", "true");
+                form.reset();
+                idInput.value = "";
+            }
+
+            function editProduct(id) {
+                const product = products.find(p => p.id === id);
+                if (!product) return;
+
+                idInput.value = product.id;
+                nameInput.value = product.name;
+                priceInput.value = product.price;
+                stockInput.value = product.stock;
+                typeInput.value = product.type;
+                sizeInput.value = product.size;
+
+                modalTitle.textContent = "Editar Producto";
+                modal.classList.add("show");
+                modal.setAttribute("aria-hidden", "false");
+                nameInput.focus();
+            }
+
+            function deleteProduct(id) {
+                const product = products.find(p => p.id === id);
+                if (!product) return;
+
+                if (!confirm(`¿Deseas eliminar "${product.name}"?`)) return;
+
+                const index = products.findIndex(p => p.id === id);
+                if (index !== -1) {
+                    products.splice(index, 1);
+                    renderProducts();
+                }
+            }
+
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                const name = nameInput.value.trim();
+                const price = Number(priceInput.value);
+                const stock = Number(stockInput.value);
+
+                if (!name || !Number.isFinite(price) || price < 0 || !Number.isInteger(stock) || stock < 0) {
+                    alert("Completa correctamente nombre, precio y stock.");
+                    return;
+                }
+
+                const existingId = Number(idInput.value);
+
+                if (existingId) {
+                    const product = products.find(p => p.id === existingId);
+                    if (product) {
+                        product.name = name;
+                        product.price = price;
+                        product.stock = stock;
+                        product.type = typeInput.value;
+                        product.size = sizeInput.value;
+                    }
+                } else {
+                    products.push({
+                        id: nextId++,
+                        name: name,
+                        price: price,
+                        stock: stock,
+                        type: typeInput.value,
+                        size: sizeInput.value
+                    });
+                }
+
+                closeProductModal();
+                renderProducts();
+            });
+
+            document.getElementById("newProductButton").addEventListener("click", openNewProduct);
+            document.getElementById("cancelProductButton").addEventListener("click", closeProductModal);
+
+            modal.addEventListener("click", function (event) {
+                if (event.target === modal) closeProductModal();
+            });
+
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "Escape" && modal.classList.contains("show")) {
+                    closeProductModal();
+                }
+            });
+
+            search.addEventListener("input", renderProducts);
+            typeFilter.addEventListener("change", renderProducts);
+            sizeFilter.addEventListener("change", renderProducts);
+            sortFilter.addEventListener("change", renderProducts);
+
+    <!-- MODAL 1: CREAR NUEVA PRENDA -->
+    <div class="modal-overlay" id="modalCrear">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Agregar Nueva Prenda</h3>
+                <button class="close-modal" id="btnCerrarCrear">&times;</button>
+            </div>
+            <form asp-controller="Home" asp-action="GuardarPrenda" method="post">
+                <div class="form-group">
+                    <label>Código de Prenda</label>
+                    <input type="text" name="Codigo_Product" class="form-control" placeholder="Ej: P2026" required />
+                </div>
+                <div class="form-group">
+                    <label>Nombre de Prenda</label>
+                    <input type="text" name="Nombre_Produc" class="form-control" placeholder="Ej: Blazer de Lino" required />
+                </div>
+                <div class="form-group">
+                    <label>Precio ($)</label>
+                    <input type="number" step="0.01" name="Precio" class="form-control" placeholder="Ej: 45.00" required />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel" id="btnCancelarCrear">Cancelar</button>
+                    <button type="submit" class="btn-gold" style="border:none;">Guardar Prenda</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 2: EDITAR PRENDA -->
+    <div class="modal-overlay" id="modalEditar">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Editar Prenda</h3>
+                <button class="close-modal" id="btnCerrarEditar">&times;</button>
+            </div>
+            <form asp-controller="Home" asp-action="EditarPrenda" method="post">
+                <div class="form-group">
+                    <label>Código de Prenda</label>
+                    <input type="text" id="editCodigo" name="Codigo_Product" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label>Nombre de Prenda</label>
+                    <input type="text" id="editNombre" name="Nombre_Produc" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label>Precio ($)</label>
+                    <input type="number" step="0.01" id="editPrecio" name="Precio" class="form-control" required />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel" id="btnCancelarEditar">Cancelar</button>
+                    <button type="submit" class="btn-gold" style="border:none;">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- SCRIPT DE INTERACCIÓN DE BOTONES Y MODALES -->
+    <script>
+            // --- MODAL CREAR ---
+            const modalCrear = document.getElementById('modalCrear');
+            document.getElementById('btnAbrirModalCrear').addEventListener('click', () => {
+                modalCrear.style.display = 'flex';
+            });
+            document.getElementById('btnCerrarCrear').addEventListener('click', () => {
+                modalCrear.style.display = 'none';
+            });
+            document.getElementById('btnCancelarCrear').addEventListener('click', () => {
+                modalCrear.style.display = 'none';
+            });
+
+            // --- MODAL EDITAR ---
+            const modalEditar = document.getElementById('modalEditar');
+            const btnsEditar = document.querySelectorAll('.btn-editar');
+
+            btnsEditar.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const codigo = btn.getAttribute('data-codigo');
+                    const nombre = btn.getAttribute('data-nombre');
+                    const precio = btn.getAttribute('data-precio');
+
+                    document.getElementById('editCodigo').value = codigo;
+                    document.getElementById('editNombre').value = nombre;
+                    document.getElementById('editPrecio').value = precio;
+
+                    modalEditar.style.display = 'flex';
+                });
+            });
+
+            document.getElementById('btnCerrarEditar').addEventListener('click', () => {
+                modalEditar.style.display = 'none';
+            });
+            document.getElementById('btnCancelarEditar').addEventListener('click', () => {
+                modalEditar.style.display = 'none';
+            });
+
+            // --- ACCIÓN ELIMINAR ---
+            const btnsEliminar = document.querySelectorAll('.btn-eliminar');
+
+            btnsEliminar.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const nombre = btn.getAttribute('data-nombre');
+                    const codigo = btn.getAttribute('data-codigo');
+
+                    if (confirm(`¿Estás seguro de que deseas eliminar la prenda "${nombre}" (${codigo})?`)) {
+                        alert(`Solicitud de eliminación enviada para ${codigo}`);
+                    }
+                });
+            });
+    </script>
+</body>
+</html>

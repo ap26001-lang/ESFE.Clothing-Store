@@ -25,7 +25,7 @@ namespace ESFE.WEB.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
-            return View();
+            return View("AdminDashboard");
         }
 
 
@@ -57,25 +57,47 @@ namespace ESFE.WEB.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
+            return View();
+        }
+
         // POST: Recibir y procesar la edición de prenda desde el modal
         [HttpPost]
         public IActionResult EditarPrenda(string Codigo_Product, string Nombre_Produc, decimal Precio)
         {
             // Aquí tus compañeros pueden conectar la llamada a la BD cuando agreguen el método de actualizar en el DAL.
-            // Por ahora redirige de vuelta al catálogo para refrescar la vista suavemente.
-            return RedirectToAction("Catalogo");
+            // Redirige de vuelta al panel correspondiente según el rol para mantener aislamiento.
+            var rol = HttpContext.Session.GetInt32("Rol");
+
+            if (rol == 101)
+            {
+                return RedirectToAction("AdminCatalogo");
+            }
+
+            if (rol == 303)
+            {
+                return RedirectToAction("Catalogo");
+            }
+
+            return RedirectToAction("Index", "Login");
         }
 
         // POST: Recibir y procesar el guardado de nueva prenda desde el modal
         [HttpPost]
         public IActionResult GuardarPrenda(string Codigo_Product, string Nombre_Produc, decimal Precio)
         {
-            return RedirectToAction("Catalogo");
-        }
+            var rol = HttpContext.Session.GetInt32("Rol");
 
-        public IActionResult Clientes()
-        {
-            return View();
+            if (rol == 101)
+            {
+                return RedirectToAction("AdminCatalogo");
+            }
+
+            if (rol == 303)
+            {
+                return RedirectToAction("Catalogo");
+            }
+
+            return RedirectToAction("Index", "Login");
         }
 
         // POST: Recibir y procesar el registro de un nuevo cliente desde el modal
@@ -83,9 +105,22 @@ namespace ESFE.WEB.Controllers
         public IActionResult GuardarCliente(string Nombre, string Correo, string Telefono)
         {
             // Aquí tus compañeros conectarán la llamada a la BD (DAL) para guardar el cliente
-            return RedirectToAction("Clientes");
+            var rol = HttpContext.Session.GetInt32("Rol");
+
+            if (rol == 101)
+            {
+                return RedirectToAction("AdminClientes");
+            }
+
+            if (rol == 303)
+            {
+                return RedirectToAction("Clientes");
+            }
+
+            return RedirectToAction("Index", "Login");
         }
 
+        [HttpGet]
         public IActionResult PuntoDeVenta()
         {
             var rol = HttpContext.Session.GetInt32("Rol");
@@ -175,6 +210,102 @@ namespace ESFE.WEB.Controllers
                 ?? "Cliente";
 
             return View();
+        }
+
+
+        // ==============================
+        // ADMIN - PANEL AISLADO
+        // ==============================
+
+        [HttpGet]
+        public IActionResult AdminCatalogo()
+        {
+            var rol = HttpContext.Session.GetInt32("Rol");
+
+            if (rol != 101)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            return View("AdminCatalogo");
+        }
+
+        [HttpGet]
+        public IActionResult AdminClientes()
+        {
+            var rol = HttpContext.Session.GetInt32("Rol");
+
+            if (rol != 101)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            return View("AdminClientes");
+        }
+
+        [HttpGet]
+        public IActionResult AdminPuntoDeVenta()
+        {
+            var rol = HttpContext.Session.GetInt32("Rol");
+
+            if (rol != 101)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            return View("AdminPuntoDeVenta");
+        }
+
+        [HttpGet]
+        public IActionResult AdminHistorialVentas()
+        {
+            var rol = HttpContext.Session.GetInt32("Rol");
+
+            if (rol != 101)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            return View("AdminHistorialVentas");
+        }
+
+        [HttpGet]
+        public IActionResult AdminReportes()
+        {
+            var rol = HttpContext.Session.GetInt32("Rol");
+
+            if (rol != 101)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            return View("AdminReportes");
+        }
+
+        [HttpGet]
+        public IActionResult AdminBitacora()
+        {
+            var rol = HttpContext.Session.GetInt32("Rol");
+
+            if (rol != 101)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            return View("AdminBitacora");
+        }
+
+        [HttpGet]
+        public IActionResult AdminRespaldos()
+        {
+            var rol = HttpContext.Session.GetInt32("Rol");
+
+            if (rol != 101)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            return View("AdminRespaldos");
         }
     }
 }

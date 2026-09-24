@@ -1,0 +1,501 @@
+﻿@using Microsoft.AspNetCore.Http
+@{
+    ViewData["Title"] = "Punto de Venta - Maison Élite";
+    Layout = null;
+    var usuario = Context.Session.GetString("Usuario") ?? "Administrador";
+    var inicial = usuario.Length > 0 ? usuario.Substring(0, 1).ToUpper() : "A";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Punto de Venta - Maison Élite</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+        :root {
+            --sidebar-bg: #1c140e;
+            --sidebar-hover: #2a1f17;
+            --gold-accent: #c4a47c;
+            --gold-light: #e5d3b3;
+            --bg-main: #f6f1ea;
+            --card-bg: #ffffff;
+            --text-dark: #2b2b2b;
+            --text-muted: #9b8d80;
+            --border-soft: #eadfd1;
+            --positive-green: #6e9c7b;
+            --warning-soft: #d4775d;
+            --total-bg: #2a140c;
+            --total-button: #4a281a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--bg-main);
+            color: var(--text-dark);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 260px;
+            background-color: var(--sidebar-bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 24px 16px;
+            color: #d1d1d1;
+        }
+
+        .brand-header {
+            padding: 0 12px 24px 12px;
+            border-bottom: 1px solid rgba(196, 164, 124, 0.15);
+        }
+
+        .brand-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold-accent);
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .brand-subtitle {
+            font-size: 0.75rem;
+            color: var(--gold-light);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+
+        .nav-menu {
+            list-style: none;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .nav-item a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: #b0a8a0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-item.active a,
+        .nav-item a:hover {
+            background-color: var(--sidebar-hover);
+            color: #ffffff;
+        }
+
+        .nav-item.active a {
+            border-left: 3px solid var(--gold-accent);
+            color: var(--gold-accent);
+        }
+
+        .nav-item i {
+            font-size: 1rem;
+            width: 20px;
+        }
+
+        .sidebar-footer {
+            border-top: 1px solid rgba(196, 164, 124, 0.15);
+            padding-top: 16px;
+        }
+
+        .logout-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: #b0a8a0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .logout-btn:hover {
+            background-color: rgba(217, 83, 79, 0.15);
+            color: #d9534f;
+        }
+
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            background: #f7f2eb;
+        }
+
+        .header-bar {
+            height: 86px;
+            background: #fff;
+            border-bottom: 1px solid var(--border-soft);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 32px;
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #38261d;
+            font-weight: 500;
+        }
+
+        .user-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #d2ae62;
+            color: #2c180f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .pos-layout {
+            padding: 28px 26px 32px;
+            display: grid;
+            grid-template-columns: minmax(0, 1.55fr) 395px;
+            gap: 28px;
+            min-height: 0;
+            flex: 1;
+        }
+
+        .catalog-panel,
+        .client-box,
+        .cart-box {
+            background: transparent;
+        }
+
+        .search-input,
+        .client-select {
+            width: 100%;
+            height: 48px;
+            border: 1px solid var(--border-soft);
+            background: #fff;
+            padding: 0 20px;
+            font-size: 0.95rem;
+            color: #54453a;
+            outline: none;
+        }
+
+        .search-input::placeholder {
+            color: #a6998c;
+        }
+
+        .products-grid {
+            margin-top: 18px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .product-card {
+            background: #fff;
+            border: 1px solid var(--border-soft);
+            padding: 18px 18px 20px;
+            min-height: 148px;
+            transition: all 0.2s ease;
+        }
+
+        .product-card:hover {
+            border-color: #d8c1a4;
+            transform: translateY(-1px);
+        }
+
+        .product-meta {
+            font-size: 0.75rem;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+            color: #9d8b79;
+            margin-bottom: 10px;
+        }
+
+        .product-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #2c221d;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            color: #885c3e;
+            margin-bottom: 16px;
+        }
+
+        .product-stock {
+            font-size: 0.92rem;
+            color: var(--positive-green);
+        }
+
+        .product-stock.low {
+            color: var(--warning-soft);
+        }
+
+        .side-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .side-card {
+            background: #fff;
+            border: 1px solid var(--border-soft);
+            padding: 24px;
+        }
+
+        .side-title {
+            font-size: 0.82rem;
+            letter-spacing: 2px;
+            color: #8d6d4a;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        .cart-box {
+            min-height: 270px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            color: #4b362a;
+            margin-bottom: 52px;
+        }
+
+        .cart-empty {
+            text-align: center;
+            color: #a2876f;
+            font-size: 0.95rem;
+            margin-top: 8px;
+        }
+
+        .total-card {
+            background: var(--total-bg);
+            padding: 28px 24px 22px;
+            color: white;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .total-label {
+            color: #ab8b66;
+            font-size: 0.82rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .total-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #d3a95f;
+        }
+
+        .finish-button {
+            width: 100%;
+            height: 54px;
+            background: var(--total-button);
+            border: none;
+            color: #6f4a35;
+            font-size: 0.98rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .finish-button:hover {
+            background: #5a3120;
+            color: #c79d60;
+        }
+
+        @@media (max-width: 1200px) {
+            .pos-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @@media (max-width: 860px) {
+            body {
+                height: auto;
+                overflow: auto;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-bar {
+                padding: 0 20px;
+            }
+
+            .pos-layout {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div>
+            <div class="brand-header">
+                <div class="brand-title">MAISON ÉLITE</div>
+                <div class="brand-subtitle">Administrador</div>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="@Url.Action("AdminDashboard", "Home")"><i class="fa-solid fa-compass"></i> Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("AdminCatalogo", "Home")"><i class="fa-solid fa-book-open"></i> Catálogo</a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("AdminClientes", "Home")"><i class="fa-solid fa-users"></i> Clientes</a>
+                </li>
+                <li class="nav-item active">
+                    <a href="@Url.Action("AdminPuntoDeVenta", "Home")"><i class="fa-solid fa-cash-register"></i> Punto de Venta</a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("AdminHistorialVentas", "Home")"><i class="fa-solid fa-clock-rotate-left"></i> Historial de Ventas</a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("AdminReportes", "Home")"><i class="fa-solid fa-chart-pie"></i> Reportes</a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("AdminBitacora", "Home")"><i class="fa-solid fa-list-check"></i> Bitácora</a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("AdminRespaldos", "Home")"><i class="fa-solid fa-shield-halved"></i> Respaldos</a>
+                </li>
+            </ul>
+        </div>
+        <div class="sidebar-footer">
+            <a href="@Url.Action("Index", "Home")" class="logout-btn">
+                <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
+            </a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="header-bar">
+            <h1 class="page-title">Punto de Venta</h1>
+            <div class="user-avatar">@inicial</div>
+        </header>
+
+        <section class="pos-layout">
+            <div class="catalog-panel">
+                <input type="text" class="search-input" placeholder="Buscar prenda..." />
+
+                <div class="products-grid">
+                    <article class="product-card">
+                        <div class="product-meta">BLAZER · M</div>
+                        <div class="product-name">Blazer Cachemira Oscuro</div>
+                        <div class="product-price">$2500</div>
+                        <div class="product-stock">8 disponibles</div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-meta">VESTIDO · S</div>
+                        <div class="product-name">Vestido Seda Ivory</div>
+                        <div class="product-price">$1800</div>
+                        <div class="product-stock">5 disponibles</div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-meta">ABRIGO · L</div>
+                        <div class="product-name">Abrigo Lana Merino</div>
+                        <div class="product-price">$3200</div>
+                        <div class="product-stock low">3 disponibles</div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-meta">PANTALÓN · M</div>
+                        <div class="product-name">Pantalón Tweed Beige</div>
+                        <div class="product-price">$890</div>
+                        <div class="product-stock">14 disponibles</div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-meta">BLUSA · S</div>
+                        <div class="product-name">Blusa Lino Crema</div>
+                        <div class="product-price">$620</div>
+                        <div class="product-stock">20 disponibles</div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-meta">FALDA · XS</div>
+                        <div class="product-name">Falda Plisada Champagne</div>
+                        <div class="product-price">$740</div>
+                        <div class="product-stock">7 disponibles</div>
+                    </article>
+                </div>
+            </div>
+
+            <aside class="side-panel">
+                <section class="side-card client-box">
+                    <div class="side-title">Cliente</div>
+                    <select class="client-select">
+                        <option selected>Seleccionar cliente...</option>
+                        <option>Sofía Mendoza</option>
+                        <option>Andrés Castillo</option>
+                        <option>Valentina Ríos</option>
+                        <option>Camilo Herrera</option>
+                    </select>
+                </section>
+
+                <section class="side-card cart-box">
+                    <div class="cart-title">Carrito</div>
+                    <div class="cart-empty">Agrega prendas al carrito</div>
+                </section>
+
+                <section class="total-card">
+                    <div class="total-row">
+                        <div class="total-label">Total</div>
+                        <div class="total-value">$0</div>
+                    </div>
+                    <button class="finish-button">Finalizar Venta</button>
+                </section>
+            </aside>
+        </section>
+    </main>
+</body>
+</html>
