@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using System.IO;
+using System.Linq;
+using System.Text.Json;
 using ESFE._Clothing_Store.EN;
 using ESFE._Clothing_Store.LN;
 
@@ -10,6 +13,8 @@ namespace ESFE.WEB.Controllers
         private readonly ProductosLN _productosLN = new ProductosLN();
         private readonly ClientesLN _clientesLN = new ClientesLN();
         private readonly VentasLN _ventasLN = new VentasLN();
+        private readonly BitacoraLN _bitacoraLN = new BitacoraLN();
+        private readonly UsuarioLN _usuarioLN = new UsuarioLN();
         private readonly Tipo_ProductoLN _tipoProductoLN = new Tipo_ProductoLN();
         private readonly TallasLN _tallasLN = new TallasLN();
         private readonly TelaLN _telaLN = new TelaLN();
@@ -387,20 +392,10 @@ namespace ESFE.WEB.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
-            return View("AdminHistorialVentas");
-        }
+            ViewBag.Clientes = _clientesLN.ObtenerTodos();
+            var ventas = _ventasLN.ObtenerTodos();
 
-        [HttpGet]
-        public IActionResult AdminReportes()
-        {
-            var rol = HttpContext.Session.GetInt32("Rol");
-
-            if (rol != 101)
-            {
-                return RedirectToAction("Index", "Login");
-            }
-
-            return View("AdminReportes");
+            return View("AdminHistorialVentas", ventas);
         }
 
         [HttpGet]
@@ -413,7 +408,18 @@ namespace ESFE.WEB.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
-            return View("AdminBitacora");
+            var bitacora = _bitacoraLN.ObtenerTodos()
+                .OrderByDescending(item => item.Fecha_y_hora)
+                .ToList();
+
+            var usuarios = _usuarioLN.ObtenerTodos()
+                .GroupBy(u => u.id_Usuario)
+                .Select(g => g.First())
+                .ToDictionary(u => u.id_Usuario, u => u.usuario ?? $"Usuario #{u.id_Usuario}");
+
+            ViewBag.UsuariosBitacora = usuarios;
+
+            return View("AdminBitacora", bitacora);
         }
 
         [HttpGet]
@@ -426,7 +432,122 @@ namespace ESFE.WEB.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
-            return View("AdminRespaldos");
+            var rutaBackups = Path.Combine(Directory.GetCurrentDirectory(), "Backups");
+            Directory.CreateDirectory(rutaBackups);
+
+            var respaldos = new DirectoryInfo(rutaBackups)
+                .GetFiles("*.bak", SearchOption.TopDirectoryOnly)
+                .OrderByDescending(file => file.LastWriteTime)
+                .ToList();
+
+            var nombreArchivoSeleccionado = Request.Query["nombreArchivo"].ToString();
+
+            if (!string.IsNullOrWhiteSpace(nombreArchivoSeleccionado) && nombreArchivoSeleccionado.IndexOfAny(Path.GetInvalidFileNameChars()) < 0)
+            {
+                var rutaArchivoSeleccionado = Path.Combine(rutaBackups, nombreArchivoSeleccionado);
+
+                if (System.IO.File.Exists(rutaArchivoSeleccionado))
+                {
+                    ViewBag.NombreRespaldoSeleccionado = nombreArchivoSeleccionado;
+                    ViewBag.ContenidoRespaldo = System.IO.File.ReadAllText(rutaArchivoSeleccionado);
+                }
+            }
+
+            return View("AdminRespaldos", respaldos);
+        }
+
+        [HttpGet]
+        public IActionResult DescargarRespaldo(string nombreArchivo)
+        {
+            var rol = HttpContext.Session.GetInt32("Rol");
+
+            if (rol != 101)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            if (string.IsNullOrWhiteSpace(nombreArchivo) || nombreArchivo.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
+            {
+                return NotFound();
+            }
+
+            var rutaBackups = Path.Combine(Directory.GetCurrentDirectory(), "Backups");
+            var rutaArchivo = Path.Combine(rutaBackups, nombreArchivo);
+
+            if (!System.IO.File.Exists(rutaArchivo))
+            {
+                return NotFound();
+            }
+
+            var contenido = System.IO.File.ReadAllBytes(rutaArchivo);
+            return File(contenido, "application/octet-stream", nombreArchivo);
+        }
+
+        [HttpPost]
+        public IActionResult CrearRespaldo()
+        {
+            var rol = HttpContext.Session.GetInt32("Rol");
+
+            if (rol != 101)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            var rutaBackups = Path.Combine(Directory.GetCurrentDirectory(), "Backups");
+            Directory.CreateDirectory(rutaBackups);
+
+            var fecha = DateTime.Now;
+            var nombreArchivo = $"backup_maison_{fecha:yyyyMMdd_HHmmss}.bak";
+            var rutaArchivo = Path.Combine(rutaBackups, nombreArchivo);
+
+            var respaldo = new
+            {
+                GeneradoEn = fecha,
+                Usuarios = _usuarioLN.ObtenerTodos(),
+                Clientes = _clientesLN.ObtenerTodos(),
+                Productos = _productosLN.ObtenerTodos(),
+                Ventas = _ventasLN.ObtenerTodos(),
+                Bitacora = _bitacoraLN.ObtenerTodos()
+            };
+
+            var contenido = JsonSerializer.Serialize(respaldo, new JsonSerializerOptions
+            {
+                WriteIndented = true
+            });
+
+            System.IO.File.WriteAllText(rutaArchivo, contenido);
+            TempData["MensajeRespaldo"] = $"Respaldo creado: {nombreArchivo}";
+
+            return RedirectToAction("AdminRespaldos");
+        }
+
+        [HttpPost]
+        public IActionResult EliminarRespaldo(string nombreArchivo)
+        {
+            var rol = HttpContext.Session.GetInt32("Rol");
+
+            if (rol != 101)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            if (string.IsNullOrWhiteSpace(nombreArchivo) || nombreArchivo.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
+            {
+                return NotFound();
+            }
+
+            var rutaBackups = Path.Combine(Directory.GetCurrentDirectory(), "Backups");
+            var rutaArchivo = Path.Combine(rutaBackups, nombreArchivo);
+
+            if (!System.IO.File.Exists(rutaArchivo))
+            {
+                return NotFound();
+            }
+
+            System.IO.File.Delete(rutaArchivo);
+            TempData["MensajeRespaldo"] = $"Respaldo eliminado: {nombreArchivo}";
+
+            return RedirectToAction("AdminRespaldos");
         }
     }
 }

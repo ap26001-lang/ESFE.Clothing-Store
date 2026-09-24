@@ -60,8 +60,8 @@ namespace ESFE._Clothing_Store.DAL
                 cn.Open();
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "sp_Ventas_Eliminar";
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "DELETE FROM Ventas WHERE Codigo_de_Venta = @Codigo_de_Venta";
+                    cmd.CommandType = CommandType.Text;
 
                     var p = cmd.CreateParameter(); p.ParameterName = "@Codigo_de_Venta"; p.Value = codigoVenta ?? (object)DBNull.Value; cmd.Parameters.Add(p);
 
@@ -79,8 +79,8 @@ namespace ESFE._Clothing_Store.DAL
                 cn.Open();
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "sp_Ventas_ObtenerTodos";
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "SELECT Codigo_de_Venta, Fecha_y_hora, Cantidad_de_producto, id_Tipo_Producto, id_cliente FROM Ventas";
+                    cmd.CommandType = CommandType.Text;
 
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
@@ -112,8 +112,8 @@ namespace ESFE._Clothing_Store.DAL
                 cn.Open();
                 using (IDbCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "sp_Ventas_ObtenerPorId";
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "SELECT Codigo_de_Venta, Fecha_y_hora, Cantidad_de_producto, id_Tipo_Producto, id_cliente FROM Ventas WHERE Codigo_de_Venta = @Codigo_de_Venta";
+                    cmd.CommandType = CommandType.Text;
 
                     var p = cmd.CreateParameter(); p.ParameterName = "@Codigo_de_Venta"; p.Value = codigoVenta ?? (object)DBNull.Value; cmd.Parameters.Add(p);
 

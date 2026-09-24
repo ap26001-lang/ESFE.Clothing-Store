@@ -1,6 +1,9 @@
-﻿@{
+﻿@model List<System.IO.FileInfo>
+@{
     ViewData["Title"] = "Respaldos - Maison Élite";
     Layout = null;
+    var nombreRespaldoSeleccionado = ViewBag.NombreRespaldoSeleccionado as string ?? string.Empty;
+    var contenidoRespaldo = ViewBag.ContenidoRespaldo as string ?? string.Empty;
 }
 
 <!DOCTYPE html>
@@ -22,6 +25,7 @@
                 --card-bg: #ffffff;
                 --text-dark: #2b2b2b;
                 --text-muted: #7f7f7f;
+                --success-color: #2b7a5a;
             }
 
             * {
@@ -142,23 +146,23 @@
                 color: var(--text-dark);
             }
 
-            .btn-gold {
+            .btn-create-backup {
                 background-color: var(--sidebar-bg);
-                color: var(--gold-accent);
+                color: var(--gold-light);
                 border: 1px solid var(--gold-accent);
                 padding: 10px 18px;
                 border-radius: 8px;
-                font-size: 0.9rem;
                 font-weight: 600;
+                font-size: 0.88rem;
                 cursor: pointer;
-                text-decoration: none;
-                display: flex;
+                display: inline-flex;
                 align-items: center;
                 gap: 8px;
+                transition: all 0.2s ease;
             }
 
-                .btn-gold:hover {
-                    background-color: var(--gold-accent);
+                .btn-create-backup:hover {
+                    background-color: var(--sidebar-hover);
                     color: #ffffff;
                 }
 
@@ -173,7 +177,6 @@
                 width: 100%;
                 border-collapse: collapse;
                 text-align: left;
-                margin-top: 12px;
             }
 
                 .custom-table th {
@@ -191,6 +194,75 @@
                     font-size: 0.9rem;
                     border-bottom: 1px solid #f0f0f0;
                 }
+
+            .file-name {
+                font-weight: 700;
+                color: var(--text-dark);
+            }
+
+            .status-completed {
+                color: var(--success-color);
+                font-weight: 600;
+            }
+
+            .actions-cell {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                flex-wrap: wrap;
+            }
+
+            .btn-action {
+                background: none;
+                border: none;
+                color: var(--gold-accent);
+                font-weight: 600;
+                font-size: 0.88rem;
+                cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                transition: color 0.2s;
+                text-decoration: none;
+                padding: 0;
+            }
+
+                .btn-action:hover {
+                    color: var(--sidebar-bg);
+                    text-decoration: underline;
+                }
+
+            .btn-delete {
+                color: var(--text-muted);
+            }
+
+                .btn-delete:hover {
+                    color: #a33c3c;
+                }
+
+            .inline-form {
+                display: inline;
+            }
+
+            .backup-detail {
+                background-color: var(--card-bg);
+                padding: 28px;
+                border-radius: 12px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            }
+
+            .backup-detail pre {
+                margin-top: 16px;
+                background-color: #f8f6f2;
+                border: 1px solid #eee7dc;
+                border-radius: 10px;
+                padding: 18px;
+                overflow: auto;
+                white-space: pre-wrap;
+                word-break: break-word;
+                font-size: 0.82rem;
+                line-height: 1.55;
+            }
     </style>
 </head>
 <body>
@@ -207,7 +279,6 @@
                 <li class="nav-item"><a href="@Url.Action("AdminClientes", "Home")"><i class="fa-solid fa-users"></i> Clientes</a></li>
                 <li class="nav-item"><a href="@Url.Action("AdminPuntoDeVenta", "Home")"><i class="fa-solid fa-cash-register"></i> Punto de Venta</a></li>
                 <li class="nav-item"><a href="@Url.Action("AdminHistorialVentas", "Home")"><i class="fa-solid fa-clock-rotate-left"></i> Historial de Ventas</a></li>
-                <li class="nav-item"><a href="@Url.Action("AdminReportes", "Home")"><i class="fa-solid fa-chart-pie"></i> Reportes</a></li>
                 <li class="nav-item"><a href="@Url.Action("AdminBitacora", "Home")"><i class="fa-solid fa-list-check"></i> Bitácora</a></li>
                 <li class="nav-item active"><a href="@Url.Action("AdminRespaldos", "Home")"><i class="fa-solid fa-shield-halved"></i> Respaldos</a></li>
             </ul>
@@ -223,8 +294,17 @@
                 <h1 class="page-title">Respaldos de Base de Datos</h1>
                 <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Genera y restaura copias de seguridad del sistema.</p>
             </div>
-            <a href="#" class="btn-gold"><i class="fa-solid fa-database"></i> Crear Nuevo Respaldo</a>
+            <form method="post" action="@Url.Action("CrearRespaldo", "Home")">
+                <button type="submit" class="btn-create-backup"><i class="fa-solid fa-database"></i> Crear Nuevo Respaldo</button>
+            </form>
         </header>
+
+        @if (TempData["MensajeRespaldo"] != null)
+        {
+            <div style="background-color: rgba(64, 130, 109, 0.12); color: #2e6050; border: 1px solid rgba(64, 130, 109, 0.2); padding: 12px 16px; border-radius: 10px; font-size: 0.9rem;">
+                @TempData["MensajeRespaldo"]
+            </div>
+        }
 
         <section class="content-card">
             <table class="custom-table">
@@ -238,16 +318,47 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><strong>backup_maison_20260914.bak</strong></td>
-                        <td>14 Sep 2026 - 08:00 AM</td>
-                        <td>14.2 MB</td>
-                        <td><span style="color: #40826d; font-weight: 600;">Completado</span></td>
-                        <td><a href="#" style="color: var(--gold-accent); text-decoration: none; font-weight: 600;"><i class="fa-solid fa-download"></i> Descargar</a></td>
-                    </tr>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var respaldo in Model)
+                        {
+                            var tamanoMb = (respaldo.Length / 1024d / 1024d).ToString("0.##");
+                            <tr>
+                                <td class="file-name">@respaldo.Name</td>
+                                <td>@respaldo.LastWriteTime.ToString("dd MMM yyyy - hh:mm tt")</td>
+                                <td>@tamanoMb MB</td>
+                                <td><span class="status-completed">Completado</span></td>
+                                <td>
+                                    <div class="actions-cell">
+                                        <a href="@Url.Action("AdminRespaldos", "Home", new { nombreArchivo = respaldo.Name })" class="btn-action"><i class="fa-solid fa-eye"></i> Ver</a>
+                                        <a href="@Url.Action("DescargarRespaldo", "Home", new { nombreArchivo = respaldo.Name })" class="btn-action"><i class="fa-solid fa-download"></i> Descargar</a>
+                                        <form method="post" action="@Url.Action("EliminarRespaldo", "Home")" class="inline-form" onsubmit="return confirm('¿Eliminar este respaldo?');">
+                                            <input type="hidden" name="nombreArchivo" value="@respaldo.Name" />
+                                            <button type="submit" class="btn-action btn-delete"><i class="fa-solid fa-trash"></i> Eliminar</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5" style="text-align:center; color: var(--text-muted);">No hay archivos .bak en la carpeta de respaldos.</td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </section>
+
+        @if (!string.IsNullOrWhiteSpace(nombreRespaldoSeleccionado) && !string.IsNullOrWhiteSpace(contenidoRespaldo))
+        {
+            <section class="backup-detail">
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--text-dark);">Contenido del respaldo</h2>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 6px;">Archivo: <strong>@nombreRespaldoSeleccionado</strong></p>
+                <pre>@contenidoRespaldo</pre>
+            </section>
+        }
     </main>
 
 </body>

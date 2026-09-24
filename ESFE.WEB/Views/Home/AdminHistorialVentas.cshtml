@@ -1,6 +1,9 @@
-﻿@{
+﻿@model List<ESFE._Clothing_Store.EN.Ventas>
+@using ESFE._Clothing_Store.EN
+@{
     ViewData["Title"] = "Historial de Ventas - Maison Élite";
     Layout = null;
+    var clientes = ViewBag.Clientes as List<Clientes> ?? new List<Clientes>();
 }
 
 <!DOCTYPE html>
@@ -324,7 +327,6 @@
                 <li class="nav-item"><a href="@Url.Action("AdminClientes", "Home")"><i class="fa-solid fa-users"></i> Clientes</a></li>
                 <li class="nav-item"><a href="@Url.Action("AdminPuntoDeVenta", "Home")"><i class="fa-solid fa-cash-register"></i> Punto de Venta</a></li>
                 <li class="nav-item active"><a href="@Url.Action("AdminHistorialVentas", "Home")"><i class="fa-solid fa-clock-rotate-left"></i> Historial de Ventas</a></li>
-                <li class="nav-item"><a href="@Url.Action("AdminReportes", "Home")"><i class="fa-solid fa-chart-pie"></i> Reportes</a></li>
                 <li class="nav-item"><a href="@Url.Action("AdminBitacora", "Home")"><i class="fa-solid fa-list-check"></i> Bitácora</a></li>
                 <li class="nav-item"><a href="@Url.Action("AdminRespaldos", "Home")"><i class="fa-solid fa-shield-halved"></i> Respaldos</a></li>
             </ul>
@@ -360,51 +362,38 @@
                     </tr>
                 </thead>
                 <tbody id="tbodyHistorial">
-                    <tr>
-                        <td><strong>#VTA-1001</strong></td>
-                        <td>14 Sep 2026 - 10:30 AM</td>
-                        <td>Sofía Martínez</td>
-                        <td>$557.09</td>
-                        <td><span class="badge-completed">Completado</span></td>
-                        <td style="text-align: center;">
-                            <button class="btn-action" title="Ver Detalle" onclick="verDetalleTicket('#VTA-1001', 'Sofía Martínez', '14 Sep 2026 - 10:30 AM', 'Tarjeta', '$557.09')">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                            <button class="btn-action" title="Imprimir Ticket" onclick="window.print()">
-                                <i class="fa-solid fa-print"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong>#VTA-1002</strong></td>
-                        <td>14 Sep 2026 - 09:15 AM</td>
-                        <td>Carlos Gómez</td>
-                        <td>$250.00</td>
-                        <td><span class="badge-completed">Completado</span></td>
-                        <td style="text-align: center;">
-                            <button class="btn-action" title="Ver Detalle" onclick="verDetalleTicket('#VTA-1002', 'Carlos Gómez', '14 Sep 2026 - 09:15 AM', 'Efectivo', '$250.00')">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                            <button class="btn-action" title="Imprimir Ticket" onclick="window.print()">
-                                <i class="fa-solid fa-print"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong>#VTA-1003</strong></td>
-                        <td>13 Sep 2026 - 04:40 PM</td>
-                        <td>Valentina Ríos</td>
-                        <td>$890.00</td>
-                        <td><span class="badge-completed">Completado</span></td>
-                        <td style="text-align: center;">
-                            <button class="btn-action" title="Ver Detalle" onclick="verDetalleTicket('#VTA-1003', 'Valentina Ríos', '13 Sep 2026 - 04:40 PM', 'Transferencia', '$890.00')">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                            <button class="btn-action" title="Imprimir Ticket" onclick="window.print()">
-                                <i class="fa-solid fa-print"></i>
-                            </button>
-                        </td>
-                    </tr>
+                    @if (Model != null && Model.Count > 0)
+                    {
+                        foreach (var venta in Model)
+                        {
+                            var cliente = clientes.FirstOrDefault(c => c.id_cliente == venta.id_cliente);
+                            var nombreCliente = cliente?.Nombre ?? "Cliente no encontrado";
+                            var total = venta.Cantidad_de_productos * 1.00m;
+                            var fechaTexto = venta.Fecha_y_Hora.ToString("dd MMM yyyy - hh:mm tt");
+
+                            <tr>
+                                <td><strong>@venta.Codigo_de_Venta</strong></td>
+                                <td>@fechaTexto</td>
+                                <td>@nombreCliente</td>
+                                <td>$@total.ToString("0.00")</td>
+                                <td><span class="badge-completed">Completado</span></td>
+                                <td style="text-align: center;">
+                                    <button class="btn-action" title="Ver Detalle" onclick="verDetalleTicket('@venta.Codigo_de_Venta', '@nombreCliente', '@fechaTexto', 'Registrado', '$@total.ToString("0.00")')">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </button>
+                                    <button class="btn-action" title="Imprimir Ticket" onclick="window.print()">
+                                        <i class="fa-solid fa-print"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" style="text-align:center; color:#7f7f7f; padding:24px;">No hay ventas registradas.</td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </section>

@@ -1,13 +1,44 @@
-﻿@{
+﻿@model List<ESFE._Clothing_Store.EN.Bitacora>
+@using Microsoft.AspNetCore.Http
+@{
     ViewData["Title"] = "Bitácora - Maison Élite";
     Layout = null;
+    var usuariosBitacora = ViewBag.UsuariosBitacora as Dictionary<int, string> ?? new Dictionary<int, string>();
+
+    string ObtenerClaseAccion(string accion)
+    {
+        var valor = accion?.ToLower() ?? string.Empty;
+
+        if (valor.Contains("elimin"))
+            return "badge-delete";
+
+        if (valor.Contains("modific") || valor.Contains("actualiz") || valor.Contains("edit"))
+            return "badge-update";
+
+        if (valor.Contains("inicio") || valor.Contains("login") || valor.Contains("sesi"))
+            return "badge-login";
+
+        return "badge-create";
+    }
+
+    string ObtenerModulo(string accion)
+    {
+        var valor = accion?.ToLower() ?? string.Empty;
+
+        if (valor.Contains("venta")) return "Ventas";
+        if (valor.Contains("client")) return "Clientes";
+        if (valor.Contains("product") || valor.Contains("prenda") || valor.Contains("inventario") || valor.Contains("catálogo") || valor.Contains("catalogo")) return "Inventario";
+        if (valor.Contains("login") || valor.Contains("sesi") || valor.Contains("acceso")) return "Seguridad";
+
+        return "General";
+    }
 }
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bitácora de Sistema - Maison Élite</title>
+    <title>Bitácora de Eventos - Maison Élite</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
@@ -251,7 +282,6 @@
                 <li class="nav-item"><a href="@Url.Action("AdminClientes", "Home")"><i class="fa-solid fa-users"></i> Clientes</a></li>
                 <li class="nav-item"><a href="@Url.Action("AdminPuntoDeVenta", "Home")"><i class="fa-solid fa-cash-register"></i> Punto de Venta</a></li>
                 <li class="nav-item"><a href="@Url.Action("AdminHistorialVentas", "Home")"><i class="fa-solid fa-clock-rotate-left"></i> Historial de Ventas</a></li>
-                <li class="nav-item"><a href="@Url.Action("AdminReportes", "Home")"><i class="fa-solid fa-chart-pie"></i> Reportes</a></li>
                 <li class="nav-item active"><a href="@Url.Action("AdminBitacora", "Home")"><i class="fa-solid fa-list-check"></i> Bitácora</a></li>
                 <li class="nav-item"><a href="@Url.Action("AdminRespaldos", "Home")"><i class="fa-solid fa-shield-halved"></i> Respaldos</a></li>
             </ul>
@@ -288,34 +318,29 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>14 Sep 2026 - 10:45 AM</td>
-                        <td>Admin</td>
-                        <td><span class="badge-log badge-create">Creación</span></td>
-                        <td>Inventario</td>
-                        <td>Producto #PRD-003 agregado</td>
-                    </tr>
-                    <tr>
-                        <td>14 Sep 2026 - 10:12 AM</td>
-                        <td>Admin</td>
-                        <td><span class="badge-log badge-login">Inicio de Sesión</span></td>
-                        <td>Seguridad</td>
-                        <td>Acceso exitoso al Admin Panel</td>
-                    </tr>
-                    <tr>
-                        <td>14 Sep 2026 - 09:30 AM</td>
-                        <td>Cajero_1</td>
-                        <td><span class="badge-log badge-create">Creación</span></td>
-                        <td>Ventas</td>
-                        <td>Venta #VTA-1002 procesada</td>
-                    </tr>
-                    <tr>
-                        <td>13 Sep 2026 - 04:15 PM</td>
-                        <td>Admin</td>
-                        <td><span class="badge-log badge-update">Modificación</span></td>
-                        <td>Clientes</td>
-                        <td>Datos del cliente #CLI-001 actualizados</td>
-                    </tr>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            var nombreUsuario = usuariosBitacora.TryGetValue(item.Id_Usuario, out var usuarioNombre)
+                                ? usuarioNombre
+                                : $"Usuario #{item.Id_Usuario}";
+
+                            <tr>
+                                <td>@item.Fecha_y_hora.ToString("dd MMM yyyy - hh:mm tt")</td>
+                                <td>@nombreUsuario</td>
+                                <td><span class="badge-log @ObtenerClaseAccion(item.Accion)">@item.Accion</span></td>
+                                <td>@ObtenerModulo(item.Accion)</td>
+                                <td>Actividad #@item.id_actividad registrada en bitácora</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5" style="text-align:center; color: var(--text-muted);">No hay registros en la bitácora.</td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </section>
