@@ -1,9 +1,12 @@
+@model List<ESFE._Clothing_Store.EN.Clientes>
 @using Microsoft.AspNetCore.Http
 @{
     ViewData["Title"] = "Clientes - Maison Élite";
     Layout = null;
     var usuario = Context.Session.GetString("Usuario") ?? "Administrador";
     var inicial = usuario.Length > 0 ? usuario.Substring(0, 1).ToUpper() : "A";
+    var totalClientes = Model?.Count ?? 0;
+    var clientesVip = Model?.Count(c => c.id_estado == 1) ?? 0;
 }
 
 <!DOCTYPE html>
@@ -478,17 +481,17 @@
         <div class="metrics-grid">
             <div class="metric-card">
                 <div class="metric-label">Total Clientes</div>
-                <div class="metric-value">1,248</div>
+                <div class="metric-value">@totalClientes</div>
                 <div class="metric-sub"><i class="fa-solid fa-arrow-up"></i> +12% este mes</div>
             </div>
             <div class="metric-card">
                 <div class="metric-label">Clientes VIP</div>
-                <div class="metric-value">342</div>
+                <div class="metric-value">@clientesVip</div>
                 <div class="metric-sub"><i class="fa-solid fa-crown"></i> 27% del total</div>
             </div>
             <div class="metric-card">
                 <div class="metric-label">Ingresos Acumulados</div>
-                <div class="metric-value">$45,820.00</div>
+                <div class="metric-value">$0.00</div>
                 <div class="metric-sub"><i class="fa-solid fa-arrow-up"></i> +8.4% vs mes anterior</div>
             </div>
         </div>
@@ -517,74 +520,55 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <div class="client-info">
-                                <div class="client-avatar">SM</div>
-                                <div>
-                                    <div class="client-name">Sofía Martínez</div>
-                                    <div class="client-id">CLI-001</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>02345678-9</td>
-                        <td>+503 7123-4567</td>
-                        <td>sofia.martinez@email.com</td>
-                        <td><strong>18</strong> pedidos</td>
-                        <td><span class="badge-vip">VIP</span></td>
-                        <td style="text-align: center;"><button class="btn-action" title="Editar"><i class="fa-solid fa-pen-to-square"></i></button></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="client-info">
-                                <div class="client-avatar">CR</div>
-                                <div>
-                                    <div class="client-name">Carlos Rodríguez</div>
-                                    <div class="client-id">CLI-002</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>03456789-1</td>
-                        <td>+503 7234-5678</td>
-                        <td>carlos.rodriguez@email.com</td>
-                        <td><strong>9</strong> pedidos</td>
-                        <td><span class="badge-status">Regular</span></td>
-                        <td style="text-align: center;"><button class="btn-action" title="Editar"><i class="fa-solid fa-pen-to-square"></i></button></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="client-info">
-                                <div class="client-avatar">AG</div>
-                                <div>
-                                    <div class="client-name">Ana Gómez</div>
-                                    <div class="client-id">CLI-003</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>04567890-2</td>
-                        <td>+503 7345-6789</td>
-                        <td>ana.gomez@email.com</td>
-                        <td><strong>24</strong> pedidos</td>
-                        <td><span class="badge-vip">VIP</span></td>
-                        <td style="text-align: center;"><button class="btn-action" title="Editar"><i class="fa-solid fa-pen-to-square"></i></button></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="client-info">
-                                <div class="client-avatar">LH</div>
-                                <div>
-                                    <div class="client-name">Luis Hernández</div>
-                                    <div class="client-id">CLI-004</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>05678901-3</td>
-                        <td>+503 7456-7890</td>
-                        <td>luis.hernandez@email.com</td>
-                        <td><strong>3</strong> pedidos</td>
-                        <td><span class="badge-status">Nuevo</span></td>
-                        <td style="text-align: center;"><button class="btn-action" title="Editar"><i class="fa-solid fa-pen-to-square"></i></button></td>
-                    </tr>
+                    @if (Model != null && Model.Count > 0)
+                    {
+                        foreach (var cliente in Model)
+                        {
+                            var iniciales = string.Join("", (cliente.Nombre ?? string.Empty)
+                                .Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                                .Take(2)
+                                .Select(p => p.Substring(0, 1).ToUpper()));
+                            var categoria = cliente.id_estado == 1 ? "VIP" : cliente.id_estado == 2 ? "Regular" : "Nuevo";
+                            var badgeClass = cliente.id_estado == 1 ? "badge-vip" : "badge-status";
+
+                            <tr>
+                                <td>
+                                    <div class="client-info">
+                                        <div class="client-avatar">@iniciales</div>
+                                        <div>
+                                            <div class="client-name">@cliente.Nombre</div>
+                                            <div class="client-id">CLI-@cliente.id_cliente</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>@cliente.Dui</td>
+                                <td>@cliente.Telefono</td>
+                                <td>@cliente.Correo</td>
+                                <td><strong>0</strong> pedidos</td>
+                                <td><span class="@badgeClass">@categoria</span></td>
+                                <td style="text-align: center;">
+                                    <button class="btn-action btn-editar-cliente"
+                                            title="Editar"
+                                            data-id="@cliente.id_cliente"
+                                            data-nombre="@cliente.Nombre"
+                                            data-dui="@cliente.Dui"
+                                            data-correo="@cliente.Correo"
+                                            data-telefono="@cliente.Telefono"
+                                            data-rol="@cliente.id_rol"
+                                            data-permiso="@cliente.id_permiso"
+                                            data-estado="@cliente.id_estado">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="7" style="text-align:center; color:#7f7f7f; padding:24px;">No hay clientes registrados.</td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </section>
@@ -621,11 +605,50 @@
         </div>
     </div>
 
+    <div class="modal-overlay" id="modalEditarCliente">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Editar Cliente</h3>
+                <button class="close-modal" id="btnCerrarModalEditar">&times;</button>
+            </div>
+            <form asp-controller="Home" asp-action="EditarCliente" method="post">
+                <input type="hidden" id="editIdCliente" name="id_cliente" />
+                <input type="hidden" id="editRolCliente" name="id_rol" />
+                <input type="hidden" id="editPermisoCliente" name="id_permiso" />
+                <input type="hidden" id="editEstadoCliente" name="id_estado" />
+
+                <div class="form-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" id="editNombreCliente" name="Nombre" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label>DUI / Documento</label>
+                    <input type="text" id="editDuiCliente" name="Dui" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Correo Electrónico</label>
+                    <input type="email" id="editCorreoCliente" name="Correo" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label>Teléfono</label>
+                    <input type="text" id="editTelefonoCliente" name="Telefono" class="form-control" required />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel" id="btnCancelarModalEditar">Cancelar</button>
+                    <button type="submit" class="btn-gold">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
         const modalCliente = document.getElementById('modalCliente');
         const btnAbrir = document.getElementById('btnAbrirModalCliente');
         const btnCerrar = document.getElementById('btnCerrarModal');
         const btnCancelar = document.getElementById('btnCancelarModal');
+        const modalEditarCliente = document.getElementById('modalEditarCliente');
+        const btnCerrarModalEditar = document.getElementById('btnCerrarModalEditar');
+        const btnCancelarModalEditar = document.getElementById('btnCancelarModalEditar');
 
         btnAbrir.addEventListener('click', () => {
             modalCliente.style.display = 'flex';
@@ -637,6 +660,28 @@
 
         btnCancelar.addEventListener('click', () => {
             modalCliente.style.display = 'none';
+        });
+
+        document.querySelectorAll('.btn-editar-cliente').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.getElementById('editIdCliente').value = btn.getAttribute('data-id');
+                document.getElementById('editNombreCliente').value = btn.getAttribute('data-nombre');
+                document.getElementById('editDuiCliente').value = btn.getAttribute('data-dui');
+                document.getElementById('editCorreoCliente').value = btn.getAttribute('data-correo');
+                document.getElementById('editTelefonoCliente').value = btn.getAttribute('data-telefono');
+                document.getElementById('editRolCliente').value = btn.getAttribute('data-rol');
+                document.getElementById('editPermisoCliente').value = btn.getAttribute('data-permiso');
+                document.getElementById('editEstadoCliente').value = btn.getAttribute('data-estado');
+                modalEditarCliente.style.display = 'flex';
+            });
+        });
+
+        btnCerrarModalEditar.addEventListener('click', () => {
+            modalEditarCliente.style.display = 'none';
+        });
+
+        btnCancelarModalEditar.addEventListener('click', () => {
+            modalEditarCliente.style.display = 'none';
         });
 
         function filtrarClientes() {

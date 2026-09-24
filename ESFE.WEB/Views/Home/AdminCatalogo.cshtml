@@ -1,6 +1,15 @@
+@model List<ESFE._Clothing_Store.EN.Productos>
+@using Microsoft.AspNetCore.Http
+@using ESFE._Clothing_Store.EN
 @{
     ViewData["Title"] = "Catálogo de Prendas - Maison Élite";
     Layout = null;
+    var usuario = Context.Session.GetString("Usuario") ?? "Administrador";
+    var inicial = usuario.Length > 0 ? usuario.Substring(0, 1).ToUpper() : "A";
+    var tiposProducto = ViewBag.TiposProducto as List<Tipo_Producto> ?? new List<Tipo_Producto>();
+    var tallas = ViewBag.Tallas as List<Tallas> ?? new List<Tallas>();
+    var telas = ViewBag.Telas as List<Tela> ?? new List<Tela>();
+    var colores = ViewBag.Colores as List<Color> ?? new List<Color>();
 }
 
 <!DOCTYPE html>
@@ -416,7 +425,7 @@
                 <button id="btnAbrirModalCrear" class="btn-gold">
                     <i class="fa-solid fa-plus"></i> Nueva Prenda
                 </button>
-                <div class="user-avatar">A</div>
+                <div class="user-avatar">@inicial</div>
             </div>
         </header>
 
@@ -438,45 +447,41 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>#PRD-001</td>
-                        <td><strong>Blazer Cachemira</strong></td>
-                        <td>Sacos / Abrigos</td>
-                        <td>$250.00</td>
-                        <td>84 uds.</td>
-                        <td><span class="badge-status">Disponible</span></td>
-                        <td style="text-align: center;">
-                            <button class="btn-action btn-editar" title="Editar" data-codigo="#PRD-001" data-nombre="Blazer Cachemira" data-precio="250.00">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#PRD-002</td>
-                        <td><strong>Vestido Seda Italiana</strong></td>
-                        <td>Vestidos</td>
-                        <td>$243.00</td>
-                        <td>77 uds.</td>
-                        <td><span class="badge-status">Disponible</span></td>
-                        <td style="text-align: center;">
-                            <button class="btn-action btn-editar" title="Editar" data-codigo="#PRD-002" data-nombre="Vestido Seda Italiana" data-precio="243.00">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#PRD-003</td>
-                        <td><strong>Abrigo Lana Fina</strong></td>
-                        <td>Sacos / Abrigos</td>
-                        <td>$500.00</td>
-                        <td>61 uds.</td>
-                        <td><span class="badge-status">Disponible</span></td>
-                        <td style="text-align: center;">
-                            <button class="btn-action btn-editar" title="Editar" data-codigo="#PRD-003" data-nombre="Abrigo Lana Fina" data-precio="500.00">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </button>
-                        </td>
-                    </tr>
+                    @if (Model != null && Model.Count > 0)
+                    {
+                        foreach (var producto in Model)
+                        {
+                            var categoria = producto.idTipoProducto switch
+                            {
+                                1 => "Camisas",
+                                2 => "Pantalones",
+                                3 => "Vestidos",
+                                4 => "Faldas",
+                                5 => "Sacos / Abrigos",
+                                _ => "Prendas"
+                            };
+
+                            <tr>
+                                <td>@producto.CodigoProducto</td>
+                                <td><strong>@producto.NombreProducto</strong></td>
+                                <td>@categoria</td>
+                                <td>$@producto.precio</td>
+                                <td>N/D</td>
+                                <td><span class="badge-status">Disponible</span></td>
+                                <td style="text-align: center;">
+                                    <button class="btn-action btn-editar" title="Editar" data-codigo="@producto.CodigoProducto" data-nombre="@producto.NombreProducto" data-precio="@producto.precio">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="7" style="text-align:center; color:#7f7f7f; padding: 24px;">No hay productos registrados.</td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </section>
@@ -501,6 +506,46 @@
                 <div class="form-group">
                     <label>Precio ($)</label>
                     <input type="number" step="0.01" name="Precio" class="form-control" placeholder="Ej: 45.00" required />
+                </div>
+                <div class="form-group">
+                    <label>Tipo de Producto</label>
+                    <select name="idTipoProducto" class="form-control" required>
+                        <option value="">Seleccionar tipo...</option>
+                        @foreach (var tipo in tiposProducto)
+                        {
+                            <option value="@tipo.id_tipo_producto">@tipo.Tipo_de_producto</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Talla</label>
+                    <select name="idtallas" class="form-control" required>
+                        <option value="">Seleccionar talla...</option>
+                        @foreach (var talla in tallas)
+                        {
+                            <option value="@talla.idTallas">@talla.TallaProducto</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Tela</label>
+                    <select name="idtelas" class="form-control" required>
+                        <option value="">Seleccionar tela...</option>
+                        @foreach (var tela in telas)
+                        {
+                            <option value="@tela.idTela">@tela.Tipodetela</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Color</label>
+                    <select name="idcolor" class="form-control" required>
+                        <option value="">Seleccionar color...</option>
+                        @foreach (var color in colores)
+                        {
+                            <option value="@color.Id_Color">@color.color</option>
+                        }
+                    </select>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn-cancel" id="btnCancelarCrear">Cancelar</button>
