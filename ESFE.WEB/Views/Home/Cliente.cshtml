@@ -658,6 +658,91 @@
                 }
 
             .catalog-card-image {
+                height: 280px !important;
+                background: #f7f3ed;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+            }
+
+                .catalog-card-image .catalog-product-image {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain !important;
+                    background: #f7f3ed;
+                }
+
+            .product-view-image {
+                width: 100%;
+                max-height: 360px;
+                object-fit: contain;
+                background: #f7f3ed;
+                border: 1px solid var(--me-border);
+            }
+
+            .purchase-summary {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 12px;
+                margin: 14px 0;
+                padding: 12px;
+                background: #fbfaf7;
+                border: 1px solid var(--me-border);
+            }
+
+            .purchase-total {
+                font-family: 'Playfair Display', serif;
+                font-size: 19px;
+                color: var(--me-text-dark);
+            }
+
+            .demo-payment-note {
+                margin: 0 0 14px;
+                padding: 10px 12px;
+                background: #f8f2e8;
+                border: 1px solid var(--me-border);
+                color: var(--me-text-muted);
+                font-size: 8px;
+                line-height: 1.5;
+            }
+
+            .demo-card {
+                border: 1px solid var(--me-border);
+                background: linear-gradient(135deg, #211610, #4b3526);
+                color: #fff;
+                padding: 18px;
+                min-height: 115px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                margin-bottom: 16px;
+            }
+
+            .demo-card-title {
+                font-size: 8px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+            }
+
+            .demo-card-number {
+                font-family: 'Montserrat', Arial, sans-serif;
+                font-size: 16px;
+                letter-spacing: 2px;
+            }
+
+            .demo-success {
+                text-align: center;
+                padding: 25px 10px;
+            }
+
+            .demo-success-icon {
+                font-size: 34px;
+                margin-bottom: 10px;
+            }
+
+            .catalog-card-image {
                 overflow: hidden;
                 position: relative;
                 height: 240px;
@@ -1613,6 +1698,44 @@
 
 
     <!-- ==========================
+     VISOR / COMPRA DE PRODUCTO
+=========================== -->
+
+    <div id="productoModal"
+         class="editor-overlay"
+         onclick="if(event.target === this) cerrarProductoModal()">
+
+        <div class="editor-modal">
+
+            <div class="editor-modal-header">
+                <h2 id="productoModalTitulo" class="editor-modal-title">Producto</h2>
+                <button type="button" class="editor-close" onclick="cerrarProductoModal()">&times;</button>
+            </div>
+
+            <div id="productoModalContenido"></div>
+
+        </div>
+    </div>
+
+
+    <div id="compraModal"
+         class="editor-overlay"
+         onclick="if(event.target === this) cerrarCompra()">
+
+        <div class="editor-modal">
+
+            <div class="editor-modal-header">
+                <h2 class="editor-modal-title">Finalizar compra</h2>
+                <button type="button" class="editor-close" onclick="cerrarCompra()">&times;</button>
+            </div>
+
+            <div id="compraContenido"></div>
+
+        </div>
+    </div>
+
+
+    <!-- ==========================
      EDITOR LOCAL DEL CATÁLOGO
 =========================== -->
 
@@ -1826,6 +1949,13 @@
                                             type="button"
                                             onclick="verProducto('${producto.id}')">
                                             Ver producto
+                                        </button>
+
+                                        <button
+                                            class="card-button"
+                                            type="button"
+                                            onclick="abrirCompra('${producto.id}')">
+                                            Comprar
                                         </button>
 
                                         <button
@@ -2130,10 +2260,122 @@
                     return;
                 }
 
-                alert(
-                    "Producto seleccionado: " +
-                    producto.nombre
+                const precio = Number(producto.precio || 0).toLocaleString(
+                    "en-US",
+                    { minimumFractionDigits: 2, maximumFractionDigits: 2 }
                 );
+
+                const imagen = producto.imagen
+                    ? `<img src="${producto.imagen}" alt="${escaparHtml(producto.nombre)}" class="product-view-image">`
+                    : `<div class="editor-preview"><span>Este producto todavía no tiene imagen.</span></div>`;
+
+                document.getElementById("productoModalTitulo").textContent = producto.nombre;
+                document.getElementById("productoModalContenido").innerHTML = `
+                    ${imagen}
+                    <div class="purchase-summary">
+                        <span>Precio</span>
+                        <strong class="purchase-total">$${precio}</strong>
+                    </div>
+                    <div class="editor-buttons">
+                        <button type="button" class="editor-button" onclick="cerrarProductoModal()">Cerrar</button>
+                        <button type="button" class="editor-button editor-button-save" onclick="cerrarProductoModal(); abrirCompra('${producto.id}')">Comprar</button>
+                    </div>
+                `;
+
+                document.getElementById("productoModal").style.display = "flex";
+            }
+
+
+            function cerrarProductoModal() {
+                document.getElementById("productoModal").style.display = "none";
+            }
+
+
+            function abrirCompra(id) {
+
+                const producto =
+                    productosCatalogo.find(p => p.id === id);
+
+                if (!producto) {
+                    return;
+                }
+
+                const precio = Number(producto.precio || 0).toLocaleString(
+                    "en-US",
+                    { minimumFractionDigits: 2, maximumFractionDigits: 2 }
+                );
+
+                document.getElementById("compraContenido").innerHTML = `
+                    <div class="purchase-summary">
+                        <div>
+                            <strong>${escaparHtml(producto.nombre)}</strong><br>
+                            <span>1 unidad</span>
+                        </div>
+                        <strong class="purchase-total">$${precio}</strong>
+                    </div>
+
+                    <p class="demo-payment-note">
+                        Pago de demostración para la presentación. No realiza cargos reales ni conecta con un banco.
+                    </p>
+
+                    <div class="demo-card">
+                        <div class="demo-card-title">Maison Élite · Tarjeta de demostración</div>
+                        <div class="demo-card-number">••••  ••••  ••••  4242</div>
+                        <div>Pago seguro de demostración</div>
+                    </div>
+
+                    <div class="editor-buttons">
+                        <button type="button" class="editor-button" onclick="cerrarCompra()">Cancelar</button>
+                        <button type="button" class="editor-button editor-button-save" onclick="confirmarCompra('${producto.id}')">Pagar $${precio}</button>
+                    </div>
+                `;
+
+                document.getElementById("compraModal").style.display = "flex";
+            }
+
+
+            function cerrarCompra() {
+                document.getElementById("compraModal").style.display = "none";
+            }
+
+
+            function confirmarCompra(id) {
+
+                const producto =
+                    productosCatalogo.find(p => p.id === id);
+
+                if (!producto) {
+                    return;
+                }
+
+                const clave = "maison_elite_pedidos_demo";
+                let pedidos = [];
+
+                try {
+                    pedidos = JSON.parse(localStorage.getItem(clave) || "[]");
+                } catch (error) {
+                    pedidos = [];
+                }
+
+                pedidos.push({
+                    id: "pedido-" + Date.now(),
+                    producto: producto.nombre,
+                    precio: Number(producto.precio || 0),
+                    fecha: new Date().toLocaleDateString("es-SV"),
+                    metodo: "Tarjeta de demostración"
+                });
+
+                localStorage.setItem(clave, JSON.stringify(pedidos));
+
+                document.getElementById("compraContenido").innerHTML = `
+                    <div class="demo-success">
+                        <div class="demo-success-icon">✓</div>
+                        <h2 style="font-family:'Playfair Display',serif;font-weight:400;">¡Compra realizada!</h2>
+                        <p>Pedido de demostración registrado correctamente.</p>
+                        <p><strong>${escaparHtml(producto.nombre)}</strong></p>
+                        <button type="button" class="editor-button editor-button-save" onclick="cerrarCompra(); mostrarSeccion('inicio')">Continuar</button>
+                    </div>
+                `;
             }
 
 
